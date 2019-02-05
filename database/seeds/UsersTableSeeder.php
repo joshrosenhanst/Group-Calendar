@@ -11,10 +11,17 @@ class UsersTableSeeder extends Seeder
 	 */
 	public function run()
 	{
-		//$group = factory(App\Group::class)->make();
-		factory(App\User::class, 50)->create()->each(function($user){
+		$demo_group = factory(App\Group::class)->create();
+		factory(App\User::class, 50)->create()->each(function($user) use ($demo_group){
 			//add users to demo group
-			//store their photos
+			$demo_group->users()->save($user);
+
+			//create a comment on the group's page
+			$comment = factory(App\Comment::class)->create([
+				'user_id' => $user->id,
+				'commentable_id' => $demo_group->id,
+				'commentable_type' => App\Group::class
+			]);
 		});
 	}
 }
