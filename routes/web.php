@@ -21,7 +21,7 @@ Route::get('/', function () {
 Route::get('/calendar','EventController@calendar');
 
 /* Events */
-Route::group('events', function(){
+Route::prefix('events')->group(function(){
   Route::get('/','EventController@index');
   Route::get('/new','EventController@new');
   Route::get('/{event}','EventController@view');
@@ -33,7 +33,7 @@ Route::group('events', function(){
 });
 
 /* Groups */
-Route::group('groups', function(){
+Route::prefix('groups')->group(function(){
   Route::get('/', 'GroupController@index'); // my groups
   Route::get('/{group}', 'GroupController@view'); // view group
   Route::get('/new','GroupController@new');
@@ -49,14 +49,14 @@ Route::group('groups', function(){
 });
 
 /* My Profile */
-Route::group('profile', function(){
+Route::prefix('profile')->group(function(){
   Route::get('/','ProfileController@index'); // my profile
   Route::get('/edit','EventController@edit');
   Route::put('/update', 'EventController@update');
 });
 
 /* Comments */
-Route::group('comments', function(){
+Route::prefix('comments')->group(function(){
   Route::put('/create', 'CommentController@create');
   Route::put('/update', 'CommentController@update');
   Route::delete('/delete', 'CommentController@destroy');
