@@ -22,12 +22,29 @@
   }
 }
 
+#login_form footer button,
+#login_form footer .button,
 .is-unselectable {
   -webkit-touch-callout: none;
   -webkit-user-select: none;
   -moz-user-select: none;
   -ms-user-select: none;
   user-select: none;
+}
+
+#login_form footer button.is-loading::after,
+#login_form footer .button.is-loading::after {
+  -webkit-animation: spinAround 500ms infinite linear;
+          animation: spinAround 500ms infinite linear;
+  border: 2px solid #dbdbdb;
+  border-radius: 290486px;
+  border-right-color: transparent;
+  border-top-color: transparent;
+  content: "";
+  display: block;
+  height: 1em;
+  position: relative;
+  width: 1em;
 }
 
 .is-overlay {
@@ -38,6 +55,8 @@
   top: 0;
 }
 
+#login_form footer button,
+#login_form footer .button,
 form input[type=text],
 form input[type=email],
 form input[type=password],
@@ -61,18 +80,26 @@ form textarea {
   vertical-align: top;
 }
 
+#login_form footer button:focus,
+#login_form footer .button:focus,
 form input[type=text]:focus,
 form input[type=email]:focus,
 form input[type=password]:focus,
 form textarea:focus,
+#login_form footer button.is-focused,
+#login_form footer .is-focused.button,
 form input.is-focused[type=text],
 form input.is-focused[type=email],
 form input.is-focused[type=password],
 form textarea.is-focused,
+#login_form footer button:active,
+#login_form footer .button:active,
 form input[type=text]:active,
 form input[type=email]:active,
 form input[type=password]:active,
 form textarea:active,
+#login_form footer button.is-active,
+#login_form footer .is-active.button,
 form input.is-active[type=text],
 form input.is-active[type=email],
 form input.is-active[type=password],
@@ -80,6 +107,8 @@ form textarea.is-active {
   outline: none;
 }
 
+#login_form footer button[disabled],
+#login_form footer [disabled].button,
 form input[disabled][type=text],
 form input[disabled][type=email],
 form input[disabled][type=password],
@@ -1431,6 +1460,32 @@ form label {
   display: block;
 }
 
+form label.checkbox,
+form label.radio {
+  cursor: pointer;
+  display: inline-block;
+  position: relative;
+  font-weight: 400;
+}
+
+form label.checkbox input,
+form label.radio input {
+  cursor: pointer;
+}
+
+form label.checkbox:hover,
+form label.radio:hover {
+  color: #363636;
+}
+
+form label.checkbox[disabled],
+fieldset[disabled] form label.checkbox,
+form label.radio[disabled],
+fieldset[disabled] form label.radio {
+  color: #7a7a7a;
+  cursor: not-allowed;
+}
+
 form label:not(:last-child) {
   margin-bottom: 0.5em;
 }
@@ -1452,7 +1507,7 @@ form input[type=email],
 form input[type=password],
 form textarea {
   background-color: white;
-  border-color: #dbdbdb;
+  border-color: #00d1b2;
   color: #363636;
   box-shadow: inset 0 1px 2px rgba(10, 10, 10, 0.1);
   max-width: 100%;
@@ -1464,28 +1519,28 @@ form input[type=text]::-moz-placeholder,
 form input[type=email]::-moz-placeholder,
 form input[type=password]::-moz-placeholder,
 form textarea::-moz-placeholder {
-  color: rgba(54, 54, 54, 0.3);
+  color: rgba(54, 54, 54, 0.9);
 }
 
 form input[type=text]::-webkit-input-placeholder,
 form input[type=email]::-webkit-input-placeholder,
 form input[type=password]::-webkit-input-placeholder,
 form textarea::-webkit-input-placeholder {
-  color: rgba(54, 54, 54, 0.3);
+  color: rgba(54, 54, 54, 0.9);
 }
 
 form input[type=text]:-moz-placeholder,
 form input[type=email]:-moz-placeholder,
 form input[type=password]:-moz-placeholder,
 form textarea:-moz-placeholder {
-  color: rgba(54, 54, 54, 0.3);
+  color: rgba(54, 54, 54, 0.9);
 }
 
 form input[type=text]:-ms-input-placeholder,
 form input[type=email]:-ms-input-placeholder,
 form input[type=password]:-ms-input-placeholder,
 form textarea:-ms-input-placeholder {
-  color: rgba(54, 54, 54, 0.3);
+  color: rgba(54, 54, 54, 0.9);
 }
 
 form input[type=text]:hover,
@@ -1541,7 +1596,7 @@ form input[type=password][disabled]::-moz-placeholder,
 fieldset[disabled] form input[type=password]::-moz-placeholder,
 form textarea[disabled]::-moz-placeholder,
 fieldset[disabled] form textarea::-moz-placeholder {
-  color: rgba(122, 122, 122, 0.3);
+  color: rgba(122, 122, 122, 0.9);
 }
 
 form input[type=text][disabled]::-webkit-input-placeholder,
@@ -1552,7 +1607,7 @@ form input[type=password][disabled]::-webkit-input-placeholder,
 fieldset[disabled] form input[type=password]::-webkit-input-placeholder,
 form textarea[disabled]::-webkit-input-placeholder,
 fieldset[disabled] form textarea::-webkit-input-placeholder {
-  color: rgba(122, 122, 122, 0.3);
+  color: rgba(122, 122, 122, 0.9);
 }
 
 form input[type=text][disabled]:-moz-placeholder,
@@ -1563,7 +1618,7 @@ form input[type=password][disabled]:-moz-placeholder,
 fieldset[disabled] form input[type=password]:-moz-placeholder,
 form textarea[disabled]:-moz-placeholder,
 fieldset[disabled] form textarea:-moz-placeholder {
-  color: rgba(122, 122, 122, 0.3);
+  color: rgba(122, 122, 122, 0.9);
 }
 
 form input[type=text][disabled]:-ms-input-placeholder,
@@ -1574,7 +1629,7 @@ form input[type=password][disabled]:-ms-input-placeholder,
 fieldset[disabled] form input[type=password]:-ms-input-placeholder,
 form textarea[disabled]:-ms-input-placeholder,
 fieldset[disabled] form textarea:-ms-input-placeholder {
-  color: rgba(122, 122, 122, 0.3);
+  color: rgba(122, 122, 122, 0.9);
 }
 
 form input[type=text][readonly],
@@ -1883,13 +1938,1533 @@ form textarea.is-inline {
 }
 
 #login_form {
-  margin: 0 auto;
-  width: 450px;
-  padding: 20px;
-  border: 1px solid black;
+  margin: 40px auto;
+  max-width: 500px;
+  border: 1px solid #00d1b2;
 }
 
-#login_form h1 {
+#login_form header {
+  background-color: #00d1b2;
+  padding: 10px 20px;
+  color: white;
+  font-size: 1.5em;
   text-align: center;
+}
+
+#login_form header h1 {
+  font-weight: 700;
+}
+
+#login_form main {
+  padding: 20px 20px 0 20px;
+}
+
+#login_form main .split_layout {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+#login_form footer {
+  padding: 10px 20px 20px 20px;
+  display: flex;
+  flex-direction: row;
+}
+
+#login_form footer button,
+#login_form footer .button {
+  background-color: white;
+  border-color: #dbdbdb;
+  border-width: 1px;
+  color: #363636;
+  cursor: pointer;
+  justify-content: center;
+  padding-bottom: calc(0.375em - 1px);
+  padding-left: 0.75em;
+  padding-right: 0.75em;
+  padding-top: calc(0.375em - 1px);
+  text-align: center;
+  white-space: nowrap;
+  flex: 1 1 50%;
+}
+
+#login_form footer button strong,
+#login_form footer .button strong {
+  color: inherit;
+}
+
+#login_form footer button .icon,
+#login_form footer button .icon.is-small,
+#login_form footer button .icon.is-medium,
+#login_form footer button .icon.is-large,
+#login_form footer .button .icon,
+#login_form footer .button .icon.is-small,
+#login_form footer .button .icon.is-medium,
+#login_form footer .button .icon.is-large {
+  height: 1.5em;
+  width: 1.5em;
+}
+
+#login_form footer button .icon:first-child:not(:last-child),
+#login_form footer .button .icon:first-child:not(:last-child) {
+  margin-left: calc(-0.375em - 1px);
+  margin-right: 0.1875em;
+}
+
+#login_form footer button .icon:last-child:not(:first-child),
+#login_form footer .button .icon:last-child:not(:first-child) {
+  margin-left: 0.1875em;
+  margin-right: calc(-0.375em - 1px);
+}
+
+#login_form footer button .icon:first-child:last-child,
+#login_form footer .button .icon:first-child:last-child {
+  margin-left: calc(-0.375em - 1px);
+  margin-right: calc(-0.375em - 1px);
+}
+
+#login_form footer button:hover,
+#login_form footer button.is-hovered,
+#login_form footer .button:hover,
+#login_form footer .button.is-hovered {
+  border-color: #b5b5b5;
+  color: #363636;
+}
+
+#login_form footer button:focus,
+#login_form footer button.is-focused,
+#login_form footer .button:focus,
+#login_form footer .button.is-focused {
+  border-color: #3273dc;
+  color: #363636;
+}
+
+#login_form footer button:focus:not(:active),
+#login_form footer button.is-focused:not(:active),
+#login_form footer .button:focus:not(:active),
+#login_form footer .button.is-focused:not(:active) {
+  box-shadow: 0 0 0 0.125em rgba(50, 115, 220, 0.25);
+}
+
+#login_form footer button:active,
+#login_form footer button.is-active,
+#login_form footer .button:active,
+#login_form footer .button.is-active {
+  border-color: #4a4a4a;
+  color: #363636;
+}
+
+#login_form footer button.is-text,
+#login_form footer .button.is-text {
+  background-color: transparent;
+  border-color: transparent;
+  color: #4a4a4a;
+  text-decoration: underline;
+}
+
+#login_form footer button.is-text:hover,
+#login_form footer button.is-text.is-hovered,
+#login_form footer button.is-text:focus,
+#login_form footer button.is-text.is-focused,
+#login_form footer .button.is-text:hover,
+#login_form footer .button.is-text.is-hovered,
+#login_form footer .button.is-text:focus,
+#login_form footer .button.is-text.is-focused {
+  background-color: whitesmoke;
+  color: #363636;
+}
+
+#login_form footer button.is-text:active,
+#login_form footer button.is-text.is-active,
+#login_form footer .button.is-text:active,
+#login_form footer .button.is-text.is-active {
+  background-color: #e8e8e8;
+  color: #363636;
+}
+
+#login_form footer button.is-text[disabled],
+fieldset[disabled] #login_form footer button.is-text,
+#login_form footer .button.is-text[disabled],
+fieldset[disabled] #login_form footer .button.is-text {
+  background-color: transparent;
+  border-color: transparent;
+  box-shadow: none;
+}
+
+#login_form footer button.is-white,
+#login_form footer .button.is-white {
+  background-color: white;
+  border-color: transparent;
+  color: #0a0a0a;
+}
+
+#login_form footer button.is-white:hover,
+#login_form footer button.is-white.is-hovered,
+#login_form footer .button.is-white:hover,
+#login_form footer .button.is-white.is-hovered {
+  background-color: #f9f9f9;
+  border-color: transparent;
+  color: #0a0a0a;
+}
+
+#login_form footer button.is-white:focus,
+#login_form footer button.is-white.is-focused,
+#login_form footer .button.is-white:focus,
+#login_form footer .button.is-white.is-focused {
+  border-color: transparent;
+  color: #0a0a0a;
+}
+
+#login_form footer button.is-white:focus:not(:active),
+#login_form footer button.is-white.is-focused:not(:active),
+#login_form footer .button.is-white:focus:not(:active),
+#login_form footer .button.is-white.is-focused:not(:active) {
+  box-shadow: 0 0 0 0.125em rgba(255, 255, 255, 0.25);
+}
+
+#login_form footer button.is-white:active,
+#login_form footer button.is-white.is-active,
+#login_form footer .button.is-white:active,
+#login_form footer .button.is-white.is-active {
+  background-color: #f2f2f2;
+  border-color: transparent;
+  color: #0a0a0a;
+}
+
+#login_form footer button.is-white[disabled],
+fieldset[disabled] #login_form footer button.is-white,
+#login_form footer .button.is-white[disabled],
+fieldset[disabled] #login_form footer .button.is-white {
+  background-color: white;
+  border-color: transparent;
+  box-shadow: none;
+}
+
+#login_form footer button.is-white.is-inverted,
+#login_form footer .button.is-white.is-inverted {
+  background-color: #0a0a0a;
+  color: white;
+}
+
+#login_form footer button.is-white.is-inverted:hover,
+#login_form footer .button.is-white.is-inverted:hover {
+  background-color: black;
+}
+
+#login_form footer button.is-white.is-inverted[disabled],
+fieldset[disabled] #login_form footer button.is-white.is-inverted,
+#login_form footer .button.is-white.is-inverted[disabled],
+fieldset[disabled] #login_form footer .button.is-white.is-inverted {
+  background-color: #0a0a0a;
+  border-color: transparent;
+  box-shadow: none;
+  color: white;
+}
+
+#login_form footer button.is-white.is-loading::after,
+#login_form footer .button.is-white.is-loading::after {
+  border-color: transparent transparent #0a0a0a #0a0a0a !important;
+}
+
+#login_form footer button.is-white.is-outlined,
+#login_form footer .button.is-white.is-outlined {
+  background-color: transparent;
+  border-color: white;
+  color: white;
+}
+
+#login_form footer button.is-white.is-outlined:hover,
+#login_form footer button.is-white.is-outlined:focus,
+#login_form footer .button.is-white.is-outlined:hover,
+#login_form footer .button.is-white.is-outlined:focus {
+  background-color: white;
+  border-color: white;
+  color: #0a0a0a;
+}
+
+#login_form footer button.is-white.is-outlined.is-loading::after,
+#login_form footer .button.is-white.is-outlined.is-loading::after {
+  border-color: transparent transparent white white !important;
+}
+
+#login_form footer button.is-white.is-outlined[disabled],
+fieldset[disabled] #login_form footer button.is-white.is-outlined,
+#login_form footer .button.is-white.is-outlined[disabled],
+fieldset[disabled] #login_form footer .button.is-white.is-outlined {
+  background-color: transparent;
+  border-color: white;
+  box-shadow: none;
+  color: white;
+}
+
+#login_form footer button.is-white.is-inverted.is-outlined,
+#login_form footer .button.is-white.is-inverted.is-outlined {
+  background-color: transparent;
+  border-color: #0a0a0a;
+  color: #0a0a0a;
+}
+
+#login_form footer button.is-white.is-inverted.is-outlined:hover,
+#login_form footer button.is-white.is-inverted.is-outlined:focus,
+#login_form footer .button.is-white.is-inverted.is-outlined:hover,
+#login_form footer .button.is-white.is-inverted.is-outlined:focus {
+  background-color: #0a0a0a;
+  color: white;
+}
+
+#login_form footer button.is-white.is-inverted.is-outlined[disabled],
+fieldset[disabled] #login_form footer button.is-white.is-inverted.is-outlined,
+#login_form footer .button.is-white.is-inverted.is-outlined[disabled],
+fieldset[disabled] #login_form footer .button.is-white.is-inverted.is-outlined {
+  background-color: transparent;
+  border-color: #0a0a0a;
+  box-shadow: none;
+  color: #0a0a0a;
+}
+
+#login_form footer button.is-black,
+#login_form footer .button.is-black {
+  background-color: #0a0a0a;
+  border-color: transparent;
+  color: white;
+}
+
+#login_form footer button.is-black:hover,
+#login_form footer button.is-black.is-hovered,
+#login_form footer .button.is-black:hover,
+#login_form footer .button.is-black.is-hovered {
+  background-color: #040404;
+  border-color: transparent;
+  color: white;
+}
+
+#login_form footer button.is-black:focus,
+#login_form footer button.is-black.is-focused,
+#login_form footer .button.is-black:focus,
+#login_form footer .button.is-black.is-focused {
+  border-color: transparent;
+  color: white;
+}
+
+#login_form footer button.is-black:focus:not(:active),
+#login_form footer button.is-black.is-focused:not(:active),
+#login_form footer .button.is-black:focus:not(:active),
+#login_form footer .button.is-black.is-focused:not(:active) {
+  box-shadow: 0 0 0 0.125em rgba(10, 10, 10, 0.25);
+}
+
+#login_form footer button.is-black:active,
+#login_form footer button.is-black.is-active,
+#login_form footer .button.is-black:active,
+#login_form footer .button.is-black.is-active {
+  background-color: black;
+  border-color: transparent;
+  color: white;
+}
+
+#login_form footer button.is-black[disabled],
+fieldset[disabled] #login_form footer button.is-black,
+#login_form footer .button.is-black[disabled],
+fieldset[disabled] #login_form footer .button.is-black {
+  background-color: #0a0a0a;
+  border-color: transparent;
+  box-shadow: none;
+}
+
+#login_form footer button.is-black.is-inverted,
+#login_form footer .button.is-black.is-inverted {
+  background-color: white;
+  color: #0a0a0a;
+}
+
+#login_form footer button.is-black.is-inverted:hover,
+#login_form footer .button.is-black.is-inverted:hover {
+  background-color: #f2f2f2;
+}
+
+#login_form footer button.is-black.is-inverted[disabled],
+fieldset[disabled] #login_form footer button.is-black.is-inverted,
+#login_form footer .button.is-black.is-inverted[disabled],
+fieldset[disabled] #login_form footer .button.is-black.is-inverted {
+  background-color: white;
+  border-color: transparent;
+  box-shadow: none;
+  color: #0a0a0a;
+}
+
+#login_form footer button.is-black.is-loading::after,
+#login_form footer .button.is-black.is-loading::after {
+  border-color: transparent transparent white white !important;
+}
+
+#login_form footer button.is-black.is-outlined,
+#login_form footer .button.is-black.is-outlined {
+  background-color: transparent;
+  border-color: #0a0a0a;
+  color: #0a0a0a;
+}
+
+#login_form footer button.is-black.is-outlined:hover,
+#login_form footer button.is-black.is-outlined:focus,
+#login_form footer .button.is-black.is-outlined:hover,
+#login_form footer .button.is-black.is-outlined:focus {
+  background-color: #0a0a0a;
+  border-color: #0a0a0a;
+  color: white;
+}
+
+#login_form footer button.is-black.is-outlined.is-loading::after,
+#login_form footer .button.is-black.is-outlined.is-loading::after {
+  border-color: transparent transparent #0a0a0a #0a0a0a !important;
+}
+
+#login_form footer button.is-black.is-outlined[disabled],
+fieldset[disabled] #login_form footer button.is-black.is-outlined,
+#login_form footer .button.is-black.is-outlined[disabled],
+fieldset[disabled] #login_form footer .button.is-black.is-outlined {
+  background-color: transparent;
+  border-color: #0a0a0a;
+  box-shadow: none;
+  color: #0a0a0a;
+}
+
+#login_form footer button.is-black.is-inverted.is-outlined,
+#login_form footer .button.is-black.is-inverted.is-outlined {
+  background-color: transparent;
+  border-color: white;
+  color: white;
+}
+
+#login_form footer button.is-black.is-inverted.is-outlined:hover,
+#login_form footer button.is-black.is-inverted.is-outlined:focus,
+#login_form footer .button.is-black.is-inverted.is-outlined:hover,
+#login_form footer .button.is-black.is-inverted.is-outlined:focus {
+  background-color: white;
+  color: #0a0a0a;
+}
+
+#login_form footer button.is-black.is-inverted.is-outlined[disabled],
+fieldset[disabled] #login_form footer button.is-black.is-inverted.is-outlined,
+#login_form footer .button.is-black.is-inverted.is-outlined[disabled],
+fieldset[disabled] #login_form footer .button.is-black.is-inverted.is-outlined {
+  background-color: transparent;
+  border-color: white;
+  box-shadow: none;
+  color: white;
+}
+
+#login_form footer button.is-light,
+#login_form footer .button.is-light {
+  background-color: whitesmoke;
+  border-color: transparent;
+  color: #363636;
+}
+
+#login_form footer button.is-light:hover,
+#login_form footer button.is-light.is-hovered,
+#login_form footer .button.is-light:hover,
+#login_form footer .button.is-light.is-hovered {
+  background-color: #eeeeee;
+  border-color: transparent;
+  color: #363636;
+}
+
+#login_form footer button.is-light:focus,
+#login_form footer button.is-light.is-focused,
+#login_form footer .button.is-light:focus,
+#login_form footer .button.is-light.is-focused {
+  border-color: transparent;
+  color: #363636;
+}
+
+#login_form footer button.is-light:focus:not(:active),
+#login_form footer button.is-light.is-focused:not(:active),
+#login_form footer .button.is-light:focus:not(:active),
+#login_form footer .button.is-light.is-focused:not(:active) {
+  box-shadow: 0 0 0 0.125em rgba(245, 245, 245, 0.25);
+}
+
+#login_form footer button.is-light:active,
+#login_form footer button.is-light.is-active,
+#login_form footer .button.is-light:active,
+#login_form footer .button.is-light.is-active {
+  background-color: #e8e8e8;
+  border-color: transparent;
+  color: #363636;
+}
+
+#login_form footer button.is-light[disabled],
+fieldset[disabled] #login_form footer button.is-light,
+#login_form footer .button.is-light[disabled],
+fieldset[disabled] #login_form footer .button.is-light {
+  background-color: whitesmoke;
+  border-color: transparent;
+  box-shadow: none;
+}
+
+#login_form footer button.is-light.is-inverted,
+#login_form footer .button.is-light.is-inverted {
+  background-color: #363636;
+  color: whitesmoke;
+}
+
+#login_form footer button.is-light.is-inverted:hover,
+#login_form footer .button.is-light.is-inverted:hover {
+  background-color: #292929;
+}
+
+#login_form footer button.is-light.is-inverted[disabled],
+fieldset[disabled] #login_form footer button.is-light.is-inverted,
+#login_form footer .button.is-light.is-inverted[disabled],
+fieldset[disabled] #login_form footer .button.is-light.is-inverted {
+  background-color: #363636;
+  border-color: transparent;
+  box-shadow: none;
+  color: whitesmoke;
+}
+
+#login_form footer button.is-light.is-loading::after,
+#login_form footer .button.is-light.is-loading::after {
+  border-color: transparent transparent #363636 #363636 !important;
+}
+
+#login_form footer button.is-light.is-outlined,
+#login_form footer .button.is-light.is-outlined {
+  background-color: transparent;
+  border-color: whitesmoke;
+  color: whitesmoke;
+}
+
+#login_form footer button.is-light.is-outlined:hover,
+#login_form footer button.is-light.is-outlined:focus,
+#login_form footer .button.is-light.is-outlined:hover,
+#login_form footer .button.is-light.is-outlined:focus {
+  background-color: whitesmoke;
+  border-color: whitesmoke;
+  color: #363636;
+}
+
+#login_form footer button.is-light.is-outlined.is-loading::after,
+#login_form footer .button.is-light.is-outlined.is-loading::after {
+  border-color: transparent transparent whitesmoke whitesmoke !important;
+}
+
+#login_form footer button.is-light.is-outlined[disabled],
+fieldset[disabled] #login_form footer button.is-light.is-outlined,
+#login_form footer .button.is-light.is-outlined[disabled],
+fieldset[disabled] #login_form footer .button.is-light.is-outlined {
+  background-color: transparent;
+  border-color: whitesmoke;
+  box-shadow: none;
+  color: whitesmoke;
+}
+
+#login_form footer button.is-light.is-inverted.is-outlined,
+#login_form footer .button.is-light.is-inverted.is-outlined {
+  background-color: transparent;
+  border-color: #363636;
+  color: #363636;
+}
+
+#login_form footer button.is-light.is-inverted.is-outlined:hover,
+#login_form footer button.is-light.is-inverted.is-outlined:focus,
+#login_form footer .button.is-light.is-inverted.is-outlined:hover,
+#login_form footer .button.is-light.is-inverted.is-outlined:focus {
+  background-color: #363636;
+  color: whitesmoke;
+}
+
+#login_form footer button.is-light.is-inverted.is-outlined[disabled],
+fieldset[disabled] #login_form footer button.is-light.is-inverted.is-outlined,
+#login_form footer .button.is-light.is-inverted.is-outlined[disabled],
+fieldset[disabled] #login_form footer .button.is-light.is-inverted.is-outlined {
+  background-color: transparent;
+  border-color: #363636;
+  box-shadow: none;
+  color: #363636;
+}
+
+#login_form footer button.is-dark,
+#login_form footer .button.is-dark {
+  background-color: #363636;
+  border-color: transparent;
+  color: whitesmoke;
+}
+
+#login_form footer button.is-dark:hover,
+#login_form footer button.is-dark.is-hovered,
+#login_form footer .button.is-dark:hover,
+#login_form footer .button.is-dark.is-hovered {
+  background-color: #2f2f2f;
+  border-color: transparent;
+  color: whitesmoke;
+}
+
+#login_form footer button.is-dark:focus,
+#login_form footer button.is-dark.is-focused,
+#login_form footer .button.is-dark:focus,
+#login_form footer .button.is-dark.is-focused {
+  border-color: transparent;
+  color: whitesmoke;
+}
+
+#login_form footer button.is-dark:focus:not(:active),
+#login_form footer button.is-dark.is-focused:not(:active),
+#login_form footer .button.is-dark:focus:not(:active),
+#login_form footer .button.is-dark.is-focused:not(:active) {
+  box-shadow: 0 0 0 0.125em rgba(54, 54, 54, 0.25);
+}
+
+#login_form footer button.is-dark:active,
+#login_form footer button.is-dark.is-active,
+#login_form footer .button.is-dark:active,
+#login_form footer .button.is-dark.is-active {
+  background-color: #292929;
+  border-color: transparent;
+  color: whitesmoke;
+}
+
+#login_form footer button.is-dark[disabled],
+fieldset[disabled] #login_form footer button.is-dark,
+#login_form footer .button.is-dark[disabled],
+fieldset[disabled] #login_form footer .button.is-dark {
+  background-color: #363636;
+  border-color: transparent;
+  box-shadow: none;
+}
+
+#login_form footer button.is-dark.is-inverted,
+#login_form footer .button.is-dark.is-inverted {
+  background-color: whitesmoke;
+  color: #363636;
+}
+
+#login_form footer button.is-dark.is-inverted:hover,
+#login_form footer .button.is-dark.is-inverted:hover {
+  background-color: #e8e8e8;
+}
+
+#login_form footer button.is-dark.is-inverted[disabled],
+fieldset[disabled] #login_form footer button.is-dark.is-inverted,
+#login_form footer .button.is-dark.is-inverted[disabled],
+fieldset[disabled] #login_form footer .button.is-dark.is-inverted {
+  background-color: whitesmoke;
+  border-color: transparent;
+  box-shadow: none;
+  color: #363636;
+}
+
+#login_form footer button.is-dark.is-loading::after,
+#login_form footer .button.is-dark.is-loading::after {
+  border-color: transparent transparent whitesmoke whitesmoke !important;
+}
+
+#login_form footer button.is-dark.is-outlined,
+#login_form footer .button.is-dark.is-outlined {
+  background-color: transparent;
+  border-color: #363636;
+  color: #363636;
+}
+
+#login_form footer button.is-dark.is-outlined:hover,
+#login_form footer button.is-dark.is-outlined:focus,
+#login_form footer .button.is-dark.is-outlined:hover,
+#login_form footer .button.is-dark.is-outlined:focus {
+  background-color: #363636;
+  border-color: #363636;
+  color: whitesmoke;
+}
+
+#login_form footer button.is-dark.is-outlined.is-loading::after,
+#login_form footer .button.is-dark.is-outlined.is-loading::after {
+  border-color: transparent transparent #363636 #363636 !important;
+}
+
+#login_form footer button.is-dark.is-outlined[disabled],
+fieldset[disabled] #login_form footer button.is-dark.is-outlined,
+#login_form footer .button.is-dark.is-outlined[disabled],
+fieldset[disabled] #login_form footer .button.is-dark.is-outlined {
+  background-color: transparent;
+  border-color: #363636;
+  box-shadow: none;
+  color: #363636;
+}
+
+#login_form footer button.is-dark.is-inverted.is-outlined,
+#login_form footer .button.is-dark.is-inverted.is-outlined {
+  background-color: transparent;
+  border-color: whitesmoke;
+  color: whitesmoke;
+}
+
+#login_form footer button.is-dark.is-inverted.is-outlined:hover,
+#login_form footer button.is-dark.is-inverted.is-outlined:focus,
+#login_form footer .button.is-dark.is-inverted.is-outlined:hover,
+#login_form footer .button.is-dark.is-inverted.is-outlined:focus {
+  background-color: whitesmoke;
+  color: #363636;
+}
+
+#login_form footer button.is-dark.is-inverted.is-outlined[disabled],
+fieldset[disabled] #login_form footer button.is-dark.is-inverted.is-outlined,
+#login_form footer .button.is-dark.is-inverted.is-outlined[disabled],
+fieldset[disabled] #login_form footer .button.is-dark.is-inverted.is-outlined {
+  background-color: transparent;
+  border-color: whitesmoke;
+  box-shadow: none;
+  color: whitesmoke;
+}
+
+#login_form footer button.is-primary,
+#login_form footer .button.is-primary {
+  background-color: #00d1b2;
+  border-color: transparent;
+  color: #fff;
+}
+
+#login_form footer button.is-primary:hover,
+#login_form footer button.is-primary.is-hovered,
+#login_form footer .button.is-primary:hover,
+#login_form footer .button.is-primary.is-hovered {
+  background-color: #00c4a7;
+  border-color: transparent;
+  color: #fff;
+}
+
+#login_form footer button.is-primary:focus,
+#login_form footer button.is-primary.is-focused,
+#login_form footer .button.is-primary:focus,
+#login_form footer .button.is-primary.is-focused {
+  border-color: transparent;
+  color: #fff;
+}
+
+#login_form footer button.is-primary:focus:not(:active),
+#login_form footer button.is-primary.is-focused:not(:active),
+#login_form footer .button.is-primary:focus:not(:active),
+#login_form footer .button.is-primary.is-focused:not(:active) {
+  box-shadow: 0 0 0 0.125em rgba(0, 209, 178, 0.25);
+}
+
+#login_form footer button.is-primary:active,
+#login_form footer button.is-primary.is-active,
+#login_form footer .button.is-primary:active,
+#login_form footer .button.is-primary.is-active {
+  background-color: #00b89c;
+  border-color: transparent;
+  color: #fff;
+}
+
+#login_form footer button.is-primary[disabled],
+fieldset[disabled] #login_form footer button.is-primary,
+#login_form footer .button.is-primary[disabled],
+fieldset[disabled] #login_form footer .button.is-primary {
+  background-color: #00d1b2;
+  border-color: transparent;
+  box-shadow: none;
+}
+
+#login_form footer button.is-primary.is-inverted,
+#login_form footer .button.is-primary.is-inverted {
+  background-color: #fff;
+  color: #00d1b2;
+}
+
+#login_form footer button.is-primary.is-inverted:hover,
+#login_form footer .button.is-primary.is-inverted:hover {
+  background-color: #f2f2f2;
+}
+
+#login_form footer button.is-primary.is-inverted[disabled],
+fieldset[disabled] #login_form footer button.is-primary.is-inverted,
+#login_form footer .button.is-primary.is-inverted[disabled],
+fieldset[disabled] #login_form footer .button.is-primary.is-inverted {
+  background-color: #fff;
+  border-color: transparent;
+  box-shadow: none;
+  color: #00d1b2;
+}
+
+#login_form footer button.is-primary.is-loading::after,
+#login_form footer .button.is-primary.is-loading::after {
+  border-color: transparent transparent #fff #fff !important;
+}
+
+#login_form footer button.is-primary.is-outlined,
+#login_form footer .button.is-primary.is-outlined {
+  background-color: transparent;
+  border-color: #00d1b2;
+  color: #00d1b2;
+}
+
+#login_form footer button.is-primary.is-outlined:hover,
+#login_form footer button.is-primary.is-outlined:focus,
+#login_form footer .button.is-primary.is-outlined:hover,
+#login_form footer .button.is-primary.is-outlined:focus {
+  background-color: #00d1b2;
+  border-color: #00d1b2;
+  color: #fff;
+}
+
+#login_form footer button.is-primary.is-outlined.is-loading::after,
+#login_form footer .button.is-primary.is-outlined.is-loading::after {
+  border-color: transparent transparent #00d1b2 #00d1b2 !important;
+}
+
+#login_form footer button.is-primary.is-outlined[disabled],
+fieldset[disabled] #login_form footer button.is-primary.is-outlined,
+#login_form footer .button.is-primary.is-outlined[disabled],
+fieldset[disabled] #login_form footer .button.is-primary.is-outlined {
+  background-color: transparent;
+  border-color: #00d1b2;
+  box-shadow: none;
+  color: #00d1b2;
+}
+
+#login_form footer button.is-primary.is-inverted.is-outlined,
+#login_form footer .button.is-primary.is-inverted.is-outlined {
+  background-color: transparent;
+  border-color: #fff;
+  color: #fff;
+}
+
+#login_form footer button.is-primary.is-inverted.is-outlined:hover,
+#login_form footer button.is-primary.is-inverted.is-outlined:focus,
+#login_form footer .button.is-primary.is-inverted.is-outlined:hover,
+#login_form footer .button.is-primary.is-inverted.is-outlined:focus {
+  background-color: #fff;
+  color: #00d1b2;
+}
+
+#login_form footer button.is-primary.is-inverted.is-outlined[disabled],
+fieldset[disabled] #login_form footer button.is-primary.is-inverted.is-outlined,
+#login_form footer .button.is-primary.is-inverted.is-outlined[disabled],
+fieldset[disabled] #login_form footer .button.is-primary.is-inverted.is-outlined {
+  background-color: transparent;
+  border-color: #fff;
+  box-shadow: none;
+  color: #fff;
+}
+
+#login_form footer button.is-link,
+#login_form footer .button.is-link {
+  background-color: #3273dc;
+  border-color: transparent;
+  color: #fff;
+}
+
+#login_form footer button.is-link:hover,
+#login_form footer button.is-link.is-hovered,
+#login_form footer .button.is-link:hover,
+#login_form footer .button.is-link.is-hovered {
+  background-color: #276cda;
+  border-color: transparent;
+  color: #fff;
+}
+
+#login_form footer button.is-link:focus,
+#login_form footer button.is-link.is-focused,
+#login_form footer .button.is-link:focus,
+#login_form footer .button.is-link.is-focused {
+  border-color: transparent;
+  color: #fff;
+}
+
+#login_form footer button.is-link:focus:not(:active),
+#login_form footer button.is-link.is-focused:not(:active),
+#login_form footer .button.is-link:focus:not(:active),
+#login_form footer .button.is-link.is-focused:not(:active) {
+  box-shadow: 0 0 0 0.125em rgba(50, 115, 220, 0.25);
+}
+
+#login_form footer button.is-link:active,
+#login_form footer button.is-link.is-active,
+#login_form footer .button.is-link:active,
+#login_form footer .button.is-link.is-active {
+  background-color: #2366d1;
+  border-color: transparent;
+  color: #fff;
+}
+
+#login_form footer button.is-link[disabled],
+fieldset[disabled] #login_form footer button.is-link,
+#login_form footer .button.is-link[disabled],
+fieldset[disabled] #login_form footer .button.is-link {
+  background-color: #3273dc;
+  border-color: transparent;
+  box-shadow: none;
+}
+
+#login_form footer button.is-link.is-inverted,
+#login_form footer .button.is-link.is-inverted {
+  background-color: #fff;
+  color: #3273dc;
+}
+
+#login_form footer button.is-link.is-inverted:hover,
+#login_form footer .button.is-link.is-inverted:hover {
+  background-color: #f2f2f2;
+}
+
+#login_form footer button.is-link.is-inverted[disabled],
+fieldset[disabled] #login_form footer button.is-link.is-inverted,
+#login_form footer .button.is-link.is-inverted[disabled],
+fieldset[disabled] #login_form footer .button.is-link.is-inverted {
+  background-color: #fff;
+  border-color: transparent;
+  box-shadow: none;
+  color: #3273dc;
+}
+
+#login_form footer button.is-link.is-loading::after,
+#login_form footer .button.is-link.is-loading::after {
+  border-color: transparent transparent #fff #fff !important;
+}
+
+#login_form footer button.is-link.is-outlined,
+#login_form footer .button.is-link.is-outlined {
+  background-color: transparent;
+  border-color: #3273dc;
+  color: #3273dc;
+}
+
+#login_form footer button.is-link.is-outlined:hover,
+#login_form footer button.is-link.is-outlined:focus,
+#login_form footer .button.is-link.is-outlined:hover,
+#login_form footer .button.is-link.is-outlined:focus {
+  background-color: #3273dc;
+  border-color: #3273dc;
+  color: #fff;
+}
+
+#login_form footer button.is-link.is-outlined.is-loading::after,
+#login_form footer .button.is-link.is-outlined.is-loading::after {
+  border-color: transparent transparent #3273dc #3273dc !important;
+}
+
+#login_form footer button.is-link.is-outlined[disabled],
+fieldset[disabled] #login_form footer button.is-link.is-outlined,
+#login_form footer .button.is-link.is-outlined[disabled],
+fieldset[disabled] #login_form footer .button.is-link.is-outlined {
+  background-color: transparent;
+  border-color: #3273dc;
+  box-shadow: none;
+  color: #3273dc;
+}
+
+#login_form footer button.is-link.is-inverted.is-outlined,
+#login_form footer .button.is-link.is-inverted.is-outlined {
+  background-color: transparent;
+  border-color: #fff;
+  color: #fff;
+}
+
+#login_form footer button.is-link.is-inverted.is-outlined:hover,
+#login_form footer button.is-link.is-inverted.is-outlined:focus,
+#login_form footer .button.is-link.is-inverted.is-outlined:hover,
+#login_form footer .button.is-link.is-inverted.is-outlined:focus {
+  background-color: #fff;
+  color: #3273dc;
+}
+
+#login_form footer button.is-link.is-inverted.is-outlined[disabled],
+fieldset[disabled] #login_form footer button.is-link.is-inverted.is-outlined,
+#login_form footer .button.is-link.is-inverted.is-outlined[disabled],
+fieldset[disabled] #login_form footer .button.is-link.is-inverted.is-outlined {
+  background-color: transparent;
+  border-color: #fff;
+  box-shadow: none;
+  color: #fff;
+}
+
+#login_form footer button.is-info,
+#login_form footer .button.is-info {
+  background-color: #209cee;
+  border-color: transparent;
+  color: #fff;
+}
+
+#login_form footer button.is-info:hover,
+#login_form footer button.is-info.is-hovered,
+#login_form footer .button.is-info:hover,
+#login_form footer .button.is-info.is-hovered {
+  background-color: #1496ed;
+  border-color: transparent;
+  color: #fff;
+}
+
+#login_form footer button.is-info:focus,
+#login_form footer button.is-info.is-focused,
+#login_form footer .button.is-info:focus,
+#login_form footer .button.is-info.is-focused {
+  border-color: transparent;
+  color: #fff;
+}
+
+#login_form footer button.is-info:focus:not(:active),
+#login_form footer button.is-info.is-focused:not(:active),
+#login_form footer .button.is-info:focus:not(:active),
+#login_form footer .button.is-info.is-focused:not(:active) {
+  box-shadow: 0 0 0 0.125em rgba(32, 156, 238, 0.25);
+}
+
+#login_form footer button.is-info:active,
+#login_form footer button.is-info.is-active,
+#login_form footer .button.is-info:active,
+#login_form footer .button.is-info.is-active {
+  background-color: #118fe4;
+  border-color: transparent;
+  color: #fff;
+}
+
+#login_form footer button.is-info[disabled],
+fieldset[disabled] #login_form footer button.is-info,
+#login_form footer .button.is-info[disabled],
+fieldset[disabled] #login_form footer .button.is-info {
+  background-color: #209cee;
+  border-color: transparent;
+  box-shadow: none;
+}
+
+#login_form footer button.is-info.is-inverted,
+#login_form footer .button.is-info.is-inverted {
+  background-color: #fff;
+  color: #209cee;
+}
+
+#login_form footer button.is-info.is-inverted:hover,
+#login_form footer .button.is-info.is-inverted:hover {
+  background-color: #f2f2f2;
+}
+
+#login_form footer button.is-info.is-inverted[disabled],
+fieldset[disabled] #login_form footer button.is-info.is-inverted,
+#login_form footer .button.is-info.is-inverted[disabled],
+fieldset[disabled] #login_form footer .button.is-info.is-inverted {
+  background-color: #fff;
+  border-color: transparent;
+  box-shadow: none;
+  color: #209cee;
+}
+
+#login_form footer button.is-info.is-loading::after,
+#login_form footer .button.is-info.is-loading::after {
+  border-color: transparent transparent #fff #fff !important;
+}
+
+#login_form footer button.is-info.is-outlined,
+#login_form footer .button.is-info.is-outlined {
+  background-color: transparent;
+  border-color: #209cee;
+  color: #209cee;
+}
+
+#login_form footer button.is-info.is-outlined:hover,
+#login_form footer button.is-info.is-outlined:focus,
+#login_form footer .button.is-info.is-outlined:hover,
+#login_form footer .button.is-info.is-outlined:focus {
+  background-color: #209cee;
+  border-color: #209cee;
+  color: #fff;
+}
+
+#login_form footer button.is-info.is-outlined.is-loading::after,
+#login_form footer .button.is-info.is-outlined.is-loading::after {
+  border-color: transparent transparent #209cee #209cee !important;
+}
+
+#login_form footer button.is-info.is-outlined[disabled],
+fieldset[disabled] #login_form footer button.is-info.is-outlined,
+#login_form footer .button.is-info.is-outlined[disabled],
+fieldset[disabled] #login_form footer .button.is-info.is-outlined {
+  background-color: transparent;
+  border-color: #209cee;
+  box-shadow: none;
+  color: #209cee;
+}
+
+#login_form footer button.is-info.is-inverted.is-outlined,
+#login_form footer .button.is-info.is-inverted.is-outlined {
+  background-color: transparent;
+  border-color: #fff;
+  color: #fff;
+}
+
+#login_form footer button.is-info.is-inverted.is-outlined:hover,
+#login_form footer button.is-info.is-inverted.is-outlined:focus,
+#login_form footer .button.is-info.is-inverted.is-outlined:hover,
+#login_form footer .button.is-info.is-inverted.is-outlined:focus {
+  background-color: #fff;
+  color: #209cee;
+}
+
+#login_form footer button.is-info.is-inverted.is-outlined[disabled],
+fieldset[disabled] #login_form footer button.is-info.is-inverted.is-outlined,
+#login_form footer .button.is-info.is-inverted.is-outlined[disabled],
+fieldset[disabled] #login_form footer .button.is-info.is-inverted.is-outlined {
+  background-color: transparent;
+  border-color: #fff;
+  box-shadow: none;
+  color: #fff;
+}
+
+#login_form footer button.is-success,
+#login_form footer .button.is-success {
+  background-color: #23d160;
+  border-color: transparent;
+  color: #fff;
+}
+
+#login_form footer button.is-success:hover,
+#login_form footer button.is-success.is-hovered,
+#login_form footer .button.is-success:hover,
+#login_form footer .button.is-success.is-hovered {
+  background-color: #22c65b;
+  border-color: transparent;
+  color: #fff;
+}
+
+#login_form footer button.is-success:focus,
+#login_form footer button.is-success.is-focused,
+#login_form footer .button.is-success:focus,
+#login_form footer .button.is-success.is-focused {
+  border-color: transparent;
+  color: #fff;
+}
+
+#login_form footer button.is-success:focus:not(:active),
+#login_form footer button.is-success.is-focused:not(:active),
+#login_form footer .button.is-success:focus:not(:active),
+#login_form footer .button.is-success.is-focused:not(:active) {
+  box-shadow: 0 0 0 0.125em rgba(35, 209, 96, 0.25);
+}
+
+#login_form footer button.is-success:active,
+#login_form footer button.is-success.is-active,
+#login_form footer .button.is-success:active,
+#login_form footer .button.is-success.is-active {
+  background-color: #20bc56;
+  border-color: transparent;
+  color: #fff;
+}
+
+#login_form footer button.is-success[disabled],
+fieldset[disabled] #login_form footer button.is-success,
+#login_form footer .button.is-success[disabled],
+fieldset[disabled] #login_form footer .button.is-success {
+  background-color: #23d160;
+  border-color: transparent;
+  box-shadow: none;
+}
+
+#login_form footer button.is-success.is-inverted,
+#login_form footer .button.is-success.is-inverted {
+  background-color: #fff;
+  color: #23d160;
+}
+
+#login_form footer button.is-success.is-inverted:hover,
+#login_form footer .button.is-success.is-inverted:hover {
+  background-color: #f2f2f2;
+}
+
+#login_form footer button.is-success.is-inverted[disabled],
+fieldset[disabled] #login_form footer button.is-success.is-inverted,
+#login_form footer .button.is-success.is-inverted[disabled],
+fieldset[disabled] #login_form footer .button.is-success.is-inverted {
+  background-color: #fff;
+  border-color: transparent;
+  box-shadow: none;
+  color: #23d160;
+}
+
+#login_form footer button.is-success.is-loading::after,
+#login_form footer .button.is-success.is-loading::after {
+  border-color: transparent transparent #fff #fff !important;
+}
+
+#login_form footer button.is-success.is-outlined,
+#login_form footer .button.is-success.is-outlined {
+  background-color: transparent;
+  border-color: #23d160;
+  color: #23d160;
+}
+
+#login_form footer button.is-success.is-outlined:hover,
+#login_form footer button.is-success.is-outlined:focus,
+#login_form footer .button.is-success.is-outlined:hover,
+#login_form footer .button.is-success.is-outlined:focus {
+  background-color: #23d160;
+  border-color: #23d160;
+  color: #fff;
+}
+
+#login_form footer button.is-success.is-outlined.is-loading::after,
+#login_form footer .button.is-success.is-outlined.is-loading::after {
+  border-color: transparent transparent #23d160 #23d160 !important;
+}
+
+#login_form footer button.is-success.is-outlined[disabled],
+fieldset[disabled] #login_form footer button.is-success.is-outlined,
+#login_form footer .button.is-success.is-outlined[disabled],
+fieldset[disabled] #login_form footer .button.is-success.is-outlined {
+  background-color: transparent;
+  border-color: #23d160;
+  box-shadow: none;
+  color: #23d160;
+}
+
+#login_form footer button.is-success.is-inverted.is-outlined,
+#login_form footer .button.is-success.is-inverted.is-outlined {
+  background-color: transparent;
+  border-color: #fff;
+  color: #fff;
+}
+
+#login_form footer button.is-success.is-inverted.is-outlined:hover,
+#login_form footer button.is-success.is-inverted.is-outlined:focus,
+#login_form footer .button.is-success.is-inverted.is-outlined:hover,
+#login_form footer .button.is-success.is-inverted.is-outlined:focus {
+  background-color: #fff;
+  color: #23d160;
+}
+
+#login_form footer button.is-success.is-inverted.is-outlined[disabled],
+fieldset[disabled] #login_form footer button.is-success.is-inverted.is-outlined,
+#login_form footer .button.is-success.is-inverted.is-outlined[disabled],
+fieldset[disabled] #login_form footer .button.is-success.is-inverted.is-outlined {
+  background-color: transparent;
+  border-color: #fff;
+  box-shadow: none;
+  color: #fff;
+}
+
+#login_form footer button.is-warning,
+#login_form footer .button.is-warning {
+  background-color: #ffdd57;
+  border-color: transparent;
+  color: rgba(0, 0, 0, 0.7);
+}
+
+#login_form footer button.is-warning:hover,
+#login_form footer button.is-warning.is-hovered,
+#login_form footer .button.is-warning:hover,
+#login_form footer .button.is-warning.is-hovered {
+  background-color: #ffdb4a;
+  border-color: transparent;
+  color: rgba(0, 0, 0, 0.7);
+}
+
+#login_form footer button.is-warning:focus,
+#login_form footer button.is-warning.is-focused,
+#login_form footer .button.is-warning:focus,
+#login_form footer .button.is-warning.is-focused {
+  border-color: transparent;
+  color: rgba(0, 0, 0, 0.7);
+}
+
+#login_form footer button.is-warning:focus:not(:active),
+#login_form footer button.is-warning.is-focused:not(:active),
+#login_form footer .button.is-warning:focus:not(:active),
+#login_form footer .button.is-warning.is-focused:not(:active) {
+  box-shadow: 0 0 0 0.125em rgba(255, 221, 87, 0.25);
+}
+
+#login_form footer button.is-warning:active,
+#login_form footer button.is-warning.is-active,
+#login_form footer .button.is-warning:active,
+#login_form footer .button.is-warning.is-active {
+  background-color: #ffd83d;
+  border-color: transparent;
+  color: rgba(0, 0, 0, 0.7);
+}
+
+#login_form footer button.is-warning[disabled],
+fieldset[disabled] #login_form footer button.is-warning,
+#login_form footer .button.is-warning[disabled],
+fieldset[disabled] #login_form footer .button.is-warning {
+  background-color: #ffdd57;
+  border-color: transparent;
+  box-shadow: none;
+}
+
+#login_form footer button.is-warning.is-inverted,
+#login_form footer .button.is-warning.is-inverted {
+  background-color: rgba(0, 0, 0, 0.7);
+  color: #ffdd57;
+}
+
+#login_form footer button.is-warning.is-inverted:hover,
+#login_form footer .button.is-warning.is-inverted:hover {
+  background-color: rgba(0, 0, 0, 0.7);
+}
+
+#login_form footer button.is-warning.is-inverted[disabled],
+fieldset[disabled] #login_form footer button.is-warning.is-inverted,
+#login_form footer .button.is-warning.is-inverted[disabled],
+fieldset[disabled] #login_form footer .button.is-warning.is-inverted {
+  background-color: rgba(0, 0, 0, 0.7);
+  border-color: transparent;
+  box-shadow: none;
+  color: #ffdd57;
+}
+
+#login_form footer button.is-warning.is-loading::after,
+#login_form footer .button.is-warning.is-loading::after {
+  border-color: transparent transparent rgba(0, 0, 0, 0.7) rgba(0, 0, 0, 0.7) !important;
+}
+
+#login_form footer button.is-warning.is-outlined,
+#login_form footer .button.is-warning.is-outlined {
+  background-color: transparent;
+  border-color: #ffdd57;
+  color: #ffdd57;
+}
+
+#login_form footer button.is-warning.is-outlined:hover,
+#login_form footer button.is-warning.is-outlined:focus,
+#login_form footer .button.is-warning.is-outlined:hover,
+#login_form footer .button.is-warning.is-outlined:focus {
+  background-color: #ffdd57;
+  border-color: #ffdd57;
+  color: rgba(0, 0, 0, 0.7);
+}
+
+#login_form footer button.is-warning.is-outlined.is-loading::after,
+#login_form footer .button.is-warning.is-outlined.is-loading::after {
+  border-color: transparent transparent #ffdd57 #ffdd57 !important;
+}
+
+#login_form footer button.is-warning.is-outlined[disabled],
+fieldset[disabled] #login_form footer button.is-warning.is-outlined,
+#login_form footer .button.is-warning.is-outlined[disabled],
+fieldset[disabled] #login_form footer .button.is-warning.is-outlined {
+  background-color: transparent;
+  border-color: #ffdd57;
+  box-shadow: none;
+  color: #ffdd57;
+}
+
+#login_form footer button.is-warning.is-inverted.is-outlined,
+#login_form footer .button.is-warning.is-inverted.is-outlined {
+  background-color: transparent;
+  border-color: rgba(0, 0, 0, 0.7);
+  color: rgba(0, 0, 0, 0.7);
+}
+
+#login_form footer button.is-warning.is-inverted.is-outlined:hover,
+#login_form footer button.is-warning.is-inverted.is-outlined:focus,
+#login_form footer .button.is-warning.is-inverted.is-outlined:hover,
+#login_form footer .button.is-warning.is-inverted.is-outlined:focus {
+  background-color: rgba(0, 0, 0, 0.7);
+  color: #ffdd57;
+}
+
+#login_form footer button.is-warning.is-inverted.is-outlined[disabled],
+fieldset[disabled] #login_form footer button.is-warning.is-inverted.is-outlined,
+#login_form footer .button.is-warning.is-inverted.is-outlined[disabled],
+fieldset[disabled] #login_form footer .button.is-warning.is-inverted.is-outlined {
+  background-color: transparent;
+  border-color: rgba(0, 0, 0, 0.7);
+  box-shadow: none;
+  color: rgba(0, 0, 0, 0.7);
+}
+
+#login_form footer button.is-danger,
+#login_form footer .button.is-danger {
+  background-color: #ff3860;
+  border-color: transparent;
+  color: #fff;
+}
+
+#login_form footer button.is-danger:hover,
+#login_form footer button.is-danger.is-hovered,
+#login_form footer .button.is-danger:hover,
+#login_form footer .button.is-danger.is-hovered {
+  background-color: #ff2b56;
+  border-color: transparent;
+  color: #fff;
+}
+
+#login_form footer button.is-danger:focus,
+#login_form footer button.is-danger.is-focused,
+#login_form footer .button.is-danger:focus,
+#login_form footer .button.is-danger.is-focused {
+  border-color: transparent;
+  color: #fff;
+}
+
+#login_form footer button.is-danger:focus:not(:active),
+#login_form footer button.is-danger.is-focused:not(:active),
+#login_form footer .button.is-danger:focus:not(:active),
+#login_form footer .button.is-danger.is-focused:not(:active) {
+  box-shadow: 0 0 0 0.125em rgba(255, 56, 96, 0.25);
+}
+
+#login_form footer button.is-danger:active,
+#login_form footer button.is-danger.is-active,
+#login_form footer .button.is-danger:active,
+#login_form footer .button.is-danger.is-active {
+  background-color: #ff1f4b;
+  border-color: transparent;
+  color: #fff;
+}
+
+#login_form footer button.is-danger[disabled],
+fieldset[disabled] #login_form footer button.is-danger,
+#login_form footer .button.is-danger[disabled],
+fieldset[disabled] #login_form footer .button.is-danger {
+  background-color: #ff3860;
+  border-color: transparent;
+  box-shadow: none;
+}
+
+#login_form footer button.is-danger.is-inverted,
+#login_form footer .button.is-danger.is-inverted {
+  background-color: #fff;
+  color: #ff3860;
+}
+
+#login_form footer button.is-danger.is-inverted:hover,
+#login_form footer .button.is-danger.is-inverted:hover {
+  background-color: #f2f2f2;
+}
+
+#login_form footer button.is-danger.is-inverted[disabled],
+fieldset[disabled] #login_form footer button.is-danger.is-inverted,
+#login_form footer .button.is-danger.is-inverted[disabled],
+fieldset[disabled] #login_form footer .button.is-danger.is-inverted {
+  background-color: #fff;
+  border-color: transparent;
+  box-shadow: none;
+  color: #ff3860;
+}
+
+#login_form footer button.is-danger.is-loading::after,
+#login_form footer .button.is-danger.is-loading::after {
+  border-color: transparent transparent #fff #fff !important;
+}
+
+#login_form footer button.is-danger.is-outlined,
+#login_form footer .button.is-danger.is-outlined {
+  background-color: transparent;
+  border-color: #ff3860;
+  color: #ff3860;
+}
+
+#login_form footer button.is-danger.is-outlined:hover,
+#login_form footer button.is-danger.is-outlined:focus,
+#login_form footer .button.is-danger.is-outlined:hover,
+#login_form footer .button.is-danger.is-outlined:focus {
+  background-color: #ff3860;
+  border-color: #ff3860;
+  color: #fff;
+}
+
+#login_form footer button.is-danger.is-outlined.is-loading::after,
+#login_form footer .button.is-danger.is-outlined.is-loading::after {
+  border-color: transparent transparent #ff3860 #ff3860 !important;
+}
+
+#login_form footer button.is-danger.is-outlined[disabled],
+fieldset[disabled] #login_form footer button.is-danger.is-outlined,
+#login_form footer .button.is-danger.is-outlined[disabled],
+fieldset[disabled] #login_form footer .button.is-danger.is-outlined {
+  background-color: transparent;
+  border-color: #ff3860;
+  box-shadow: none;
+  color: #ff3860;
+}
+
+#login_form footer button.is-danger.is-inverted.is-outlined,
+#login_form footer .button.is-danger.is-inverted.is-outlined {
+  background-color: transparent;
+  border-color: #fff;
+  color: #fff;
+}
+
+#login_form footer button.is-danger.is-inverted.is-outlined:hover,
+#login_form footer button.is-danger.is-inverted.is-outlined:focus,
+#login_form footer .button.is-danger.is-inverted.is-outlined:hover,
+#login_form footer .button.is-danger.is-inverted.is-outlined:focus {
+  background-color: #fff;
+  color: #ff3860;
+}
+
+#login_form footer button.is-danger.is-inverted.is-outlined[disabled],
+fieldset[disabled] #login_form footer button.is-danger.is-inverted.is-outlined,
+#login_form footer .button.is-danger.is-inverted.is-outlined[disabled],
+fieldset[disabled] #login_form footer .button.is-danger.is-inverted.is-outlined {
+  background-color: transparent;
+  border-color: #fff;
+  box-shadow: none;
+  color: #fff;
+}
+
+#login_form footer button.is-small,
+#login_form footer .button.is-small {
+  border-radius: 2px;
+  font-size: 0.75rem;
+}
+
+#login_form footer button.is-normal,
+#login_form footer .button.is-normal {
+  font-size: 1rem;
+}
+
+#login_form footer button.is-medium,
+#login_form footer .button.is-medium {
+  font-size: 1.25rem;
+}
+
+#login_form footer button.is-large,
+#login_form footer .button.is-large {
+  font-size: 1.5rem;
+}
+
+#login_form footer button[disabled],
+fieldset[disabled] #login_form footer button,
+#login_form footer .button[disabled],
+fieldset[disabled] #login_form footer .button {
+  background-color: white;
+  border-color: #dbdbdb;
+  box-shadow: none;
+  opacity: 0.5;
+}
+
+#login_form footer button.is-fullwidth,
+#login_form footer .button.is-fullwidth {
+  display: flex;
+  width: 100%;
+}
+
+#login_form footer button.is-loading,
+#login_form footer .button.is-loading {
+  color: transparent !important;
+  pointer-events: none;
+}
+
+#login_form footer button.is-loading::after,
+#login_form footer .button.is-loading::after {
+  position: absolute;
+  left: calc(50% - (1em / 2));
+  top: calc(50% - (1em / 2));
+  position: absolute !important;
+}
+
+#login_form footer button.is-static,
+#login_form footer .button.is-static {
+  background-color: whitesmoke;
+  border-color: #dbdbdb;
+  color: #7a7a7a;
+  box-shadow: none;
+  pointer-events: none;
+}
+
+#login_form footer button.is-rounded,
+#login_form footer .button.is-rounded {
+  border-radius: 290486px;
+  padding-left: 1em;
+  padding-right: 1em;
 }
 

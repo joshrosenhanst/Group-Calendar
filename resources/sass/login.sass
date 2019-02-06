@@ -1,7 +1,25 @@
 #login_form
-  margin: 0 auto
-  width: 450px
-  padding: 20px
-  border: 1px solid black
-  h1
+  margin: 40px auto
+  max-width: 500px
+  border: 1px solid $primary
+  header
+    background-color: $primary
+    padding: 10px 20px
+    color: $white
+    font-size: 1.5em
     text-align: center
+    h1
+      font-weight: $weight-bold
+  main
+    padding: 20px 20px 0 20px
+    .split_layout
+      display: flex
+      flex-direction: row
+      justify-content: space-between
+  footer
+    padding: 10px 20px 20px 20px
+    display: flex
+    flex-direction: row
+    button,.button
+      +button
+      flex: 1 1 50%

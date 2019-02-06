@@ -5,6 +5,19 @@ form
     font-size: $size-normal
     font-weight: $label-weight
     display: block
+    &.checkbox,&.radio
+      cursor: pointer
+      display: inline-block
+      position: relative
+      font-weight: $weight-normal
+      input
+        cursor: pointer
+      &:hover
+        color: $input-hover-color
+      &[disabled],
+      fieldset[disabled] &
+        color: $input-disabled-color
+        cursor: not-allowed
     &:not(:last-child)
       margin-bottom: 0.5em
     &.is-small
