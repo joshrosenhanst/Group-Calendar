@@ -29,22 +29,35 @@ Route::group('events', function(){
   Route::get('/{event}/delete','EventController@delete');
   Route::put('/create', 'EventController@create');
   Route::put('/update', 'EventController@update');
-  Route::put('/delete', 'EventController@destroy');
+  Route::delete('/delete', 'EventController@destroy');
 });
 
-/* Groups - member controls */
+/* Groups */
 Route::group('groups', function(){
   Route::get('/', 'GroupController@index'); // my groups
   Route::get('/{group}', 'GroupController@view'); // view group
+  Route::get('/new','GroupController@new');
+  Route::get('/{group}/edit','GroupController@edit');
+  Route::get('/{group}/delete','GroupController@delete');
+  Route::get('/{group}/invite','GroupController@invite');
+  Route::get('/{group}/join','GroupController@join');
+  Route::put('/create', 'GroupController@create');
+  Route::put('/sendInvite', 'GroupController@sendInvite');
+  Route::put('/acceptInvite', 'GroupController@acceptInvite');
+  Route::put('/update', 'GroupController@update');
+  Route::delete('/delete', 'GroupController@destroy');
 });
 
-/* Admin controls */
-
-Route::group('admin', function(){
-  Route::group('groups', function(){
-    Route::get('/{group}/edit', 'GroupController@view'); // view group    
-  });
+/* My Profile */
+Route::group('profile', function(){
+  Route::get('/','ProfileController@index'); // my profile
+  Route::get('/edit','EventController@edit');
+  Route::put('/update', 'EventController@update');
 });
 
-/* User management */
-
+/* Comments */
+Route::group('comments', function(){
+  Route::put('/create', 'CommentController@create');
+  Route::put('/update', 'CommentController@update');
+  Route::delete('/delete', 'CommentController@destroy');
+});
