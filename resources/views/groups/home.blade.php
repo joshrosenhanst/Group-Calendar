@@ -1,3 +1,9 @@
+@extends('layouts.landing')
+
+@section('title', $group->name)
+
+@section('content')
+@include('layouts.header')
 <header>
   <img src="{{ $group->avatar }}" alt="{{ $group->name }} Avatar">
 </header>
@@ -9,3 +15,4 @@
   <h2>Latest Comments</h2>
   @include('comments.list', ['comments'=>$comments])
 </section>
+@endsection

@@ -3,6 +3,7 @@
 @section('title', 'Login')
 
 @section('content')
+@include('layouts.header')
 <form id="login_form" method="POST" action="{{ route('authenticate') }}">
   @csrf
 
