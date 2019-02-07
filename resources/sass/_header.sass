@@ -1,0 +1,52 @@
+.navbar
+  display: flex
+  justify-content: space-between
+  flex: 1 1 auto
+  +container
+  .navbar-left
+    flex-direction: row
+    display: flex
+    flex: 1 1 auto
+    justify-content: flex-start
+  .navbar-right
+    flex-direction: row
+    display: flex
+    flex: 1 1 auto
+    justify-content: flex-end
+  .navbar-item
+    flex: 0 1 auto
+    padding: 10px
+    &.dropdown
+      position: relative
+      &:hover
+        .dropdown-items
+          display: block
+      .navbar-dropdown-toggle
+        padding-right: 2.5em
+        &::after
+          content: " "
+          display: block
+          border: 3px solid blue
+          border-right: 0
+          border-top: 0
+          position: absolute
+          top: 50%
+          transform: rotate(-45deg)
+          transform-origin: center
+  .dropdown-items
+    min-width: 200px
+    display: none
+    position: absolute
+    left: 0
+    top: 100%
+    z-index: 20
+    .dropdown-item
+      display: block
+      padding: 5px 10px 5px 2em
+      white-space: nowrap
+    .dropdown-divider
+      display: block
+      background-color: grey
+      border: 0
+      height: 2px
+      margin: 0.5rem 0
