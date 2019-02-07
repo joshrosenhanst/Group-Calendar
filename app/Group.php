@@ -62,14 +62,18 @@ class Group extends Model
   }
 
   /*
-    latest_comments() - Combine the group's comments and the comments on the group's events into one collection and then return the first 5.
+    getUpcomingEvents($limit) - Grab events that are in the future.
+    $limit - number of events to grab.
   */
-  public function latest_comments(){
-    $this->loadMissing(['events.comments','comments']);
+  public function getUpcomingEvents($limit = 4){
+    return $this->events()->upcoming()->limit($limit)->get();
+  }
 
-    $collection = $this->events()->comments()->concat($this->comments());
-    $sorted = $collection->sortByDesc('created_at');
-
-    return $sorted->take(5)->all();
+  /*
+    getLatestComments($limit) - Grab the most recent comments on the group.
+    $limit - number of comments to grab.
+  */
+  public function getLatestComments($limit = 5){
+    return $this->comments()->latest()->limit($limit)->get();
   }
 }
