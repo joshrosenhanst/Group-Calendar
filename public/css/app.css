@@ -1525,7 +1525,8 @@ a.has-text-danger:focus {
   position: relative;
 }
 
-.navbar .navbar_item.navbar_dropdown:hover .dropdown_items {
+.navbar .navbar_item.navbar_dropdown:hover .dropdown_items,
+.navbar .navbar_item.navbar_dropdown.navbar_dropdown-active .dropdown_items {
   display: block;
 }
 
