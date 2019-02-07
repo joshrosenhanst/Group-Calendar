@@ -1,0 +1,1 @@
+@each('events.summary', $events, 'event')

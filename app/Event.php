@@ -10,6 +10,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Carbon;
 
 class Event extends Model
 {
@@ -22,6 +23,14 @@ class Event extends Model
       return 'events/'.$this->header_url;
     }else{
       return 'default_event_header.png';
+    }
+  }
+
+  public function getSummaryDateAttribute(){
+    if($this->end_date){
+      return $this->start_date . " - ". $this->end_date;
+    }else{
+      return $this->start_date . " " . $this->start_time;
     }
   }
 
@@ -44,5 +53,12 @@ class Event extends Model
   */
   public function comments(){
     return $this->morphMany('App\Comment', 'commentable');
+  }
+
+  /*
+    scopeUpcoming() - A local scope for events that are in the future, ordered by `start_date`.
+  */
+  public function scopeUpcoming($query){
+    return $query->whereDate('start_date', '>=', Carbon::today())->latest('start_date');
   }
 }

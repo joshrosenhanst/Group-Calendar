@@ -1,0 +1,1 @@
+@each('groups.summary', $groups, 'group')
