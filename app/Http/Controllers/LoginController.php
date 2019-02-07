@@ -16,6 +16,11 @@ class LoginController extends Controller{
     return 'email';
   }
 
+  /*
+    authenticate() - Login form submission via POST request.
+    Validate the login input fields and check the ThrottlesLogin trait login attempts.
+    Attempt the login credentials, if successful redirect to the intended route (fallback to /home). If the login fails, redirect to the login page with a login failed error and the old input.
+  */
   public function authenticate(Request $request){
     $credentials = $request->only('email', 'password');
     $remember = $request->only('remember');
@@ -34,21 +39,29 @@ class LoginController extends Controller{
       return redirect()->intended('home');
     }else{
       $this->incrementLoginAttempts($request);
-      return redirect('login')->withErrors([
+      return redirect()->route('login')->withErrors([
         'email' => __('auth.failed')
       ])->withInput();
     }
   }
 
+  /*
+    login() - Display the `login` page template.
+  */
   public function login(){
     return view('login');
   }
 
-  public function home()
-  {
+  /*
+    home() - Display the `home` page template.
+  */
+  public function home(){
     return view('home');
   }
 
+  /*
+    home() - Display the `landing` page template.
+  */
   public function landing(){
     return view('landing');
   }
@@ -57,7 +70,10 @@ class LoginController extends Controller{
     //enable demo mode
   }
 
-  public function logout(Request $request){
+  /*
+    logout() - Log the user out and then redirect to the landing page.
+  */
+  public function logout(){
     Auth::logout();
     return redirect('/');
   }

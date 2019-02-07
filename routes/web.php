@@ -1,9 +1,6 @@
 <?php
 
-//Auth::routes();
-
 Route::get('/', 'LoginController@landing')->name('landing');
-//Route::get('/login', 'HomeController@login')->name('login');
 Route::get('/home', 'LoginController@home')->name('home')->middleware('auth');
 Route::get('/demo', 'LoginController@demo')->name('demo');
 Route::get('/login', 'LoginController@login')->name('login')->middleware('guest');
