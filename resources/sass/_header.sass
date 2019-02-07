@@ -3,25 +3,25 @@
   justify-content: space-between
   flex: 1 1 auto
   +container
-  .navbar-left
+  .navbar_left
     flex-direction: row
     display: flex
     flex: 1 1 auto
     justify-content: flex-start
-  .navbar-right
+  .navbar_right
     flex-direction: row
     display: flex
     flex: 1 1 auto
     justify-content: flex-end
-  .navbar-item
+  .navbar_item
     flex: 0 1 auto
     padding: 10px
-    &.dropdown
+    &.navbar_dropdown
       position: relative
       &:hover
-        .dropdown-items
+        .dropdown_items
           display: block
-      .navbar-dropdown-toggle
+      .dropdown_toggle
         padding-right: 2.5em
         &::after
           content: " "
@@ -33,18 +33,20 @@
           top: 50%
           transform: rotate(-45deg)
           transform-origin: center
-  .dropdown-items
+      
+.navbar_dropdown
+  .dropdown_items
     min-width: 200px
     display: none
     position: absolute
     left: 0
     top: 100%
     z-index: 20
-    .dropdown-item
+    .dropdown_item
       display: block
       padding: 5px 10px 5px 2em
       white-space: nowrap
-    .dropdown-divider
+    .dropdown_divider
       display: block
       background-color: grey
       border: 0
