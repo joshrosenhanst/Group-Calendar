@@ -1,1 +1,1 @@
-@each('events.summary', $events, 'event')
+@each('events.summary', $events, 'event', 'events.empty')
