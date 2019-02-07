@@ -3,9 +3,9 @@
 </header>
 <section>
   <h2>Upcoming Events</h2>
-  @include('events.upcoming', ['events'=>$group->events()->upcoming()->limit(4)->get()])
+  @include('events.upcoming', ['events'=>$events])
 </section>
 <section>
   <h2>Latest Comments</h2>
-  @include('comments.list', ['comments'=>$group->latest_comments()])
+  @include('comments.list', ['comments'=>$comments])
 </section>
