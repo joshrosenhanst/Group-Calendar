@@ -56,7 +56,11 @@ class LoginController extends Controller{
     home() - Display the `home` page template.
   */
   public function home(){
-    return view('home');
+    $groups = Auth::user()->groups()->with(['events.comments'])->get();
+    if($groups->count() !== 1){
+      $groups->load('comments');
+    }
+    return view('home', ['groups'=>$groups]);
   }
 
   /*
