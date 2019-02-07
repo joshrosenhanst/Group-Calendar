@@ -1452,6 +1452,171 @@ a.has-text-danger:focus {
   box-shadow: none !important;
 }
 
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  flex: 1 1 auto;
+  margin: 0 auto;
+  position: relative;
+}
+
+@media screen and (min-width: 1088px) {
+  .navbar {
+    max-width: 960px;
+    width: 960px;
+  }
+
+  .navbar.is-fluid {
+    margin-left: 64px;
+    margin-right: 64px;
+    max-width: none;
+    width: auto;
+  }
+}
+
+@media screen and (max-width: 1279px) {
+  .navbar.is-widescreen {
+    max-width: 1152px;
+    width: auto;
+  }
+}
+
+@media screen and (max-width: 1471px) {
+  .navbar.is-fullhd {
+    max-width: 1344px;
+    width: auto;
+  }
+}
+
+@media screen and (min-width: 1280px) {
+  .navbar {
+    max-width: 1152px;
+    width: 1152px;
+  }
+}
+
+@media screen and (min-width: 1472px) {
+  .navbar {
+    max-width: 1344px;
+    width: 1344px;
+  }
+}
+
+.navbar .navbar-left {
+  flex-direction: row;
+  display: flex;
+  flex: 1 1 auto;
+  justify-content: flex-start;
+}
+
+.navbar .navbar-right {
+  flex-direction: row;
+  display: flex;
+  flex: 1 1 auto;
+  justify-content: flex-end;
+}
+
+.navbar .navbar-item {
+  flex: 0 1 auto;
+  padding: 10px;
+}
+
+.navbar .navbar-item.dropdown {
+  position: relative;
+}
+
+.navbar .navbar-item.dropdown:hover .dropdown-items {
+  display: block;
+}
+
+.navbar .navbar-item.dropdown .navbar-dropdown-toggle {
+  padding-right: 2.5em;
+}
+
+.navbar .navbar-item.dropdown .navbar-dropdown-toggle::after {
+  content: " ";
+  display: block;
+  border: 3px solid blue;
+  border-right: 0;
+  border-top: 0;
+  position: absolute;
+  top: 50%;
+  -webkit-transform: rotate(-45deg);
+          transform: rotate(-45deg);
+  -webkit-transform-origin: center;
+          transform-origin: center;
+}
+
+.navbar .dropdown-items {
+  min-width: 200px;
+  display: none;
+  position: absolute;
+  left: 0;
+  top: 100%;
+  z-index: 20;
+}
+
+.navbar .dropdown-items .dropdown-item {
+  display: block;
+  padding: 5px 10px 5px 2em;
+  white-space: nowrap;
+}
+
+.navbar .dropdown-items .dropdown-divider {
+  display: block;
+  background-color: grey;
+  border: 0;
+  height: 2px;
+  margin: 0.5rem 0;
+}
+
+main#app {
+  margin: 0 auto;
+  position: relative;
+}
+
+@media screen and (min-width: 1088px) {
+  main#app {
+    max-width: 960px;
+    width: 960px;
+  }
+
+  main#app.is-fluid {
+    margin-left: 64px;
+    margin-right: 64px;
+    max-width: none;
+    width: auto;
+  }
+}
+
+@media screen and (max-width: 1279px) {
+  main#app.is-widescreen {
+    max-width: 1152px;
+    width: auto;
+  }
+}
+
+@media screen and (max-width: 1471px) {
+  main#app.is-fullhd {
+    max-width: 1344px;
+    width: auto;
+  }
+}
+
+@media screen and (min-width: 1280px) {
+  main#app {
+    max-width: 1152px;
+    width: 1152px;
+  }
+}
+
+@media screen and (min-width: 1472px) {
+  main#app {
+    max-width: 1344px;
+    width: 1344px;
+  }
+}
+
 form label {
   color: #363636;
   display: block;
