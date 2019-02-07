@@ -4,6 +4,7 @@
   Relationships:
   Group: many-to-many (users can belong to many different groups)
   Event: one-to-many (a user can create many events, but an event can only have 1 creator)
+  Comment: one-to-many (a user can create many comments, but a comment can only have 1 creator)
 */
 
 namespace App;
@@ -59,5 +60,12 @@ class User extends Authenticatable
   */
   public function events(){
     return $this->hasMany('App\Event','creator_id');
+  }
+
+  /*
+    comments() - Defines a one-to-many relationship with the Comment model.
+  */
+  public function comments(){
+    return $this->hasMany('App\Comment');
   }
 }
