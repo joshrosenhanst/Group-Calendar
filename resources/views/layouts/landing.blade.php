@@ -11,9 +11,12 @@
 </head>
 <body>
   {{-- remove vue js #app and script --}}
-  <main id="app">
-    @yield('content')
-  </main>
+  <div id="app">
+    @include('layouts.header')
+    <main>
+      @yield('content')
+    </main>
+  </div>
   @stack('scripts')
   <script src="{{ asset('js/app.js') }}"></script>
 </body>

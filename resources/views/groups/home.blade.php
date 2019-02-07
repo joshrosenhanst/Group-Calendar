@@ -3,7 +3,6 @@
 @section('title', $group->name)
 
 @section('content')
-@include('layouts.header')
 <header>
   <img src="{{ $group->avatar }}" alt="{{ $group->name }} Avatar">
 </header>

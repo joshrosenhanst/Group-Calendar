@@ -1570,18 +1570,18 @@ a.has-text-danger:focus {
   margin: 0.5rem 0;
 }
 
-main#app {
+#app > main {
   margin: 0 auto;
   position: relative;
 }
 
 @media screen and (min-width: 1088px) {
-  main#app {
+  #app > main {
     max-width: 960px;
     width: 960px;
   }
 
-  main#app.is-fluid {
+  #app > main.is-fluid {
     margin-left: 64px;
     margin-right: 64px;
     max-width: none;
@@ -1590,28 +1590,28 @@ main#app {
 }
 
 @media screen and (max-width: 1279px) {
-  main#app.is-widescreen {
+  #app > main.is-widescreen {
     max-width: 1152px;
     width: auto;
   }
 }
 
 @media screen and (max-width: 1471px) {
-  main#app.is-fullhd {
+  #app > main.is-fullhd {
     max-width: 1344px;
     width: auto;
   }
 }
 
 @media screen and (min-width: 1280px) {
-  main#app {
+  #app > main {
     max-width: 1152px;
     width: 1152px;
   }
 }
 
 @media screen and (min-width: 1472px) {
-  main#app {
+  #app > main {
     max-width: 1344px;
     width: 1344px;
   }
