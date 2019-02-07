@@ -60,4 +60,16 @@ class Group extends Model
   public function comments(){
     return $this->morphMany('App\Comment', 'commentable');
   }
+
+  /*
+    latest_comments() - Combine the group's comments and the comments on the group's events into one collection and then return the first 5.
+  */
+  public function latest_comments(){
+    $this->loadMissing(['events.comments','comments']);
+
+    $collection = $this->events()->comments()->concat($this->comments());
+    $sorted = $collection->sortByDesc('created_at');
+
+    return $sorted->take(5)->all();
+  }
 }
