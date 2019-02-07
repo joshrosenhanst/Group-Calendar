@@ -13,8 +13,8 @@ Route::get('/calendar','EventController@calendar')->name('calendar');
 /* Events */
 Route::middleware('auth')->prefix('events')->name('events.')->group(function(){
   Route::get('/','EventController@index');
-  Route::get('/new','EventController@new');
-  Route::get('/{event}','EventController@view');
+  Route::get('/new','EventController@new')->name('new');
+  Route::get('/{event}','EventController@view')->name('view');
   Route::get('/{event}/edit','EventController@edit');
   Route::get('/{event}/delete','EventController@delete');
   Route::put('/create', 'EventController@create');
@@ -24,9 +24,9 @@ Route::middleware('auth')->prefix('events')->name('events.')->group(function(){
 
 /* Groups */
 Route::middleware('auth')->prefix('groups')->name('groups.')->group(function(){
-  Route::get('/', 'GroupController@index'); // my groups
+  Route::get('/', 'GroupController@index')->name('index'); // my groups
   Route::get('/{group}', 'GroupController@view')->name('view'); // view group
-  Route::get('/new','GroupController@new');
+  Route::get('/new','GroupController@new')->name('new');
   Route::get('/{group}/edit','GroupController@edit');
   Route::get('/{group}/delete','GroupController@delete');
   Route::get('/{group}/invite','GroupController@invite');
