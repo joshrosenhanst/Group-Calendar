@@ -12,7 +12,7 @@
   <main>
       <label>
         Email Address
-        <input type="email" placeholder="Email Address" name="email">
+      <input type="email" placeholder="Email Address" name="email" value="{{ old('email') }}">
         @if ($errors->has('email'))
           <span class="form-error" role="alert">
             <strong>{{ $errors->first('email') }}</strong>

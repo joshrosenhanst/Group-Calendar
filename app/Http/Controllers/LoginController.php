@@ -36,7 +36,7 @@ class LoginController extends Controller{
       $this->incrementLoginAttempts($request);
       return redirect('login')->withErrors([
         'email' => __('auth.failed')
-      ]);
+      ])->withInput();
     }
   }
 
