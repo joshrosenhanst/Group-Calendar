@@ -5,6 +5,8 @@
     font-size: $size-normal
     font-weight: $label-weight
     display: block
+    &:not(:last-child)
+      margin-bottom: 0.5em
     &.form_checkbox,&.form_radio
       cursor: pointer
       display: inline-block
@@ -23,6 +25,7 @@
     border-color: $input-border-color
     color: $input-color
     box-shadow: $input-shadow
+    height: $input-height
     max-width: 100%
     width: 100%
     display: block
