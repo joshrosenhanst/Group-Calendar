@@ -935,6 +935,7 @@ fieldset[disabled] .button {
 .form .form_label.form_checkbox input,
 .form .form_label.form_radio input {
   cursor: pointer;
+  vertical-align: -1px;
 }
 
 .form .form_label.form_checkbox:hover,
