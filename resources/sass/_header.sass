@@ -1,3 +1,8 @@
+#site_header
+  background-color: $navbar-background
+  border-bottom: 1px solid $navbar-border
+  margin-bottom: 15px
+
 .navbar
   display: flex
   justify-content: space-between
@@ -13,9 +18,23 @@
     display: flex
     flex: 1 1 auto
     justify-content: flex-end
+  .navbar_logo
+    display: block
+    flex: 0 1 auto
+    img
+      display: block
   .navbar_item
+    display: block
     flex: 0 1 auto
     padding: 10px
+    font-weight: bold
+    border-left: 1px solid $navbar-border
+    border-right: 1px solid $navbar-border
+    color: $white
+    &:last-of-type
+      border-left: 0
+    &:hover, &:focus, &:active
+      background-color: $navbar-hover
     &.navbar_dropdown
       position: relative
       &:hover,&.navbar_dropdown-active

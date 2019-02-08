@@ -1,4 +1,4 @@
-@import url(https://fonts.googleapis.com/css?family=PT+Sans);/*! minireset.css v0.0.3 | MIT License | github.com/jgthms/minireset.css */
+@import url(https://fonts.googleapis.com/css?family=Lato);/*! minireset.css v0.0.3 | MIT License | github.com/jgthms/minireset.css */
 
 html,
 body,
@@ -84,6 +84,8 @@ th {
 
 /* COLORS */
 
+/* NAVBAR */
+
 /* BORDER */
 
 /* TEXT */
@@ -166,7 +168,7 @@ button,
 input,
 select,
 textarea {
-  font-family: "PT Sans", BlinkMacSystemFont, -apple-system, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", "Helvetica", "Arial", sans-serif;
+  font-family: "Lato", BlinkMacSystemFont, -apple-system, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", "Helvetica", "Arial", sans-serif;
 }
 
 code,
@@ -358,32 +360,32 @@ fieldset[disabled] .button.button-text {
 }
 
 .button.button-primary {
-  background-color: #00d1b2;
+  background-color: #00e6c3;
   border-color: transparent;
   color: white;
 }
 
 .button.button-primary:hover {
-  background-color: #00c4a7;
+  background-color: #00d9b8;
 }
 
 .button.button-primary:focus:not(:active) {
-  box-shadow: 0 0 0 0.125em rgba(0, 209, 178, 0.25);
+  box-shadow: 0 0 0 0.125em rgba(0, 230, 195, 0.25);
 }
 
 .button.button-primary:active {
-  background-color: #00b89c;
+  background-color: #00ccad;
 }
 
 .button.button-primary[disabled],
 fieldset[disabled] .button.button-primary {
-  background-color: #00d1b2;
+  background-color: #00e6c3;
   box-shadow: none;
 }
 
 .button.button-primary.button-inverted {
   background-color: white;
-  color: #00d1b2;
+  color: #00e6c3;
 }
 
 .button.button-primary.button-inverted:hover {
@@ -395,7 +397,7 @@ fieldset[disabled] .button.button-primary.button-inverted {
   background-color: white;
   border-color: transparent;
   box-shadow: none;
-  color: #00d1b2;
+  color: #00e6c3;
 }
 
 .button.button-info {
@@ -653,6 +655,12 @@ fieldset[disabled] .button {
   padding-right: 1em;
 }
 
+#site_header {
+  background-color: #00e6c3;
+  border-bottom: 1px solid #00ccad;
+  margin-bottom: 15px;
+}
+
 .navbar {
   display: flex;
   justify-content: space-between;
@@ -717,9 +725,33 @@ fieldset[disabled] .button {
   justify-content: flex-end;
 }
 
+.navbar .navbar_logo {
+  display: block;
+  flex: 0 1 auto;
+}
+
+.navbar .navbar_logo img {
+  display: block;
+}
+
 .navbar .navbar_item {
+  display: block;
   flex: 0 1 auto;
   padding: 10px;
+  font-weight: bold;
+  border-left: 1px solid #00ccad;
+  border-right: 1px solid #00ccad;
+  color: white;
+}
+
+.navbar .navbar_item:last-of-type {
+  border-left: 0;
+}
+
+.navbar .navbar_item:hover,
+.navbar .navbar_item:focus,
+.navbar .navbar_item:active {
+  background-color: #00ffd9;
 }
 
 .navbar .navbar_item.navbar_dropdown {
@@ -966,11 +998,11 @@ fieldset[disabled] .form .form_input:-ms-input-placeholder {
 #login_form {
   margin: 40px auto;
   max-width: 500px;
-  border: 1px solid #00d1b2;
+  border: 1px solid #00e6c3;
 }
 
 #login_form header {
-  background-color: #00d1b2;
+  background-color: #00e6c3;
   padding: 10px 20px;
   color: white;
   font-size: 1.5em;

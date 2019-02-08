@@ -1,31 +1,34 @@
 <header id="site_header">
   <nav class="navbar">
-      <div class="navbar-left">
-        <a href="/" class="navbar_item navbar_logo">Logo</a>
-      </div>
-      @auth
-      <div class="navbar_right">
-        <a href="/notifications" class="navbar_item">
-          {{--icon or count badge--}} Notifications
+    <div class="navbar-left">
+      <a href="/" class="navbar_logo" title="Go to Home Page">
+        {{--<img src="{{ asset('img/logo.png') }}" alt="Group Calendar Logo">--}}
+        <img src="https://via.placeholder.com/150x45.png?text=logo" alt="Group Calendar Logo">
+      </a>
+    </div>
+    @auth
+    <div class="navbar_right">
+      <a href="/notifications" class="navbar_item">
+        {{--icon or count badge--}} Notifications
+      </a>
+      <div class="navbar_item navbar_dropdown">
+        <a class="dropdown_toggle">
+          <img src="{{ Auth::user()->avatar }}" alt="{{ Auth::user()->name }} avatar">
+          {{ Auth::user()->name }}
         </a>
-        <div class="navbar_item navbar_dropdown">
-          <a class="dropdown_toggle">
-            <img src="{{ Auth::user()->avatar }}" alt="{{ Auth::user()->name }} avatar">
-            {{ Auth::user()->name }}
-          </a>
-          <div class="dropdown_items">
-            <a href="{{ route('profile.index') }}" class="dropdown_item">My Profile</a>
-            <a href="{{ route('groups.index') }}" class="dropdown_item">My Groups</a>
-            <hr class="dropdown_divider">
-            <a href="{{ route('logout') }}" class="dropdown_item">Logout</a>
-          </div>
+        <div class="dropdown_items">
+          <a href="{{ route('profile.index') }}" class="dropdown_item">My Profile</a>
+          <a href="{{ route('groups.index') }}" class="dropdown_item">My Groups</a>
+          <hr class="dropdown_divider">
+          <a href="{{ route('logout') }}" class="dropdown_item">Logout</a>
         </div>
       </div>
-      @else
-      <div class="navbar_right">
-        <a href="{{ route('login') }}" class="navbar_item">Login</a>
-        <a href="{{ route('demo') }}" class="navbar_item">Try a Demo</a>
-      </div>
-      @endif
+    </div>
+    @else
+    <div class="navbar_right">
+      <a href="{{ route('login') }}" class="navbar_item">Login</a>
+      <a href="{{ route('demo') }}" class="navbar_item">Try a Demo</a>
+    </div>
+    @endif
   </nav>
 </header>
