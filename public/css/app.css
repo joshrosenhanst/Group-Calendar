@@ -789,11 +789,15 @@ fieldset[disabled] .button {
   border-left: 1px solid #00ccad;
   border-right: 1px solid #00ccad;
   color: white;
-  text-shadow: 1px 1px 0 rgba(10, 10, 10, 0.15);
+  text-shadow: 1px 1px 0px rgba(10, 10, 10, 0.25);
 }
 
-.navbar .navbar_item:last-of-type {
+.navbar .navbar_item:last-child {
   border-left: 0;
+}
+
+.navbar .navbar_item:first-child:last-child {
+  border-left: 1px solid #00ccad;
 }
 
 .navbar .navbar_item:hover,
@@ -812,44 +816,80 @@ fieldset[disabled] .button {
 }
 
 .navbar .navbar_item.navbar_dropdown .dropdown_toggle {
-  padding-right: 2.5em;
+  padding: 10px;
+  padding-right: 1.75em;
+  color: white;
 }
 
 .navbar .navbar_item.navbar_dropdown .dropdown_toggle::after {
-  content: " ";
-  display: block;
-  border: 3px solid blue;
+  border: 3px solid transparent;
+  border-radius: 2px;
   border-right: 0;
   border-top: 0;
+  content: " ";
+  display: block;
+  height: 0.625em;
+  margin-top: -0.4375em;
+  pointer-events: none;
   position: absolute;
   top: 50%;
   -webkit-transform: rotate(-45deg);
           transform: rotate(-45deg);
   -webkit-transform-origin: center;
           transform-origin: center;
+  width: 0.625em;
+  border-color: white;
+  margin-top: -0.4em;
+  right: 1.125em;
+  box-shadow: 1px 1px 0px rgba(10, 10, 10, 0.25);
+}
+
+.navbar_dropdown {
+  padding: 0;
 }
 
 .navbar_dropdown .dropdown_items {
   min-width: 200px;
   display: none;
   position: absolute;
-  left: 0;
+  left: auto;
+  right: -1px;
   top: 100%;
   z-index: 20;
+  border-top: 1px solid #00ccad;
+  box-shadow: 0 6px 12px rgba(10, 10, 10, 0.1);
+  background-color: white;
 }
 
 .navbar_dropdown .dropdown_items .dropdown_item {
   display: block;
-  padding: 5px 10px 5px 2em;
+  padding: 10px 10px 10px 2em;
   white-space: nowrap;
+  font-weight: 400;
+  color: #4a4a4a;
+  text-shadow: none;
+  border: 1px solid #ebebeb;
+  margin-bottom: -1px;
+}
+
+.navbar_dropdown .dropdown_items .dropdown_item:hover {
+  color: #3273dc;
+  background-color: #ebebeb;
+}
+
+.navbar_dropdown .dropdown_items .dropdown_footer {
+  background-color: #00e6c3;
+  padding: 2px;
+  border-bottom-left-radius: 2px;
+  border-bottom-right-radius: 2px;
 }
 
 .navbar_dropdown .dropdown_items .dropdown_divider {
   display: block;
-  background-color: grey;
+  background-color: #ebebeb;
   border: 0;
-  height: 2px;
-  margin: 0.5rem 0;
+  height: 1px;
+  margin: 1px 0;
 }
 
 #app > main {
