@@ -1,12 +1,19 @@
 .form
+  .form_group
+    display: block
+    &:not(:last-child)
+      margin-bottom: 15px
+    &.form_group-error
+      .form_label,.form_error
+        color: $danger
+      .form_input
+        border-color: $danger
   .form_label
     color: $label-color
     display: block
-    font-size: $size-normal
+    font-size: 0.9rem
     font-weight: $label-weight
-    display: block
-    &:not(:last-child)
-      margin-bottom: 0.5em
+    margin-bottom: 5px
     &.form_checkbox,&.form_radio
       cursor: pointer
       display: inline-block
@@ -52,3 +59,6 @@
     &.form_input-inline
       display: inline
       width: auto
+  .form_error
+    font-weight: 700
+    margin: 5px 0 10px 0
