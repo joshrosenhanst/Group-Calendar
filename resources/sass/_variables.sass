@@ -1,3 +1,128 @@
+/* FONTS */
+$family-sans-serif: "PT Sans", BlinkMacSystemFont, -apple-system, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", "Helvetica", "Arial", sans-serif !default
+$family-monospace: monospace !default
+$render-mode: optimizeLegibility !default
+  
+/* COLORS */
+$black:        hsl(0, 0%, 4%) !default
+$black-bis:    hsl(0, 0%, 7%) !default
+$black-ter:    hsl(0, 0%, 14%) !default
+
+$grey-darker:  hsl(0, 0%, 21%) !default
+$grey-dark:    hsl(0, 0%, 29%) !default
+$grey:         hsl(0, 0%, 48%) !default
+$grey-light:   hsl(0, 0%, 71%) !default
+$grey-lighter: hsl(0, 0%, 86%) !default
+
+$white-ter:    hsl(0, 0%, 96%) !default
+$white-bis:    hsl(0, 0%, 98%) !default
+$white:        hsl(0, 0%, 100%) !default
+
+$orange:       hsl(14,  100%, 53%) !default
+$yellow:       hsl(48,  100%, 67%) !default
+$green:        hsl(141, 71%,  48%) !default
+$turquoise:    hsl(171, 100%, 41%) !default
+$cyan:         hsl(204, 86%,  53%) !default
+$blue:         hsl(217, 71%,  53%) !default
+$purple:       hsl(271, 100%, 71%) !default
+$red: hsl(348, 100%, 61%) !default
+
+
+$primary: $turquoise !default
+
+$info: $cyan !default
+$success: $green !default
+$warning: $yellow !default
+$danger: $red !default
+
+$light: $white-ter !default
+$dark: $grey-darker !default
+
+/* BORDER */
+$border: $grey-lighter !default
+$border-hover: $grey-light !default
+
+/* TEXT */
+$text: $grey-dark !default
+$text-invert: findColorInvert($text) !default
+$text-light: $grey !default
+$text-strong: $grey-darker !default
+
+/* LINK */
+$link: $blue !default
+$link-visited: $purple !default
+$link-hover: ligthen($link, 20%) !default
+$link-hover-border: $grey-light !default
+$link-focus: $link-hover !default
+$link-focus-border: $blue !default
+$link-active: $grey-darker !default
+$link-active-border: $grey-dark !default
+
+/* SIZES */
+$size-small: 0.75rem !default
+$size-normal: 1rem !default
+$size-medium: 1.25rem !default
+$size-large: 1.5rem !default
+
+/* BODY */
+$body-background-color: $white !default
+$body-size: 16px !default
+$body-rendering: optimizeLegibility !default
+$body-family: $family-sans-serif !default
+$body-color: $text !default
+$body-weight: 400 !default
+$body-line-height: 1.5 !default
+
+/* CODE BLOCKS */
+$code: $red !default
+$code-background: $body-background-color !default
+$code-family: $family-monospace !default
+$code-padding: 0.25em 0.5em 0.25em !default
+$code-weight: normal !default
+$code-size: 0.875em !default
+
+$pre: $text !default
+$pre-background: $body-background-color !default
+
+/* HR */
+$hr-background-color: $body-background-color !default
+$hr-height: 2px !default
+$hr-margin: 1.5rem 0 !default
+
+/* BREAKPOINTS */
+$gap: 64px !default
+// 960, 1152, and 1344 have been chosen because they are divisible by both 12 and 16
+$tablet: 769px !default
+// 960px container + 4rem
+$desktop: 960px + (2 * $gap) !default
+// 1152px container + 4rem
+$widescreen: 1152px + (2 * $gap) !default
+$widescreen-enabled: true !default
+// 1344px container + 4rem
+$fullhd: 1344px + (2 * $gap) !default
+$fullhd-enabled: true !default
+
+/* MISC */
+$easing: ease-out !default
+$radius-small: 2px !default
+$radius: 4px !default
+$radius-large: 6px !default
+$radius-rounded: 290486px !default
+$speed: 86ms !default
+
+/* CONTROLS */
+$control-radius: $radius !default
+$control-radius-small: $radius-small !default
+
+$control-border-width: 1px !default
+
+$control-height: 2.25em !default
+$control-line-height: 1.5 !default
+
+$control-padding-vertical: calc(0.375em - #{$control-border-width}) !default
+$control-padding-horizontal: calc(0.625em - #{$control-border-width}) !default
+  
+/* INPUT */
 $input-color: $grey-darker !default
 $input-background-color: $white !default
 $input-border-color: $primary !default
@@ -14,8 +139,8 @@ $input-focus-box-shadow-size: 0 0 0 0.125em !default
 $input-focus-box-shadow-color: rgba($link, 0.25) !default
 
 $input-disabled-color: $text-light !default
-$input-disabled-background-color: $background !default
-$input-disabled-border-color: $background !default
+$input-disabled-background-color: $body-background-color !default
+$input-disabled-border-color: $body-background-color !default
 $input-disabled-placeholder-color: rgba($input-disabled-color, 0.9) !default
 
 $input-arrow: $link !default
@@ -25,6 +150,7 @@ $input-icon-active-color: $grey !default
 
 $input-radius: $radius !default
 
+/* FILE INPUT */
 $file-border-color: $border !default
 $file-radius: $radius !default
 
@@ -38,11 +164,11 @@ $file-name-border-style: solid !default
 $file-name-border-width: 1px 1px 1px 0 !default
 $file-name-max-width: 16em !default
 
+/* LABEL */
 $label-color: $grey-darker !default
-$label-weight: $weight-bold !default
+$label-weight: 700 !default
 
-$help-size: $size-small !default
-
+/* BUTTON */
 $button-color: $grey-darker !default
 $button-background-color: $white !default
 
@@ -63,8 +189,8 @@ $button-focus-box-shadow-color: rgba($link, 0.25) !default
 $button-active-color: $link-active !default
 $button-active-border-color: $link-active-border !default
 
-$button-text-color: $text !default
-$button-text-hover-background-color: $background !default
+$button-text-color: $link !default
+$button-text-hover-background-color: $body-background-color !default
 $button-text-hover-color: $text-strong !default
 
 $button-disabled-background-color: $white !default
