@@ -3,20 +3,21 @@
   max-width: 100%
   position: relative
   border-radius: $card-border-radius
-  overflow: hidden
+  box-shadow: $card-box-shadow
+  border: 1px solid $card-border-color
   .card_header
     background-color: $card-header-background
     padding: 10px 20px
     color: $white
+    margin: -1px -1px 0 -1px
+    border-top-right-radius: $card-border-radius
+    border-top-left-radius: $card-border-radius
+    text-shadow: $card-header-text-shadow
     &.card_header-no_content
       padding:2px
     h1
       font-weight: 700
       font-size: $size-large
-  .card_body
-    border-width: 0 1px 1px 1px
-    border-style: solid
-    border-color: $card-border-color
   .card_section
     padding: 20px
     &:not(&:first-of-type)
