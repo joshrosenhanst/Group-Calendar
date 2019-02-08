@@ -141,7 +141,7 @@ th {
 }
 
 html {
-  background-color: white;
+  background-color: #fdfdfd;
   font-size: 16px;
   -moz-osx-font-smoothing: grayscale;
   -webkit-font-smoothing: antialiased;
@@ -210,7 +210,7 @@ code {
 }
 
 hr {
-  background-color: white;
+  background-color: #fdfdfd;
   border: none;
   display: block;
   height: 2px;
@@ -247,7 +247,7 @@ fieldset {
 
 pre {
   -webkit-overflow-scrolling: touch;
-  background-color: white;
+  background-color: #fdfdfd;
   color: #4a4a4a;
   font-size: 0.875em;
   overflow-x: auto;
@@ -671,13 +671,18 @@ fieldset[disabled] .button {
   max-width: 100%;
   position: relative;
   border-radius: 2px;
-  overflow: hidden;
+  box-shadow: 0 1px 3px rgba(10, 10, 10, 0.1);
+  border: 1px solid #cccccc;
 }
 
 .card .card_header {
   background-color: #00e6c3;
   padding: 10px 20px;
   color: white;
+  margin: -1px -1px 0 -1px;
+  border-top-right-radius: 2px;
+  border-top-left-radius: 2px;
+  text-shadow: 1px 1px 1px rgba(10, 10, 10, 0.15);
 }
 
 .card .card_header.card_header-no_content {
@@ -687,12 +692,6 @@ fieldset[disabled] .button {
 .card .card_header h1 {
   font-weight: 700;
   font-size: 1.5rem;
-}
-
-.card .card_body {
-  border-width: 0 1px 1px 1px;
-  border-style: solid;
-  border-color: #cccccc;
 }
 
 .card .card_section {
@@ -790,6 +789,7 @@ fieldset[disabled] .button {
   border-left: 1px solid #00ccad;
   border-right: 1px solid #00ccad;
   color: white;
+  text-shadow: 1px 1px 0 rgba(10, 10, 10, 0.15);
 }
 
 .navbar .navbar_item:last-of-type {
@@ -1016,8 +1016,8 @@ fieldset[disabled] .form .form_input {
 
 .form .form_input[disabled],
 fieldset[disabled] .form .form_input {
-  background-color: white;
-  border-color: white;
+  background-color: #fdfdfd;
+  border-color: #fdfdfd;
   box-shadow: none;
   color: #7a7a7a;
 }

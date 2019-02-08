@@ -43,6 +43,7 @@ $dark: $grey-darker !default
 $navbar-background: $primary
 $navbar-border: darken($primary, 5%)
 $navbar-hover: lighten($primary, 5%)
+$navbar-item-text-shadow: 1px 1px 0 rgba(10,10,10,0.15)
 
 /* BORDER */
 $border: $grey-lighter !default
@@ -71,7 +72,8 @@ $size-medium: 1.25rem !default
 $size-large: 1.5rem !default
 
 /* BODY */
-$body-background-color: $white !default
+$white-background: $white
+$body-background-color: #fdfdfd !default
 $body-size: 16px !default
 $body-rendering: optimizeLegibility !default
 $body-family: $family-sans-serif !default
@@ -81,7 +83,7 @@ $body-line-height: 1.5 !default
 
 /* CODE BLOCKS */
 $code: $red !default
-$code-background: $body-background-color !default
+$code-background: $white !default
 $code-family: $family-monospace !default
 $code-padding: 0.25em 0.5em 0.25em !default
 $code-weight: normal !default
@@ -210,7 +212,9 @@ $button-static-background-color: $white-ter !default
 $button-static-border-color: $grey-lighter !default
 
 /* CARD */
-$card-background: $body-background-color
+$card-background: $white-background
 $card-border-color: $grey-mid
 $card-border-radius: $radius
 $card-header-background: $primary
+$card-header-text-shadow: 1px 1px 1px rgba(10,10,10,0.15)
+$card-box-shadow: 0 1px 3px rgba(10,10,10,0.1)
