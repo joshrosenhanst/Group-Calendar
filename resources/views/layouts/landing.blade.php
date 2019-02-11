@@ -13,7 +13,7 @@
   {{-- remove vue js #app and script --}}
   <div id="app">
     @include('layouts.header')
-    <main>
+    <main id="app-body">
       @yield('content')
     </main>
   </div>

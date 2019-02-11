@@ -1,24 +1,34 @@
-.card
+.card,.sidebar
   background-color: $card-background
   max-width: 100%
   position: relative
   border-radius: $card-border-radius
   box-shadow: $card-box-shadow
+  .card_header,.sidebar_header
+    background-color: $card-header-background
+    color: $white
+    &.card_header-no_content,&.sidebar_header-no_content
+      padding:2px
+  .card_section,.sidebar_section
+    &:not(&:first-of-type)
+      border-top: 1px solid $card-border-color
+  .card_footer,.sidebar_footer
+    background-color: $primary
+    padding: 2px
+    border-bottom-left-radius: $radius
+    border-bottom-right-radius: $radius
+
+.card
   border: 1px solid $card-border-color
   .card_header
-    background-color: $card-header-background
     padding: 10px 20px
-    color: $white
     margin: -1px -1px 0 -1px
     border-top-right-radius: $card-border-radius
     border-top-left-radius: $card-border-radius
     text-shadow: $card-header-text-shadow
-    &.card_header-no_content
-      padding:2px
     h1
       font-weight: 700
       font-size: $size-large
   .card_section
     padding: 20px
-    &:not(&:first-of-type)
-      border-top: 1px solid $card-border-color
+  
