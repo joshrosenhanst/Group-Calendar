@@ -1,6 +1,10 @@
-<div class="sidebar">
-  <div class="sidebar_header">
-    <h1>{{ $group->name }}</h1>
+<div class="sidebar sidebar_has_avatar sidebar-no-header">
+  <div class="sidebar_section sidebar_section-avatar" style="background-image:url('')">
+    <a href="{{ route('groups.view', ['group'=>$group]) }}" class="sidebar_avatar_image">
+      <img src="{{ asset($group->avatar) }}" alt="{{ $group->name }} Avatar">
+    </a>
+    <a href="{{ route('groups.view', ['group'=>$group]) }}" class="sidebar_avatar_name">{{ $group->name }}</a>
+    <div class="sidebar_avatar_subtext">Created {{ $group->create_date }}</div>
   </div>
   <div class="sidebar_section sidebar_links">
     <a href="{{ route('events.new') }}" class="sidebar_link">
