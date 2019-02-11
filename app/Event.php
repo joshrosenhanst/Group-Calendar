@@ -22,7 +22,7 @@ class Event extends Model
     if($this->header_url){
       return 'events/'.$this->header_url;
     }else{
-      return 'default_event_header.png';
+      return 'img/default_event_header.png';
     }
   }
 

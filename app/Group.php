@@ -36,7 +36,7 @@ class Group extends Model
     if($this->avatar_url){
       return 'groups/'.$this->avatar_url;
     }else{
-      return 'default_group_avatar.png';
+      return 'img/default_group_avatar.png';
     }
   }
 
