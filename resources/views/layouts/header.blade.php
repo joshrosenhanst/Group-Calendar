@@ -20,7 +20,6 @@
           <a href="{{ route('profile.index') }}" class="dropdown_item">My Profile</a>
           <a href="{{ route('groups.index') }}" class="dropdown_item">My Groups</a>
           <a href="{{ route('logout') }}" class="dropdown_item">Logout</a>
-          <div class="dropdown_footer"></div>
         </div>
       </div>
     </div>

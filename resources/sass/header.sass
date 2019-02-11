@@ -79,6 +79,9 @@
     border-top: 1px solid $navbar-border
     box-shadow:0 6px 12px rgba(10,10,10,0.1)
     background-color: $white
+    border-bottom: 4px solid $primary
+    border-bottom-left-radius: $radius
+    border-bottom-right-radius: $radius
     .dropdown_item
       display: block
       padding: 10px 10px 10px 2em
@@ -92,14 +95,9 @@
       &:hover
         color: $link
         background-color: $grey-lightest
-    .dropdown_footer
-      background-color: $primary
-      padding: 2px
-      border-bottom-left-radius: $radius
-      border-bottom-right-radius: $radius
     .dropdown_divider
       display: block
-      background-color: $grey-lightest
+      background-color: $primary
       border: 0
-      height: 1px
-      margin: 1px 0
+      height: 2px
+      margin: 0
