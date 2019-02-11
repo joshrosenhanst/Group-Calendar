@@ -41,6 +41,13 @@ class Group extends Model
   }
 
   /*
+    getCreateDate() - Accessor method that returns a formatted version of the `created_at` db field. Format 'F Y' - Ex: `February 2011`
+  */
+  public function getCreateDateAttribute(){
+    return $this->created_at->format('F Y');
+  }
+
+  /*
     users() - Defines a many-to-many relationship with the User model.
   */
   public function users(){

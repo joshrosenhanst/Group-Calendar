@@ -31,10 +31,10 @@ class User extends Authenticatable
   ];
 
   /*
-    Append the following `avatar` accessor to JSON arrays.
+    Append the following accessors to JSON arrays.
   */
   protected $appends = [
-    'avatar'
+    'avatar', 'join_date'
   ];
 
   /*
@@ -46,6 +46,13 @@ class User extends Authenticatable
     }else{
       return 'img/default_user_avatar.png';
     }
+  }
+
+  /*
+    getJoinDateAttribute() - Accessor method that returns a formatted version of the `created_at` db field. Format 'F Y' - Ex: `February 2011`
+  */
+  public function getJoinDateAttribute(){
+    return $this->created_at->format('F Y');
   }
 
   /*
