@@ -13,8 +13,8 @@
       </a>
       <div class="navbar_item navbar_dropdown">
         <a class="dropdown_toggle">
-          <img src="{{ Auth::user()->avatar }}" alt="{{ Auth::user()->name }} avatar">
-          {{ Auth::user()->name }}
+          <img class="navbar_image" src="{{ asset(Auth::user()->avatar) }}" alt="{{ Auth::user()->name }} avatar">
+          <span>{{ Auth::user()->name }}</span>
         </a>
         <div class="dropdown_items">
           <a href="{{ route('profile.index') }}" class="dropdown_item">My Profile</a>

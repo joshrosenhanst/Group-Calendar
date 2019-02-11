@@ -784,12 +784,13 @@ fieldset[disabled] .button {
 .navbar .navbar_item {
   display: block;
   flex: 0 1 auto;
-  padding: 10px;
+  padding: 0 10px;
   font-weight: bold;
   border-left: 1px solid #00ccad;
   border-right: 1px solid #00ccad;
   color: white;
   text-shadow: 1px 1px 0px rgba(10, 10, 10, 0.25);
+  line-height: 45px;
 }
 
 .navbar .navbar_item:last-child {
@@ -808,6 +809,7 @@ fieldset[disabled] .button {
 
 .navbar .navbar_item.navbar_dropdown {
   position: relative;
+  padding: 0;
 }
 
 .navbar .navbar_item.navbar_dropdown:hover .dropdown_items,
@@ -816,9 +818,11 @@ fieldset[disabled] .button {
 }
 
 .navbar .navbar_item.navbar_dropdown .dropdown_toggle {
-  padding: 10px;
-  padding-right: 1.75em;
+  padding: 0 2em 0 10px;
   color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .navbar .navbar_item.navbar_dropdown .dropdown_toggle::after {
@@ -840,8 +844,18 @@ fieldset[disabled] .button {
   width: 0.625em;
   border-color: white;
   margin-top: -0.4em;
-  right: 1.125em;
+  right: 12px;
   box-shadow: 1px 1px 0px rgba(10, 10, 10, 0.25);
+}
+
+.navbar .navbar_item .navbar_image {
+  border-radius: 50%;
+  width: 1.5em;
+  height: 1.5em;
+  display: inline-block;
+  flex: 1 1 auto;
+  border: 1px solid #00ccad;
+  margin-right: 4px;
 }
 
 .navbar_dropdown {
@@ -870,6 +884,7 @@ fieldset[disabled] .button {
   text-shadow: none;
   border: 1px solid #ebebeb;
   margin-bottom: -1px;
+  line-height: 1.5em;
 }
 
 .navbar_dropdown .dropdown_items .dropdown_item:hover {

@@ -26,12 +26,13 @@
   .navbar_item
     display: block
     flex: 0 1 auto
-    padding: 10px
+    padding: 0 10px
     font-weight: bold
     border-left: 1px solid $navbar-border
     border-right: 1px solid $navbar-border
     color: $navbar-item-color
     text-shadow: $navbar-item-text-shadow
+    line-height: 45px
     &:last-child
       border-left: 0
     &:first-child:last-child
@@ -40,19 +41,30 @@
       background-color: $navbar-hover
     &.navbar_dropdown
       position: relative
+      padding: 0
       &:hover,&.navbar_dropdown-active
         .dropdown_items
           display: block
       .dropdown_toggle
-        padding: 10px
-        padding-right: 1.75em
+        padding: 0 2em 0 10px
         color: $navbar-item-color
+        display: flex
+        align-items: center
+        justify-content: center
         &::after
           +arrow
           border-color: $navbar-dropdown-arrow
           margin-top: -0.4em
-          right: 1.125em
+          right: 12px
           box-shadow: $navbar-item-text-shadow
+    .navbar_image
+      border-radius: 50%
+      width: 1.5em
+      height: 1.5em
+      display: inline-block
+      flex: 1 1 auto
+      border: 1px solid $navbar-border
+      margin-right: 4px
       
 .navbar_dropdown
   padding: 0
@@ -76,6 +88,7 @@
       text-shadow: none
       border: 1px solid $grey-lightest
       margin-bottom: -1px
+      line-height:1.5em
       &:hover
         color: $link
         background-color: $grey-lightest
