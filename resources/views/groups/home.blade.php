@@ -4,7 +4,7 @@
 
 @section('content')
 <header>
-  <img src="{{ $group->avatar }}" alt="{{ $group->name }} Avatar">
+  <img src="{{ asset($group->avatar) }}" alt="{{ $group->name }} Avatar">
 </header>
 <section>
   <h2>Upcoming Events</h2>
