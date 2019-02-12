@@ -25,7 +25,8 @@
         background-color: $grey-lightest
   .sidebar_links
     .sidebar_link
-      display: block
+      display: flex
+      align-items: center
       padding: 10px
       white-space: nowrap
       color: $text
@@ -35,6 +36,12 @@
       &:hover
         color: $link
         background-color: $grey-lightest
+      .icon
+        margin-right: 5px
+        color: $primary
+        svg
+          width: 2rem
+          height: 2rem
     .sidebar_divider
       display: block
       border: 0

@@ -18,9 +18,22 @@
           <span>{{ Auth::user()->name }}</span>
         </a>
         <div class="dropdown_items">
-          <a href="{{ route('profile.index') }}" class="dropdown_item">My Profile</a>
-          <a href="{{ route('groups.index') }}" class="dropdown_item">My Groups</a>
-          <a href="{{ route('logout') }}" class="dropdown_item">Logout</a>
+            <a href="{{ route('events.calendar') }}" class="dropdown_item">
+              <span class="icon">@materialicon('calendar-range')</span>
+              <span>My Calendar</span>
+            </a>
+            <a href="{{ route('groups.index') }}" class="dropdown_item">
+              <span class="icon">@materialicon('account-group')</span>
+              <span>My Groups</span>
+            </a>
+            <a href="{{ route('groups.index') }}" class="dropdown_item">
+              <span class="icon">@materialicon('account')</span>
+              <span>My Profile</span>
+            </a>
+            <a href="{{ route('logout') }}" class="dropdown_item">
+              <span class="icon">@materialicon('logout')</span>
+              <span>Log Out</span>
+            </a>
         </div>
       </div>
     </div>

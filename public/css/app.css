@@ -273,6 +273,33 @@ table th {
   color: #363636;
 }
 
+.icon {
+  align-items: center;
+  display: inline-flex;
+  justify-content: center;
+  height: 1.5rem;
+  width: 1.5rem;
+}
+
+.icon.is-small {
+  height: 1rem;
+  width: 1rem;
+}
+
+.icon.is-medium {
+  height: 2rem;
+  width: 2rem;
+}
+
+.icon.is-large {
+  height: 3rem;
+  width: 3rem;
+}
+
+.icon svg {
+  fill: currentColor;
+}
+
 .button {
   -webkit-touch-callout: none;
   -webkit-user-select: none;
@@ -812,7 +839,8 @@ fieldset[disabled] .button {
 }
 
 .navbar .navbar_item {
-  display: block;
+  display: flex;
+  align-items: center;
   flex: 0 1 auto;
   padding: 0 10px;
   font-weight: bold;
@@ -878,6 +906,15 @@ fieldset[disabled] .button {
   box-shadow: 1px 1px 0px rgba(10, 10, 10, 0.25);
 }
 
+.navbar .navbar_item > .icon {
+  margin-right: 5px;
+}
+
+.navbar .navbar_item > .icon svg {
+  -webkit-filter: drop-shadow(1px 1px 0px rgba(10, 10, 10, 0.25));
+          filter: drop-shadow(1px 1px 0px rgba(10, 10, 10, 0.25));
+}
+
 .navbar .navbar_item .navbar_image {
   border-radius: 50%;
   width: 1.5em;
@@ -909,8 +946,9 @@ fieldset[disabled] .button {
 }
 
 .navbar_dropdown .dropdown_items .dropdown_item {
-  display: block;
-  padding: 10px 10px 10px 2em;
+  display: flex;
+  align-items: center;
+  padding: 10px;
   white-space: nowrap;
   font-weight: 400;
   color: #4a4a4a;
@@ -923,6 +961,16 @@ fieldset[disabled] .button {
 .navbar_dropdown .dropdown_items .dropdown_item:hover {
   color: #3273dc;
   background-color: #ebebeb;
+}
+
+.navbar_dropdown .dropdown_items .dropdown_item .icon {
+  margin-right: 5px;
+  color: #00e6c3;
+}
+
+.navbar_dropdown .dropdown_items .dropdown_item .icon svg {
+  width: 2rem;
+  height: 2rem;
 }
 
 .navbar_dropdown .dropdown_items .dropdown_divider {
@@ -1042,7 +1090,8 @@ article#maincontent {
 }
 
 .sidebar .sidebar_links .sidebar_link {
-  display: block;
+  display: flex;
+  align-items: center;
   padding: 10px;
   white-space: nowrap;
   color: #4a4a4a;
@@ -1054,6 +1103,16 @@ article#maincontent {
 .sidebar .sidebar_links .sidebar_link:hover {
   color: #3273dc;
   background-color: #ebebeb;
+}
+
+.sidebar .sidebar_links .sidebar_link .icon {
+  margin-right: 5px;
+  color: #00e6c3;
+}
+
+.sidebar .sidebar_links .sidebar_link .icon svg {
+  width: 2rem;
+  height: 2rem;
 }
 
 .sidebar .sidebar_links .sidebar_divider {

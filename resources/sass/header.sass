@@ -24,7 +24,8 @@
     img
       display: block
   .navbar_item
-    display: block
+    display: flex
+    align-items: center
     flex: 0 1 auto
     padding: 0 10px
     font-weight: bold
@@ -57,6 +58,10 @@
           margin-top: -0.4em
           right: 12px
           box-shadow: $navbar-item-text-shadow
+    &>.icon
+      margin-right: 5px
+      svg
+        filter: drop-shadow($navbar-item-text-shadow)
     .navbar_image
       border-radius: 50%
       width: 1.5em
@@ -83,8 +88,9 @@
     border-bottom-left-radius: $radius
     border-bottom-right-radius: $radius
     .dropdown_item
-      display: block
-      padding: 10px 10px 10px 2em
+      display: flex
+      align-items: center
+      padding: 10px
       white-space: nowrap
       font-weight: 400
       color: $text
@@ -95,6 +101,12 @@
       &:hover
         color: $link
         background-color: $grey-lightest
+      .icon
+        margin-right: 5px
+        color: $primary
+        svg
+          width: 2rem
+          height: 2rem
     .dropdown_divider
       display: block
       background-color: $primary
