@@ -1018,6 +1018,31 @@ article#maincontent {
   font-size: 1.25rem;
 }
 
+.sidebar h2.section_headline {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 5px;
+}
+
+.sidebar h2.section_headline .headline_text {
+  text-align: left;
+  color: #7a7a7a;
+  font-size: 0.8rem;
+}
+
+.sidebar h2.section_headline .headline_sublink {
+  text-align: right;
+  font-weight: 500;
+  font-size: 0.8rem;
+  padding: 2px 6px;
+  border-radius: 2px;
+}
+
+.sidebar h2.section_headline .headline_sublink:hover {
+  background-color: #ebebeb;
+}
+
 .sidebar .sidebar_links .sidebar_link {
   display: block;
   padding: 10px;
@@ -1044,11 +1069,11 @@ article#maincontent {
 .sidebar.sidebar_has_avatar .sidebar_section-avatar {
   display: flex;
   align-items: center;
+  text-align: center;
   flex-direction: column;
-  padding: 10px 0;
-  border-width: 0 1px;
-  border-style: solid;
-  border-color: #ebebeb;
+  padding: 10px;
+  border: 1px solid #ebebeb;
+  margin-bottom: -1px;
 }
 
 .sidebar.sidebar_has_avatar .sidebar_section-avatar .sidebar_avatar_image {
@@ -1063,11 +1088,57 @@ article#maincontent {
   color: #00e6c3;
   font-weight: 700;
   font-size: 1.25rem;
+  line-height: 1.2;
 }
 
 .sidebar.sidebar_has_avatar .sidebar_section-avatar .sidebar_avatar_subtext {
   font-size: 0.8rem;
   color: #7a7a7a;
+}
+
+.sidebar.sidebar_has_avatar .sidebar_section-avatar .view_all {
+  font-size: 0.8rem;
+}
+
+.sidebar.sidebar_has_avatar .sidebar_avatar_members {
+  margin-top: 5px;
+}
+
+.sidebar.sidebar_has_avatar .sidebar_avatar_members .empty {
+  color: #7a7a7a;
+  font-size: 700;
+}
+
+.sidebar.sidebar_has_avatar .sidebar_avatar_members .members_list {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+
+.sidebar.sidebar_has_avatar .sidebar_avatar_members .members_info {
+  display: flex;
+  justify-content: space-around;
+  font-size: 0.8rem;
+}
+
+.sidebar.sidebar_has_avatar .sidebar_avatar_members .members_info .info_section-title {
+  color: #7a7a7a;
+  flex-grow: 1;
+}
+
+.sidebar.sidebar_has_avatar .sidebar_avatar_members .members_info .info_section-view_all {
+  flex-grow: 1;
+  text-align: right;
+}
+
+.sidebar.sidebar_has_avatar .sidebar_avatar_members .member_preview {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  border: 1px solid #00e6c3;
+  overflow: hidden;
+  margin: 0 1px;
 }
 
 .form .form_group {
@@ -1236,6 +1307,7 @@ fieldset[disabled] .form .form_input:-ms-input-placeholder {
 #login_form {
   margin: 40px auto;
   max-width: 500px;
+  width: 100%;
 }
 
 #login_form .card_header {

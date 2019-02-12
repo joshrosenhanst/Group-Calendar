@@ -41,6 +41,11 @@ Route::middleware('auth')->prefix('groups')->name('groups.')->group(function(){
   Route::delete('/delete', 'GroupController@destroy')->name('destroy');
 });
 
+/* Users */
+Route::middleware('auth')->prefix('users')->name('users.')->group(function(){
+  Route::get('/{user}', 'UserController@view')->name('view');
+});
+
 /* My Profile */
 Route::middleware('auth')->prefix('profile')->name('profile.')->group(function(){
   Route::get('/','ProfileController@index')->name('index'); // my profile
