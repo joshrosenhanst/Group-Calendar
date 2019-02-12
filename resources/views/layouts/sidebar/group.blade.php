@@ -8,7 +8,7 @@
     <div class="sidebar_avatar_members">
       @if($group->users_count)
         <div class="members_list">
-          @each('members.preview', $group->users->take(8), 'user')
+          @each('members.preview_thumbnail', $group->users->take(8), 'user')
         </div>
       @else
         <span class="empty">No Members</span>

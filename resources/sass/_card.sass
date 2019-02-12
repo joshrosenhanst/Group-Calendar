@@ -20,6 +20,8 @@
 
 .card
   border: 1px solid $card-border-color
+  display: flex
+  flex-direction: column
   .card_header
     padding: 10px 20px
     margin: -1px -1px 0 -1px
@@ -31,4 +33,32 @@
       font-size: $size-large
   .card_section
     padding: 20px
+  .card_list
+    padding: 0
+    .list_item
+      border-bottom: 1px solid $card-border-color
+      margin-bottom: -1px
+      padding: 10px
+  .card_buttons
+    margin-top: auto
+    display: flex
+    align-items: center
+    padding: 0
+    border-top: 1px solid $card-border-color
+    .button
+      flex: 1 1
+      &:hover
+        background-color: $card-border-color
+      &:not(:only-of-type)
+        border-right: 1px solid $card-border-color
+        &:last-of-type
+          border-right: 0
   
+.card_halves
+  display: flex
+  flex-wrap: wrap
+  column-gap: 15px
+  row-gap: 15px
+  padding: 15px 0
+  .card
+    flex: 1 1

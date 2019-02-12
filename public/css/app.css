@@ -740,6 +740,8 @@ fieldset[disabled] .button {
 
 .card {
   border: 1px solid #cccccc;
+  display: flex;
+  flex-direction: column;
 }
 
 .card .card_header {
@@ -757,6 +759,53 @@ fieldset[disabled] .button {
 
 .card .card_section {
   padding: 20px;
+}
+
+.card .card_list {
+  padding: 0;
+}
+
+.card .card_list .list_item {
+  border-bottom: 1px solid #cccccc;
+  margin-bottom: -1px;
+  padding: 10px;
+}
+
+.card .card_buttons {
+  margin-top: auto;
+  display: flex;
+  align-items: center;
+  padding: 0;
+  border-top: 1px solid #cccccc;
+}
+
+.card .card_buttons .button {
+  flex: 1 1;
+}
+
+.card .card_buttons .button:hover {
+  background-color: #cccccc;
+}
+
+.card .card_buttons .button:not(:only-of-type) {
+  border-right: 1px solid #cccccc;
+}
+
+.card .card_buttons .button:not(:only-of-type):last-of-type {
+  border-right: 0;
+}
+
+.card_halves {
+  display: flex;
+  flex-wrap: wrap;
+  -webkit-column-gap: 15px;
+          column-gap: 15px;
+  row-gap: 15px;
+  padding: 15px 0;
+}
+
+.card_halves .card {
+  flex: 1 1;
 }
 
 #site_header {
@@ -1057,10 +1106,12 @@ article#maincontent {
 .maincontent_header .maincontent_avatar_container {
   background: white;
   display: flex;
+  padding-left: 20px;
+  border-top: 4px solid #00e6c3;
 }
 
 .maincontent_header .maincontent_header_details {
-  padding: 10px;
+  padding: 10px 20px 10px 10px;
 }
 
 .maincontent_header .maincontent_header_avatar {
@@ -1075,11 +1126,28 @@ article#maincontent {
 .maincontent_header .maincontent_header_name {
   color: #00e6c3;
   font-size: 1.5rem;
+  font-weight: 700;
 }
 
 .maincontent_header .maincontent_header_subtext {
-  font-size: 1rem;
+  font-size: 0.8rem;
   color: #7a7a7a;
+}
+
+.card_list .member_list_preview,
+.card_list .empty {
+  display: flex;
+  align-items: center;
+}
+
+.card_list .member_list_preview .preview_thumbnail,
+.card_list .empty .preview_thumbnail {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  border: 1px solid #00e6c3;
+  overflow: hidden;
+  margin-right: 10px;
 }
 
 .sidebar {
@@ -1221,7 +1289,7 @@ article#maincontent {
   text-align: right;
 }
 
-.sidebar.sidebar_has_avatar .sidebar_avatar_members .member_preview {
+.sidebar.sidebar_has_avatar .sidebar_avatar_members .member_thumbnail_preview {
   width: 32px;
   height: 32px;
   border-radius: 50%;

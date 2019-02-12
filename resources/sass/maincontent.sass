@@ -25,8 +25,10 @@ article#maincontent
   .maincontent_avatar_container
     background: $white
     display: flex
+    padding-left: 20px
+    border-top: 4px solid $primary
   .maincontent_header_details
-    padding: 10px
+    padding: 10px 20px 10px 10px
   .maincontent_header_avatar
     width: 150px
     height: 150px
@@ -37,6 +39,19 @@ article#maincontent
   .maincontent_header_name
     color: $primary
     font-size: $size-large
+    font-weight: 700
   .maincontent_header_subtext
-    font-size: $size-normal
+    font-size: $size-small
     color: $text-light
+
+.card_list
+  .member_list_preview,.empty
+    display: flex
+    align-items: center
+    .preview_thumbnail
+      width: 32px
+      height: 32px
+      border-radius: 50%
+      border: 1px solid $primary
+      overflow: hidden
+      margin-right: 10px
