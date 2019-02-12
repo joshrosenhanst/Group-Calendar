@@ -29,12 +29,16 @@ class Group extends Model
     'avatar'
   ];
 
+  protected $withCount = [
+    'users'
+  ];
+
   /*
     getAvatarAttribute() - Accessor method that prepends the 'groups/' directory onto the `avatar_url` db field. If it doesn't exist return the default image file.
   */
   public function getAvatarAttribute(){
     if($this->avatar_url){
-      return 'groups/'.$this->avatar_url;
+      return 'storage/groups/'.$this->avatar_url;
     }else{
       return 'img/default_group_avatar.png';
     }

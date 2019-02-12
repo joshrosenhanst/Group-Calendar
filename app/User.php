@@ -38,11 +38,11 @@ class User extends Authenticatable
   ];
 
   /*
-    getAvatarAttribute() - Accessor method that prepends the 'avatars/' directory onto the `avatar_url` db field. If it doesn't exist return the default image file.
+    getAvatarAttribute() - Accessor method that prepends the 'storage/avatars/' directory onto the `avatar_url` db field. If it doesn't exist return the default image file.
   */
   public function getAvatarAttribute(){
     if($this->avatar_url){
-      return 'avatars/'.$this->avatar_url;
+      return 'storage/avatars/'.$this->avatar_url;
     }else{
       return 'img/default_user_avatar.png';
     }

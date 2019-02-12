@@ -20,7 +20,7 @@ class Event extends Model
 
   public function getHeaderAttribute(){
     if($this->header_url){
-      return 'events/'.$this->header_url;
+      return 'storage/events/'.$this->header_url;
     }else{
       return 'img/default_event_header.png';
     }
