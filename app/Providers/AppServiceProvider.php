@@ -3,6 +3,8 @@
 namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
+use Illuminate\Support\Facades\Blade;
+use Mdi\Mdi;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -13,7 +15,10 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
+        Mdi::withIconsPath(base_path('node_modules/@mdi/svg/svg/'));
+        Blade::directive('materialicon', function($expression){
+            return "<?php echo(Mdi\Mdi::mdi($expression)); ?>";
+        });
     }
 
     /**

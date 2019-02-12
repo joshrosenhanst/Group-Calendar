@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "a875862ccc0c27fcee12c6892c3e2b32",
+    "content-hash": "87d7f561378878a8a36b2dd56cb12544",
     "packages": [
         {
             "name": "dnoegel/php-xdg-base-dir",
@@ -1101,6 +1101,50 @@
                 "storage"
             ],
             "time": "2019-02-01T08:50:36+00:00"
+        },
+        {
+            "name": "mesavolt/mdi-php",
+            "version": "v1.1.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/chteuchteu/MaterialDesignIcons-PHP.git",
+                "reference": "8cd177bf619918b39424a91496a976b3f60d08a5"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/chteuchteu/MaterialDesignIcons-PHP/zipball/8cd177bf619918b39424a91496a976b3f60d08a5",
+                "reference": "8cd177bf619918b39424a91496a976b3f60d08a5",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=7.1"
+            },
+            "require-dev": {
+                "php-coveralls/php-coveralls": "^2.0",
+                "phpunit/phpunit": "^7"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Mdi\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "MesaVolt",
+                    "email": "contact@mesavolt.com"
+                },
+                {
+                    "name": "Quentin",
+                    "email": "stoeckel.quentin@gmail.com"
+                }
+            ],
+            "description": "Easy MDI integration for PHP 7.1+",
+            "time": "2018-08-24T14:41:16+00:00"
         },
         {
             "name": "monolog/monolog",
