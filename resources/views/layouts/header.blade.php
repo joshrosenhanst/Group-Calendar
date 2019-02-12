@@ -9,7 +9,8 @@
     @auth
     <div class="navbar_right">
       <a href="/notifications" class="navbar_item">
-        {{--icon or count badge--}} Notifications
+        <span class="icon">@materialicon('bell')</span>
+        <span>Notifications</span>
       </a>
       <div class="navbar_item navbar_dropdown">
         <a class="dropdown_toggle">
