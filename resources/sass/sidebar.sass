@@ -12,7 +12,6 @@
     display: flex
     justify-content: space-between
     align-items: center
-    margin-top: 5px
     .countline_display
       text-align: left
       font-size: $size-small
@@ -46,7 +45,7 @@
 .sidebar.sidebar_has_avatar
   .sidebar_section-avatar
     display: flex
-    align-items: center
+    align-items: stretch
     text-align: center
     flex-direction: column
     padding: 10px
@@ -58,6 +57,7 @@
       width: 70px
       height: 70px
       border: 2px solid $primary
+      align-self: center
     .sidebar_avatar_name
       color: $primary
       font-weight: 700
@@ -69,11 +69,11 @@
     .view_all
       font-size: $size-small
   .sidebar_avatar_members
-    margin-top: 5px
     .empty
       color: $text-light
       font-size: 700
     .members_list
+      margin: 5px 0
       display: flex
       flex-direction: row
       align-items: center
