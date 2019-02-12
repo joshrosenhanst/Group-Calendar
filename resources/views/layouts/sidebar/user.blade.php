@@ -7,9 +7,21 @@
     <div class="sidebar_avatar_subtext">Joined {{ Auth::user()->join_date }}</div>
   </div>
   <div class="sidebar_section sidebar_links">
-    <a href="{{ route('events.calendar') }}" class="sidebar_link">My Calendar</a>
-    <a href="{{ route('groups.index') }}" class="sidebar_link">My Profile</a>
-    <a href="{{ route('notifications.index') }}" class="sidebar_link">Notifications</a>
-    <a href="{{ route('logout') }}" class="sidebar_link">Log Out</a>
+    <a href="{{ route('events.calendar') }}" class="sidebar_link">
+      <span class="icon">@materialicon('calendar-range')</span>
+      <span>My Calendar</span>
+    </a>
+    <a href="{{ route('groups.index') }}" class="sidebar_link">
+      <span class="icon">@materialicon('account')</span>
+      <span>My Profile</span>
+    </a>
+    <a href="{{ route('notifications.index') }}" class="sidebar_link">
+      <span class="icon">@materialicon('bell')</span>
+      <span>Notifications</span>
+    </a>
+    <a href="{{ route('logout') }}" class="sidebar_link">
+      <span class="icon">@materialicon('logout')</span>
+      <span>Log Out</span>
+    </a>
   </div>
 </div>

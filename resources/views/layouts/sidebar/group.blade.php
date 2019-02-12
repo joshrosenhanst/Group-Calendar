@@ -22,10 +22,12 @@
   <div class="sidebar_section sidebar_links">
     <a href="{{ route('events.new') }}" class="sidebar_link">
       {{--plus sign icon / plus sign over calendar / plus sign inside rounded square--}}
+      <span class="icon">@materialicon('calendar-plus')</span>
       <span>New Event</span>
     </a>
     <a href="{{ route('groups.events', ['group'=>$group]) }}" class="sidebar_link">
       {{--calendar icon--}}
+      <span class="icon">@materialicon('calendar-range')</span>
       <span>Group Events</span>
     </a>
   </div>
