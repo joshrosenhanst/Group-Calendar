@@ -13,10 +13,10 @@
       @else
         <span class="empty">No Members</span>
       @endif
-      <h2 class="section_headline">
-        <span class="headline_text">{{ trans_choice('messages.member_count', ['count'=>$group->users_count]) }}</span>
-        <a class="headline_sublink" href="{{ route('groups.members', ['group'=>$group]) }}" class="view_all">view all</a>
-      </h2>
+      <div class="section_countline">
+        <span class="countline_display">{{ trans_choice('messages.member_count',$group->users_count) }}</span>
+        <a class="countline_all_link" href="{{ route('groups.members', ['group'=>$group]) }}" class="view_all">view all</a>
+      </div>
     </div>
   </div>
   <div class="sidebar_section sidebar_links">
@@ -27,10 +27,6 @@
     <a href="{{ route('groups.events', ['group'=>$group]) }}" class="sidebar_link">
       {{--calendar icon--}}
       <span>Group Events</span>
-    </a>
-    <a href="{{ route('groups.members', ['group'=>$group]) }}" class="sidebar_link">
-      {{--users icon--}}
-      <span>Group Members</span>
     </a>
   </div>
 </div>

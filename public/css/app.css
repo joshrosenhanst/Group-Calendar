@@ -1018,20 +1018,19 @@ article#maincontent {
   font-size: 1.25rem;
 }
 
-.sidebar h2.section_headline {
+.sidebar .section_countline {
   display: flex;
   justify-content: space-between;
   align-items: center;
   margin-top: 5px;
 }
 
-.sidebar h2.section_headline .headline_text {
+.sidebar .section_countline .countline_display {
   text-align: left;
-  color: #7a7a7a;
   font-size: 0.8rem;
 }
 
-.sidebar h2.section_headline .headline_sublink {
+.sidebar .section_countline .countline_all_link {
   text-align: right;
   font-weight: 500;
   font-size: 0.8rem;
@@ -1039,7 +1038,7 @@ article#maincontent {
   border-radius: 2px;
 }
 
-.sidebar h2.section_headline .headline_sublink:hover {
+.sidebar .section_countline .countline_all_link:hover {
   background-color: #ebebeb;
 }
 
