@@ -1048,6 +1048,40 @@ article#maincontent {
   flex-grow: 1;
 }
 
+.maincontent_header {
+  background-position: center;
+  background-size: cover;
+  padding-top: 200px;
+}
+
+.maincontent_header .maincontent_avatar_container {
+  background: white;
+  display: flex;
+}
+
+.maincontent_header .maincontent_header_details {
+  padding: 10px;
+}
+
+.maincontent_header .maincontent_header_avatar {
+  width: 150px;
+  height: 150px;
+  overflow: hidden;
+  border-radius: 50%;
+  border: 4px solid #00e6c3;
+  margin-top: -75px;
+}
+
+.maincontent_header .maincontent_header_name {
+  color: #00e6c3;
+  font-size: 1.5rem;
+}
+
+.maincontent_header .maincontent_header_subtext {
+  font-size: 1rem;
+  color: #7a7a7a;
+}
+
 .sidebar {
   flex-grow: 0;
   border-bottom: 3px solid #00e6c3;
