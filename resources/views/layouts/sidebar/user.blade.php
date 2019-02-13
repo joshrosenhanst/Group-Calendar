@@ -12,6 +12,10 @@
       <span>My Calendar</span>
     </a>
     <a href="{{ route('groups.index') }}" class="sidebar_link">
+      <span class="icon">@materialicon('account-group')</span>
+      <span>My Groups</span>
+    </a>
+    <a href="{{ route('profile.index') }}" class="sidebar_link">
       <span class="icon">@materialicon('account')</span>
       <span>My Profile</span>
     </a>
