@@ -4,14 +4,14 @@
 
 @section('content')
 <article id="maincontent">
-  <header class="maincontent_header card" style="background-image: url({{ asset($group->avatar) }})">
-    <div class="maincontent_avatar_container">
-      <a href="{{ route('groups.view', ['group'=>$group]) }}" class="maincontent_header_avatar">
+  <header class="card group_summary" style="background-image: url({{ asset($group->avatar) }})">
+    <div class="card_section group_avatar_container">
+      <a href="{{ route('groups.view', ['group'=>$group]) }}" class="group_avatar_image">
         <img src="{{ asset($group->avatar) }}" alt="{{ $group->name }} Avatar">
       </a>
-      <div class="maincontent_header_details">
-        <a href="{{ route('groups.view', ['group'=>$group]) }}" class="maincontent_header_name">{{ $group->name }}</a>
-        <div class="maincontent_header_subtext">Created {{ $group->create_date }}</div>
+      <div class="group_details">
+          <a href="{{ route('groups.view', ['group'=>$group]) }}" class="group_name">{{ $group->name }}</a>
+          <div class="group_subtext">Created {{ $group->create_date }}</div>
       </div>
     </div>
   </header>

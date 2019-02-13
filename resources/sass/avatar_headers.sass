@@ -1,30 +1,3 @@
-/* MAINCONTENT AVATAR + HEADER */
-.maincontent_header
-  background-position: center
-  background-size: cover
-  padding-top: 200px
-  .maincontent_avatar_container
-    background: $white
-    display: flex
-    padding: 0 20px 10px 20px
-    border-top: 4px solid $primary
-  .maincontent_header_details
-    padding: 10px
-  .maincontent_header_avatar
-    width: 150px
-    height: 150px
-    overflow: hidden
-    border-radius: 50%
-    border: 4px solid $primary
-    margin-top: -75px
-  .maincontent_header_name
-    color: $primary
-    font-size: $size-large
-    font-weight: 700
-  .maincontent_header_subtext
-    font-size: $size-small
-    color: $text-light
-
 /* SIDEBAR AVATAR */
 .sidebar.sidebar_has_avatar, .card.card_has_avatar
   .sidebar_section-avatar, .card_section-avatar
@@ -79,3 +52,51 @@
       border: 1px solid $primary
       overflow: hidden
       margin: 0 1px
+
+/* Group Home Page avatars */
+.card.group_summary
+  background-position: center
+  background-size: cover
+  padding-top: 200px
+  .group_avatar_container
+    background: $white
+    display: flex
+    padding: 0 20px 10px 20px
+    border-top: 4px solid $primary
+    .group_links
+      margin-left: auto
+      padding: 10px
+    .group_avatar_image
+      width: 150px
+      height: 150px
+      overflow: hidden
+      border-radius: 50%
+      border: 4px solid $primary
+      margin-top: -75px
+    .group_details
+      padding: 10px
+      .group_name
+        color: $primary
+        font-size: $size-large
+        font-weight: 700
+      .group_subtext
+        font-size: $size-small
+        color: $text-light
+      .group_members_preview
+        margin: 5px 0
+        display: flex
+        align-items: center
+        .members_count
+          font-weight: 700
+          margin-right: 10px
+          color: $text-light
+        .member_thumbnail_preview
+          width: 40px
+          height: 40px
+          border-radius: 50%
+          border: 1px solid $primary
+          overflow: hidden
+          margin: 0 1px
+
+  
+    
