@@ -15,8 +15,10 @@
   &.button-inverted
     background-color: $white
     color: $color
+    border-color: $color
     &:hover
-      background-color: darken($white, 5%)
+      background-color: $color
+      color: $white
     &[disabled],fieldset[disabled] &
       background-color: $white
       border-color: transparent
