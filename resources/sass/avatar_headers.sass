@@ -1,0 +1,81 @@
+/* MAINCONTENT AVATAR + HEADER */
+.maincontent_header
+  background-position: center
+  background-size: cover
+  padding-top: 200px
+  .maincontent_avatar_container
+    background: $white
+    display: flex
+    padding: 0 20px 10px 20px
+    border-top: 4px solid $primary
+  .maincontent_header_details
+    padding: 10px
+  .maincontent_header_avatar
+    width: 150px
+    height: 150px
+    overflow: hidden
+    border-radius: 50%
+    border: 4px solid $primary
+    margin-top: -75px
+  .maincontent_header_name
+    color: $primary
+    font-size: $size-large
+    font-weight: 700
+  .maincontent_header_subtext
+    font-size: $size-small
+    color: $text-light
+
+/* SIDEBAR AVATAR */
+.sidebar.sidebar_has_avatar, .card.card_has_avatar
+  .sidebar_section-avatar, .card_section-avatar
+    display: flex
+    align-items: stretch
+    text-align: center
+    flex-direction: column
+    padding: 10px
+    border: 1px solid $grey-lightest
+    margin-bottom: -1px
+    .sidebar_avatar_image, .card_avatar_image
+      border-radius: 50%
+      overflow: hidden
+      width: 70px
+      height: 70px
+      border: 2px solid $primary
+      align-self: center
+    .sidebar_avatar_name, .card_avatar_name
+      color: $primary
+      font-weight: 700
+      font-size: $size-medium
+      line-height: 1.2
+    .sidebar_avatar_subtext, .card_avatar_subtext
+      font-size: $size-small
+      color: $text-light
+    .view_all
+      font-size: $size-small
+  .sidebar_avatar_members, .card_avatar_members
+    .empty
+      color: $text-light
+      font-size: 700
+    .members_list
+      margin: 5px 0
+      display: flex
+      flex-direction: row
+      align-items: center
+      justify-content: center
+    .members_info
+      display: flex
+      justify-content: space-around
+      font-size: $size-small
+      .info_section-title
+        color: $text-light
+        flex-grow: 1
+      .info_section-view_all
+        flex-grow: 1
+        text-align: right
+    .member_thumbnail_preview
+      width: 32px
+      height: 32px
+      border-radius: 50%
+      border: 1px solid $primary
+      overflow: hidden
+      margin: 0 1px
