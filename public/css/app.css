@@ -320,9 +320,12 @@ table th {
   white-space: nowrap;
   font-size: 1rem;
   border-radius: 2px;
+  display: flex;
+  align-items: center;
 }
 
 .button .icon {
+  color: #00e6c3;
   height: 1.5em;
   width: 1.5em;
 }
@@ -742,6 +745,7 @@ fieldset[disabled] .button {
   border: 1px solid #cccccc;
   display: flex;
   flex-direction: column;
+  margin-bottom: 15px;
 }
 
 .card .card_header {
@@ -752,9 +756,24 @@ fieldset[disabled] .button {
   text-shadow: 1px 1px 1px rgba(10, 10, 10, 0.15);
 }
 
-.card .card_header h1 {
+.card .card_header h1,
+.card .card_header h2 {
+  display: flex;
+  align-items: center;
   font-weight: 700;
+}
+
+.card .card_header h1 .icon,
+.card .card_header h2 .icon {
+  margin-right: 5px;
+}
+
+.card .card_header h1 {
   font-size: 1.5rem;
+}
+
+.card .card_header h2 {
+  font-size: 1.25rem;
 }
 
 .card .card_section {
@@ -793,19 +812,6 @@ fieldset[disabled] .button {
 
 .card .card_buttons .button:not(:only-of-type):last-of-type {
   border-right: 0;
-}
-
-.card_halves {
-  display: flex;
-  flex-wrap: wrap;
-  -webkit-column-gap: 15px;
-          column-gap: 15px;
-  row-gap: 15px;
-  padding: 15px 0;
-}
-
-.card_halves .card {
-  flex: 1 1;
 }
 
 #site_header {
@@ -1132,6 +1138,20 @@ article#maincontent {
 .maincontent_header .maincontent_header_subtext {
   font-size: 0.8rem;
   color: #7a7a7a;
+}
+
+.maincontent_container {
+  display: flex;
+  -webkit-column-gap: 15px;
+          column-gap: 15px;
+}
+
+.maincontent_container .maincontent_mid_section {
+  flex: 2 0;
+}
+
+.maincontent_container .maincontent_aside {
+  flex: 1 0;
 }
 
 .card_list .member_list_preview,

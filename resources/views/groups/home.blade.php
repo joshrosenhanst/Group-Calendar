@@ -15,38 +15,58 @@
       </div>
     </div>
   </header>
-  <section class="card_halves">
-    <div class="card card_events_list">
-      <div class="card_header">
-        <h1>Upcoming Events</h1>
+  <div class="maincontent_container">
+    <div class="maincontent_mid_section">
+      <div class="card card_events_list">
+        <div class="card_header">
+          <h2>
+            <span class="icon">@materialicon('calendar-range')</span>
+            <span>Upcoming Events</span></h2>
+        </div>
+        <div class="card_section">
+          @include('events.upcoming', ['events'=>$events])
+        </div>
+        <div class="card_section card_buttons">
+          <a href="{{ route('groups.events.new', ['group'=>$group]) }}" class="button button-text">
+            <span class="icon">@materialicon('calendar-plus')</span>
+            <span>Create New Event</span>
+          </a>
+          <a href="{{ route('groups.events', ['group'=>$group]) }}" class="button button-text">
+            <span class="icon">@materialicon('calendar-range')</span>
+            <span>View All Group Events</span>
+          </a>
+        </div>
       </div>
-      <div class="card_section">
-        @include('events.upcoming', ['events'=>$events])
-      </div>
-      <div class="card_section card_buttons">
-        <a href="{{ route('groups.events', ['group'=>$group]) }}" class="button button-text">View All Group Events</a>
-      </div>
-    </div>
 
-    <div class="card card_members_list">
-      <div class="card_header">
-        <h1>Recently Added Members</h1>
-      </div>
-      <div class="card_section card_list">
-        @include('members.list', ['users'=>$group->users->sortByDesc('created_at')->take(5)])
-      </div>
-      <div class="card_section card_buttons">
-        <a href="{{ route('groups.members', ['group'=>$group]) }}" class="button button-text">View All Members</a>
+      <div class="card">
+        <div class="card_header">
+          <h2>
+            <span class="icon">@materialicon('comment-multiple')</span>
+            <span>Latest Comments</span>
+          </h2>
+        </div>
+        <div class="card_section">
+          @include('comments.list', ['comments'=>$comments])
+        </div>
       </div>
     </div>
-  </section>
-  <section class="card">
-    <h2>Upcoming Events</h2>
-  </section>
-  <section class="card">
-    <h2>Latest Comments</h2>
-    @include('comments.list', ['comments'=>$comments])
-  </section>
+    <aside class="maincontent_aside">
+      <div class="card card_members_list">
+        <div class="card_header">
+          <h2>
+            <span class="icon">@materialicon('account-multiple')</span>
+            <span>Recently Added Members</span>
+          </h2>
+        </div>
+        <div class="card_section card_list">
+          @include('members.list', ['users'=>$group->users->sortByDesc('created_at')->take(5)])
+        </div>
+        <div class="card_section card_buttons">
+          <a href="{{ route('groups.members', ['group'=>$group]) }}" class="button button-text">View All Members</a>
+        </div>
+      </div>
+    </aside>
+  </div>
 </article>
 @include('layouts.sidebar', ['group_selected'=>$group])
 @endsection

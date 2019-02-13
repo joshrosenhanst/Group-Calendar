@@ -29,6 +29,7 @@ Route::middleware('auth')->prefix('groups')->name('groups.')->group(function(){
   Route::get('/{group}', 'GroupController@view')->name('view'); // view group
   Route::get('/new','GroupController@new')->name('new');
   Route::get('/{group}/events','GroupController@events')->name('events');
+  Route::get('/{group}/events/new','GroupController@new_event')->name('events.new');
   Route::get('/{group}/members','GroupController@members')->name('members');
   Route::get('/{group}/edit','GroupController@edit')->name('edit');
   Route::get('/{group}/delete','GroupController@delete')->name('delete');
