@@ -1176,12 +1176,12 @@ article#maincontent {
 .maincontent_header .maincontent_avatar_container {
   background: white;
   display: flex;
-  padding-left: 20px;
+  padding: 0 20px 10px 20px;
   border-top: 4px solid #00e6c3;
 }
 
 .maincontent_header .maincontent_header_details {
-  padding: 10px 20px 10px 10px;
+  padding: 10px;
 }
 
 .maincontent_header .maincontent_header_avatar {

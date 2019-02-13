@@ -55,7 +55,7 @@
         <div class="card_header">
           <h2>
             <span class="icon">@materialicon('account-multiple')</span>
-            <span>Recently Added</span>
+            <span>Recent Members</span>
           </h2>
         </div>
         <div class="card_section card_list">
