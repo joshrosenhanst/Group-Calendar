@@ -24,7 +24,7 @@
   flex-direction: column
   margin-bottom: 15px
   .card_header
-    padding: 10px 20px
+    padding: 10px 15px
     margin: -1px -1px 0 -1px
     border-top-right-radius: $card-border-radius
     border-top-left-radius: $card-border-radius
@@ -35,6 +35,8 @@
       font-weight: 700
       .icon
         margin-right: 5px
+        &>svg
+          filter: drop-shadow($card-header-text-shadow)
     h1
       font-size: $size-large
     h2

@@ -749,7 +749,7 @@ fieldset[disabled] .button {
 }
 
 .card .card_header {
-  padding: 10px 20px;
+  padding: 10px 15px;
   margin: -1px -1px 0 -1px;
   border-top-right-radius: 2px;
   border-top-left-radius: 2px;
@@ -766,6 +766,12 @@ fieldset[disabled] .button {
 .card .card_header h1 .icon,
 .card .card_header h2 .icon {
   margin-right: 5px;
+}
+
+.card .card_header h1 .icon > svg,
+.card .card_header h2 .icon > svg {
+  -webkit-filter: drop-shadow(1px 1px 1px rgba(10, 10, 10, 0.15));
+          filter: drop-shadow(1px 1px 1px rgba(10, 10, 10, 0.15));
 }
 
 .card .card_header h1 {
