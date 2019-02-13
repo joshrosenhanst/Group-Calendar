@@ -1364,8 +1364,12 @@ article#maincontent {
   display: block;
 }
 
+.form .form_group.form_group_checkbox {
+  margin-top: -15px;
+}
+
 .form .form_group:not(:last-child) {
-  margin-bottom: 15px;
+  margin-bottom: 25px;
 }
 
 .form .form_group.form_group-error .form_label,
@@ -1391,12 +1395,19 @@ article#maincontent {
   display: inline-block;
   position: relative;
   font-weight: 400;
+  color: #7a7a7a;
 }
 
 .form .form_label.form_checkbox input,
 .form .form_label.form_radio input {
   cursor: pointer;
   vertical-align: -1px;
+}
+
+.form .form_label.form_checkbox input:checked ~ .checkbox_text,
+.form .form_label.form_radio input:checked ~ .checkbox_text {
+  color: #4a4a4a;
+  font-weight: 700;
 }
 
 .form .form_label.form_checkbox:hover,
@@ -1410,6 +1421,34 @@ fieldset[disabled] .form .form_label.form_checkbox,
 fieldset[disabled] .form .form_label.form_radio {
   color: #7a7a7a;
   cursor: not-allowed;
+}
+
+.form .form_input_icon {
+  position: relative;
+}
+
+.form .form_input_icon .icon {
+  position: absolute;
+  top: 0;
+  height: 45px;
+  width: 45px;
+  color: #dbdbdb;
+}
+
+.form .form_input_icon.form_input_icon-icon_left .form_input {
+  padding-left: 45px;
+}
+
+.form .form_input_icon.form_input_icon-icon_left .icon {
+  left: 0;
+}
+
+.form .form_input_icon.form_input_icon-icon_right .form_input {
+  padding-right: 45px;
+}
+
+.form .form_input_icon.form_input_icon-icon_right .icon {
+  right: 0;
 }
 
 .form .form_input {
@@ -1470,10 +1509,35 @@ fieldset[disabled] .form .form_input {
   border-color: #b5b5b5;
 }
 
+.form .form_input:hover::-moz-placeholder {
+  color: #363636;
+}
+
+.form .form_input:hover::-webkit-input-placeholder {
+  color: #363636;
+}
+
+.form .form_input:hover:-moz-placeholder {
+  color: #363636;
+}
+
+.form .form_input:hover:-ms-input-placeholder {
+  color: #363636;
+}
+
+.form .form_input:hover ~ .icon {
+  color: #b5b5b5;
+}
+
 .form .form_input:focus,
 .form .form_input:active {
   border-color: #3273dc;
   box-shadow: 0 0 0 0.125em rgba(50, 115, 220, 0.25);
+}
+
+.form .form_input:focus ~ .icon,
+.form .form_input:active ~ .icon {
+  color: #7a7a7a;
 }
 
 .form .form_input[disabled],
@@ -1529,8 +1593,23 @@ fieldset[disabled] .form .form_input:-ms-input-placeholder {
   width: 100%;
 }
 
-#login_form .card_header {
-  text-align: center;
+#login_form .card_header h1 {
+  justify-content: center;
+}
+
+#login_form .card_body {
+  padding: 0 20px;
+}
+
+#login_form .button_group {
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+#login_form .button_group .button {
+  width: 250px;
+  margin-bottom: 15px;
 }
 
 #login_form .button-link {

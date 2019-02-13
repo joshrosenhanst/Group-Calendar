@@ -12,23 +12,31 @@
   <main class="card_body">
     <section class="card_section">
       @include('partials.form_group', [
-        'label' => ['text'=>'Email Address'],
         'input' => [
           'name' => 'email',
           'type' => 'email',
           'id' => 'email',
           'placeholder' => 'Email Address',
+          'aria-label' => 'Email Address',
           'old' => old('email')
+        ],
+        'icon' => [
+          'align' => 'left',
+          'name' => 'email'
         ],
         'errors' => $errors->get('email')
       ])
       @include('partials.form_group', [
-        'label' => ['text'=>'Password'],
         'input' => [
           'name' => 'password',
           'type' => 'password',
           'id' => 'password',
-          'placeholder' => 'Password'
+          'placeholder' => 'Password',
+          'aria-label' => 'Email Address',
+        ],
+        'icon' => [
+          'align' => 'left',
+          'name' => 'lock'
         ],
         'errors' => $errors->get('password')
       ])
@@ -42,9 +50,11 @@
         ],
         'errors' => $errors->get('remember')
       ])
+    </section>
+    <section class="card_section">
       <div class="button_group">
         <button type="submit" class="button button-link">Login</button>
-        <a href="#" class="button button-text">Forgot Your Password?</a>
+        <a href="#">Forgot Your Password?</a>
       </div>
     </section>
   </main>

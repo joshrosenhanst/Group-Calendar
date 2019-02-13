@@ -10,6 +10,9 @@
       @isset($input['placeholder'])
       placeholder="{{ $input['placeholder'] }}"
       @endisset
+      @isset($input['aria-label'])
+      aria-label="{{ $input['aria-label'] }}"
+      @endisset
       class="{{ $input['class'] ?? 'form_input' }}"
   >{{ $input['old'] ?? null }}</textarea>
     @break
@@ -21,6 +24,9 @@
       @endisset
       @isset($input['name'])
       name="{{ $input['name'] }}"
+      @endisset
+      @isset($input['aria-label'])
+      aria-label="{{ $input['aria-label'] }}"
       @endisset
       type="checkbox"
       value="{{ $input['value'] }}"
@@ -43,9 +49,16 @@
       @isset($input['placeholder'])
       placeholder="{{ $input['placeholder'] }}"
       @endisset
+      @isset($input['aria-label'])
+      aria-label="{{ $input['aria-label'] }}"
+      @endisset
       class="{{ $input['class'] ?? 'form_input' }}"
       type="{{ $input['type'] ?? 'text' }}"
       value="{{ $input['old'] ?? null }}"
     >
     @break
 @endswitch
+
+@isset($icon)
+  <span class="icon">@materialicon($icon['name'])</span>
+@endisset

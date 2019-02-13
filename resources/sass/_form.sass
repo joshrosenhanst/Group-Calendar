@@ -1,8 +1,10 @@
 .form
   .form_group
     display: block
+    &.form_group_checkbox
+      margin-top: -15px
     &:not(:last-child)
-      margin-bottom: 15px
+      margin-bottom: 25px
     &.form_group-error
       .form_label,.form_error
         color: $danger
@@ -19,14 +21,38 @@
       display: inline-block
       position: relative
       font-weight: $weight-normal
+      color: $input-checkbox-color
       input
         cursor: pointer
         vertical-align: -1px
+        &:checked ~ .checkbox_text
+          color: $input-checkbox-checked-color
+          font-weight: 700
       &:hover
         color: $input-hover-color
       &[disabled], fieldset[disabled] &
         color: $input-disabled-color
         cursor: not-allowed
+  .form_input_icon
+    position: relative
+    .icon
+      position: absolute
+      top: 0
+      height: $input-height
+      width: $input-height
+      color: $input-icon-color
+
+    &.form_input_icon-icon_left
+      .form_input
+        padding-left: $input-height
+      .icon
+        left: 0
+    &.form_input_icon-icon_right
+      .form_input
+        padding-right: $input-height
+      .icon
+        right: 0
+    
   .form_input
     +control
     background-color: $input-background-color
@@ -41,9 +67,15 @@
       color: $input-placeholder-color
     &:hover
       border-color: $input-hover-border-color
+      +placeholder
+        color: $input-color
+      & ~ .icon
+        color: $input-hover-border-color
     &:focus,&:active
       border-color: $input-focus-border-color
       box-shadow: $input-focus-box-shadow-size $input-focus-box-shadow-color
+      & ~ .icon
+        color: $input-icon-active-color
     &[disabled], fieldset[disabled] &
       background-color: $input-disabled-background-color
       border-color: $input-disabled-border-color
