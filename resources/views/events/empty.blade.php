@@ -1,4 +1,4 @@
 <div class="events-empty">
+  <span class="icon">@materialicon('calendar-question')</span>
   <h2>No Upcoming Events</h2>
-  <a href="{{ route('events.new') }}">Create a New Event</a>
 </div>

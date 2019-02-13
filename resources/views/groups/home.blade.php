@@ -17,13 +17,13 @@
   </header>
   <div class="maincontent_container">
     <div class="maincontent_mid_section">
-      <div class="card card_events_list">
+      <div class="card">
         <div class="card_header">
           <h2>
             <span class="icon">@materialicon('calendar-range')</span>
             <span>Upcoming Events</span></h2>
         </div>
-        <div class="card_section">
+        <div class="card_section upcoming_events_section">
           @include('events.upcoming', ['events'=>$events])
         </div>
         <div class="card_section card_buttons">

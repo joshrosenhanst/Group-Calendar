@@ -1,5 +1,5 @@
 <div class="event-summary">
   <img src="{{ asset($event->header) }}" alt="{{ $event->name }} header image">
-  <h3>{{ $event->name }}</h3>
-  <div>{{ $event->summaryDate }}</div>
+  <a class="event_name" href="{{ route('events.view', ['event', $event]) }}">{{ $event->name }}</a>
+  <div>{{ $event->summary_date }}</div>
 </div>

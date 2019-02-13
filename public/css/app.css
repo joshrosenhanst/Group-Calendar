@@ -1036,6 +1036,64 @@ fieldset[disabled] .button {
   margin: 0;
 }
 
+/* Recently Added Members list */
+
+.card_list .member_list_preview,
+.card_list .empty {
+  display: flex;
+  align-items: center;
+}
+
+.card_list .member_list_preview .preview_thumbnail,
+.card_list .empty .preview_thumbnail {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  border: 1px solid #00e6c3;
+  overflow: hidden;
+  margin-right: 10px;
+}
+
+/* Upcoming events display */
+
+.upcoming_events_section {
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+}
+
+.upcoming_events_section .events-summary {
+  flex-basis: 100px;
+}
+
+.upcoming_events_section .events-summary .event_name {
+  font-size: 1rem;
+}
+
+.upcoming_events_section .events-empty {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-items: center;
+  align-items: center;
+  color: #7a7a7a;
+}
+
+.upcoming_events_section .events-empty h2 {
+  font-size: 1.25rem;
+  font-weight: 700;
+}
+
+.upcoming_events_section .events-empty .icon {
+  width: 50px;
+  height: 50px;
+}
+
+.upcoming_events_section .events-empty .icon svg {
+  width: 100%;
+  height: 100%;
+}
+
 main#app-body {
   display: flex;
   flex-direction: row-reverse;
@@ -1152,22 +1210,6 @@ article#maincontent {
 
 .maincontent_container .maincontent_aside {
   flex: 1 0;
-}
-
-.card_list .member_list_preview,
-.card_list .empty {
-  display: flex;
-  align-items: center;
-}
-
-.card_list .member_list_preview .preview_thumbnail,
-.card_list .empty .preview_thumbnail {
-  width: 32px;
-  height: 32px;
-  border-radius: 50%;
-  border: 1px solid #00e6c3;
-  overflow: hidden;
-  margin-right: 10px;
 }
 
 .sidebar {
