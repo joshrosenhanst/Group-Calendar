@@ -16,9 +16,29 @@
   display: flex
   align-items: center
   justify-content: space-evenly
-  .events-summary
-    flex-basis: 100px
-    .event_name
+  .events_summary
+    background-color: $body-background-color
+    .summary_header
+      img
+    .summary_details
+      display: flex
+    .summary_date
+      padding: 10px
+      border-right: 1px solid $card-border-color
+      text-transform: uppercase
+      color: $primary
+      font-size: $size-small
+      flex-shrink: 1
+      flex-grow: 0
+      .day
+        color: $text-light
+      .date
+        font-size: $size-medium
+      .month
+    .summary_info
+      padding: 10px
+      flex-grow: 1
+    .summary_name
       font-size: $size-normal
   .events-empty
     +icon-empty

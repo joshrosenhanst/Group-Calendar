@@ -22,9 +22,9 @@
         </div>
     @endslot
   @endcomponent
+  @include('blocks.groups.upcoming_events')
   <div class="maincontent_container">
     <div class="maincontent_mid_section">
-      @include('blocks.groups.upcoming_events')
       @include('blocks.groups.latest_comments')
     </div>
     <aside class="maincontent_aside">

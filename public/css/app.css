@@ -1125,11 +1125,38 @@ fieldset[disabled] .button {
   justify-content: space-evenly;
 }
 
-.upcoming_events_section .events-summary {
-  flex-basis: 100px;
+.upcoming_events_section .events_summary {
+  background-color: #fdfdfd;
 }
 
-.upcoming_events_section .events-summary .event_name {
+.upcoming_events_section .events_summary .summary_details {
+  display: flex;
+}
+
+.upcoming_events_section .events_summary .summary_date {
+  padding: 10px;
+  border-right: 1px solid #cccccc;
+  text-transform: uppercase;
+  color: #00e6c3;
+  font-size: 0.9rem;
+  flex-shrink: 1;
+  flex-grow: 0;
+}
+
+.upcoming_events_section .events_summary .summary_date .day {
+  color: #7a7a7a;
+}
+
+.upcoming_events_section .events_summary .summary_date .date {
+  font-size: 1.25rem;
+}
+
+.upcoming_events_section .events_summary .summary_info {
+  padding: 10px;
+  flex-grow: 1;
+}
+
+.upcoming_events_section .events_summary .summary_name {
   font-size: 1rem;
 }
 
