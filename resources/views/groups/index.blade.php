@@ -4,6 +4,7 @@
 
 @section('content')
 <article id="maincontent">
+  {{ Breadcrumbs::render('groups.index') }}
   @each('components.group.summary', $groups, 'group')
 </article>
 

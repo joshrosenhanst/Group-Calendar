@@ -4,6 +4,7 @@
 
 @section('content')
 <article id="maincontent">
+  {{ Breadcrumbs::render('groups.view', $group) }}
   @component('components.group.summary', ['group'=>$group])
     @slot('links')
       <div class="group_links button_group button_group-inverted button_group-link button_group-small">
