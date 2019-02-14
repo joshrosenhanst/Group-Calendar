@@ -1131,6 +1131,7 @@ fieldset[disabled] .button {
 
 .upcoming_events_section .events_summary .summary_details {
   display: flex;
+  border-top: 2px solid #00e6c3;
 }
 
 .upcoming_events_section .events_summary .summary_date {
