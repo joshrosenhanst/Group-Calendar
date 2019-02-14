@@ -9,11 +9,15 @@
       </a>
       <div class="group_subtext"><strong>{{ trans_choice('messages.member_count',$group->users_count) }}</strong> | Created {{ $group->create_date }}</div>
     </div>
+    @isset($links)
+    {{ $links }}
+    @else
     <div class="group_links">
       <a href="{{ route('groups.view', ['group'=>$group]) }}" class="button button-link button-inverted">
         <span class="icon">@materialicon('account-group')</span>
         <span>View Group</span>
       </a>
     </div>
+    @endisset
   </div>
 </div>
