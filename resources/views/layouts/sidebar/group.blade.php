@@ -10,7 +10,7 @@
       <span class="icon">@materialicon('calendar-plus')</span>
       <span>New Event</span>
     </a>
-    <a href="{{ route('groups.events', ['group'=>$group]) }}" class="sidebar_link">
+    <a href="{{ route('events.index', ['group'=>$group]) }}" class="sidebar_link">
       <span class="icon">@materialicon('calendar-range')</span>
       <span>Group Events</span>
     </a>

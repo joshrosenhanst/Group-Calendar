@@ -35,3 +35,18 @@ Breadcrumbs::for('groups.members', function ($trail, $group) {
   $trail->parent('groups.view', $group);
   $trail->push('Members', route('groups.members', ['group'=>$group]));
 });
+
+/* Events */
+// Events can optionally have a [group] prefix, if the group is set on the request
+// Home / Events (no group)
+// Home / Groups / [group] / Events
+Breadcrumbs::for('events.index', function ($trail) {
+  $trail->parent('home');
+  $trail->push('Events', route('events.index'));
+});
+// Home / Events / New (no group)
+// Home / Groups / [group] / Events / New
+Breadcrumbs::for('events.new', function ($trail) {
+  $trail->parent('events.index');
+  $trail->push('New', route('events.new'));
+});

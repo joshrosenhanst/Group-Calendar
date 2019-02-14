@@ -8,11 +8,11 @@
   @component('components.group.summary', ['group'=>$group])
     @slot('links')
       <div class="group_links button_group button_group-inverted button_group-link button_group-small">
-          <a href="{{ route('groups.events.new', ['group'=>$group]) }}" class="button">
+          <a href="{{ route('events.new', ['group'=>$group]) }}" class="button">
             <span class="icon">@materialicon('calendar-plus')</span>
             <span>New Event</span>
           </a>
-          <a href="{{ route('groups.events', ['group'=>$group]) }}" class="button">
+          <a href="{{ route('events.index', ['group'=>$group]) }}" class="button">
             <span class="icon">@materialicon('calendar-range')</span>
             <span>Group Events</span>
           </a>
