@@ -370,6 +370,7 @@ table th {
   border-color: transparent;
   color: #3273dc;
   text-decoration: none;
+  font-weight: 400;
 }
 
 .button.button-text:focus {
@@ -412,19 +413,24 @@ fieldset[disabled] .button.button-primary {
   box-shadow: none;
 }
 
-.button.button-primary.button-inverted {
+.button.button-primary.button-inverted,
+.button_group.button_group-link .button.button-primary {
   background-color: white;
   color: #00e6c3;
   border-color: #00e6c3;
 }
 
-.button.button-primary.button-inverted:hover {
+.button.button-primary.button-inverted:hover,
+.button_group.button_group-link .button.button-primary:hover {
   background-color: #00e6c3;
   color: white;
 }
 
 .button.button-primary.button-inverted[disabled],
-fieldset[disabled] .button.button-primary.button-inverted {
+.button_group.button_group-link .button.button-primary[disabled],
+fieldset[disabled] .button.button-primary.button-inverted,
+fieldset[disabled] .button_group.button_group-link .button.button-primary,
+.button_group.button_group-link fieldset[disabled] .button.button-primary {
   background-color: white;
   border-color: transparent;
   box-shadow: none;
@@ -455,62 +461,79 @@ fieldset[disabled] .button.button-info {
   box-shadow: none;
 }
 
-.button.button-info.button-inverted {
+.button.button-info.button-inverted,
+.button_group.button_group-link .button.button-info {
   background-color: white;
   color: #209cee;
   border-color: #209cee;
 }
 
-.button.button-info.button-inverted:hover {
+.button.button-info.button-inverted:hover,
+.button_group.button_group-link .button.button-info:hover {
   background-color: #209cee;
   color: white;
 }
 
 .button.button-info.button-inverted[disabled],
-fieldset[disabled] .button.button-info.button-inverted {
+.button_group.button_group-link .button.button-info[disabled],
+fieldset[disabled] .button.button-info.button-inverted,
+fieldset[disabled] .button_group.button_group-link .button.button-info,
+.button_group.button_group-link fieldset[disabled] .button.button-info {
   background-color: white;
   border-color: transparent;
   box-shadow: none;
   color: #209cee;
 }
 
-.button.button-link {
+.button.button-link,
+.button_group.button_group-link .button {
   background-color: #3273dc;
   border-color: #205bbc;
   color: white;
 }
 
-.button.button-link:hover {
+.button.button-link:hover,
+.button_group.button_group-link .button:hover {
   background-color: #276cda;
 }
 
-.button.button-link:focus:not(:active) {
+.button.button-link:focus:not(:active),
+.button_group.button_group-link .button:focus:not(:active) {
   box-shadow: 0 0 0 0.125em rgba(50, 115, 220, 0.25);
 }
 
-.button.button-link:active {
+.button.button-link:active,
+.button_group.button_group-link .button:active {
   background-color: #2366d1;
 }
 
 .button.button-link[disabled],
-fieldset[disabled] .button.button-link {
+.button_group.button_group-link .button[disabled],
+fieldset[disabled] .button.button-link,
+fieldset[disabled] .button_group.button_group-link .button,
+.button_group.button_group-link fieldset[disabled] .button {
   background-color: #3273dc;
   box-shadow: none;
 }
 
-.button.button-link.button-inverted {
+.button.button-link.button-inverted,
+.button_group.button_group-link .button {
   background-color: white;
   color: #3273dc;
   border-color: #3273dc;
 }
 
-.button.button-link.button-inverted:hover {
+.button.button-link.button-inverted:hover,
+.button_group.button_group-link .button:hover {
   background-color: #3273dc;
   color: white;
 }
 
 .button.button-link.button-inverted[disabled],
-fieldset[disabled] .button.button-link.button-inverted {
+.button_group.button_group-link .button[disabled],
+fieldset[disabled] .button.button-link.button-inverted,
+fieldset[disabled] .button_group.button_group-link .button,
+.button_group.button_group-link fieldset[disabled] .button {
   background-color: white;
   border-color: transparent;
   box-shadow: none;
@@ -541,19 +564,24 @@ fieldset[disabled] .button.button-success {
   box-shadow: none;
 }
 
-.button.button-success.button-inverted {
+.button.button-success.button-inverted,
+.button_group.button_group-link .button.button-success {
   background-color: white;
   color: #23d160;
   border-color: #23d160;
 }
 
-.button.button-success.button-inverted:hover {
+.button.button-success.button-inverted:hover,
+.button_group.button_group-link .button.button-success:hover {
   background-color: #23d160;
   color: white;
 }
 
 .button.button-success.button-inverted[disabled],
-fieldset[disabled] .button.button-success.button-inverted {
+.button_group.button_group-link .button.button-success[disabled],
+fieldset[disabled] .button.button-success.button-inverted,
+fieldset[disabled] .button_group.button_group-link .button.button-success,
+.button_group.button_group-link fieldset[disabled] .button.button-success {
   background-color: white;
   border-color: transparent;
   box-shadow: none;
@@ -584,19 +612,24 @@ fieldset[disabled] .button.button-warning {
   box-shadow: none;
 }
 
-.button.button-warning.button-inverted {
+.button.button-warning.button-inverted,
+.button_group.button_group-link .button.button-warning {
   background-color: white;
   color: #ffdd57;
   border-color: #ffdd57;
 }
 
-.button.button-warning.button-inverted:hover {
+.button.button-warning.button-inverted:hover,
+.button_group.button_group-link .button.button-warning:hover {
   background-color: #ffdd57;
   color: white;
 }
 
 .button.button-warning.button-inverted[disabled],
-fieldset[disabled] .button.button-warning.button-inverted {
+.button_group.button_group-link .button.button-warning[disabled],
+fieldset[disabled] .button.button-warning.button-inverted,
+fieldset[disabled] .button_group.button_group-link .button.button-warning,
+.button_group.button_group-link fieldset[disabled] .button.button-warning {
   background-color: white;
   border-color: transparent;
   box-shadow: none;
@@ -627,19 +660,24 @@ fieldset[disabled] .button.button-danger {
   box-shadow: none;
 }
 
-.button.button-danger.button-inverted {
+.button.button-danger.button-inverted,
+.button_group.button_group-link .button.button-danger {
   background-color: white;
   color: #ff3860;
   border-color: #ff3860;
 }
 
-.button.button-danger.button-inverted:hover {
+.button.button-danger.button-inverted:hover,
+.button_group.button_group-link .button.button-danger:hover {
   background-color: #ff3860;
   color: white;
 }
 
 .button.button-danger.button-inverted[disabled],
-fieldset[disabled] .button.button-danger.button-inverted {
+.button_group.button_group-link .button.button-danger[disabled],
+fieldset[disabled] .button.button-danger.button-inverted,
+fieldset[disabled] .button_group.button_group-link .button.button-danger,
+.button_group.button_group-link fieldset[disabled] .button.button-danger {
   background-color: white;
   border-color: transparent;
   box-shadow: none;
@@ -696,12 +734,23 @@ fieldset[disabled] .button {
   padding-right: 1em;
 }
 
+.button.button-small,
+.button_group.button_group-small .button {
+  font-size: 0.9rem;
+  padding: 8px 12px;
+  font-weight: 400;
+}
+
 .button_group {
   display: flex;
 }
 
 .button_group .button {
   flex: 1 0 0;
+}
+
+.button_group .button:not(:last-child) {
+  margin-right: -1px;
 }
 
 .card,
@@ -1402,6 +1451,12 @@ article#maincontent {
 
 .card.group_summary .group_avatar_container .group_links {
   margin-left: auto;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.card.group_summary .group_avatar_container .group_links .button:not(:first-of-type) {
+  margin-left: -1px;
 }
 
 .card.group_summary .group_avatar_container .group_avatar_image {
@@ -1701,7 +1756,9 @@ fieldset[disabled] .form .form_input:-ms-input-placeholder {
   margin-bottom: 15px;
 }
 
-#login_form .button-link {
+#login_form .button-link,
+#login_form .button_group.button_group-link .button,
+.button_group.button_group-link #login_form .button {
   font-weight: 700;
 }
 

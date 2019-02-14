@@ -11,7 +11,21 @@
       </a>
       <div class="group_details">
           <a href="{{ route('groups.view', ['group'=>$group]) }}" class="group_name">{{ $group->name }}</a>
-          <div class="group_subtext">Created {{ $group->create_date }}</div>
+          <div class="group_subtext"><strong>{{ trans_choice('messages.member_count',$group->users_count) }}</strong> | Created {{ $group->create_date }}</div>
+      </div>
+      <div class="group_links button_group button_group-inverted button_group-link button_group-small">
+        <a href="{{ route('groups.events.new', ['group'=>$group]) }}" class="button">
+          <span class="icon">@materialicon('calendar-plus')</span>
+          <span>New Event</span>
+        </a>
+        <a href="{{ route('groups.events', ['group'=>$group]) }}" class="button">
+          <span class="icon">@materialicon('calendar-range')</span>
+          <span>Group Events</span>
+        </a>
+        <a href="{{ route('groups.members', ['group'=>$group]) }}" class="button">
+          <span class="icon">@materialicon('account-group')</span>
+          <span>Group Members</span>
+        </a>
       </div>
     </div>
   </header>

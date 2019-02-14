@@ -96,8 +96,20 @@
     border-radius: $radius-rounded
     padding-left: 1em
     padding-right: 1em
+  &.button-small
+    font-size: $size-small
+    padding: $button-padding-small
+    font-weight: 400
 
 .button_group
   display: flex
   .button
     flex: 1 0 0
+    &:not(:last-child)
+      margin-right: -1px
+  &.button_group-link
+    .button
+      @extend .button-link, .button-inverted
+  &.button_group-small
+    .button
+      @extend .button-small
