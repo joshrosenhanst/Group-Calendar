@@ -11,7 +11,7 @@ class GroupController extends Controller{
   */
   public function index() {
     $groups = Auth::user()->groups()->get();
-    return view('groups.list', ['groups'=>$groups]);
+    return view('groups.index', ['groups'=>$groups]);
   }
 
   /*
@@ -22,7 +22,7 @@ class GroupController extends Controller{
     $upcoming_events = $group->getUpcomingEvents();
     $latest_comments = $group->getLatestComments();
     $latest_comments->loadMissing('user');
-    return view('groups.home', [
+    return view('groups.view', [
       'group' => $group,
       'events' => $upcoming_events,
       'comments' => $latest_comments
