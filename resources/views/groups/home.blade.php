@@ -4,7 +4,7 @@
 
 @section('content')
 <article id="maincontent">
-  @component('groups.summary', ['group'=>$group])
+  @component('components.group.summary', ['group'=>$group])
     @slot('links')
       <div class="group_links button_group button_group-inverted button_group-link button_group-small">
           <a href="{{ route('groups.events.new', ['group'=>$group]) }}" class="button">
@@ -24,11 +24,11 @@
   @endcomponent
   <div class="maincontent_container">
     <div class="maincontent_mid_section">
-      @include('groups.blocks.upcoming_events')
-      @include('groups.blocks.latest_comments')
+      @include('blocks.group.upcoming_events')
+      @include('blocks.group.latest_comments')
     </div>
     <aside class="maincontent_aside">
-      @include('groups.blocks.recent_members')
+      @include('blocks.group.recent_members')
     </aside>
   </div>
 </article>

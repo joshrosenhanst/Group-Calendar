@@ -4,7 +4,7 @@
 
 @section('content')
 <article id="maincontent">
-  @each('groups.summary', $groups, 'group')
+  @each('components.group.summary', $groups, 'group')
 </article>
 
 @include('layouts.sidebar')
