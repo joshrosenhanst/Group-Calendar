@@ -6,6 +6,6 @@
     </h2>
   </div>
   <div class="card_section">
-    @include('comments.list', ['comments'=>$comments])
+    @each('blocks.comments.list_item', $comments,'comment','blocks.comments.empty')
   </div>
 </div>

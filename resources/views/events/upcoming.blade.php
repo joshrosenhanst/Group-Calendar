@@ -1,1 +1,0 @@
-@each('events.summary', $events, 'event', 'events.empty')

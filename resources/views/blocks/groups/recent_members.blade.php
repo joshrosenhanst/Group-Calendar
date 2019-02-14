@@ -6,7 +6,7 @@
     </h2>
   </div>
   <div class="card_section card_list">
-    @include('members.list', ['users'=>$group->users->sortByDesc('created_at')->take(5)])
+    @each('blocks.members.list_item', $group->users->sortByDesc('created_at')->take(5), 'user', 'blocks.members.empty')
   </div>
   <div class="card_section card_buttons">
     <a href="{{ route('groups.members', ['group'=>$group]) }}" class="button button-text">View All Members</a>

@@ -1,1 +1,0 @@
-@each('members.list_preview', $users, 'user', 'members.empty')

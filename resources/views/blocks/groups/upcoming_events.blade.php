@@ -5,7 +5,7 @@
       <span>Upcoming Events</span></h2>
   </div>
   <div class="card_section upcoming_events_section">
-    @include('events.upcoming', ['events'=>$events])
+    @each('blocks.events.summary', $events, 'event', 'blocks.events.empty')
   </div>
   <div class="card_section card_buttons">
     <a href="{{ route('groups.events.new', ['group'=>$group]) }}" class="button button-text">

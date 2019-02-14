@@ -1,1 +1,0 @@
-  @each('comments.display', $comments,'comment','comments.empty')

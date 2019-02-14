@@ -24,11 +24,11 @@
   @endcomponent
   <div class="maincontent_container">
     <div class="maincontent_mid_section">
-      @include('blocks.group.upcoming_events')
-      @include('blocks.group.latest_comments')
+      @include('blocks.groups.upcoming_events')
+      @include('blocks.groups.latest_comments')
     </div>
     <aside class="maincontent_aside">
-      @include('blocks.group.recent_members')
+      @include('blocks.groups.recent_members')
     </aside>
   </div>
 </article>
