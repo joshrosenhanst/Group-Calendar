@@ -23,7 +23,7 @@
           <span>Group Events</span>
         </a>
         <a href="{{ route('groups.members', ['group'=>$group]) }}" class="button">
-          <span class="icon">@materialicon('account-group')</span>
+          <span class="icon">@materialicon('account-multiple')</span>
           <span>Group Members</span>
         </a>
       </div>
