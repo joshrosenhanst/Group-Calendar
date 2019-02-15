@@ -47,6 +47,18 @@ class User extends Authenticatable
       return 'img/default_user_avatar.png';
     }
   }
+  
+  /*
+    getGroupSelectAttribute() - Acessor method that returns an array of names and ids of the user's groups, which can be rendered into a <select> html tag.
+  */
+  public function getGroupSelectAttribute(){
+    return $this->groups->map(function ($group){
+      return [
+        'text' => $group->name,
+        'value' => $group->id
+      ];
+    });
+  }
 
   /*
     getJoinDateAttribute() - Accessor method that returns a formatted version of the `created_at` db field. Format 'F Y' - Ex: `February 2011`
