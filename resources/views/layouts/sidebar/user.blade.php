@@ -1,4 +1,5 @@
-<div class="sidebar sidebar_has_avatar sidebar-no-header">
+<div class="sidebar sidebar_has_avatar">
+  <div class="sidebar_header sidebar_header-no_content"></div>
   <div class="sidebar_section sidebar_section-avatar">
     <a href="{{ route('profile.index') }}" class="sidebar_avatar_image">
       <img src="{{ asset(Auth::user()->avatar) }}" alt="{{ Auth::user()->name }} Avatar">
@@ -28,4 +29,5 @@
       <span>Log Out</span>
     </a>
   </div>
+  <div class="sidebar_footer sidebar_footer-no_content"></div>
 </div>

@@ -1,4 +1,5 @@
-<div class="sidebar sidebar_has_avatar sidebar-no-header">
+<div class="sidebar sidebar_has_avatar">
+  <div class="sidebar_header sidebar_header-no_content"></div>
   <div class="sidebar_section sidebar_section-avatar">
     <a href="{{ route('groups.view', ['group'=>$group]) }}" class="sidebar_avatar_image">
       <img src="{{ asset($group->avatar) }}" alt="{{ $group->name }} Avatar">
@@ -19,4 +20,5 @@
       <span>Group Members</span>
     </a>
   </div>
+  <div class="sidebar_footer sidebar_footer-no_content"></div>
 </div>
