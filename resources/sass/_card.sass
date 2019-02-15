@@ -1,14 +1,17 @@
 .card,.sidebar
+  //border: 1px solid $card-border-color
   background-color: $card-background
   max-width: 100%
   position: relative
-  border-radius: $card-border-radius
   box-shadow: $card-box-shadow
   .card_header,.sidebar_header
     background-color: $card-header-background
     color: $white
+    border-top-left-radius: $card-border-radius
+    border-top-right-radius: $card-border-radius
     &.card_header-no_content,&.sidebar_header-no_content
       padding:2px
+      margin-bottom: -1px
   .card_section,.sidebar_section
     &:not(&:first-of-type)
       border-top: 1px solid $card-border-color
@@ -17,17 +20,15 @@
     padding: 2px
     border-bottom-left-radius: $radius
     border-bottom-right-radius: $radius
+    border-top: 1px solid $card-border-color
 
 .card
-  border: 1px solid $card-border-color
   display: flex
   flex-direction: column
   margin-bottom: 15px
+  border-radius: $card-border-radius
   .card_header
     padding: 10px 15px
-    margin: -1px -1px 0 -1px
-    border-top-right-radius: $card-border-radius
-    border-top-left-radius: $card-border-radius
     text-shadow: $card-header-text-shadow
     h1,h2
       display: flex
@@ -43,6 +44,16 @@
       font-size: $size-medium
   .card_section
     padding: 25px 20px
+    border: 1px solid $card-border-color
+    margin-bottom: -1px
+  .card_section-background_image
+    background-position: center
+    background-size: cover
+    height: 200px
+    padding: 0
+    border-top: 1px solid $card-border-color
+  .card_section-title
+    padding: 10px 15px
   .card_list
     padding: 0
     .list_item
