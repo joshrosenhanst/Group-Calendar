@@ -20,6 +20,11 @@
     @include('partials.input', ['input' => $input])
   @endisset
 
+  {{-- FORM HELP --}}
+  @isset($help)
+    <div class="help">{{ $help }}</div>
+  @endisset
+
   {{-- FORM ERRORS --}}
   @foreach ($errors as $error)
     <div class="form_error" role="alert">{{ $error }}</div>

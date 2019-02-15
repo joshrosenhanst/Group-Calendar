@@ -5,11 +5,33 @@
       margin-top: -15px
     &:not(:last-child)
       margin-bottom: 25px
-    &.form_group-error
-      .form_label,.form_error
-        color: $danger
-      .form_input
-        border-color: $danger
+  .form_group-error
+    .form_label,.form_error
+      color: $danger
+    .form_input
+      border-color: $danger
+  .form_inline_group
+    &:not(:last-child)
+      margin-bottom: 25px
+    .field
+      display: flex
+      column-gap: 15px
+      .field_label
+        flex: 1 0
+        text-align: right
+        display: flex
+        justify-content: flex-end
+        .form_label
+          margin-bottom: 0
+          font-size: $size-normal
+      .field_body
+        flex: 5 1
+        .form_input,.form_select
+          max-width: 450px
+  .form_help
+    font-size: $size-small
+    color: $text-light
+    margin-top: 2px
   .form_label
     color: $label-color
     display: block
@@ -92,6 +114,56 @@
     &.form_input-inline
       display: inline
       width: auto
+  textarea.form_input
+    min-height: 120px
+    max-height: 600px
+  .form_select
+    position: relative
+    &:hover
+      border-color: $input-hover-border-color
+      & ~ .icon
+        color: $input-hover-border-color
+      &::after
+        border-color: $input-hover-border-color
+    &::after
+      +arrow
+      border-color: $input-arrow
+      right: 1.125em
+      z-index: 4
+    select
+      +control
+      background-color: $input-background-color
+      border-color: $input-border-color
+      color: $input-color
+      box-shadow: $input-shadow
+      height: $input-height
+      cursor: pointer
+      display: block
+      max-width: 100%
+      width: 100%
+      outline: none
+      &::-ms-expand
+        display: none
+      &[disabled]:hover,
+      fieldset[disabled] &:hover
+        border-color: $input-disabled-border-color
+      &:not([multiple])
+        padding-right: 2.5em
+      &[multiple]
+        height: auto
+        padding: 0
+        option
+          padding: 0.5em 1em
   .form_error
     font-weight: 700
     margin: 5px 0 10px 0
+  hr.form_divider
+    background-color: $card-border-color
+    height: 1px
+    margin: 25px -20px 25px -20px
+  .form_footer
+    border-top: 1px solid $card-border-color
+    margin: 0 -20px 0 -20px
+    padding: 25px 20px 0 20px
+    display: flex
+    justify-content: center

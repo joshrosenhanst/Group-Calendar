@@ -1688,13 +1688,50 @@ article#maincontent {
   margin-bottom: 25px;
 }
 
-.form .form_group.form_group-error .form_label,
-.form .form_group.form_group-error .form_error {
+.form .form_group-error .form_label,
+.form .form_group-error .form_error {
   color: #ff3860;
 }
 
-.form .form_group.form_group-error .form_input {
+.form .form_group-error .form_input {
   border-color: #ff3860;
+}
+
+.form .form_inline_group:not(:last-child) {
+  margin-bottom: 25px;
+}
+
+.form .form_inline_group .field {
+  display: flex;
+  -webkit-column-gap: 15px;
+          column-gap: 15px;
+}
+
+.form .form_inline_group .field .field_label {
+  flex: 1 0;
+  text-align: right;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.form .form_inline_group .field .field_label .form_label {
+  margin-bottom: 0;
+  font-size: 1rem;
+}
+
+.form .form_inline_group .field .field_body {
+  flex: 5 1;
+}
+
+.form .form_inline_group .field .field_body .form_input,
+.form .form_inline_group .field .field_body .form_select {
+  max-width: 450px;
+}
+
+.form .form_help {
+  font-size: 0.9rem;
+  color: #7a7a7a;
+  margin-top: 2px;
 }
 
 .form .form_label {
@@ -1898,9 +1935,128 @@ fieldset[disabled] .form .form_input:-ms-input-placeholder {
   width: auto;
 }
 
+.form textarea.form_input {
+  min-height: 120px;
+  max-height: 600px;
+}
+
+.form .form_select {
+  position: relative;
+}
+
+.form .form_select:hover {
+  border-color: #b5b5b5;
+}
+
+.form .form_select:hover ~ .icon {
+  color: #b5b5b5;
+}
+
+.form .form_select:hover::after {
+  border-color: #b5b5b5;
+}
+
+.form .form_select::after {
+  border: 3px solid transparent;
+  border-radius: 2px;
+  border-right: 0;
+  border-top: 0;
+  content: " ";
+  display: block;
+  height: 0.625em;
+  margin-top: -0.4375em;
+  pointer-events: none;
+  position: absolute;
+  top: 50%;
+  -webkit-transform: rotate(-45deg);
+          transform: rotate(-45deg);
+  -webkit-transform-origin: center;
+          transform-origin: center;
+  width: 0.625em;
+  border-color: #3273dc;
+  right: 1.125em;
+  z-index: 4;
+}
+
+.form .form_select select {
+  -moz-appearance: none;
+  -webkit-appearance: none;
+  align-items: center;
+  border: 1px solid transparent;
+  border-radius: 2px;
+  box-shadow: none;
+  display: inline-flex;
+  font-size: 1rem;
+  height: 2.25em;
+  justify-content: flex-start;
+  line-height: 1.5;
+  padding-bottom: calc(0.375em - 1px);
+  padding-left: calc(0.625em - 1px);
+  padding-right: calc(0.625em - 1px);
+  padding-top: calc(0.375em - 1px);
+  position: relative;
+  vertical-align: top;
+  background-color: white;
+  border-color: #cccccc;
+  color: #363636;
+  box-shadow: inset 0 1px 2px rgba(10, 10, 10, 0.1);
+  height: 45px;
+  cursor: pointer;
+  display: block;
+  max-width: 100%;
+  width: 100%;
+  outline: none;
+}
+
+.form .form_select select:focus,
+.form .form_select select:active {
+  outline: none;
+}
+
+.form .form_select select[disabled],
+fieldset[disabled] .form .form_select select {
+  cursor: not-allowed;
+}
+
+.form .form_select select::-ms-expand {
+  display: none;
+}
+
+.form .form_select select[disabled]:hover,
+fieldset[disabled] .form .form_select select:hover {
+  border-color: #fdfdfd;
+}
+
+.form .form_select select:not([multiple]) {
+  padding-right: 2.5em;
+}
+
+.form .form_select select[multiple] {
+  height: auto;
+  padding: 0;
+}
+
+.form .form_select select[multiple] option {
+  padding: 0.5em 1em;
+}
+
 .form .form_error {
   font-weight: 700;
   margin: 5px 0 10px 0;
+}
+
+.form hr.form_divider {
+  background-color: #cccccc;
+  height: 1px;
+  margin: 25px -20px 25px -20px;
+}
+
+.form .form_footer {
+  border-top: 1px solid #cccccc;
+  margin: 0 -20px 0 -20px;
+  padding: 25px 20px 0 20px;
+  display: flex;
+  justify-content: center;
 }
 
 #login_form {
