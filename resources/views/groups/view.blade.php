@@ -4,7 +4,7 @@
 
 @section('content')
 <article id="maincontent">
-  <div class="main_card card">
+  <div class="card">
     <div class="card_header card_header-no_content"></div>
     <div class="card_section card_section-title">
       {{ Breadcrumbs::render('groups.view', $group) }}
