@@ -50,3 +50,7 @@ Breadcrumbs::for('events.new', function ($trail) {
   $trail->parent('events.index');
   $trail->push('New', route('events.new'));
 });
+Breadcrumbs::for('events.view', function ($trail, $event) {
+  $trail->parent('events.index');
+  $trail->push($event->name, route('events.view', ['event'=>$event]));
+});
