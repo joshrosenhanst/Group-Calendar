@@ -10,7 +10,7 @@
       {{ Breadcrumbs::render('events.new') }}
       <h1 class="title">New Event</h1>
     </div>
-    <form action="{{ route('events.create') }}" id="event_form" class="form card_section card_section-form">
+    <form action="{{ route('events.create') }}" id="event_form" class="form card_section card_section-form" method="POST">
       @method('PUT')
       @csrf
       
