@@ -21,10 +21,10 @@ class CreateEventsTable extends Migration
             $table->unsignedInteger('creator_id');
             $table->string('header_url')->nullable();
             $table->string('description')->nullable();
-            $table->string('start_date');
-            $table->string('start_time')->nullable();
-            $table->string('end_date')->nullable();
-            $table->string('end_time')->nullable();
+            $table->date('start_date');
+            $table->time('start_time')->nullable();
+            $table->date('end_date')->nullable();
+            $table->time('end_time')->nullable();
             $table->timestamps();
         });
     }

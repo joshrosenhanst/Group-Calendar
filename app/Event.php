@@ -18,6 +18,11 @@ class Event extends Model
     'name', 'group_id', 'creator_id', 'header_url', 'description', 'start_date', 'start_time', 'end_date', 'end_time'
   ];
 
+  protected $casts = [
+    'start_date' => 'date:Y-m-d',
+    'end_date' => 'date:Y-m-d',
+  ];
+
   public function getHeaderAttribute(){
     if($this->header_url){
       return 'storage/events/'.$this->header_url;
@@ -32,6 +37,27 @@ class Event extends Model
     }else{
       return $this->start_date . " " . $this->start_time;
     }
+  }
+  
+  public function getStartTimeSubtextAttribute(){
+    $subtext_string = null;
+    if($this->start_time){
+      $subtext_string = Carbon::parse($this->start_time)->format('h:i A');
+      if(!$this->end_date || $this->start_date === $this->end_date){
+        if($this->end_time){
+          $subtext_string .= " - " . Carbon::parse($this->end_time)->format('h:i A');
+        }
+      }
+    }
+    return $subtext_string;
+  }
+  
+  public function getEndTimeSubtextAttribute(){
+    $subtext_string = null;
+    if($this->end_time){
+      $subtext_string = $this->end_time->format('h:i A');
+    }
+    return $subtext_string;
   }
 
   /*
