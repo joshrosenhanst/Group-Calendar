@@ -36,8 +36,8 @@ Route::middleware('auth')->prefix('events/')->name('events.')->group(function(){
   Route::get('/{event}/edit','EventController@edit')->name('edit');
   Route::get('/{event}/delete','EventController@delete')->name('delete');
   Route::put('/create', 'EventController@create')->name('create');
-  Route::put('/update', 'EventController@update')->name('update');
-  Route::delete('/delete', 'EventController@destroy')->name('destroy');
+  Route::put('/{event}/update', 'EventController@update')->name('update');
+  Route::delete('/{event}/delete', 'EventController@destroy')->name('destroy');
 
   /* Calendar */
   Route::get('/calendar','EventController@calendar')->name('calendar');
