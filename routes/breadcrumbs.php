@@ -54,3 +54,11 @@ Breadcrumbs::for('events.view', function ($trail, $event) {
   $trail->parent('events.index');
   $trail->push($event->name, route('events.view', ['event'=>$event]));
 });
+Breadcrumbs::for('events.edit', function ($trail, $event) {
+  $trail->parent('events.view', $event);
+  $trail->push('Edit', route('events.edit', ['event'=>$event]));
+});
+Breadcrumbs::for('events.delete', function ($trail, $event) {
+  $trail->parent('events.view', $event);
+  $trail->push('Delete', route('events.delete', ['event'=>$event]));
+});
