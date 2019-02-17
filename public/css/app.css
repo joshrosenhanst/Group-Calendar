@@ -1246,42 +1246,70 @@ fieldset[disabled] .button {
   display: flex;
   align-items: center;
   justify-content: space-evenly;
+  -webkit-column-gap: 15px;
+          column-gap: 15px;
 }
 
-.upcoming_events_section .events_summary {
+.upcoming_events_section .event_summary {
   background-color: #fdfdfd;
+  max-width: 250px;
+  border-radius: 2px;
+  border: 1px solid #cccccc;
+  box-shadow: 2px 2px 6px rgba(10, 10, 10, 0.2);
+  overflow: hidden;
 }
 
-.upcoming_events_section .events_summary .summary_details {
+.upcoming_events_section .event_summary .summary_header {
+  display: block;
+}
+
+.upcoming_events_section .event_summary .summary_header img {
+  display: block;
+}
+
+.upcoming_events_section .event_summary .summary_details {
   display: flex;
-  border-top: 2px solid #00e6c3;
+  border-top: 4px solid #00e6c3;
 }
 
-.upcoming_events_section .events_summary .summary_date {
-  padding: 10px;
+.upcoming_events_section .event_summary .summary_date {
+  padding: 10px 15px;
   border-right: 1px solid #cccccc;
   text-transform: uppercase;
   color: #00e6c3;
   font-size: 0.9rem;
   flex-shrink: 1;
   flex-grow: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
-.upcoming_events_section .events_summary .summary_date .day {
+.upcoming_events_section .event_summary .summary_date .day {
   color: #7a7a7a;
 }
 
-.upcoming_events_section .events_summary .summary_date .date {
-  font-size: 1.25rem;
+.upcoming_events_section .event_summary .summary_date .date {
+  font-size: 1.5rem;
+  font-weight: 700;
 }
 
-.upcoming_events_section .events_summary .summary_info {
+.upcoming_events_section .event_summary .summary_date .month {
+  font-weight: 700;
+}
+
+.upcoming_events_section .event_summary .summary_info {
   padding: 10px;
   flex-grow: 1;
 }
 
-.upcoming_events_section .events_summary .summary_name {
-  font-size: 1rem;
+.upcoming_events_section .event_summary .summary_name {
+  font-size: 1.1rem;
+}
+
+.upcoming_events_section .event_summary .summary_location {
+  color: #7a7a7a;
 }
 
 .upcoming_events_section .events-empty {

@@ -4,12 +4,13 @@
   </a>
   <div class="summary_details">
     <div class="summary_date">
-      <span class="day">{{ $event->summary_date->format('D') }}</span>
-      <span class="date">{{ $event->summary_date->format('d') }}</span>
-      <span class="month">{{ $event->summary_date->format('M') }}</span>
+      <span class="day">{{ $event->start_date->format('D') }}</span>
+      <span class="date">{{ $event->start_date->format('d') }}</span>
+      <span class="month">{{ $event->start_date->format('M') }}</span>
     </div>
     <div class="summary_info">
       <a class="summary_name" href="{{ route('events.view', ['event', $event]) }}">{{ $event->name }}</a>
+      <div class="summary_location">Brooklyn, NY</div>
     </div>
   </div>
 </div>

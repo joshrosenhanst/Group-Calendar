@@ -16,31 +16,47 @@
   display: flex
   align-items: center
   justify-content: space-evenly
-  .events_summary
+  column-gap: 15px
+  .event_summary
     background-color: $body-background-color
+    max-width: 250px
+    border-radius: $card-border-radius
+    border: 1px solid $card-border-color
+    box-shadow: $card-box-shadow-emphasis
+    overflow: hidden
     .summary_header
+      display: block
       img
+        display: block
     .summary_details
       display: flex
-      border-top: 2px solid $primary
+      border-top: 4px solid $primary
     .summary_date
-      padding: 10px
+      padding: 10px 15px
       border-right: 1px solid $card-border-color
       text-transform: uppercase
       color: $primary
       font-size: $size-small
       flex-shrink: 1
       flex-grow: 0
+      display: flex
+      flex-direction: column
+      justify-content: center
+      align-items: center
       .day
         color: $text-light
       .date
-        font-size: $size-medium
+        font-size: $size-large
+        font-weight: 700
       .month
+        font-weight: 700
     .summary_info
       padding: 10px
       flex-grow: 1
     .summary_name
-      font-size: $size-normal
+      font-size: 1.1rem
+    .summary_location
+      color: $text-light
   .events-empty
     +icon-empty
 
