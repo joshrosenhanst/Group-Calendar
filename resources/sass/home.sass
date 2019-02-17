@@ -18,12 +18,8 @@
   justify-content: space-evenly
   column-gap: 15px
   .event_summary
-    background-color: $body-background-color
     max-width: 250px
-    border-radius: $card-border-radius
-    border: 1px solid $card-border-color
     box-shadow: $card-box-shadow-emphasis
-    overflow: hidden
     .summary_header
       display: block
       img
@@ -31,6 +27,7 @@
     .summary_details
       display: flex
       border-top: 4px solid $primary
+      padding: 0
     .summary_date
       padding: 10px 15px
       border-right: 1px solid $card-border-color
@@ -43,11 +40,11 @@
       flex-direction: column
       justify-content: center
       align-items: center
+      line-height: 1.2
       .day
         color: $text-light
       .date
-        font-size: $size-large
-        font-weight: 700
+        font-size: 2rem
       .month
         font-weight: 700
     .summary_info
