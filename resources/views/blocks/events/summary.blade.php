@@ -14,6 +14,6 @@
     </div>
   </div>
   <div class="card_section card_buttons">
-    <a href="{{ route('events.view', ['event'=>$event]) }}" class="button button-text button-small">View Event</a>
+    <a href="{{ route('events.view', ['event'=>$event]) }}" class="button button-text button-small">Event Details</a>
   </div>
 </div>
