@@ -15,6 +15,14 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
+        /*
+            Add support for the @materialicon() blade template directive, which outputs an SVG from the @mdi library
+            $expression - The arguments for the icon:
+                $name: the name of the icon (`mdi-` prefix not required). Icons listed:  https://cdn.materialdesignicons.com/3.4.93/
+                $class: the class attribute of the svg output
+                $size: size of the SVG, default 24
+                $options: optional attributes that can be added to the SVG
+        */
         Mdi::withIconsPath(base_path('node_modules/@mdi/svg/svg/'));
         Blade::directive('materialicon', function($expression){
             return "<?php echo(Mdi\Mdi::mdi($expression)); ?>";
