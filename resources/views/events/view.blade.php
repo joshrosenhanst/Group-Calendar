@@ -12,6 +12,14 @@
     <div class="card_section card_section-background_image" style="background-image:url({{ asset($event->header) }})"></div>
     <div class="card_section event_card_section-main">
       <h1 class="event_title">{{ $event->name }}</h1>
+      <div class="event_date event_detail">
+        <div class="detail_icon">
+          <span class="icon">@materialicon('calendar')</span>
+        </div>
+        <div class="detail_content">
+          {{ $event->summary_date }}
+        </div>
+      </div>
       <div class="event_location">
         <a href="#location" class="button button-text">
           <span class="icon">@materialicon('map-marker')</span>

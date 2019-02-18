@@ -6,7 +6,27 @@
     color: $primary
   .event_detail
     display: flex
-    align-content: center
+    align-items: center
+    justify-content: center
+    column-gap: 15px
+    .detail_icon
+      display: flex
+      align-items: center
+      justify-content: center
+      flex-direction: column
+      .icon_text
+        font-size: $size-small
+        color: $text-light
+    .icon
+      width: 32px
+      height: 32px
+    .detail_content
+      font-size: $size-medium
+      text-align: left
+      small
+        font-size: $size-normal
+        color: $text-light
+        display: block
   .event_date
   .event_location>.button
     font-size: $size-medium

@@ -295,6 +295,8 @@ table th {
 
 .icon svg {
   fill: currentColor;
+  height: 100%;
+  width: 100%;
 }
 
 .breadcrumb {
@@ -2122,7 +2124,38 @@ fieldset[disabled] .form .form_select select:hover {
 
 .event_card .event_detail {
   display: flex;
-  align-content: center;
+  align-items: center;
+  justify-content: center;
+  -webkit-column-gap: 15px;
+          column-gap: 15px;
+}
+
+.event_card .event_detail .detail_icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.event_card .event_detail .detail_icon .icon_text {
+  font-size: 0.9rem;
+  color: #7a7a7a;
+}
+
+.event_card .event_detail .icon {
+  width: 32px;
+  height: 32px;
+}
+
+.event_card .event_detail .detail_content {
+  font-size: 1.25rem;
+  text-align: left;
+}
+
+.event_card .event_detail .detail_content small {
+  font-size: 1rem;
+  color: #7a7a7a;
+  display: block;
 }
 
 .event_card .event_location > .button {
