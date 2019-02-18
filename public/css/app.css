@@ -2114,3 +2114,31 @@ fieldset[disabled] .form .form_select select:hover {
   font-weight: 700;
 }
 
+.event_card .event_title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #00e6c3;
+}
+
+.event_card .event_detail {
+  display: flex;
+  align-content: center;
+}
+
+.event_card .event_location > .button {
+  font-size: 1.25rem;
+  display: inline-flex;
+  padding: 0;
+}
+
+.event_card .attend_buttons {
+  margin: 15px auto 15px auto;
+  max-width: 250px;
+}
+
+.event_card .event_card_section-main {
+  border-top: 4px solid #00e6c3;
+  text-align: center;
+  padding: 10px;
+}
+
