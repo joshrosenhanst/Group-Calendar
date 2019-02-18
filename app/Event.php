@@ -23,6 +23,13 @@ class Event extends Model
     'end_date' => 'date:Y-m-d',
   ];
 
+  /*
+    isMultiDayEvent() - Boolean check if the event is a multi day event. Check if the `end_date` is set and also check that the `start_date` doesn't match the `end_date`.
+  */
+  public function isMultiDayEvent(){
+    return ($this->end_date && $this->start_date !== $this->end_date);
+  }
+
   public function getHeaderAttribute(){
     if($this->header_url){
       return 'storage/events/'.$this->header_url;
@@ -31,12 +38,29 @@ class Event extends Model
     }
   }
 
+  /*
+    getSummaryDateAttribute() - Accessor method to print out a clean, human readable date and time range for the event. Returns different strings based on available date/time fields.
+    Start Date only: Ex: 'Fri, Feb 21'
+    Start Date and Start Time only: Ex: 'Fri, Feb 21 at 12:30 PM'
+    Start Date and End Date only (multi date): Ex: 'Fri, Feb 21 to Sun, Feb 23'
+    Start Date, End Date, Start Time, End Time: Ex: 'Fri, Feb 21 at 12:30 PM to Sun, Feb 23 at 1:00 PM'
+  */
   public function getSummaryDateAttribute(){
-    if($this->end_date){
-      return $this->start_date . " - ". $this->end_date;
-    }else{
-      return $this->start_date . " " . $this->start_time;
+    $summary = $this->start_date->format('D, M j');
+    if($this->start_time){
+      $summary .= " at ".Carbon::parse($this->start_time)->format('h:i A');
     }
+    if($this->isMultiDayEvent()){
+      $summary .= " to ".$this->end_date->format('D, M j');
+      if($this->end_time){
+        $summary .= " at ".Carbon::parse($this->end_time)->format('h:i A');
+      }
+    }else{
+      if($this->end_time){
+        $summary .= " to ".Carbon::parse($this->end_time)->format('h:i A');
+      }
+    }
+    return $summary;
   }
   
   public function getStartTimeSubtextAttribute(){
