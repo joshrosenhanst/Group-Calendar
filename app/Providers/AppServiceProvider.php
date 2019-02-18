@@ -21,7 +21,7 @@ class AppServiceProvider extends ServiceProvider
                 $name: the name of the icon (`mdi-` prefix not required). Icons listed:  https://cdn.materialdesignicons.com/3.4.93/
                 $class: the class attribute of the svg output
                 $size: size of the SVG, default 24
-                $options: optional attributes that can be added to the SVG
+                $options: optional array of attributes that can be added to the SVG
         */
         Mdi::withIconsPath(base_path('node_modules/@mdi/svg/svg/'));
         Blade::directive('materialicon', function($expression){
