@@ -53,7 +53,10 @@ class EventController extends Controller
       view() - Display the `events.view` page template.
     */
     public function view(\App\Event $event){
-      return view('events.view', ['event'=>$event]);
+      $user_attendee = $event->attendees()->where('user_id', Auth::user()->id)->first();
+      $user_status = ($user_attendee ? $user_attendee->pivot->status : null);
+
+      return view('events.view', ['event'=>$event, 'user_status'=>$user_status]);
     }
 
     /*
@@ -88,6 +91,26 @@ class EventController extends Controller
       //trigger "event updated" Event
 
       return redirect()->route('events.view', ['event'=>$event])->with('status', 'The event has been updated.');
+    }
+
+    /*
+      attend() - Add the Auth::user as an attendee for the event, set their pivot status to the $request->status.
+    */
+    public function attend(Request $request, \App\Event $event){
+      $attendee = $event->attendees()->where('user_id',Auth::user()->id)->first();
+      if($attendee){
+        $event->attendees()->updateExistingPivot(Auth::user()->id,[
+          'status' => $request->input('status', 'pending')
+        ]);
+      }else{
+        $event->attendees()->attach(Auth::user()->id, [
+          'status' => $request->input('status', 'pending')
+        ]);
+      }
+
+      //trigger "event attendee updated" Event
+
+      return redirect()->route('events.view', ['event'=>$event])->with('status', 'Your attendee status has been updated.');
     }
 
     /*
