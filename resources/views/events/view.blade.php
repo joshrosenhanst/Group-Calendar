@@ -73,7 +73,7 @@
     </div>
     <aside class="maincontent_aside">
       {{-- Event Attendees --}}
-      @include('blocks.events.attendees', ['attendees'=>[]])
+      @include('blocks.events.attendees', ['attendees'=>$event->attendees])
     </aside>
   </div>
 </article>
