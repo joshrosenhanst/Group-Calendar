@@ -30,19 +30,46 @@
       <div class="event_detail">
         <div class="icon icon-full_size">@materialicon('account-group')</div>
         <div class="detail_content">
-          <a href="#attending">{{ $event->group->name }}<small>3 Going | 4 Interested</small></a>
+          <a href="#attendees">{{ $event->group->name }}
+            <small class="seperated_count">
+              @if($event->going_attendees_count)
+                <span>{{ $event->going_attendees_count }} Going</span>
+              @endif
+              @if($event->interested_attendees_count)
+               <span>{{ $event->interested_attendees_count }} Interested</span>
+              @endif
+            </small>
+          </a>
         </div>
       </div>
-      <div class="attend_buttons button_group">
-        <a href="#" class="button button-link button-inverted">
-          <span class="icon">@materialicon('check')</span>
-          <span>Going</span>
-        </a>
-        <a href="#" class="button button-info button-inverted">
-          <span class="icon">@materialicon('star')</span>
-          <span>Interested</span>
-        </a>
-      </div>
+      @if($user_status)
+        <div class="event_detail">
+          <div class="icon icon-full_size" aria-label="My Attendee Status">@materialicon(__('status.attendee.icon.'.$user_status))</div>
+          <div class="detail_content">
+            {{ __('status.attendee.'.$user_status) }}
+            <small><a href="#attending">Change My Status</a></small>
+          </div>
+        </div>
+      @else
+        <div class="attend_buttons button_group" aria-label="Update My Attendee Status">
+          <a href="{{ route('events.attend', ['event'=>$event,'status'=>'going'])}}" class="button button-link button-inverted">
+            <span class="icon">@materialicon('check')</span>
+            <span>Going</span>
+          </a>
+          <a href="{{ route('events.attend', ['event'=>$event,'status'=>'interested'])}}" class="button button-info button-inverted">
+            <span class="icon">@materialicon('star')</span>
+            <span>Interested</span>
+          </a>
+          <a href="{{ route('events.attend', ['event'=>$event,'status'=>'unavailable'])}}" class="button button-danger button-inverted">
+            <span class="icon">@materialicon('close')</span>
+            <span>Unavailable</span>
+          </a>
+          <a href="{{ route('events.attend', ['event'=>$event,'status'=>'pending'])}}" class="button button-danger button-inverted">
+            <span class="icon">@materialicon('question')</span>
+            <span>Pending</span>
+          </a>
+        </div>
+      @endif
     </div>
     <div class="card_section event_card_section-description">
       <div class="description">
