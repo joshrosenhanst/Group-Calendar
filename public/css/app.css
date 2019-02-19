@@ -1216,19 +1216,50 @@ fieldset[disabled] .button {
 /* Recently Added Members list */
 
 .card_list .member_list_preview,
-.card_list .empty {
+.card_list .empty,
+.card_list .list_item {
   display: flex;
   align-items: center;
 }
 
 .card_list .member_list_preview .preview_thumbnail,
-.card_list .empty .preview_thumbnail {
+.card_list .empty .preview_thumbnail,
+.card_list .list_item .preview_thumbnail {
   width: 32px;
   height: 32px;
   border-radius: 50%;
   border: 1px solid #00e6c3;
   overflow: hidden;
   margin-right: 10px;
+}
+
+.card_list .list_empty {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-items: center;
+  align-items: center;
+  color: #7a7a7a;
+  padding: 25px 20px;
+}
+
+.card_list .list_empty h2 {
+  font-size: 1.25rem;
+  font-weight: 700;
+}
+
+.card_list .list_empty .icon {
+  width: 50px;
+  height: 50px;
+}
+
+.card_list .list_empty .icon svg {
+  width: 100%;
+  height: 100%;
+}
+
+.card_list .list_empty .sub_text {
+  font-size: 1rem;
 }
 
 /* Upcoming events display */
@@ -1328,6 +1359,8 @@ fieldset[disabled] .button {
   font-size: 1rem;
 }
 
+/* Latest Comments Section */
+
 .latest_comments_section .comments-empty {
   text-align: center;
   display: flex;
@@ -1355,6 +1388,8 @@ fieldset[disabled] .button {
 .latest_comments_section .comments-empty .sub_text {
   font-size: 1rem;
 }
+
+/* Attendees Section */
 
 main#app-body {
   display: flex;

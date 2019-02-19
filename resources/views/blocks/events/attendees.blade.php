@@ -6,6 +6,6 @@
     </h2>
   </div>
   <div class="card_section card_list">
-    @each('blocks.members.list_item', $attendees, 'user', 'blocks.members.empty')
+    @each('blocks.attendees.list_item', $attendees, 'user', 'blocks.attendees.empty')
   </div>
 </div>

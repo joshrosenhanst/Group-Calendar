@@ -1,6 +1,6 @@
 /* Recently Added Members list */
 .card_list
-  .member_list_preview,.empty
+  .member_list_preview,.empty,.list_item
     display: flex
     align-items: center
     .preview_thumbnail
@@ -10,6 +10,9 @@
       border: 1px solid $primary
       overflow: hidden
       margin-right: 10px
+  .list_empty
+    +icon-empty
+    padding: 25px 20px
 
 /* Upcoming events display */
 .upcoming_events_section
@@ -57,6 +60,9 @@
   .events-empty
     +icon-empty
 
+/* Latest Comments Section */
 .latest_comments_section
   .comments-empty
     +icon-empty
+
+/* Attendees Section */
