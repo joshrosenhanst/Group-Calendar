@@ -25,6 +25,13 @@ class Event extends Model
   ];
 
   /*
+    Eager load the count of `going_attendees` and `interested_attendees` relationships whenever an event is queried.
+  */
+  protected $withCount = [
+    'going_attendees', 'interested_attendees'
+  ];
+
+  /*
     isMultiDayEvent() - Boolean check if the event is a multi day event. Check if the `end_date` is set and also check that the `start_date` doesn't match the `end_date`.
   */
   public function isMultiDayEvent(){
@@ -93,10 +100,24 @@ class Event extends Model
   }
 
   /*
-    attendees() - Defines a many-to-many relationship with the User model (uses the EventUser pivot).
+    attendees() - Defines a many-to-many relationship with the User model (using the EventUser pivot).
   */
   public function attendees(){
     return $this->belongsToMany('App\User')->withPivot('status');
+  }
+
+  /*
+    going_attendees() - Defines a many-to-many relationship with the User model (using the EventUser pivot), filtered by `status=going`.
+  */
+  public function going_attendees(){
+    return $this->belongstoMany('App\User')->wherePivot('status', 'going');
+  }
+
+  /*
+    interested_attendees() - Defines a many-to-many relationship with the User model (using the EventUser pivot), filtered by `status=interested`.
+  */
+  public function interested_attendees(){
+    return $this->belongstoMany('App\User')->wherePivot('status', 'interested');
   }
 
   /*
