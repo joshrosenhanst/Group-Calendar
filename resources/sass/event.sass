@@ -17,6 +17,9 @@
     align-items: center
     column-gap: 15px
     margin-bottom: 15px
+    .seperated_count
+      span:not(:only-of-type):not(:last-of-type)::after
+        content: " | "
     .icon
       width: 32px
       height: 32px

@@ -1222,6 +1222,14 @@ fieldset[disabled] .button {
   align-items: center;
 }
 
+.card_list .member_list_preview small,
+.card_list .empty small,
+.card_list .list_item small {
+  display: block;
+  color: #7a7a7a;
+  font-size: 0.9rem;
+}
+
 .card_list .member_list_preview .preview_thumbnail,
 .card_list .empty .preview_thumbnail,
 .card_list .list_item .preview_thumbnail {
@@ -2150,6 +2158,10 @@ fieldset[disabled] .form .form_select select:hover {
   -webkit-column-gap: 15px;
           column-gap: 15px;
   margin-bottom: 15px;
+}
+
+.event_card .event_detail .seperated_count span:not(:only-of-type):not(:last-of-type)::after {
+  content: " | ";
 }
 
 .event_card .event_detail .icon {
