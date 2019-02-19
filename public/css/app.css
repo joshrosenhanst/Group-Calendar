@@ -295,6 +295,9 @@ table th {
 
 .icon svg {
   fill: currentColor;
+}
+
+.icon.icon-full_size > svg {
   height: 100%;
   width: 100%;
 }
@@ -1032,13 +1035,7 @@ fieldset[disabled] .button {
 @media screen and (max-width: 1279px) {
   .navbar.is-widescreen {
     max-width: 1152px;
-    width: auto;
-  }
-}
-
-@media screen and (max-width: 1471px) {
-  .navbar.is-fullhd {
-    max-width: 1344px;
+    width: autollhd-128px;
     width: auto;
   }
 }
@@ -1047,13 +1044,6 @@ fieldset[disabled] .button {
   .navbar {
     max-width: 1152px;
     width: 1152px;
-  }
-}
-
-@media screen and (min-width: 1472px) {
-  .navbar {
-    max-width: 1344px;
-    width: 1344px;
   }
 }
 
@@ -1395,13 +1385,7 @@ main#app-body {
 @media screen and (max-width: 1279px) {
   main#app-body.is-widescreen {
     max-width: 1152px;
-    width: auto;
-  }
-}
-
-@media screen and (max-width: 1471px) {
-  main#app-body.is-fullhd {
-    max-width: 1344px;
+    width: autollhd-128px;
     width: auto;
   }
 }
@@ -1410,13 +1394,6 @@ main#app-body {
   main#app-body {
     max-width: 1152px;
     width: 1152px;
-  }
-}
-
-@media screen and (min-width: 1472px) {
-  main#app-body {
-    max-width: 1344px;
-    width: 1344px;
   }
 }
 
@@ -2116,35 +2093,34 @@ fieldset[disabled] .form .form_select select:hover {
   font-weight: 700;
 }
 
+.event_card .event_intro {
+  max-width: 450px;
+  margin: 0 auto;
+  margin-top: -45px;
+  padding: 20px;
+  border: 4px solid #00e6c3;
+  background: white;
+}
+
 .event_card .event_title {
   font-size: 1.5rem;
   font-weight: 700;
   color: #00e6c3;
+  margin-bottom: 15px;
 }
 
 .event_card .event_detail {
   display: flex;
   align-items: center;
-  justify-content: center;
   -webkit-column-gap: 15px;
           column-gap: 15px;
-}
-
-.event_card .event_detail .detail_icon {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
-}
-
-.event_card .event_detail .detail_icon .icon_text {
-  font-size: 0.9rem;
-  color: #7a7a7a;
+  margin-bottom: 15px;
 }
 
 .event_card .event_detail .icon {
   width: 32px;
   height: 32px;
+  color: #7a7a7a;
 }
 
 .event_card .event_detail .detail_content {
@@ -2158,12 +2134,6 @@ fieldset[disabled] .form .form_select select:hover {
   display: block;
 }
 
-.event_card .event_location > .button {
-  font-size: 1.25rem;
-  display: inline-flex;
-  padding: 0;
-}
-
 .event_card .attend_buttons {
   margin: 15px auto 15px auto;
   max-width: 250px;
@@ -2171,7 +2141,26 @@ fieldset[disabled] .form .form_select select:hover {
 
 .event_card .event_card_section-main {
   border-top: 4px solid #00e6c3;
-  text-align: center;
-  padding: 10px;
+  padding-top: 10px;
+}
+
+.event_card .event_card_section-description .description {
+  font-size: 1.25rem;
+  margin-bottom: 25px;
+}
+
+.event_card .event_card_section-description .description_list_group {
+  display: flex;
+  -webkit-column-gap: 15px;
+          column-gap: 15px;
+}
+
+.event_card .event_card_section-description .description_list_group dt {
+  flex: 1 0;
+  font-weight: 700;
+}
+
+.event_card .event_card_section-description .description_list_group dd {
+  flex: 5 1;
 }
 

@@ -1,25 +1,26 @@
 .event_card
   .card_section-background_image
+  .event_intro
+    max-width: 450px
+    margin: 0 auto
+    margin-top: -45px
+    padding: 20px
+    border: 4px solid $primary
+    background: $white
   .event_title
     font-size: $size-large
     font-weight: 700
     color: $primary
+    margin-bottom: 15px
   .event_detail
     display: flex
     align-items: center
-    justify-content: center
     column-gap: 15px
-    .detail_icon
-      display: flex
-      align-items: center
-      justify-content: center
-      flex-direction: column
-      .icon_text
-        font-size: $size-small
-        color: $text-light
+    margin-bottom: 15px
     .icon
       width: 32px
       height: 32px
+      color: $text-light
     .detail_content
       font-size: $size-medium
       text-align: left
@@ -28,15 +29,23 @@
         color: $text-light
         display: block
   .event_date
-  .event_location>.button
-    font-size: $size-medium
-    display: inline-flex
-    padding: 0
   .attend_buttons
     margin: 15px auto 15px auto
     max-width: 250px
   .event_card_section-main
     border-top: 4px solid $primary
-    text-align: center
-    padding: 10px
+    padding-top: 10px
+  .event_card_section-description
+    .description
+      font-size: $size-medium
+      margin-bottom: 25px
+    .description_list_group
+      display: flex
+      column-gap: 15px
+      dt
+        flex: 1 0
+        font-weight: 700
+      dd
+        flex: 5 1
+
 
