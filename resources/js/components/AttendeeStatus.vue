@@ -1,0 +1,76 @@
+<template>
+  <div id="attendee_controls">
+    <div class="event_detail" v-if="status">
+      <div class="icon icon-full_size" aria-label="My Attendee Status">
+        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" width="24" height="24" role="presentation">{{ status_icons[status] }}</svg>
+      </div>
+      <div class="detail_content">
+        {{ status_text[status] }}
+        <small>
+          <a v-on:click="changeStatus">Change My Status</a>
+        </small>
+      </div>
+    </div>
+    <div class="attendee_buttons button_group" aria-label="Change My Status" v-show="showStatusChange">
+      <button class="button button-link button-inverted" v-on:click="update('going')">
+        <material-icon name='account-check'></material-icon>
+        <span>Going</span>
+      </button>
+      <button class="button button-info button-inverted" v-on:click="update('interested')">
+        <span class="icon"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" width="24" height="24" role="presentation">{{ status_icons['interested'] }}</svg></span>
+        <span>Interested</span>
+      </button>
+      <button class="button button-info button-inverted" v-on:click="update('unavailable')">
+        <span class="icon"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" width="24" height="24" role="presentation">{{ status_icons['unavailable'] }}</svg></span>
+        <span>Unavailable</span>
+      </button>
+      <button class="button button-info button-inverted" v-on:click="update('pending')">
+        <span class="icon"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" width="24" height="24" role="presentation">{{ status_icons['pending'] }}</svg></span>
+        <span>Pending</span>
+      </button>
+    </div>
+  </div>
+</template>
+
+<script>
+const status_icons = {
+  // pending status icon - mdi-account-question
+  'pending': '<path d="M13,8C13,10.21 11.21,12 9,12C6.79,12 5,10.21 5,8C5,5.79 6.79,4 9,4C11.21,4 13,5.79 13,8M17,18V20H1V18C1,15.79 4.58,14 9,14C13.42,14 17,15.79 17,18M20.5,14.5V16H19V14.5H20.5M18.5,9.5H17V9C17,7.34 18.34,6 20,6C21.66,6 23,7.34 23,9C23,9.97 22.5,10.88 21.71,11.41L21.41,11.6C20.84,12 20.5,12.61 20.5,13.3V13.5H19V13.3C19,12.11 19.6,11 20.59,10.35L20.88,10.16C21.27,9.9 21.5,9.47 21.5,9C21.5,8.17 20.83,7.5 20,7.5C19.17,7.5 18.5,8.17 18.5,9V9.5Z"></path>',
+  // interested status icon - mdi-star
+  'interested': '<path d="M12,17.27L18.18,21L16.54,13.97L22,9.24L14.81,8.62L12,2L9.19,8.62L2,9.24L7.45,13.97L5.82,21L12,17.27Z"></path>',
+  // going status icon - mdi-account-check
+  'going': '<path d="M21.1,12.5L22.5,13.91L15.97,20.5L12.5,17L13.9,15.59L15.97,17.67L21.1,12.5M10,17L13,20H3V18C3,15.79 6.58,14 11,14L12.89,14.11L10,17M11,4C13.21,4 15,5.79 15,8C15,10.21 13.21,12 11,12C8.79,12 7,10.21 7,8C7,5.79 8.79,4 11,4Z"></path>',
+  // unavailable status icon - mdi-account-remove
+  'unavailable': '<path d="M15,14C17.67,14 23,15.33 23,18V20H7V18C7,15.33 12.33,14 15,14M15,12C12.79,12 11,10.21 11,8C11,5.79 12.79,4 15,4C17.21,4 19,5.79 19,8C19,10.21 17.21,12 15,12M5,9.59L7.12,7.46L8.54,8.88L6.41,11L8.54,13.12L7.12,14.54L5,12.41L2.88,14.54L1.46,13.12L3.59,11L1.46,8.88L2.88,7.46L5,9.59Z"></path>'
+};
+const status_text = {
+  'pending': 'Pending',
+  'interested': 'Interested',
+  'going': 'Going',
+  'unavailable': 'Unavailable'
+};
+
+export default {
+  mounted(){
+    console.log('AttendeeStatus mounted.', this.status);
+  },
+  data: function(){
+    return {
+      status_icons: status_icons,
+      status_text: status_text,
+      showStatusChange: false
+    };
+  },
+  props: ['status'],
+  methods: {
+    changeStatus: function(){
+      this.showStatusChange = !this.showStatusChange;
+    },
+    update: function(status) {
+      this.$emit('update',this.status,status);
+    }
+  },
+  computed: {
+  }
+}
+</script>
