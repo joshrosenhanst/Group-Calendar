@@ -4,6 +4,7 @@
   Relationships:
   User: one-to-many (an event belongs to one creator)
   Group: one-to-many (an event belongs to one group)
+  Attendees: many-to-many (users can attend many events)
   Comments: one-to-many polymoprhic (an event can have many comments)
 */
 
@@ -89,6 +90,13 @@ class Event extends Model
   */
   public function creator(){
     return $this->belongsTo('App\User', 'creator_id');
+  }
+
+  /*
+    attendees() - Defines a many-to-many relationship with the User model (uses the EventUser pivot).
+  */
+  public function attendees(){
+    return $this->belongsToMany('App\User')->withPivot('status');
   }
 
   /*

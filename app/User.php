@@ -5,6 +5,7 @@
   Group: many-to-many (users can belong to many different groups)
   Event: one-to-many (a user can create many events, but an event can only have 1 creator)
   Comment: one-to-many (a user can create many comments, but a comment can only have 1 creator)
+  Attending: many-to-many (users can attend many events)
 */
 
 namespace App;
@@ -71,7 +72,7 @@ class User extends Authenticatable
     groups() - Defines a many-to-many relationship with the Group model.
   */
   public function groups(){
-    return $this->belongsToMany('App\Group');
+    return $this->belongsToMany('App\Group')->withPivot('role');
   }
 
   /*
@@ -79,6 +80,13 @@ class User extends Authenticatable
   */
   public function events(){
     return $this->hasMany('App\Event','creator_id');
+  }
+
+  /*
+    attending() - Defines a many-to-many relationship with the Event model (uses the EventUser pivot).
+  */
+  public function attending(){
+    return $this->belongsToMany('App\Event')->withPivot('status');
   }
 
   /*
