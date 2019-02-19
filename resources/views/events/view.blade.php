@@ -5,10 +5,13 @@
 @section('content')
 <article id="maincontent">
   <div class="card event_card">
+    {{-- Page Header --}}
     <div class="card_header card_header-no_content"></div>
     <div class="card_section card_section-title">
       {{ Breadcrumbs::render('events.view', $event) }}
     </div>
+
+    {{-- Event Details --}}
     <div class="card_section card_section-background_image" style="background-image:url({{ asset($event->header) }})"></div>
     <div class="card_section event_card_section-main">
       <h1 class="event_title">{{ $event->name }}</h1>
@@ -60,6 +63,18 @@
         </div>
       </dl>
     </div>
+  </div>
+
+  {{-- Additional info cards --}}
+  <div class="maincontent_container">
+    <div class="maincontent_mid_section">
+      {{-- Event Comments --}}
+      @include('blocks.events.comments', ['comments'=>$event->comments])
+    </div>
+    <aside class="maincontent_aside">
+      {{-- Event Attendees --}}
+      @include('blocks.events.attendees', ['attendees'=>[]])
+    </aside>
   </div>
 </article>
 @include('layouts.sidebar')
