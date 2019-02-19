@@ -37,11 +37,10 @@
           'required' => true,
           'default_option' => 'Select a Group',
           'options' => Auth::user()->group_select,
-          'selected' => 1,
-          'old' => old('group')
+          'old' => old('group', request('group'))
         ],
         'help' => 'This is a help block',
-        'errors' => $errors->get('name')
+        'errors' => $errors->get('group')
       ])
       @include('partials.form_inline_group', [
         'label' => ['text' => 'Start Date'],

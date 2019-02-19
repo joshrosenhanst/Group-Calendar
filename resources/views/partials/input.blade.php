@@ -22,7 +22,7 @@
           @foreach($input['options'] as $option)
             <option 
               value="{{ $option['value'] }}"
-              @if(isset($input['selected']) && $input['selected'] === $option['value'])
+              @if( isset($input['old']) && $input['old'] == $option['value'] )
               selected
               @endif
             >{{ $option['text'] }}</option>
