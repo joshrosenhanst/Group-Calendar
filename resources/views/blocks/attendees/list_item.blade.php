@@ -3,6 +3,7 @@
     <img src="{{ asset($user->avatar) }}" alt="{{ $user->name }} Avatar">
   </a>
   <a href="{{ route('users.view', ['user'=>$user]) }}" class="preview_name">
-    {{ $user->name }} <small>{{ $user->pivot->status }}</small>
+    {{ $user->name }} 
+    <small>{{ __('status.attendee.'.$user->pivot->status) }}</small>
   </a>
 </div>
