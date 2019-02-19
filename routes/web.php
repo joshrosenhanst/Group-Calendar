@@ -34,6 +34,7 @@ Route::middleware('auth')->prefix('events/')->name('events.')->group(function(){
   Route::get('/new','EventController@new')->name('new');
   Route::get('/{event}','EventController@view')->name('view');
   Route::get('/{event}/edit','EventController@edit')->name('edit');
+  Route::get('/{event}/attend','EventController@attend')->name('attend');
   Route::get('/{event}/delete','EventController@delete')->name('delete');
   Route::put('/create', 'EventController@create')->name('create');
   Route::put('/{event}/update', 'EventController@update')->name('update');
