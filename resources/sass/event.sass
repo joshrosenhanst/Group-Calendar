@@ -20,7 +20,7 @@
     .seperated_count
       span:not(:only-of-type):not(:last-of-type)::after
         content: " | "
-    .icon
+    &>.icon
       width: 32px
       height: 32px
       color: $text-light
@@ -31,10 +31,6 @@
         font-size: $size-normal
         color: $text-light
         display: block
-  .event_date
-  .attend_buttons
-    margin: 15px auto 15px auto
-    max-width: 250px
   .event_card_section-main
     border-top: 4px solid $primary
     padding-top: 10px
