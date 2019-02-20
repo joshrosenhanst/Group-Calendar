@@ -29,6 +29,7 @@ Vue.component('material-icon', require('./components/MaterialIcon.vue').default)
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
-const app = new Vue({
+/*const app = new Vue({
     el: '#app'
 });
+*/
