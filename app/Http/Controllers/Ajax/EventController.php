@@ -18,7 +18,7 @@ class EventController extends Controller
     ]);
 
     $new_status = $request->input('status', 'pending');
-    $user = $request->user;
+    $user = $request->user_id;
 
     $attendee = $event->attendees()->where('user_id',$user)->first();
     if($attendee){
