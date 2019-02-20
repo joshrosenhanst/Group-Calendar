@@ -3,9 +3,9 @@
   The User model reflects users of the application.
   Relationships:
   Group: many-to-many (users can belong to many different groups)
-  Event: one-to-many (a user can create many events, but an event can only have 1 creator)
   Comment: one-to-many (a user can create many comments, but a comment can only have 1 creator)
-  Attending: many-to-many (users can attend many events)
+  Created Events: one-to-many (a user can create many events, but an event can only have 1 creator)
+  Attending Events: many-to-many (users can attend many events)
 */
 
 namespace App;
@@ -68,6 +68,19 @@ class User extends Authenticatable
     return $this->created_at->format('F Y');
   }
 
+  public function getEventsAttribute(){
+    return $this->getEvents();
+  }
+
+  /*
+    getEvents() - Returns a collection of all available events via the user's group relation. Used by the `getEventsAttribute()` accessor.
+  */
+  public function getEvents(){
+    $this->load('groups.events');
+    $collection = collect($this->groups->pluck('events'))->collapse()->unique();
+    return $collection;
+  }
+
   /*
     groups() - Defines a many-to-many relationship with the Group model.
   */
@@ -76,16 +89,16 @@ class User extends Authenticatable
   }
 
   /*
-    events() - Defines a one-to-many relationship with the Event model.
+    created_events() - Defines a one-to-many relationship with the Event model.
   */
-  public function events(){
+  public function created_events(){
     return $this->hasMany('App\Event','creator_id');
   }
 
   /*
     attending() - Defines a many-to-many relationship with the Event model (uses the EventUser pivot).
   */
-  public function attending(){
+  public function attending_events(){
     return $this->belongsToMany('App\Event')->withPivot('status');
   }
 
