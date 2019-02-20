@@ -13,10 +13,12 @@ use Illuminate\Http\Request;
 |
 */
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
+/*Route::middleware('auth:api')->get('/user', function (Request $request) {
+	return $request->user();
+});*/
+
+/* EVENTS */
+Route::middleware('auth:api')->prefix('events/')->name('events.')->group(function(){
+	Route::get('/', 'EventController@index')->name('index');
+  Route::get('/{event}','EventController@view')->name('view');
 });
-
-// /events: return my events
-
-// /groups: return my groups
