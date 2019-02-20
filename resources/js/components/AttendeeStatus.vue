@@ -40,8 +40,8 @@
 const status_icons = {
   'pending': 'account-question',
   'interested': 'star',
-  'going': 'account-question',
-  'unavailable': 'close'
+  'going': 'account-check',
+  'unavailable': 'account-remove'
 };
 const status_text = {
   'pending': 'Pending',
@@ -67,7 +67,8 @@ export default {
       this.showStatusChange = !this.showStatusChange;
     },
     update: function(status) {
-      this.$emit('update',this.status,status);
+      this.$emit('update',status);
+      this.showStatusChange = false;
     }
   },
   computed: {
