@@ -3,7 +3,6 @@
 @section('title', $event->name)
 
 @section('content')
-@materialicon('pencil')
 <article id="maincontent">
   <div class="card event_card">
     {{-- Page Header --}}
