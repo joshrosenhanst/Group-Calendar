@@ -56,6 +56,8 @@ class EventController extends Controller
       $user_attendee = $event->attendees()->where('user_id', Auth::user()->id)->first();
       $user_status = ($user_attendee ? $user_attendee->pivot->status : null);
 
+      $event->loadMissing('comments.user');
+
       return view('events.view', ['event'=>$event, 'user_status'=>$user_status]);
     }
 
