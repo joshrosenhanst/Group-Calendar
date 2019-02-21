@@ -3,6 +3,7 @@
 @section('title', $event->name)
 
 @section('content')
+@materialicon('pencil')
 <article id="maincontent">
   <div class="card event_card">
     {{-- Page Header --}}
@@ -85,7 +86,15 @@
   <div class="maincontent_container">
     <div class="maincontent_mid_section">
       {{-- Event Comments --}}
-      @include('blocks.events.comments', ['comments'=>$event->comments])
+      {{--@include('blocks.events.comments', ['comments'=>$event->comments])--}}
+      <comments-card
+        v-bind:comments="comments"
+        v-bind:user="user"
+
+        v-on:create-comment="createComment"
+        v-on:update-comment="updateComment"
+        v-on:delete-comment="deleteComment"
+      ></comments-card>
     </div>
     <aside class="maincontent_aside">
       {{-- Event Attendees --}}
@@ -103,7 +112,8 @@ const app = new Vue({
   data: {
     user: @json(Auth::user()),
     event: @json($event->id),
-    user_status: @json($user_status)
+    user_status: @json($user_status),
+    comments: @json($event->comments)
   },
   methods: {
     updateStatus: function(status){
@@ -114,6 +124,36 @@ const app = new Vue({
       }).then((response) => {
         console.log(response);
         this.user_status = response.data;
+      }).catch((error) => {
+        console.log(error);
+      });
+    },
+    createComment: function(text){
+      console.log("create comment",text,this.user.id);
+      axios.put(`/ajax/events/${this.event}/comment/create`,{
+        'text': text,
+        'user_id': this.user.id
+      }).then((response) => {
+        console.log(response);
+        this.comments = response.data;
+      }).catch((error) => {
+        console.log(error);
+      });
+    },
+    updateComment: function(text,comment_id){
+      axios.put(`/ajax/events/${this.event}/comment/${comment_id}/update`,{
+        'text': text
+      }).then((response) => {
+        console.log(response);
+        this.comments = response.data;
+      }).catch((error) => {
+        console.log(error);
+      });
+    },
+    deleteComment: function(comment_id){
+      axios.delete(`/ajax/events/${this.event}/comment/${comment_id}/delete`).then((response) => {
+        console.log(response);
+        this.comments = response.data;
       }).catch((error) => {
         console.log(error);
       });
