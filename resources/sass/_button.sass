@@ -59,6 +59,12 @@
       background-color: transparent
       border-color: transparent
       box-shadow: none
+  &.button-cancel
+    color: $danger
+    border-color: darken($danger, 10%)
+    &:hover
+      color: darken($danger, 10%)
+      background-color: rgba($danger, 0.05)
   &.button-primary
     +button-colors($primary)
   &.button-info

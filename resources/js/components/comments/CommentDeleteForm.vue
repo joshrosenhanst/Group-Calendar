@@ -4,11 +4,11 @@
       <label class="form_label">Delete Comment?</label>
     </div>
     <div class="comment_form_footer button_group button_group-small">
-      <button class="button button-danger" type="submit">
+      <button class="button button-danger button-inverted" type="submit">
         <material-icon name='delete'></material-icon>
         <span>Delete Comment</span>
       </button>
-      <button class="button" v-on:click.prevent="cancelDelete">
+      <button class="button button-cancel" v-on:click.prevent="cancelDelete">
         <material-icon name='cancel'></material-icon>
         <span>Cancel</span>
       </button>

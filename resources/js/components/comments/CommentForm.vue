@@ -19,13 +19,13 @@
       </div>
     </div>
     <div class="comment_form_footer button_group button_group-small">
-      <button class="button button-link" type="submit">
+      <button class="button button-link button-inverted" type="submit">
         <material-icon name='comment-check'></material-icon>
         <span>
           <slot></slot>
         </span>
       </button>
-      <button class="button button-danger" v-on:click.prevent="cancelComment" v-if="id">
+      <button class="button button-cancel" v-on:click.prevent="cancelComment" v-if="id">
         <material-icon name='cancel'></material-icon>
         <span>Cancel</span>
       </button>
