@@ -11,28 +11,28 @@
       <a href="/notifications" class="navbar_item" aria-label="Notifications" title="Notifications">
         <span class="icon">@materialicon('bell')</span>
       </a>
-      <div class="navbar_item navbar_dropdown">
-        <a class="dropdown_toggle" aria-label="User Links">
+      <div class="navbar_item navbar_dropdown dropdown">
+        <a class="dropdown_toggle" aria-label="User Links" aria-haspopup="true" aria-controls="header_dropdown_items">
           <img class="navbar_image" src="{{ asset(Auth::user()->avatar) }}" alt="{{ Auth::user()->name }} avatar">
           <span>{{ Auth::user()->name }}</span>
         </a>
-        <div class="dropdown_items">
-            <a href="{{ route('events.calendar') }}" class="dropdown_item">
-              <span class="icon">@materialicon('calendar-range')</span>
-              <span>My Calendar</span>
-            </a>
-            <a href="{{ route('groups.index') }}" class="dropdown_item">
-              <span class="icon">@materialicon('account-group')</span>
-              <span>My Groups</span>
-            </a>
-            <a href="{{ route('groups.index') }}" class="dropdown_item">
-              <span class="icon">@materialicon('account')</span>
-              <span>My Profile</span>
-            </a>
-            <a href="{{ route('logout') }}" class="dropdown_item">
-              <span class="icon">@materialicon('logout')</span>
-              <span>Log Out</span>
-            </a>
+        <div class="dropdown_items" id="header_dropdown_items" role="menu">
+          <a href="{{ route('events.calendar') }}" class="dropdown_item">
+            <span class="icon">@materialicon('calendar-range')</span>
+            <span>My Calendar</span>
+          </a>
+          <a href="{{ route('groups.index') }}" class="dropdown_item">
+            <span class="icon">@materialicon('account-group')</span>
+            <span>My Groups</span>
+          </a>
+          <a href="{{ route('groups.index') }}" class="dropdown_item">
+            <span class="icon">@materialicon('account')</span>
+            <span>My Profile</span>
+          </a>
+          <a href="{{ route('logout') }}" class="dropdown_item">
+            <span class="icon">@materialicon('logout')</span>
+            <span>Log Out</span>
+          </a>
         </div>
       </div>
     </div>
