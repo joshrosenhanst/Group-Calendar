@@ -66,11 +66,19 @@
       {{-- Event Creator / Link --}}
       <dl class="event_description_list">
         <div class="description_list_group">
-          <dt>Created By</dt>
+          <dt>Created</dt>
           <dd>
-            <a href="{{ route('users.view', ['user'=>$event->creator]) }}">{{ $event->creator->name }}</a>
+            <strong>{{ $event->created_at->format('m/d/Y h:i A') }}</strong> by <a href="{{ route('users.view', ['user'=>$event->creator]) }}">{{ $event->creator->name }}</a>
           </dd>
         </div>
+        @if($event->edited)
+        <div class="description_list_group">
+          <dt>Updated</dt>
+          <dd>
+            <strong>{{ $event->updated_at->format('m/d/Y h:i A') }}</strong> by <a href="{{ route('users.view', ['user'=>$event->updater]) }}">{{ $event->updater->name }}</a>
+          </dd>
+        </div>
+        @endif
         <div class="description_list_group">
           <dt>Event Link</dt>
           <dd>
