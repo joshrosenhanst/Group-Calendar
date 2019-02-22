@@ -40,6 +40,7 @@
       border-left: 1px solid $navbar-border
     &:hover, &:focus, &:active
       background-color: $navbar-hover
+      text-decoration: none
     &.navbar_dropdown
       position: relative
       padding: 0
@@ -52,6 +53,8 @@
         display: flex
         align-items: center
         justify-content: center
+        &:hover
+          text-decoration: none
         &::after
           +arrow
           border-color: $navbar-dropdown-arrow
@@ -101,6 +104,7 @@
       &:hover
         color: $link
         background-color: $grey-lightest
+        text-decoration: none
       .icon
         margin-right: 5px
         color: $primary
