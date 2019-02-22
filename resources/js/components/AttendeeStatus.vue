@@ -58,7 +58,7 @@ export default {
     return {
       status_icons: status_icons,
       status_text: status_text,
-      showStatusChange: false
+      showStatusChange: !this.status
     };
   },
   props: ['status'],
