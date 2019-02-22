@@ -16,6 +16,31 @@ class Comment extends Model
   protected $fillable = [
     'text', 'user_id'
   ];
+
+  protected $appends = [
+    'created_text', 'updated_text', 'edited'
+  ];
+
+  /*
+    getEditedAttribute() - Accessor method that determines if the comment has ever been edited. Returns a boolean.
+  */
+  public function getEditedAttribute(){
+    return ($this->created_at !== $this->updated_at);
+  }
+
+  /*
+    getCreatedTextAttribute() - Accessor method that converts the `created_at` timestamp into a human readable format like '22 hours ago'
+  */
+  public function getCreatedTextAttribute(){
+    return $this->created_at->diffForHumans();
+  }
+
+  /*
+    getCreatedTextAttribute() - Accessor method that converts the `updated_at` timestamp into a human readable format like '22 hours ago'
+  */
+  public function getUpdatedTextAttribute(){
+    return $this->updated_at->diffForHumans();
+  }
   
   public function commentable(){
     return $this->morphTo();
