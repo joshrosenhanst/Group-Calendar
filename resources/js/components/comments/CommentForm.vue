@@ -6,7 +6,7 @@
       <label class="form_label"
         v-bind:for="textarea_id"
       >{{ label }}</label>
-      <textarea class="form_input" 
+      <textarea class="form_input form_input-small" 
       v-bind:placeholder="`${label}...`" 
       v-model="formText"
       v-bind:id="textarea_id"
