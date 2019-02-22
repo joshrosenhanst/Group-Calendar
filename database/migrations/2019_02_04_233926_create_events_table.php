@@ -19,6 +19,7 @@ class CreateEventsTable extends Migration
             $table->string('name');
             $table->unsignedInteger('group_id');
             $table->unsignedInteger('creator_id');
+            $table->unsignedInteger('updater_id')->nullable();
             $table->string('header_url')->nullable();
             $table->string('description')->nullable();
             $table->date('start_date');

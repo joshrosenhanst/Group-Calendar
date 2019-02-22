@@ -2,7 +2,8 @@
 /*
   The Event model reflects events created by users.
   Relationships:
-  User: one-to-many (an event belongs to one creator)
+  Creator User: one-to-many (an event belongs to one creator)
+  Updater User: one-to-many (an event belongs to one updater)
   Group: one-to-many (an event belongs to one group)
   Attendees: many-to-many (users can attend many events)
   Comments: one-to-many polymoprhic (an event can have many comments)
@@ -16,7 +17,7 @@ use Illuminate\Support\Carbon;
 class Event extends Model
 {
   protected $fillable = [
-    'name', 'group_id', 'creator_id', 'header_url', 'description', 'start_date', 'start_time', 'end_date', 'end_time'
+    'name', 'group_id', 'creator_id', 'updater_id', 'header_url', 'description', 'start_date', 'start_time', 'end_date', 'end_time'
   ];
 
   protected $casts = [
@@ -30,6 +31,13 @@ class Event extends Model
   protected $withCount = [
     'going_attendees', 'interested_attendees'
   ];
+
+  /*
+    getEditedAttribute() - Accessor method that determines if the event has been edited. Returns a boolean.
+  */
+  public function getEditedAttribute(){
+    return ($this->created_at != $this->updated_at);
+  }
 
   /*
     isMultiDayEvent() - Boolean check if the event is a multi day event. Check if the `end_date` is set and also check that the `start_date` doesn't match the `end_date`.
@@ -97,6 +105,13 @@ class Event extends Model
   */
   public function creator(){
     return $this->belongsTo('App\User', 'creator_id');
+  }
+
+  /*
+    action_last_user() - Defines an inverse one-to-many relationship with the User model for the user that last updated the event.
+  */
+  public function updater(){
+    return $this->belongsTo('App\User', 'updater_id');
   }
 
   /*

@@ -83,14 +83,21 @@ class EventController extends Controller
         'name' => $request->name,
         'header_url' => $request->header_url,
         'group_id' => $request->group,
+        'updater_id' => Auth::user()->id,
         'description' => $request->description,
         'start_date' => $request->start_date,
         'start_time' => $request->start_time,
         'end_date' => $request->end_date,
         'end_time' => $request->end_time
       ]);
-
       //trigger "event updated" Event
+
+      if($request->update_comment){
+        $event->comments()->create([
+          'text' => $request->update_comment,
+          'user_id' => Auth::user()->id
+        ]);
+      }
 
       return redirect()->route('events.view', ['event'=>$event])->with('status', 'The event has been updated.');
     }
