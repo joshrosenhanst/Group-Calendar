@@ -74,7 +74,6 @@ class EventController extends Controller
     public function update(Request $request, \App\Event $event){
       $request->validate([
         'name' => 'required',
-        'group' => 'required',
         'start_date' => 'required|date',
         'end_date' => 'nullable|date'
       ]);
@@ -82,7 +81,6 @@ class EventController extends Controller
       $event->update([
         'name' => $request->name,
         'header_url' => $request->header_url,
-        'group_id' => $request->group,
         'updater_id' => Auth::user()->id,
         'description' => $request->description,
         'start_date' => $request->start_date,

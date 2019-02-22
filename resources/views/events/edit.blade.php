@@ -24,24 +24,15 @@
           'required' => true,
           'old' => old('name', $event->name)
         ],
-        'help' => 'This is a help block',
         'errors' => $errors->get('name')
       ])
-      @include('partials.form_inline_group', [
+      @include('partials.form_inline_static', [
         'label' => ['text' => 'Group'],
-        'input' => [
-          'name' => 'group',
-          'type' => 'select',
-          'id' => 'group',
-          'placeholder' => 'Group',
-          'required' => true,
-          'default_option' => 'Select a Group',
-          'options' => Auth::user()->group_select,
-          'selected' => 1,
-          'old' => old('group', $event->group_id)
+        'icon' => [
+          'align' => 'left',
+          'name' => 'account-multiple'
         ],
-        'help' => 'This is a help block',
-        'errors' => $errors->get('name')
+        'slot' => $event->group->name
       ])
       @include('partials.form_inline_group', [
         'label' => ['text' => 'Start Date'],
@@ -83,6 +74,23 @@
           'old' => old('description', $event->description)
         ],
         'errors' => $errors->get('description')
+      ])
+      @include('partials.form_inline_group', [
+        'label' => ['text' => 'Update Comment'],
+        'input' => [
+          'name' => 'update_comment',
+          'type' => 'textarea',
+          'id' => 'update_comment',
+          'class' => 'form_input form_input-small',
+          'placeholder' => 'Leave a comment about your update...',
+          'old' => old('update_comment')
+        ],
+        'icon' => [
+          'align' => 'left',
+          'name' => 'comment-outline'
+        ],
+        'help' => 'Optionally leave a comment describing your update.',
+        'errors' => $errors->get('update_comment')
       ])
 
       <div class="form_footer">
