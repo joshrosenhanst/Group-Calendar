@@ -85,7 +85,6 @@
   <div class="maincontent_container">
     <div class="maincontent_mid_section">
       {{-- Event Comments --}}
-      {{--@include('blocks.events.comments', ['comments'=>$event->comments])--}}
       <comments-card
         v-bind:comments="comments"
         v-bind:user="user"
