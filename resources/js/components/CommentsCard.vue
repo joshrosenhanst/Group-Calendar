@@ -29,12 +29,19 @@
         <h2>No Comments Found</h2>
       </div>
     </div>
-    <div class="card_section card_section-form">
-      <comment-form
-        textarea_id="new_comment"
-        label="Add a Comment"
-        v-on:submit-comment="createComment($event)"
-      >Submit Comment</comment-form>
+    <div class="card_section card_section-form card_section-new_comment">
+      <div class="comment_avatar">
+        <a v-bind:href="`/users/${user.id}`" class="preview_thumbnail">
+          <img v-bind:src="`/${user.avatar}`" v-bind:alt="`${user.name} Avatar`">
+        </a>
+      </div>
+      <div class="comment_body">
+        <comment-form
+          textarea_id="new_comment"
+          label="Add a Comment"
+          v-on:submit-comment="createComment($event)"
+        >Submit Comment</comment-form>
+      </div>
     </div>
   </div>
 </template>

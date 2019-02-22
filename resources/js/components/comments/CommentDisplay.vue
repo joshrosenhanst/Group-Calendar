@@ -2,8 +2,8 @@
   <div class="list_item comment_display">
     <div class="comment_avatar">
       <a v-bind:href="`/users/${comment.user.id}`" class="preview_thumbnail">
-      <img v-bind:src="`/${comment.user.avatar}`" v-bind:alt="`${comment.user.name} Avatar`">
-    </a>
+        <img v-bind:src="`/${comment.user.avatar}`" v-bind:alt="`${comment.user.name} Avatar`">
+      </a>
     </div>
     <div class="comment_body">
       <div class="comment_meta">
@@ -28,7 +28,7 @@
       <div class="comment_text">
         <div>{{ comment.text }}</div>
         <div class="comment_edited" v-if="comment.edited">Edited {{ comment.updated_text }}</div>
-        <div class="comment_form comment_form-small" v-if="showForm">
+        <div class="comment_form" v-if="showForm">
           <comment-form
             label="Update Comment"
             v-show="isOpen"

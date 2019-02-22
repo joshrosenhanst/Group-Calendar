@@ -1,28 +1,32 @@
 .comment_display.list_item
   align-items: flex-start
-  .comment_avatar
-    flex-grow: 0
-    flex-shrink: 1
-    .preview_thumbnail
-      width: 48px
-      height: 48px
-  .comment_body
-    flex-grow: 1
-    flex-shrink: 0
-    .comment_meta
-      font-size: $size-small
-      .comment_user_name
-      .comment_date
-        color: $text-light
-    .comment_text
-    .comment_edited
+  .comment_meta
+    font-size: $size-small
+    .comment_user_name
+    .comment_date
       color: $text-light
-      font-size: 0.75rem
-    .comment_form
-      padding: 10px 0
-      .form_group
-        margin-bottom: 10px
-      textarea.form_input
-        min-height: 80px
-        max-height: 200px
+  .comment_text
+  .comment_edited
+    color: $text-light
+    font-size: 0.75rem
+  .comment_form
+    padding: 10px 0
+    .form_group
+      margin-bottom: 10px
+    textarea.form_input
+      min-height: 80px
+      max-height: 200px
+
+.card .card_section-new_comment
+  display: flex
+  padding: 10px
+.comment_avatar
+  flex-grow: 0
+  flex-shrink: 1
+  .preview_thumbnail
+    width: 48px
+    height: 48px
+.comment_body
+  flex-grow: 1
+  flex-shrink: 0
 
