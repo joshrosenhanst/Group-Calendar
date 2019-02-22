@@ -8,12 +8,11 @@
     </div>
     @auth
     <div class="navbar_right">
-      <a href="/notifications" class="navbar_item">
+      <a href="/notifications" class="navbar_item" aria-label="Notifications" title="Notifications">
         <span class="icon">@materialicon('bell')</span>
-        <span>Notifications</span>
       </a>
       <div class="navbar_item navbar_dropdown">
-        <a class="dropdown_toggle">
+        <a class="dropdown_toggle" aria-label="User Links">
           <img class="navbar_image" src="{{ asset(Auth::user()->avatar) }}" alt="{{ Auth::user()->name }} avatar">
           <span>{{ Auth::user()->name }}</span>
         </a>
