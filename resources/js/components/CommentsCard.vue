@@ -3,7 +3,7 @@
     <div class="card_header">
       <h2>
         <material-icon name='comment-multiple'></material-icon>
-        <span>Comments</span>
+        <span>{{ title || "Comments"}}</span>
       </h2>
     </div>
     <div class="card_section comments_section card_list" v-if="comments.length">
@@ -59,7 +59,7 @@ export default {
   components: {
     CommentDisplay, CommentForm
   },
-  props: ['comments','user'],
+  props: ['comments','user','title'],
   methods: {
     createComment: function(event) {
       this.$emit('create-comment',event.text);
