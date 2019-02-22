@@ -14,20 +14,27 @@
     {{-- Group Details --}}
     @component('components.group.summary', ['group'=>$group])
       @slot('links')
-        <div class="group_links button_group button_group-inverted button_group-link button_group-small">
-            <a href="{{ route('events.new', ['group'=>$group]) }}" class="button">
+      <div class="group_links">
+        <div class="button_dropdown dropdown">
+          <button class="button button-link button-inverted dropdown_toggle" aria-label="Group Controls" aria-haspopup="true" aria-controls="group_dropdown_items">
+            <span class="icon">@materialicon('chevron-down')</span>
+          </button>
+          <div class="dropdown_items" id="group_dropdown_items" role="menu">
+            <a href="{{ route('events.new', ['group'=>$group]) }}" class="dropdown_item">
               <span class="icon">@materialicon('calendar-plus')</span>
               <span>New Event</span>
             </a>
-            <a href="{{ route('events.index', ['group'=>$group]) }}" class="button">
+            <a href="{{ route('events.index', ['group'=>$group]) }}" class="dropdown_item">
               <span class="icon">@materialicon('calendar-range')</span>
-              <span>Group Events</span>
+              <span>Group Calendar</span>
             </a>
-            <a href="{{ route('groups.members', ['group'=>$group]) }}" class="button">
+            <a href="{{ route('groups.members', ['group'=>$group]) }}" class="dropdown_item">
               <span class="icon">@materialicon('account-multiple')</span>
-              <span>Group Members</span>
+              <span>Members</span>
             </a>
           </div>
+        </div>
+      </div>
       @endslot
     @endcomponent
   </div>
