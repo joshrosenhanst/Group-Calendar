@@ -146,7 +146,7 @@ class Event extends Model
     comments() - Defines a polymorphic relationship with the Comments model.
   */
   public function comments(){
-    return $this->morphMany('App\Comment', 'commentable');
+    return $this->morphMany('App\Comment', 'commentable')->latest();
   }
 
   /*
