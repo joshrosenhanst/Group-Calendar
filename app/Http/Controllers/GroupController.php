@@ -18,14 +18,11 @@ class GroupController extends Controller{
     view() - Display the `groups.home` page template.
   */
   public function view(\App\Group $group) {
-    $group->loadMissing('users');
+    $group->loadMissing(['users','comments.user']);
     $upcoming_events = $group->getUpcomingEvents();
-    $latest_comments = $group->getLatestComments();
-    $latest_comments->loadMissing('user');
     return view('groups.view', [
       'group' => $group,
-      'events' => $upcoming_events,
-      'comments' => $latest_comments
+      'events' => $upcoming_events
     ]);
   }
 }
