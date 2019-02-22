@@ -38,7 +38,7 @@
       <div class="comment_body">
         <comment-form
           textarea_id="new_comment"
-          label="Add a Comment"
+          label="Leave a Comment"
           v-on:submit-comment="createComment($event)"
         >Submit Comment</comment-form>
       </div>
