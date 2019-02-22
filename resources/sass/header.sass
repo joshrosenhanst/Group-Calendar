@@ -42,17 +42,13 @@
       background-color: $navbar-hover
       text-decoration: none
     &.navbar_dropdown
-      position: relative
       padding: 0
-      &:hover,&.navbar_dropdown-active
-        .dropdown_items
-          display: block
+      .dropdown_items
+        right: -1px
+        border-top: 1px solid $navbar-border
       .dropdown_toggle
         padding: 0 2em 0 10px
         color: $navbar-item-color
-        display: flex
-        align-items: center
-        justify-content: center
         &:hover
           text-decoration: none
         &::after
@@ -73,47 +69,3 @@
       flex: 1 1 auto
       border: 1px solid $navbar-border
       margin-right: 4px
-      
-.navbar_dropdown
-  padding: 0
-  .dropdown_items
-    min-width: 200px
-    display: none
-    position: absolute
-    left: auto
-    right: -1px
-    top: 100%
-    z-index: 20
-    border-top: 1px solid $navbar-border
-    box-shadow:0 6px 12px rgba(10,10,10,0.1)
-    background-color: $white
-    border-bottom: 4px solid $primary
-    border-bottom-left-radius: $radius
-    border-bottom-right-radius: $radius
-    .dropdown_item
-      display: flex
-      align-items: center
-      padding: 10px
-      white-space: nowrap
-      font-weight: 400
-      color: $text
-      text-shadow: none
-      border: 1px solid $grey-lightest
-      margin-bottom: -1px
-      line-height:1.5em
-      &:hover
-        color: $link
-        background-color: $grey-lightest
-        text-decoration: none
-      .icon
-        margin-right: 5px
-        color: $primary
-        svg
-          width: 2rem
-          height: 2rem
-    .dropdown_divider
-      display: block
-      background-color: $primary
-      border: 0
-      height: 2px
-      margin: 0
