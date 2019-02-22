@@ -62,14 +62,14 @@ class Group extends Model
     events() - Defines a one to many relationship with the Event model.
   */
   public function events(){
-    return $this->hasMany('App\Event');
+    return $this->hasMany('App\Event')->latest();
   }
 
   /*
-    comments() - Defines a polymorphic relationship with the Comments model.
+    comments() - Defines a polymorphic relationship with the Comments model. Sort by latest (`created_at`).
   */
   public function comments(){
-    return $this->morphMany('App\Comment', 'commentable');
+    return $this->morphMany('App\Comment', 'commentable')->latest();
   }
 
   /*
@@ -78,13 +78,5 @@ class Group extends Model
   */
   public function getUpcomingEvents($limit = 4){
     return $this->events()->upcoming()->limit($limit)->get();
-  }
-
-  /*
-    getLatestComments($limit) - Grab the most recent comments on the group.
-    $limit - number of comments to grab.
-  */
-  public function getLatestComments($limit = 5){
-    return $this->comments()->latest()->limit($limit)->get();
   }
 }
