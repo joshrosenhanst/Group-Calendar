@@ -13,11 +13,11 @@
     </a>
     <a href="{{ route('events.index', ['group'=>$group]) }}" class="sidebar_link">
       <span class="icon">@materialicon('calendar-range')</span>
-      <span>Group Events</span>
+      <span>Group Calendar</span>
     </a>
     <a href="{{ route('groups.members', ['group'=>$group]) }}" class="sidebar_link">
       <span class="icon">@materialicon('account-multiple')</span>
-      <span>Group Members</span>
+      <span>Members</span>
     </a>
   </div>
   <div class="sidebar_footer sidebar_footer-no_content"></div>
