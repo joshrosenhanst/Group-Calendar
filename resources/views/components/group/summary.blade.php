@@ -12,13 +12,6 @@
     </div>
     @isset($links)
     {{ $links }}
-    @else
-    <div class="group_links">
-      <a href="{{ route('groups.view', ['group'=>$group]) }}" class="button button-link button-inverted">
-        <span class="icon">@materialicon('account-group')</span>
-        <span>View Group</span>
-      </a>
-    </div>
     @endisset
   </div>
 </div>
