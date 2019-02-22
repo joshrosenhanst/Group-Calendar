@@ -1,38 +1,52 @@
 <template>
   <div class="list_item comment_display">
-    <div class="card_buttons-top_right">
-      <button class="button-icon" aria-label="Edit Comment" title="Edit Comment" 
-        v-bind:class="{ 'button-active': isOpen }"
-        v-if="showForm"
-        v-on:click="toggleCommentForm"
-      >
-        <material-icon name='pencil'></material-icon>
-      </button>
-      <button class="button-icon" aria-label="Delete Comment" title="Delete Comment" 
-        v-if="showForm"
-        v-on:click="toggleDeleteForm"
-      >
-        <material-icon name='cancel'></material-icon>
-      </button>
+    <div class="comment_avatar">
+      <a v-bind:href="`/users/${comment.user.id}`" class="preview_thumbnail">
+      <img v-bind:src="`/${comment.user.avatar}`" v-bind:alt="`${comment.user.name} Avatar`">
+    </a>
     </div>
-    <h3>{{ comment.user.name }}</h3>
-    <div>{{ comment.text }}</div>
-    <div class="comment_form comment_form-small" v-if="showForm">
-        <comment-form
-          v-show="isOpen"
-          v-bind:text="comment.text"
-          v-bind:id="comment.id"
-          v-bind:textarea_id="`comment_textarea_${comment.id}`"
-          v-on:submit-comment="submitComment"
-          v-on:cancel-comment="cancelComment"
-        >
-          Update Comment
-        </comment-form>
-        <comment-delete-form
-          v-show="isDeleteOpen"
-          v-on:submit-delete="submitDelete"
-          v-on:cancel-delete="cancelDelete"
-        ></comment-delete-form>
+    <div class="comment_body">
+      <div class="comment_meta">
+        <div class="card_buttons-top_right">
+          <button class="button-icon" aria-label="Edit Comment" title="Edit Comment" 
+            v-bind:class="{ 'button-active': isOpen }"
+            v-if="showForm"
+            v-on:click="toggleCommentForm"
+          >
+            <material-icon name='pencil'></material-icon>
+          </button>
+          <button class="button-icon" aria-label="Delete Comment" title="Delete Comment" 
+            v-if="showForm"
+            v-on:click="toggleDeleteForm"
+          >
+            <material-icon name='delete'></material-icon>
+          </button>
+        </div>
+        <a v-bind:href="`/users/${comment.user.id}`" class="comment_user_name">{{ comment.user.name }}</a>
+        <span class="comment_date" v-bind:title="comment.created_at"> · {{ comment.created_text }}</span>
+      </div>
+      <div class="comment_text">
+        <div>{{ comment.text }}</div>
+        <div class="comment_edited" v-if="comment.edited">Edited {{ comment.updated_text }}</div>
+        <div class="comment_form comment_form-small" v-if="showForm">
+          <comment-form
+            label="Update Comment"
+            v-show="isOpen"
+            v-bind:text="comment.text"
+            v-bind:id="comment.id"
+            v-bind:textarea_id="`comment_textarea_${comment.id}`"
+            v-on:submit-comment="submitComment"
+            v-on:cancel-comment="cancelComment"
+          >
+            Update Comment
+          </comment-form>
+          <comment-delete-form
+            v-show="isDeleteOpen"
+            v-on:submit-delete="submitDelete"
+            v-on:cancel-delete="cancelDelete"
+          ></comment-delete-form>
+        </div>
+      </div>
     </div>
   </div>
 </template>

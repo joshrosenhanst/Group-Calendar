@@ -5,8 +5,9 @@
     >
       <label class="form_label"
         v-bind:for="textarea_id"
-      >Comment</label>
-      <textarea class="form_input" placeholder="Add a comment..." 
+      >{{ label }}</label>
+      <textarea class="form_input" 
+      v-bind:placeholder="`${label}...`" 
       v-model="formText"
       v-bind:id="textarea_id"
       ></textarea>
@@ -17,7 +18,7 @@
         >{{ error }}</div>
       </div>
     </div>
-    <div class="comment_form_footer">
+    <div class="comment_form_footer button_group button_group-small">
       <button class="button button-link" type="submit">
         <material-icon name='comment-check'></material-icon>
         <span>
@@ -43,7 +44,8 @@ export default {
   props: {
     text: String,
     id: Number,
-    textarea_id: String
+    textarea_id: String,
+    label: String
   },
   methods: {
     submitComment: function() {

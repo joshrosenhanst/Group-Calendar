@@ -32,6 +32,7 @@
     <div class="card_section card_section-form">
       <comment-form
         textarea_id="new_comment"
+        label="Add a Comment"
         v-on:submit-comment="createComment($event)"
       >Submit Comment</comment-form>
     </div>
