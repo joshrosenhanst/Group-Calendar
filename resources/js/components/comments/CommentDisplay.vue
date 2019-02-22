@@ -27,7 +27,7 @@
       </div>
       <div class="comment_text">
         <div>{{ comment.text }}</div>
-        <div class="comment_edited" v-if="comment.edited">Edited {{ comment.updated_text }}</div>
+        <div class="comment_edited" v-if="comment.edited" v-bind:title="comment.updated_at">Edited {{ comment.updated_text }}</div>
         <div class="comment_form" v-if="showForm">
           <comment-form
             label="Update Comment"
