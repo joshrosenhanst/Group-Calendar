@@ -25,7 +25,7 @@ class Comment extends Model
     getEditedAttribute() - Accessor method that determines if the comment has ever been edited. Returns a boolean.
   */
   public function getEditedAttribute(){
-    return ($this->created_at !== $this->updated_at);
+    return ($this->created_at != $this->updated_at);
   }
 
   /*
