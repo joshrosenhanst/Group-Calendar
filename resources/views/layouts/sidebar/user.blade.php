@@ -1,10 +1,12 @@
 <div class="sidebar">
   <div class="sidebar_header sidebar_header-no_content"></div>
   <div class="sidebar_header">
-    <a href="{{ route('profile.index') }}" class="avatar_image">
-      <img src="{{ asset(Auth::user()->avatar) }}" alt="{{ Auth::user()->name }} Avatar">
-    </a>
-    <a href="{{ route('profile.index') }}" class="title">{{ Auth::user()->name }}</a>
+    <h1 class="title">
+      <span class="preview_thumbnail">
+        <img src="{{ asset(Auth::user()->avatar) }}" alt="{{ Auth::user()->name }} Avatar">
+      </span>
+      <span>{{ Auth::user()->name }}</span>
+    </h1>
   </div>
   <div class="sidebar_section sidebar_links">
     <a href="{{ route('events.calendar') }}" class="sidebar_link">
@@ -15,13 +17,13 @@
       <span class="icon">@materialicon('account-group')</span>
       <span>My Groups</span>
     </a>
-    <a href="{{ route('profile.index') }}" class="sidebar_link">
-      <span class="icon">@materialicon('account')</span>
-      <span>My Profile</span>
-    </a>
     <a href="{{ route('notifications.index') }}" class="sidebar_link">
       <span class="icon">@materialicon('bell')</span>
       <span>Notifications</span>
+    </a>
+    <a href="{{ route('profile.index') }}" class="sidebar_link">
+      <span class="icon">@materialicon('account-box')</span>
+      <span>Edit Profile</span>
     </a>
     <a href="{{ route('logout') }}" class="sidebar_link">
       <span class="icon">@materialicon('logout')</span>
