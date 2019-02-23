@@ -25,4 +25,14 @@ class GroupController extends Controller{
       'events' => $upcoming_events
     ]);
   }
+
+  /*
+    members() - Display the `groups.members` page template.
+  */
+  public function members(\App\Group $group) {
+    $group->loadMissing(['users']);
+    return view('groups.members', [
+      'group' => $group,
+    ]);
+  }
 }

@@ -12,9 +12,9 @@ Route::middleware('auth')->prefix('groups')->name('groups.')->group(function(){
   Route::get('/', 'GroupController@index')->name('index'); // my groups
   Route::get('/{group}', 'GroupController@view')->name('view'); // view group
   Route::get('/new','GroupController@new')->name('new');
-  Route::get('/{group}/members','GroupController@members')->name('members');
   Route::get('/{group}/edit','GroupController@edit')->name('edit');
   Route::get('/{group}/delete','GroupController@delete')->name('delete');
+  Route::get('/{group}/members','GroupController@members')->name('members');
   Route::get('/{group}/invite','GroupController@invite')->name('invite');
   Route::get('/{group}/join','GroupController@join')->name('join');
   Route::put('/create', 'GroupController@create')->name('create');
