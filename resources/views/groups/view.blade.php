@@ -12,7 +12,8 @@
     </div>
 
     {{-- Group Details --}}
-    @component('components.group.summary', ['group'=>$group])
+    @include('components.group.summary', ['group'=>$group])
+    {{--@component('components.group.summary', ['group'=>$group])
       @slot('links')
       <div class="group_links">
         <div class="button_dropdown dropdown">
@@ -36,7 +37,7 @@
         </div>
       </div>
       @endslot
-    @endcomponent
+    @endcomponent--}}
   </div>
 
   {{-- Upcoming Events --}}
