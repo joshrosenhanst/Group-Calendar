@@ -1,11 +1,10 @@
-<div class="sidebar sidebar_has_avatar">
+<div class="sidebar">
   <div class="sidebar_header sidebar_header-no_content"></div>
-  <div class="sidebar_section sidebar_section-avatar">
-    <a href="{{ route('profile.index') }}" class="sidebar_avatar_image">
+  <div class="sidebar_header">
+    <a href="{{ route('profile.index') }}" class="avatar_image">
       <img src="{{ asset(Auth::user()->avatar) }}" alt="{{ Auth::user()->name }} Avatar">
     </a>
-    <a href="{{ route('profile.index') }}" class="sidebar_avatar_name">{{ Auth::user()->name }}</a>
-    <div class="sidebar_avatar_subtext">Joined {{ Auth::user()->join_date }}</div>
+    <a href="{{ route('profile.index') }}" class="title">{{ Auth::user()->name }}</a>
   </div>
   <div class="sidebar_section sidebar_links">
     <a href="{{ route('events.calendar') }}" class="sidebar_link">
