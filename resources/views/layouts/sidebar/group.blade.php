@@ -1,10 +1,12 @@
-<div class="sidebar sidebar_has_avatar">
+<div class="sidebar">
   <div class="sidebar_header sidebar_header-no_content"></div>
-  <div class="sidebar_section sidebar_section-avatar">
-    <a href="{{ route('groups.view', ['group'=>$group]) }}" class="sidebar_avatar_image">
-      <img src="{{ asset($group->avatar) }}" alt="{{ $group->name }} Avatar">
-    </a>
-    <a href="{{ route('groups.view', ['group'=>$group]) }}" class="sidebar_avatar_name">{{ $group->name }}</a>
+  <div class="sidebar_header">
+    <h1 class="title">
+      <span class="preview_thumbnail">
+        <img src="{{ asset($group->avatar) }}" alt="{{ $group->name }} Avatar">
+      </span>
+      <span>{{ $group->name }}</span>
+    </h1>
   </div>
   <div class="sidebar_section sidebar_links">
     <a href="{{ route('events.new') }}" class="sidebar_link">
@@ -13,11 +15,15 @@
     </a>
     <a href="{{ route('events.index', ['group'=>$group]) }}" class="sidebar_link">
       <span class="icon">@materialicon('calendar-range')</span>
-      <span>Group Calendar</span>
+      <span>Calendar</span>
     </a>
     <a href="{{ route('groups.members', ['group'=>$group]) }}" class="sidebar_link">
       <span class="icon">@materialicon('account-multiple')</span>
       <span>Members</span>
+    </a>
+    <a href="{{ route('groups.edit', ['group'=>$group]) }}" class="sidebar_link">
+      <span class="icon">@materialicon('settings')</span>
+      <span>Settings</span>
     </a>
   </div>
   <div class="sidebar_footer sidebar_footer-no_content"></div>
