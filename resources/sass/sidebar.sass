@@ -2,9 +2,36 @@
   flex-grow: 0
   .sidebar_header
     padding: 10px
-    h1
+    border: 1px solid $card-border-color
+    margin-bottom: -1px
+    &.sidebar_header-no_content
+      background-color: $card-header-background
+    .title
       font-weight: 500
       font-size: $size-medium
+      color: $primary
+      display: flex
+      align-items: center
+      font-weight: 700
+      .icon
+        margin-right: 5px
+    .subtitle
+      font-size: $size-small
+      line-height: 1.3
+      padding: 5px 0
+      color: $text-light
+    .avatar_image
+      border-radius: 50%
+      overflow: hidden
+      width: 70px
+      height: 70px
+      border: 2px solid $primary
+      display: block
+      margin: 0 auto 10px auto
+  .sidebar_title
+    .title
+      font-weight: bold
+      color: $primary
   .section_countline
     display: flex
     justify-content: space-between
