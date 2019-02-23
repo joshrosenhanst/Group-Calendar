@@ -62,7 +62,14 @@
     </aside>
   </div>
 </article>
-@include('layouts.sidebar', ['group_selected'=>$group])
+
+{{-- Sidebars --}}
+<aside id="sidebars">
+  {{-- Group Sidebar --}}
+  @include('layouts.sidebar.group', ['group'=>$group])
+  {{-- User Sidebar --}}
+  @include('layouts.sidebar.user')
+</aside>
 @endsection
 
 @push('scripts')

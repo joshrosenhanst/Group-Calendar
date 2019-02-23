@@ -102,5 +102,10 @@
     </form>
   </div>
 </article>
-@include('layouts.sidebar')
+
+{{-- Sidebars --}}
+<aside id="sidebars">
+  {{-- User Sidebar --}}
+  @include('layouts.sidebar.user')
+</aside>
 @endsection
