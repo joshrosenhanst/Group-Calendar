@@ -9,7 +9,6 @@
     <div class="card_header card_header-no_content"></div>
     <div class="card_section card_section-title">
       {{ Breadcrumbs::render('groups.index') }}
-      <h1 class="title">My Groups</h1>
     </div>
 
     {{-- List of Groups --}}
@@ -19,7 +18,7 @@
         <div class="group_links">
           <a href="{{ route('groups.view', ['group'=>$group]) }}" class="button button-link button-inverted">
             <span class="icon">@materialicon('account-group')</span>
-            <span>View Group</span>
+            <span>View</span>
           </a>
         </div>
         @endslot
@@ -32,6 +31,8 @@
 
 {{-- Sidebars --}}
 <aside id="sidebars">
+  {{-- Group Index Sidebar --}}
+  @include('layouts.sidebar.groups')
   {{-- User Sidebar --}}
   @include('layouts.sidebar.user')
 </aside>
