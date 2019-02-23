@@ -9,6 +9,11 @@
     <div class="card_header card_header-no_content"></div>
     <div class="card_section card_section-title">
       {{ Breadcrumbs::render('groups.index') }}
+      <h1 class="title">
+        <span class="icon">@materialicon('account-group')</span>
+        <span>@lang('pages.groups.index.title')</span>
+      </h1>
+      <div class="subtitle">@lang('pages.groups.index.subtitle')</div>
     </div>
 
     {{-- List of Groups --}}

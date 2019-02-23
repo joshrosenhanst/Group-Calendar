@@ -3,11 +3,8 @@
   <div class="sidebar_header">
     <h2 class="title">
       <span class="icon">@materialicon('account-group')</span>
-      <span>My Groups</span>
+      <span>@lang('pages.groups.index.title')</span>
     </h2>
-    <div class="subtitle">
-      Choose a group from your list or create a new group. You can invite members to your group and manage or create events in the group.
-    </div>
   </div>
   <div class="sidebar_section sidebar_links">
     <a href="{{ route('groups.new') }}" class="sidebar_link">
