@@ -153,3 +153,10 @@
   &.button_group-small
     .button
       @extend .button-small
+
+.button_group-controls
+  display: inline-flex
+  .button
+    flex-shrink: 1
+    &:not(:last-child)
+      margin-right: 5px
