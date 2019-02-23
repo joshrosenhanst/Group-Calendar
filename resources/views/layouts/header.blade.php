@@ -11,7 +11,7 @@
       <a href="/notifications" class="navbar_item" aria-label="Notifications" title="Notifications">
         <span class="icon">@materialicon('bell')</span>
       </a>
-      <a class="navbar_item">
+      <a href="{{ route('profile.index') }}" class="navbar_item">
         <img class="navbar_image" src="{{ asset(Auth::user()->avatar) }}" alt="{{ Auth::user()->name }} avatar">
         <span>{{ Auth::user()->name }}</span>
       </a>
