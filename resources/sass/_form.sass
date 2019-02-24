@@ -47,7 +47,6 @@
     margin-bottom: 5px
     &.form_checkbox,&.form_radio
       cursor: pointer
-      display: inline-block
       position: relative
       font-weight: $weight-normal
       color: $input-checkbox-color
@@ -177,3 +176,11 @@
     padding: 25px 20px 0 20px
     display: flex
     justify-content: center
+
+.form.embedded_form
+  padding: 10px 0
+  .form_group
+    margin-bottom: 10px
+  .button_group
+    display: inline-flex
+    column-gap: 5px
