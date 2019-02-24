@@ -21,25 +21,31 @@
     </div>
 
     {{-- List of Members --}}
-    <div class="card_section card_list">
+    <member-list
+      v-bind:members="members"
+      v-on:update-member="updateMember"
+      v-on:remove-member="removeMember"
+    ></member-list>
+    {{--<div class="card_section card_list">
     @foreach($group->users as $user)
       <div class="list_item list_item-large_thumbnails">
 
-        {{-- Thumbnail --}}
         <a class="preview_thumbnail" href="{{ route('users.view', ['user'=>$user]) }}">
           <img src="{{ asset($user->avatar) }}" alt="{{ $user->name }} Avatar">
         </a>
 
-        {{-- Name, Status, forms --}}
         <div class="item_details">
           <a href="{{ route('users.view', ['user'=>$user]) }}" class="preview_name">{{ $user->name }}</a>
           <div class="subtext">
             <strong>Member</strong> · <span>Joined {{ $user->join_date }}</span>
           </div>
-          {{-- Interactive vue forms go here --}}
+          <div class="item_form">
+            <member-form
+              radio_id="member_radio_{{ $user->id }}"
+            ></member-form>
+          </div>
         </div>
 
-        {{-- Button controls --}}
         <div class="item_controls button_group-controls">
           <button class="button button-info button-inverted button-small">
             <span class="icon">@materialicon('pencil')</span>
@@ -50,7 +56,7 @@
         </div>
       </div>
     @endforeach
-    </div>
+    </div>--}}
 
   </div>
 
@@ -69,6 +75,32 @@
 
 @push('scripts')
 <script>
-
+const app = new Vue({
+  el: '#app',
+  data: {
+    group: @json($group),
+    members: @json($group->users)
+  },
+  methods: {
+    updateMember: function(id,role){
+      axios.put(`/ajax/groups/${this.group.id}/member/${id}/status`,{
+        'role': role
+      }).then((response) => {
+        console.log(response);
+        this.members = response.data;
+      }).catch((error) => {
+        console.log(error);
+      });
+    },
+    removeMember: function(id){
+      axios.delete(`/ajax/groups/${this.group.id}/member/${id}/delete`).then((response) => {
+        console.log(response);
+        this.members = response.data;
+      }).catch((error) => {
+        console.log(error);
+      });
+    }
+  }
+});
 </script>
 @endpush
