@@ -1,4 +1,4 @@
-=button-colors($color)
+=button-color($color)
   background-color: $color
   border-color: darken($color, 10%)
   color: $white
@@ -7,7 +7,7 @@
   &:focus
     &:not(:active)
       box-shadow: $button-focus-box-shadow-size rgba($color, 0.25)
-  &:active
+  &:active,&.button-active
     background-color: darken($color, 5%)
   &[disabled],fieldset[disabled] &
     background-color: $color
@@ -24,6 +24,21 @@
       border-color: transparent
       box-shadow: none
       color: $color
+
+=button-text-color($color)
+  color: $color
+  &:hover
+    color: darken($color, 2.5%)
+  &:focus
+    border-color: darken($color, 2.5%)
+    &:not(:active)
+      box-shadow: $button-focus-box-shadow-size rgba($color, 0.25)
+  &:active,&.button-active
+    background-color: darken($color, 5%)
+    color: $white
+  &[disabled],fieldset[disabled] &
+    background-color: $color
+    box-shadow: none
 
 =control
   -moz-appearance: none

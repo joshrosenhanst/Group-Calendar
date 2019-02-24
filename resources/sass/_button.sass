@@ -60,23 +60,37 @@
       border-color: transparent
       box-shadow: none
   &.button-cancel
-    color: $danger
-    border-color: darken($danger, 10%)
+    border-color: $button-color
     &:hover
-      color: darken($danger, 10%)
-      background-color: rgba($danger, 0.05)
+      background-color: rgba($button-color, 0.05)
+
+  // button background colors
   &.button-primary
-    +button-colors($primary)
+    +button-color($primary)
   &.button-info
-    +button-colors($info)
+    +button-color($info)
   &.button-link
-    +button-colors($link)
+    +button-color($link)
   &.button-success
-    +button-colors($success)
+    +button-color($success)
   &.button-warning
-    +button-colors($warning)
+    +button-color($warning)
   &.button-danger
-    +button-colors($danger)
+    +button-color($danger)
+
+  // button text colors (background white, border grey)
+  &.button-text_primary
+    +button-text-color($primary)
+  &.button-text_info
+    +button-text-color($info)
+  &.button-text_link
+    +button-text-color($link)
+  &.button-text_success
+    +button-text-color($success)
+  &.button-text_warning
+    +button-text-color($warning)
+  &.button-text_danger
+    +button-text-color($danger)
   //modifiers
   &[disabled],fieldset[disabled] &
     background-color: $button-disabled-background-color
