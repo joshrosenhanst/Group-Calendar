@@ -26,7 +26,7 @@ class GroupController extends Controller
   }
 
   /*
-    updateComment() - Update an event comment. Return the event comments.
+    updateComment() - Update a group comment. Return the group comments.
   */
   public function updateComment(Request $request, \App\Group $group, \App\Comment $comment){
     $request->validate([
@@ -43,7 +43,7 @@ class GroupController extends Controller
   }
   
   /*
-    destroyComment() - Delete an event comment. Return the event comments.
+    destroyComment() - Delete a group comment. Return the group comments.
   */
   public function destroyComment(Request $request, \App\Group $group, \App\Comment $comment){
 
@@ -52,5 +52,44 @@ class GroupController extends Controller
     //trigger "comment deleted" Event
     $group->loadMissing('comments.user');
     return response()->json($group->comments);
+  }
+
+  /*
+    updateMember() - Update a member's status. Return the group members.
+  */
+  public function updateMember(Request $request, \App\Group $group){
+    $request->validate([
+      'role'=>'required|in:member,admin',
+      'user_id'=>'required|exists:group_user'
+    ]);
+
+    $member = $group->users()->where('user_id',$request->user_id)->first();
+    if($member){
+      $group->users()->updateExistingPivot($member, [
+        'role'=>$request->role
+      ]);
+      //trigger "member role updated" Event
+      return response()->json($group->users);
+    }else{
+      return response()->json([
+        'errors'=>[
+          'user_id'=>['Member not found.']
+        ]
+      ], 422);
+    }
+  }
+
+  /*
+    removeMember() - Detach a user from the group. Return the group members.
+  */
+  public function removeMember(Request $request, \App\Group $group){
+    $request->validate([
+      'user_id'=>'required|exists:group_user'
+    ]);
+
+    $group->users()->detach($request->user_id);
+
+    //trigger "member removed" Event
+    return response()->json($group->users);
   }
 }

@@ -18,9 +18,11 @@ Route::middleware('auth')->prefix('events/')->name('events.')->group(function(){
 
 /* GROUPS */
 Route::middleware('auth')->prefix('groups/')->name('groups.')->group(function(){
-  Route::put('/{group}/member/{member}/update','GroupController@updateMember')->name('updateMember');
-  Route::put('/{group}/member/{member}/delete','GroupController@deleteMember')->name('deleteMember');
-  /* Group Comments */
+  /* Members */
+  Route::put('/{group}/member/update','GroupController@updateMember')->name('updateMember');
+  Route::delete('/{group}/member/remove','GroupController@removeMember')->name('deleteMember');
+
+  /* Comments */
   Route::put('/{group}/comment/create','GroupController@createComment')->name('createComment');
   Route::put('/{group}/comment/{comment}/update','GroupController@updateComment')->name('updateComment');
   Route::delete('/{group}/comment/{comment}/delete','GroupController@destroyComment')->name('destroyComment');
