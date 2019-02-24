@@ -55,7 +55,7 @@ class Group extends Model
     users() - Defines a many-to-many relationship with the User model.
   */
   public function users(){
-    return $this->belongsToMany('App\User');
+    return $this->belongsToMany('App\User')->withPivot('role');
   }
 
   /*
