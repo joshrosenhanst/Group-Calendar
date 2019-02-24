@@ -30,7 +30,7 @@
         ></member-form>
         <member-remove-form
           v-bind:role="member.pivot.role"
-          v-bind:id="member.id"
+          v-bind:member="member.name"
           v-show="(openRemoveForm === member.id)"
 
           v-on:submit-remove="removeMember(member.id)"
@@ -40,13 +40,13 @@
     </div>
 
     <div class="item_controls button_group-controls">
-      <button class="button button-info button-inverted button-small" aria-label="Update Member Role" title="Update Member Role"
+      <button class="button button-text_info" aria-label="Update Member Role" title="Update Member Role"
         v-bind:class="{ 'button-active': (openMemberForm === member.id) }"
         v-on:click="toggleMemberForm(member.id)"
       >
         <material-icon name='pencil'></material-icon>
       </button>
-      <button class="button button-danger button-inverted button-small" aria-label="Remove Member" title="Remove Member"
+      <button class="button button-text_danger" aria-label="Remove Member" title="Remove Member"
         v-bind:class="{ 'button-active': (openRemoveForm === member.id) }"
         v-on:click="toggleRemoveForm(member.id)"
       >

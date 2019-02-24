@@ -1,5 +1,5 @@
 <template>
-  <form v-on:submit.prevent="updateMember" class="member_form form">
+  <form v-on:submit.prevent="updateMember" class="form member_form embedded_form">
     <div class="form_group" 
       v-bind:class="{ 'form_group-error': errors.length }"
     >
@@ -26,9 +26,7 @@
     <div class="member_form_footer button_group button_group-small">
       <button class="button button-link button-inverted" type="submit">
         <material-icon name='account-check'></material-icon>
-        <span>
-          <slot></slot>
-        </span>
+        <span>Update Member</span>
       </button>
       <button class="button button-cancel" v-on:click.prevent="cancelUpdate" v-if="id">
         <material-icon name='cancel'></material-icon>
