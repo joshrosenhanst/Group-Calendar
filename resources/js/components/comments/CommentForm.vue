@@ -1,5 +1,5 @@
 <template>
-  <form v-on:submit.prevent="submitComment" class="comment_form form">
+  <form v-on:submit.prevent="submitComment" class="form embedded_form comment_form">
     <div class="form_group" 
       v-bind:class="{ 'form_group-error': errors.length }"
     >

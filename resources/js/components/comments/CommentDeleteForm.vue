@@ -1,5 +1,5 @@
 <template>
-  <form class="comment_form form" v-on:submit.prevent="submitDelete">
+  <form class="form embedded_form comment_form" v-on:submit.prevent="submitDelete">
     <div class="form_group">
       <label class="form_label">Delete Comment?</label>
     </div>
