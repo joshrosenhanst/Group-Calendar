@@ -6,13 +6,13 @@
       <button class="calendar_chevron" aria-label="Previous Month"
         v-on:click="prevMonth"
       >
-        <material-icon name="chevron-left" class="is-large"></material-icon>
+        <material-icon name="chevron-left" class="icon-full_size"></material-icon>
       </button>
       <span class="current_month">{{monthDisplay}}</span>
       <button class="calendar_chevron" aria-label="Next Month"
         v-on:click="nextMonth"
       >
-        <material-icon name="chevron-right" class="is-large"></material-icon>
+        <material-icon name="chevron-right" class="icon-full_size"></material-icon>
       </button>
     </header>
     <calendar-month

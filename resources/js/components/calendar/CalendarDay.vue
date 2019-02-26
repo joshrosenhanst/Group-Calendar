@@ -24,7 +24,11 @@
 import CalendarMixin from './CalendarMixin.js';
 import CalendarEvent from './CalendarEvent.vue';
 export default {
-  props: ['day','events','currentMonth'],
+  props:{
+    day: Date,
+    events: Array,
+    currentMonth: Date
+  },
   components: {
     CalendarEvent
   },

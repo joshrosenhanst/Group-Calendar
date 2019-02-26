@@ -21,7 +21,6 @@
     <span v-else>&nbsp;</span>
   </span>
 </div>
-
 </template>
 
 <script>

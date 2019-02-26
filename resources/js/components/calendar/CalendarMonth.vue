@@ -25,7 +25,7 @@ import CalendarWeek from './CalendarWeek.vue';
 export default {
   props: {
     currentMonth: Date,
-    events: Array
+		events: Array
   },
   mixins: [CalendarMixin],
   components: {
