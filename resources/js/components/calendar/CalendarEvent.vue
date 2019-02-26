@@ -40,36 +40,3 @@ export default {
   }
 }
 </script>
-
-<style lang="sass" scoped>
-.calendar_event_container
-  position: relative
-  height: 20px
-  margin-top: 1px
-.calendar_event
-  background-color: rgb(63, 81, 181)
-  color: #fff
-  padding: 1px
-  overflow: hidden
-  text-overflow: ellipsis
-  white-space: nowrap
-  padding-left: 2px
-  font-size: 11px
-  position: absolute
-  user-select: none
-  display: block
-  margin: 0
-  border-radius: 2px
-  left: 0
-  right: 0
-  top: 0
-  &.starting
-    right: -6px
-  &.ending
-    left: -6px
-  &.full_width
-    left: -6px
-    right: -6px
-.event_name
-  font-weight: bold
-</style>

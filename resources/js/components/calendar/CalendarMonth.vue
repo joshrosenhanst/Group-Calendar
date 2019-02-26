@@ -7,14 +7,15 @@
         v-bind:key="weekday"
       >{{weekday}}</div>
     </div>
-
-    <calendar-week
-      v-for="(week, index) in weeksOfMonth"
-      v-bind:key="index"
-      v-bind:days="daysOfWeek(week)"
-      v-bind:events="getWeekEvents(week)"
-      v-bind:current-month="currentMonth"
-    ></calendar-week>
+		<div class="calendar_weeks">
+			<calendar-week
+				v-for="(week, index) in weeksOfMonth"
+				v-bind:key="index"
+				v-bind:days="daysOfWeek(week)"
+				v-bind:events="getWeekEvents(week)"
+				v-bind:current-month="currentMonth"
+			></calendar-week>
+		</div>
   </div>
 </template>
 
@@ -129,30 +130,3 @@ export default {
   }
 }
 </script>
-
-<style lang="sass" scoped>
-.calendar_month
-  width: 100%
-  height: 100%
-  display: flex
-  flex-direction: column
-  background-color: white
-  .week_header
-    display: flex
-    flex: 1
-    .week_header_day
-      color: #757575
-      flex: 1
-      width: 0
-      border-right: 1px solid #ccc
-      padding: 4px
-      overflow: hidden
-      user-select: none
-      text-align: center
-      &.today
-        color: #4285f4
-        font-weight: 500
-      &:last-of-type
-        border-right: 0
-</style>
-

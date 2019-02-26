@@ -1,0 +1,104 @@
+$calendar_cell_padding: 2px
+
+.full_calendar
+  .calendar_header
+    background-color: $primary
+    color: $white
+    display: flex
+    justify-content: space-between
+    align-items: center
+    border-bottom: 1px solid darken($primary, 10%)
+    font-size: $size-large
+    font-weight: 700
+    .calendar_chevron
+      padding: 4px
+      border: 1px solid transparent
+      background-color: $primary
+      color: $white
+      cursor: pointer
+      &:hover
+        background-color: darken($primary, 2.5%)
+      &:focus
+        border-color: $button-focus-border-color
+      &:active
+        border-color: $button-active-border-color
+  .calendar_month
+    width: 100%
+    height: 100%
+    display: flex
+    flex-direction: column
+    background-color: white
+  .calendar_weeks
+    border-color: $card-border-color
+    border-width: 0 1px 1px 1px
+    border-style: solid
+    .calendar_day
+      min-height: 100px
+  .week_header
+    display: flex
+    flex: 1
+    background-color: darken($primary, 10%)
+    color: $white
+    font-weight: 700
+    .week_header_day
+      +unselectable
+      flex: 1
+      width: 0
+      padding: $calendar_cell_padding
+      overflow: hidden
+      text-align: center
+      border-right: 1px solid transparent
+      &:last-of-type
+        border-right: 0
+  .calendar_day
+    +unselectable
+    flex: 1
+    width: 0
+    border-right: 1px solid $card-border-color
+    padding: $calendar_cell_padding
+    overflow: hidden
+    &:last-of-type
+      border-right: 0
+    &.out_calendar
+      .date_number
+        color: $grey-light
+  .date_number
+    color: $grey-dark
+    &.today
+      color: $primary
+      font-weight: 700
+  .date_events
+    position: relative
+  .calendar_event_container
+    position: relative
+    height: 20px
+    margin-top: 1px
+  .calendar_event
+    +unselectable
+    background-color: $link
+    color: #fff
+    padding: 1px
+    overflow: hidden
+    text-overflow: ellipsis
+    white-space: nowrap
+    padding-left: 2px
+    font-size: 11px
+    position: absolute
+    display: block
+    margin: 0
+    border-radius: 2px
+    left: 0
+    right: 0
+    top: 0
+    &.starting
+      right: -6px
+    &.ending
+      left: -6px
+    &.full_width
+      left: -6px
+      right: -6px
+  .event_name
+    font-weight: 700
+  
+  
+.full_calendar.mini_calendar

@@ -1,9 +1,17 @@
 <template>
   <div class="full_calendar">
     <header class="calendar_header">
-      <button class="button" v-on:click="prevMonth">Prev Month</button>
+      <button class="calendar_chevron" aria-label="Previous Month"
+        v-on:click="prevMonth"
+      >
+        <material-icon name="chevron-left" class="is-large"></material-icon>
+      </button>
       <span class="current_month">{{monthDisplay}}</span>
-      <button class="button" v-on:click="nextMonth">Next Month</button>
+      <button class="calendar_chevron" aria-label="Next Month"
+        v-on:click="nextMonth"
+      >
+        <material-icon name="chevron-right" class="is-large"></material-icon>
+      </button>
     </header>
     <calendar-month
       v-bind:current-month="defaultedShowDate"
@@ -56,18 +64,3 @@ export default {
   }
 }
 </script>
-
-
-<style lang="sass" scoped>
-.full_calendar
-  position: relative
-  border: 1px solid #ccc
-.calendar_header
-  display: flex
-  justify-content: space-between
-  align-items: center
-  padding: 10px
-  border-bottom: 1px solid #ccc
-.current_month
-  font-weight: bold
-</style>
