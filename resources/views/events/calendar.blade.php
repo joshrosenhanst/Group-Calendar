@@ -11,7 +11,7 @@
       {{--breadcrumb--}}
     </div>
 
-    <div class="card_calendar">
+    <div class="card_section-calendar">
       <full-calendar
         v-bind:events="events"
       ></full-calendar>
