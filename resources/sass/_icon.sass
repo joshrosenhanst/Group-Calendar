@@ -21,6 +21,7 @@ $icon-dimensions-large: 3rem !default
     width: $icon-dimensions-large
   svg
     fill: currentColor
-  &.icon-full_size>svg
-    height: 100%
-    width: 100%
+  &.icon-full_size,&.is-small,&.is-medium,&.is-large
+    &>svg
+      height: 100%
+      width: 100%
