@@ -88,6 +88,7 @@ class Group extends Model
     foreach($this->events as $event){
       $calendar_events[] = [
         'title' => $event->name,
+        'summary' => $event->start_date->format('M d').' - '.$event->name.' · '.$this->name,
         'link' => route('events.view', ['event'=>$event]),
         'startDate' => ($event->start_date ? $event->start_date->toDateString() : null),
         'endDate' => ($event->end_date ? $event->end_date->toDateString() : null)
