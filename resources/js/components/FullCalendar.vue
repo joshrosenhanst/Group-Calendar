@@ -1,5 +1,7 @@
 <template>
-  <div class="full_calendar">
+  <div class="full_calendar"
+    v-bind:class="{ 'mini_calendar': mini }"
+  >
     <header class="calendar_header">
       <button class="calendar_chevron" aria-label="Previous Month"
         v-on:click="prevMonth"
@@ -34,7 +36,11 @@ export default {
     CalendarMonth
   },
   props: {
-    events: Array
+    events: Array,
+    mini: {
+      type: Boolean,
+      default: false
+    }
   },
   methods: {
     setMonth(month){
@@ -56,7 +62,7 @@ export default {
 			return this.today();
     },
     monthNames(){
-      return this.getFormattedMonthNames(this.locale,"long");
+      return this.getFormattedMonthNames( this.locale,( this.mini?"short":"long" ) );
     },
     monthDisplay(){
       return this.formattedPeriod(this.currentMonth, this.currentMonth, "month", this.monthNames)
