@@ -18,6 +18,7 @@ Route::middleware('auth')->prefix('groups')->name('groups.')->group(function(){
   Route::get('/{group}/members','GroupController@members')->name('members');
   Route::get('/{group}/invite','GroupController@invite')->name('invite');
   Route::get('/{group}/join','GroupController@join')->name('join');
+  Route::get('/{group}/events', 'GroupController@events')->name('events');
 
   Route::put('/create', 'GroupController@create')->name('create');
   Route::put('/sendInvite', 'GroupController@sendInvite')->name('sendInvite');

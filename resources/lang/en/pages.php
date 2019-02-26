@@ -4,10 +4,15 @@ return [
   /* Groups */
   'groups.index.title' => 'My Groups',
   'groups.index.subtitle' => 'Choose a group from your list or create a new group. You can invite members to your group and create events for the group. Group events are private and only group members can attend.',
+
   'groups.view.title' => 'Group Details',
+
   'groups.members.title' => 'Group Members',
   'groups.members.subtitle' => 'The list of active members for this group. You can invite new members to join the group.',
   'groups.members.subtitle.admin' => "The list of active members for this group. You can invite new members to join the group. Admins can also change a member's status or remove a member.",
+
+  'groups.events.title' => 'Group Events',
+  'groups.events.subtitle' => 'The list and calendar of events for this group.',
 
   /* Events */
   'events.new.title' => 'New Event',
