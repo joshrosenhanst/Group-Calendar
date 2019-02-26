@@ -2,7 +2,7 @@
   <div class="card_section-calendar">
     <full-calendar
       v-bind:events="events"
-      @isset($mini) mini="true" @endisset
+      @isset($mini) v-bind:mini="true" @endisset
     ></full-calendar>
   </div>
 </div>
