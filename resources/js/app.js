@@ -24,6 +24,8 @@ Vue.component('attendee-status', require('./components/AttendeeStatus.vue').defa
 Vue.component('material-icon', require('./components/MaterialIcon.vue').default);
 Vue.component('comments-card', require('./components/CommentsCard.vue').default);
 Vue.component('member-list', require('./components/MemberList.vue').default);
+Vue.component('full-calendar', require('./components/FullCalendar.vue').default);
+
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to

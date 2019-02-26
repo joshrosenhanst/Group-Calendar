@@ -13,6 +13,13 @@ class EventController extends Controller
     public function index(){
       return view('events.index');
     }
+    
+    /*
+      calendar() - Display the `events.calendar` page template.
+    */
+    public function calendar(){
+      return view('events.calendar');
+    }
 
     /*
       new() - Display the `events.new` page template.
