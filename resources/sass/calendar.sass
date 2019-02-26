@@ -10,12 +10,15 @@ $calendar_cell_padding: 2px
     border-bottom: 1px solid darken($primary, 10%)
     font-size: $size-large
     font-weight: 700
+    text-shadow: $card-header-text-shadow
     .calendar_chevron
       padding: 4px
       border: 1px solid transparent
       background-color: $primary
       color: $white
       cursor: pointer
+      svg
+        filter: drop-shadow($card-header-text-shadow)
       &:hover
         background-color: darken($primary, 2.5%)
       &:focus
