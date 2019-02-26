@@ -18,28 +18,24 @@
     display: flex
     flex: 1 1 auto
     justify-content: flex-end
-  .navbar_logo
-    display: block
-    flex: 0 1 auto
-    img
-      display: block
   .navbar_item
     display: flex
     align-items: center
     flex: 0 1 auto
     padding: 0 10px
     font-weight: bold
-    border-left: 1px solid $navbar-border
-    border-right: 1px solid $navbar-border
     margin-right: -1px
     color: $navbar-item-color
     text-shadow: $navbar-item-text-shadow
     line-height: 45px
-    &:last-child
-      border-left: 0
-      margin-right: 0
-    &:first-child:last-child
+    &:not(.navbar_logo)
       border-left: 1px solid $navbar-border
+      border-right: 1px solid $navbar-border
+      &:last-child
+        border-left: 0
+        margin-right: 0
+      &:first-child:last-child
+        border-left: 1px solid $navbar-border
     &:hover, &:focus, &:active
       background-color: $navbar-hover
       text-decoration: none
@@ -73,3 +69,11 @@
       flex: 1 1 auto
       border: 1px solid $navbar-border
       margin-right: 4px
+
+  .navbar_logo
+    font-size: $size-large
+    font-weight: 400
+    svg
+      width: 32px
+      height: 32px
+      fill: $danger
