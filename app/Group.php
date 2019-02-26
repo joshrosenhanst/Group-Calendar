@@ -79,4 +79,20 @@ class Group extends Model
   public function getUpcomingEvents($limit = 4){
     return $this->events()->upcoming()->limit($limit)->get();
   }
+
+  /*
+    getCalendarEvents() - Grab events and format them for the vue calendar.
+  */
+  public function getCalendarEvents(){
+    $calendar_events = [];
+    foreach($this->events as $event){
+      $calendar_events[] = [
+        'title' => $event->name,
+        'link' => route('events.view', ['event'=>$event]),
+        'startDate' => ($event->start_date ? $event->start_date->toDateString() : null),
+        'endDate' => ($event->end_date ? $event->end_date->toDateString() : null)
+      ];
+    }
+    return $calendar_events;
+  }
 }
