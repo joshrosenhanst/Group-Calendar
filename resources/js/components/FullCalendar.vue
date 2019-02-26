@@ -2,122 +2,61 @@
   <div class="full_calendar">
     <header class="calendar_header">
       <button class="button" v-on:click="prevMonth">Prev Month</button>
-      <span class="current_month">{{summary}}</span>
+      <span class="current_month">{{monthDisplay}}</span>
       <button class="button" v-on:click="nextMonth">Next Month</button>
     </header>
     <calendar-month
-      v-bind:calendar="calendar"
+      v-bind:current-month="defaultedShowDate"
+      v-bind:events="events"
     ></calendar-month>
   </div>
 </template>
 
 <script>
-import { Calendar, Day, Parse, Functions as fn } from 'dayspan';
+import CalendarMixin from './calendar/CalendarMixin.js';
 import CalendarMonth from './calendar/CalendarMonth.vue';
-
-function dsMerge(target,source){
-  if (!fn.isObject(target))
-  {
-    return source;
-  }
-
-  if (fn.isObject(source))
-  {
-    for (let prop in source)
-    {
-      let sourceValue = source[ prop ];
-
-      if (prop in target)
-      {
-        dsMerge( target[ prop ], sourceValue );
-      }
-      else
-      {
-        target[ prop ] = sourceValue;
-      }
-    }
-  }
-
-  return target;
-}
-
 export default {
-  props: {
-    events: Array
+  data: function(){
+    return {
+      currentMonth: new Date(),
+    }
   },
+  mixins: [CalendarMixin],
   components: {
     CalendarMonth
   },
-  data: function(){
-    return {
-      calendar: Calendar.months(),
-    };
-  },
-  computed: {
-    summary(){
-      return this.calendar.summary(false,false,false,false)
-    }
+  props: {
+    events: Array
   },
   methods: {
-    /*dayClicked(day){
-      console.log("day clicked", day);
+    setMonth(month){
+      this.currentMonth = month;
     },
-    eventClicked(event){
-      console.log("event clicked", event);
-    },*/
-    prevMonth(){
-      this.calendar.unselect().prev();
+    prevMonth() {
+      this.setMonth( this.changeMonth(this.currentMonth, -1) );
     },
-    nextMonth(){
-      this.calendar.unselect().next();
-    },
-    triggerChange(){
-      this.$emit('change', {
-        calendar: this.calendar
-      });
-    },
-    createEvent(event){
-      return Parse.event({
-        schedule: {
-          /*on: Day.fromDate(event.start),
-          start: Day.fromDate(event.start),
-          end: Day.fromDate(event.end)*/
-          on: event.start_date,
-          duration: event.duration,
-          durationUnit: 'days',
-          times: [event.start_time, event.end_time]
-        },
-        data: dsMerge( {}, {
-          title: event.title,
-          link: event.link
-        } )
-      });
-    },
-    /*
-      setCalendarEvents() - Add the `events` array to the dayspan Calendar object. Called whenever the `events` or `calendar` properties change (i.e if a new list of events is passed to the component or the calendar changes months).
-    */
-    setCalendarEvents(){
-      if(this.events){
-        this.calendar.removeEvents();
-        for(let event of this.events){
-          this.calendar.addEvent(
-            this.createEvent(event)
-          );
-        }
-      }
-      //console.log(this.calendar);
+    nextMonth() {
+      this.setMonth( this.changeMonth(this.currentMonth, 1) );
     }
   },
-  mounted() {
-    console.log("FullCalendar mount", this.events);
-    this.setCalendarEvents();
-  },
-  watch: {
-    'events': 'setCalendarEvents',
-    'calendar': 'setCalendarEvents',
+  computed: {
+    locale(){
+      return this.getDefaultBrowserLocale();
+    },
+    defaultedShowDate() {
+			if (this.currentMonth) return this.dateOnly(this.currentMonth);
+			return this.today();
+    },
+    monthNames(){
+      return this.getFormattedMonthNames(this.locale,"long");
+    },
+    monthDisplay(){
+      return this.formattedPeriod(this.currentMonth, this.currentMonth, "month", this.monthNames)
+    }
   }
 }
 </script>
+
 
 <style lang="sass" scoped>
 .full_calendar

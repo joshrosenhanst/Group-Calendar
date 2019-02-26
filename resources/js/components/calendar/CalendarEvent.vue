@@ -1,20 +1,20 @@
 <template>
 <div class="calendar_event_container">
   <a class="calendar_event"
-    v-if="details.link"
-    v-bind:href="details.link"
+    v-if="event.link"
+    v-bind:href="event.link"
     v-bind:class="eventClasses"
   >
-    <template v-if="calEvent.starting">
-      <span class="event_name">{{ details.title }}</span>
+    <template v-if="starting">
+      <span class="event_name">{{ event.title }}</span>
     </template>
     <span v-else>&nbsp;</span>
   </a>
   <span class="calendar_event" v-else 
     v-bind:class="eventClasses"
   >
-    <template v-if="calEvent.starting">
-      <span class="event_name">{{ details.title }}</span>
+    <template v-if="starting">
+      <span class="event_name">{{ event.title }}</span>
     </template>
     <span v-else>&nbsp;</span>
   </span>
@@ -23,30 +23,20 @@
 </template>
 
 <script>
-import { CalendarEvent } from 'dayspan';
 export default {
   props: {
-    calEvent: CalendarEvent
+    event: Object,
+    starting: Boolean,
+    ending: Boolean
   },
   computed: {
-    details() {
-      return {
-        'title': this.calEvent.event.data.title,
-        'link': this.calEvent.event.data.link,
-        'start_time': this.calEvent.start.format('h:mm A'),
-        'end_time': this.calEvent.end.format('h:mm A')
-      };
-    },
     eventClasses(){
       return {
-        'starting': this.calEvent.starting && !this.calEvent.ending,
-        'full_width': !this.calEvent.starting && !this.calEvent.ending,
-        'ending': this.calEvent.ending && !this.calEvent.starting
+        'starting': this.starting && !this.ending,
+        'full_width': !this.starting && !this.ending,
+        'ending': this.ending && !this.starting
       };
     }
-  },
-  mounted(){
-    console.log("calEvent",this.calEvent,this.calEvent.start.format('[start:] MM-DD-YY h:mm a'),this.calEvent.end.format('[end:] MM-DD-YY h:mm a'));
   }
 }
 </script>

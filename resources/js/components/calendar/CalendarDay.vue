@@ -3,44 +3,48 @@
     v-bind:class="dayClasses"
   >
     <div class="date_number"
-      v-bind:class="{ today: day.currentDay }"
+      v-bind:class="{ today: this.isDayToday }"
     >
-      {{ day.dayOfMonth }}
+      {{ day.getDate() }}
     </div>
     <div class="date_events">
-      <cal-event
-        v-for="(event, index) in day.events"
+      <calendar-event
+        v-for="(event, index) in relevantEvents"
         v-bind:key="index"
-        v-bind:cal-event="event"
-      ></cal-event>
+        v-bind:event="event"
+        v-bind:starting="isSameDate(event.startDate, day)"
+        v-bind:ending="isSameDate(event.endDate, day)"
+      ></calendar-event>
     </div>
   </div>
 </template>
 
 <script>
-import { Day, Calendar, CalendarEvent, Functions as fn } from 'dayspan';
-import CalEvent from './CalendarEvent.vue';
+//import { Day, Calendar, CalendarEvent, Functions as fn } from 'dayspan';
+import CalendarMixin from './CalendarMixin.js';
+import CalendarEvent from './CalendarEvent.vue';
 export default {
-  props: {
-    day: {
-      required: true,
-      type: Day
-    }
-  },
+  props: ['day','events','currentMonth'],
   components: {
-    CalEvent
+    CalendarEvent
   },
+  mixins: [CalendarMixin],
   computed: {
+    isDayToday(){
+      return this.isToday(this.day)
+    },
     dayClasses(){
       return {
-        'today': this.day.currentDay,
-        'first_day': this.day.dayOfMonth === 1,
-        'out_calendar': !this.day.inCalendar
+        'today': this.isDayToday,
+        'out_calendar': !this.isSameMonth(this.day,this.currentMonth)
       };
+    },
+    /*
+      relevantEvents() - return events that have the current calendar day between their start and end date.
+    */
+    relevantEvents(){
+      return this.events.filter(event => this.isDayInEventRange(this.day,event));
     }
-  },
-  mounted(){
-    console.log(this.day.dayOfMonth, this.day.events);
   }
 }
 </script>

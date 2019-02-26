@@ -4,6 +4,8 @@
       v-for="(day, index) in days"
       v-bind:key="index"
       v-bind:day="day"
+      v-bind:events="events"
+      v-bind:current-month="currentMonth"
     ></calendar-day>
   </div>
 </template>
@@ -12,7 +14,9 @@
 import CalendarDay from './CalendarDay.vue';
 export default {
   props:{
-    days: Array
+    days: Array,
+    events: Array,
+    currentMonth: Date
   },
   components: {
     CalendarDay

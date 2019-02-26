@@ -14,8 +14,6 @@
     <div class="card_calendar">
       <full-calendar
         v-bind:events="events"
-        v-on:event-clicked="eventClicked"
-        v-on:day-clicked="dayClicked"
       ></full-calendar>
     </div>
   </div>
@@ -37,40 +35,14 @@ const app = new Vue({
       {
         title: 'Event 1',
         link: 'http://google.com/',
-        start_date: '2019-02-10',
-        duration: 0,
-        start_time: '3:30',
-        end_time: '4:30'
+        startDate: '2019-02-10',
+        endDate: '2019-02-12',
       },
       {
         title: 'Event 2',
-        start_date: '2019-02-22',
-        duration: 3,
-        start_time: '3:30',
-        end_time: '4:30'
+        startDate: '2019-02-22'
       },
-      {
-        title: 'Event 3',
-        start_date: '2019-02-22',
-        duration: 0,
-        start_time: '3:30',
-        end_time: '4:30'
-      },
-      {
-        title: 'Event 4',
-        start_date: '2019-02-22',
-        duration: 0,
-        start_time: '3:30',
-        end_time: '4:30'
-      },
-      {
-        title: 'Event 5',
-        start_date: '2019-02-22',
-        duration: 0,
-        start_time: '3:30',
-        end_time: '4:30'
-      },
-    ]
+    ],
   },
   mounted: function(){
     console.log("mount");
