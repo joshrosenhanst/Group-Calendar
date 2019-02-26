@@ -32,7 +32,10 @@
     text-shadow: $card-header-text-shadow
     background-color: $card-header-background
     color: $white
+    display: flex
     h1,h2
+      flex-grow: 1
+      flex-shrink: 0
       display: flex
       align-items: center
       font-weight: 700
@@ -44,6 +47,18 @@
       font-size: $size-large
     h2
       font-size: $size-medium
+    .button
+      background: transparent
+      border-color: $white
+      border-color: darken($primary, 10%)
+      color: $white
+      flex-grow: 0
+      flex-shrink: 0
+      font-size: $size-small
+      padding: 4px 6px 4px 12px
+      &:hover
+        background-color: darken($primary, 2.5%)
+
   .card_section
     padding: 25px 20px
     border: 1px solid $card-border-color
