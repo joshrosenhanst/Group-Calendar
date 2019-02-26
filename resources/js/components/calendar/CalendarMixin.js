@@ -304,7 +304,8 @@ export default {
 				title: event.title || "Untitled",
 				// An ID is *required*. Auto-generating leads to weird bugs because these are used as keys and passed in events
 				id: event.id,
-				link: event.link
+				link: event.link,
+				summary: event.summary
 			}
 		},
 		isDayInEventRange(date,event){
