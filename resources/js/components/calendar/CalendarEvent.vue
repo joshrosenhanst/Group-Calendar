@@ -4,6 +4,7 @@
     v-if="event.link"
     v-bind:href="event.link"
     v-bind:class="eventClasses"
+    v-bind:title="event.summary"
   >
     <template v-if="starting">
       <span class="event_name">{{ event.title }}</span>
@@ -12,6 +13,7 @@
   </a>
   <span class="calendar_event" v-else 
     v-bind:class="eventClasses"
+    v-bind:title="event.summary"
   >
     <template v-if="starting">
       <span class="event_name">{{ event.title }}</span>
