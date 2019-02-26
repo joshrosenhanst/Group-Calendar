@@ -62,7 +62,7 @@ class Group extends Model
     events() - Defines a one to many relationship with the Event model.
   */
   public function events(){
-    return $this->hasMany('App\Event')->latest();
+    return $this->hasMany('App\Event')->latest('start_date');
   }
 
   /*
