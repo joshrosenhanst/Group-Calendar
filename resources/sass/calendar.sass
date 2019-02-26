@@ -17,6 +17,9 @@ $calendar_cell_padding: 2px
       background-color: $primary
       color: $white
       cursor: pointer
+      .icon
+        height: 3rem
+        width: 3rem
       svg
         filter: drop-shadow($card-header-text-shadow)
       &:hover
@@ -76,6 +79,12 @@ $calendar_cell_padding: 2px
     position: relative
     height: 20px
     margin-top: 1px
+  .mini_event
+    flex: 0 1 10px
+    height: 10px
+    margin: 1px
+    background-color: $link
+    border-radius: 50%
   .calendar_event
     +unselectable
     background-color: $link
@@ -105,6 +114,14 @@ $calendar_cell_padding: 2px
   
   
 .full_calendar.mini_calendar
+  .calendar_header
+    font-size: $size-medium
+    .calendar_chevron
+      .icon
+        height: 2rem
+        width: 2rem
+  .week_header
+    font-size: $size-small
   .calendar_weeks 
     .calendar_day
       min-height: 60px
