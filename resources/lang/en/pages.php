@@ -12,7 +12,7 @@ return [
   'groups.members.subtitle.admin' => "The list of active members for this group. You can invite new members to join the group. Admins can also change a member's status or remove a member.",
 
   'groups.events.title' => 'Group Events',
-  'groups.events.subtitle' => 'The list and calendar of events for this group.',
+  'groups.events.subtitle' => 'The list of upcoming and past events in this group.',
 
   /* Events */
   'events.new.title' => 'New Event',
