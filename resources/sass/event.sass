@@ -54,7 +54,7 @@
       display: block
     &.summary_header-background_image
       border-top: 4px solid $primary
-      height: 200px
+      height: 150px
       background-position: center
       background-size: cover
   .summary_details
@@ -89,9 +89,15 @@
     color: $text-light
   .summary_status
     display: flex
-    align-items: center
+    align-content: center
     color: $text-light
     font-size: $size-small
+    .status_display
+      display: inline-flex
+      align-items: center
+      margin-right: 5px
+    .update_status
+      margin-left: 5px
     .icon
       margin-right: 5px
       width: 1.2rem
