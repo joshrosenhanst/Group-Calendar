@@ -13,9 +13,9 @@
       <span class="icon">@materialicon('calendar-plus')</span>
       <span>New Event</span>
     </a>
-    <a href="{{ route('events.index', ['group'=>$group]) }}" class="sidebar_link">
-      <span class="icon">@materialicon('calendar-range')</span>
-      <span>Calendar</span>
+    <a href="{{ route('groups.events', ['group'=>$group]) }}" class="sidebar_link">
+      <span class="icon">@materialicon('calendar-text')</span>
+      <span>Group Events</span>
     </a>
     <a href="{{ route('groups.members', ['group'=>$group]) }}" class="sidebar_link">
       <span class="icon">@materialicon('account-multiple')</span>
