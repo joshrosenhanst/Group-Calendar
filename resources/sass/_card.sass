@@ -49,7 +49,6 @@
       font-size: $size-medium
     .button
       background: transparent
-      border-color: $white
       border-color: darken($primary, 10%)
       color: $white
       flex-grow: 0
@@ -58,6 +57,15 @@
       padding: 6px 6px 6px 12px
       &:hover
         background-color: darken($primary, 2.5%)
+  .card_sub_header
+    padding: 10px 15px
+    border: 1px solid $card-border-color
+    .sub_title
+      font-weight: 700
+      color: $text-light
+    h1.sub_title
+      font-size: $size-medium
+
 
   .card_section
     padding: 25px 20px
@@ -148,3 +156,9 @@
     position: absolute
     right: 0.5rem
     top: 0.5rem
+
+.card.card-has_tabs
+  border-top: 3px solid $primary
+  border-top-left-radius: 0
+  &>.card_section:first-child
+    border-top: 0
