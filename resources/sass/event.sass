@@ -47,4 +47,63 @@
       dd
         flex: 5 1
 
+.event_summary
+  .summary_header
+    display: block
+    img
+      display: block
+    &.summary_header-background_image
+      border-top: 4px solid $primary
+      height: 200px
+      background-position: center
+      background-size: cover
+  .summary_details
+    display: flex
+    border-top: 4px solid $primary
+    padding: 0
+  .summary_date
+    padding: 10px 15px
+    border-right: 1px solid $card-border-color
+    text-transform: uppercase
+    color: $primary
+    font-size: $size-small
+    flex-shrink: 1
+    flex-grow: 0
+    display: flex
+    flex-direction: column
+    justify-content: center
+    align-items: center
+    line-height: 1.2
+    .day
+      color: $text-light
+    .date
+      font-size: 2rem
+    .month
+      font-weight: 700
+  .summary_info
+    padding: 10px
+    flex-grow: 1
+  .summary_name
+    font-size: 1.1rem
+  .summary_location
+    color: $text-light
+  .summary_status
+    display: flex
+    align-items: center
+    color: $text-light
+    font-size: $size-small
+    .icon
+      margin-right: 5px
+      width: 1.2rem
+      height: 1.2rem
+  .summary_links
+    margin-left: auto
+    display: flex
+    align-content: center
+    flex-wrap: wrap
+    padding: 10px
+.events-empty
+  +icon-empty
+
+
 
