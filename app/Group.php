@@ -10,6 +10,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Carbon;
 
 class Group extends Model
 {
@@ -62,7 +63,7 @@ class Group extends Model
     events() - Defines a one to many relationship with the Event model.
   */
   public function events(){
-    return $this->hasMany('App\Event')->latest('start_date');
+    return $this->hasMany('App\Event')->orderBy('start_date','asc');
   }
 
   /*
@@ -77,7 +78,28 @@ class Group extends Model
     $limit - number of events to grab.
   */
   public function getUpcomingEvents($limit = 4){
-    return $this->events()->upcoming()->limit($limit)->get();
+    $upcoming = $this->events()->upcoming()
+      ->when($limit, function($query,$limit){
+        return $query->limit($limit);
+      })
+      ->get();
+
+    return $upcoming;
+  }
+
+  /*
+    getMonthlyUpcomingEvents() - Grab events that are in the future, grouped by month. 
+    Ex: [
+      '01' => [$event_in_jan1, $event_in_jan2,etc],
+      '02' => [$event_in_feb]
+    ]
+  */
+  public function getMonthlyUpcomingEvents(){
+    $upcoming = $this->events()->upcoming()->get()->groupBy(function($item){
+      return $item->start_date->format('F');
+    });
+
+    return $upcoming;
   }
 
   /*

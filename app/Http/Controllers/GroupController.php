@@ -18,7 +18,12 @@ class GroupController extends Controller{
     events() - Display the `groups.events` page template.
   */
   public function events(\App\Group $group) {
-    return view('groups.events', ['group'=>$group]);
+    $monthly_upcoming_events = $group->getMonthlyUpcomingEvents();
+
+    return view('groups.events', [
+      'group'=>$group,
+      'monthly_upcoming_events' => $monthly_upcoming_events
+    ]);
   }
 
   /*
