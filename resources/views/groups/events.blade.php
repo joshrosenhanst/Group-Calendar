@@ -31,48 +31,46 @@
     </template>
   </tab-wrapper>
 
-  <div class="tab upcoming_events_tab" v-show="activeTab === 'upcoming_events'">
-  @foreach($monthly_upcoming_events as $month=>$monthly_events)
-    <div class="card card-has_tabs">
-      <div class="card_sub_header">
-        <h1 class="sub_title">{{$month}} Events</h1>
-      </div>
-
-      @foreach($monthly_events as $event)
-      <div class="event_summary">
-        <div class="summary_header summary_header-background_image" style="background-image: url({{ asset($event->header) }})">&nbsp;</div>
-        <div class="card_section summary_details">
-          <div class="summary_date">
-            <span class="day">{{ $event->start_date->format('D') }}</span>
-            <span class="date">{{ $event->start_date->format('d') }}</span>
-            <span class="month">{{ $event->start_date->format('M') }}</span>
-          </div>
-          <div class="summary_info">
-            <a class="summary_name" href="{{ route('events.view', ['event'=>$event]) }}">{{ $event->name }}</a>
-            <div class="summary_location"><span>{{ $event->start_time_subtext }}</span> · <span>Brooklyn, NY</span></div>
-            <div class="summary_status">
-              <span class="status_display">
-                <span class="icon icon-full_size">@materialicon('account-question')</span><strong class="status">Pending</strong>
-              </span> · <a href="{{ route('events.view', ['event'=>$event]) }}" class="update_status">Update My Status</a>
+  <div class="tab upcoming_events_tab card card-has_tabs" v-show="activeTab === 'upcoming_events'">
+    <div class="card_section">
+      @if(count($monthly_upcoming_events))
+        @foreach($monthly_upcoming_events as $month=>$monthly_events)
+          <div class="card card-inner_card">
+            <div class="card_sub_header">
+              <h1 class="sub_title">{{$month}} Events</h1>
             </div>
+
+            @foreach($monthly_events as $event)
+            @include('blocks.events.summary', ['event'=>$event,'mini'=>false])
+            @endforeach
           </div>
-          <div class="summary_links">
-            <a href="{{ route('events.view', ['event'=>$event]) }}" class="button button-link button-inverted">
-              <span class="icon">@materialicon('calendar-text-outline')</span>
-              <span>Details</span>
-            </a>
-          </div>
-        </div>
-      </div>
-      @endforeach
+        @endforeach
+      @else
+        @include('blocks.events.empty')
+      @endif
+      
     </div>
-  @endforeach
   </div>
 
-  <div class="tab past_events_tab" v-show="activeTab === 'past_events'">
-    <div class="card">
-      <div class="card_header card_header-no_content"></div>
-      <div class="card_section">Past Events!</div>
+  <div class="tab past_events_tab card card-has_tabs" v-show="activeTab === 'past_events'">
+    <div class="card_section">
+      
+      @if(count($monthly_past_events))
+        @foreach($monthly_past_events as $month=>$monthly_events)
+          <div class="card card-inner_card">
+            <div class="card_sub_header">
+              <h1 class="sub_title">{{$month}} Events</h1>
+            </div>
+
+            @foreach($monthly_events as $event)
+            @include('blocks.events.summary', ['event'=>$event,'mini'=>false])
+            @endforeach
+          </div>
+        @endforeach
+      @else
+        @include('blocks.events.empty')
+      @endif
+
     </div>
   </div>
 
