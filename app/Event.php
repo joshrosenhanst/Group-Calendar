@@ -13,6 +13,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Carbon;
+use Illuminate\Support\Facades\Auth;
 
 class Event extends Model
 {
@@ -101,6 +102,18 @@ class Event extends Model
   }
 
   /*
+    getUserStatusAttribute() - Accessor method to print out the current Auth::user() attendee status on this event. If the status is not set or the user doesn't exist we fall back to the default value `pending`.
+  */
+  public function getUserStatusAttribute(){
+    $user_status = $this->auth_user_status ? $this->auth_user_status->first() : null;
+    if($user_status){ 
+      return $user_status->status ?? 'pending';
+    }else{
+      return 'pending';
+    }
+  }
+
+  /*
     creator() - Defines an inverse one-to-many relationship with the User model for the creator of this event.
   */
   public function creator(){
@@ -119,6 +132,16 @@ class Event extends Model
   */
   public function attendees(){
     return $this->belongsToMany('App\User')->withPivot('status');
+  }
+
+  /*
+    auth_user_status() - Access the attendee status for the Auth::user() by creating a filtered relationship. 
+    Status field can be accessed via auth_user_status->first()->status or through the accessor `user_status` using `getUserStatusAttribute()`
+  */
+  public function auth_user_status(){
+    if(!Auth::user()) return null;
+
+    return $this->belongsToMany('App\User')->withPivot('status')->wherePivot('user_id',Auth::user()->id)->select('status');
   }
 
   /*
