@@ -1,6 +1,9 @@
 <template>
   <div id="attendee_controls">
-    <div class="event_detail" v-if="status">
+    <div class="event_detail" 
+      v-bind:class="status"
+      v-if="status"
+    >
       <material-icon 
         v-bind:name='status_icons[status]' 
         aria-label="My Attendee Status"
@@ -20,7 +23,7 @@
       </div>
     </div>
     <div class="attend_buttons button_group" aria-label="Change My Status" v-show="showStatusChange">
-      <button class="button button-link button-inverted" v-on:click="update('going')">
+      <button class="button button-success button-inverted" v-on:click="update('going')">
         <material-icon name='account-check'></material-icon>
         <span>Going</span>
       </button>

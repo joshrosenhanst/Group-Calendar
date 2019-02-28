@@ -47,6 +47,20 @@
       dd
         flex: 5 1
 
+#attendee_controls
+  .event_detail
+    margin-bottom: 0
+    &.pending>.icon
+      color: $text-light
+    &.interested>.icon
+      color: $info
+    &.going>.icon
+      color: $success
+    &.unavailable>.icon
+      color: $danger
+  .attend_buttons
+    margin-top: 15px
+
 .event_summary
   .summary_header
     display: block
