@@ -1,6 +1,7 @@
 <div class="card">
   <div class="card_header">
     <h2>
+      <span class="icon">@materialicon('calendar')</span>
       <span>Upcoming Events</span>
     </h2>
     <a href="{{ route('groups.events', ['group'=>$group]) }}" class="button">
