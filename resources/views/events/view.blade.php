@@ -39,12 +39,8 @@
         <div class="detail_content">
           <a href="#attendees">{{ $event->group->name }}
             <small class="seperated_count">
-              @if($event->going_attendees_count)
-                <span>{{ $event->going_attendees_count }} Going</span>
-              @endif
-              @if($event->interested_attendees_count)
-               <span>{{ $event->interested_attendees_count }} Interested</span>
-              @endif
+              <span v-if="going_attendees_count">@{{ going_attendees_count }} Going</span>
+              <span v-if="interested_attendees_count">@{{ interested_attendees_count }} Interested</span>
             </small>
           </a>
         </div>
@@ -104,7 +100,9 @@
     </div>
     <aside class="maincontent_aside">
       {{-- Event Attendees --}}
-      @include('blocks.events.attendees', ['attendees'=>$event->attendees])
+      <attendees-card
+        v-bind:attendees="attendees"
+      ></attendees-card>
     </aside>
   </div>
 </article>
@@ -124,17 +122,21 @@ const app = new Vue({
     user: @json(Auth::user()),
     event: @json($event->id),
     user_status: @json($event->user_status),
-    comments: @json($event->comments)
+    comments: @json($event->comments),
+    going_attendees_count: @json($event->going_attendees_count),
+    interested_attendees_count: @json($event->interested_attendees_count),
+    attendees: @json($event->attendees)
   },
   methods: {
     updateStatus: function(status){
-      console.log("update status", status);
       axios.put(`/ajax/events/${this.event}/attend/`,{
         'status': status,
         'user_id': this.user.id
       }).then((response) => {
-        console.log(response);
-        this.user_status = response.data;
+        this.user_status = response.data.user_status;
+        this.going_attendees_count = response.data.going_attendees_count;
+        this.interested_attendees_count = response.data.interested_attendees_count;
+        this.attendees = response.data.attendees;
       }).catch((error) => {
         console.log(error);
       });
