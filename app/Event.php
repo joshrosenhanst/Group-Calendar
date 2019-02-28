@@ -150,9 +150,16 @@ class Event extends Model
   }
 
   /*
-    scopeUpcoming() - A local scope for events that are in the future, ordered by `start_date`.
+    scopeUpcoming() - A local scope for events that are in the future.
   */
   public function scopeUpcoming($query){
     return $query->whereDate('start_date', '>=', Carbon::today());
+  }
+  
+  /*
+    scopePast() - A local scope for events that are in the past.
+  */
+  public function scopePast($query){
+    return $query->whereDate('start_date', '<', Carbon::today());
   }
 }
