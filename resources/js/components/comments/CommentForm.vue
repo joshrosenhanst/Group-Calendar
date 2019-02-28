@@ -53,6 +53,7 @@ export default {
       this.errors = [];
       if(this.formText){
         this.$emit('submit-comment',{text:this.formText,id:this.id});
+        this.formText = '';
       }else{
         this.errors.push('The comment text field is required.');
       }
