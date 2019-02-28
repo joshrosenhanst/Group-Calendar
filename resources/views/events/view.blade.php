@@ -123,7 +123,7 @@ const app = new Vue({
   data: {
     user: @json(Auth::user()),
     event: @json($event->id),
-    user_status: @json($user_status),
+    user_status: @json($event->user_status),
     comments: @json($event->comments)
   },
   methods: {
