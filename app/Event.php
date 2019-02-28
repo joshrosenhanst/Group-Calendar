@@ -131,7 +131,7 @@ class Event extends Model
     attendees() - Defines a many-to-many relationship with the User model (using the EventUser pivot).
   */
   public function attendees(){
-    return $this->belongsToMany('App\User')->withPivot('status');
+    return $this->belongsToMany('App\User')->withPivot('status')->orderBy('pivot_status','desc')->orderBy('name', 'asc');
   }
 
   /*
