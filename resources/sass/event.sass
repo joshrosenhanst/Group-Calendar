@@ -91,16 +91,17 @@
     color: $text-light
     font-size: $size-small
   .summary_status
-    display: flex
-    align-content: center
     color: $text-light
     font-size: $size-small
     .status_display
-      display: inline-flex
-      align-items: center
-      margin-right: 5px
-    .update_status
-      margin-left: 5px
+      &.pending
+        color: $text-light
+      &.unavailable
+        color: $danger
+      &.interested
+        color: $info
+      &.going
+        color: $success
     .icon
       margin-right: 2px
       width: 20px

@@ -33,9 +33,8 @@
       @if(!$mini)
       {{-- Show user status with relevant icon and link to change status | large card only --}}
       <div class="summary_status">
-        <strong class="status_display">
-          <span class="icon icon-full_size">@materialicon('account-question')</span> Pending
-        </strong> · <a href="{{ route('events.view', ['event'=>$event]) }}" class="update_status">Update My Status</a>
+        <strong class="status_display {{ $event->user_status }}">@lang('status.attendee.'.$event->user_status)
+        </strong> · <a href="{{ route('events.view', ['event'=>$event]) }}" class="update_status">Change My Status</a>
       </div>
       @endif
     </div>
