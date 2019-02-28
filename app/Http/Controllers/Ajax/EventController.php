@@ -9,7 +9,12 @@ use Illuminate\Support\Facades\Auth;
 class EventController extends Controller
 {
   /*
-    attend() - Set or update a user's attendance status for an event.
+    attend() - Set or update a user's attendance status for an event. Return an array of attendance information:
+    - user_status: the user's attendance status
+    - going_attendees_count: number of attendees marked as `going`,
+    - interested_attendees_count: number of attendees marked as `interested`,
+    - attendees: array of attendees
+
   */
   public function attend(Request $request, \App\Event $event){
     $request->validate([
@@ -30,8 +35,14 @@ class EventController extends Controller
         'status' => $new_status
       ]);
     }
+    $event->refresh();
     //trigger "event attendee updated" Event
-    return response()->json($new_status);
+    return response()->json([
+      'user_status' => $new_status,
+      'going_attendees_count' => $event->going_attendees_count,
+      'interested_attendees_count' => $event->interested_attendees_count,
+      'attendees' => $event->attendees
+    ]);
   }
 
   /*

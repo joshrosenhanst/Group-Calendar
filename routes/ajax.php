@@ -10,7 +10,10 @@ use Illuminate\Http\Request;
 */
 /* EVENTS */
 Route::middleware('auth')->prefix('events/')->name('events.')->group(function(){
+  /* Attendees */
   Route::put('/{event}/attend','EventController@attend')->name('attend');
+
+  /* Comments */
   Route::put('/{event}/comment/create','EventController@createComment')->name('createComment');
   Route::put('/{event}/comment/{comment}/update','EventController@updateComment')->name('updateComment');
   Route::delete('/{event}/comment/{comment}/delete','EventController@destroyComment')->name('destroyComment');
