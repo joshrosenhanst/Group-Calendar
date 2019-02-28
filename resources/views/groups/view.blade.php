@@ -34,7 +34,9 @@
     <aside class="maincontent_aside">
 
       {{-- Recent Members --}}
-      @include('blocks.groups.recent_members')
+      @include('blocks.groups.recent_members', [
+        'members'=>$group->users->sortByDesc('created_at')->take(5) 
+      ])
     </aside>
   </div>
 </article>

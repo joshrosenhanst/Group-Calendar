@@ -46,7 +46,9 @@
           </div>
         @endforeach
       @else
-        @include('blocks.events.empty')
+        @component('components.empty', ['icon'=>'calendar-question'])
+          No Upcoming Events
+        @endcomponent
       @endif
       
     </div>
@@ -68,7 +70,9 @@
           </div>
         @endforeach
       @else
-        @include('blocks.events.empty')
+        @component('components.empty', ['icon'=>'calendar-question'])
+          No Past Events
+        @endcomponent
       @endif
 
     </div>

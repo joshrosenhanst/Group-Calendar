@@ -15,7 +15,9 @@
         @include('blocks.events.summary', ['event'=>$event,'mini'=>true])
       @endforeach
     @else
-      @include('blocks.events.empty')
+      @component('components.empty', ['icon'=>'calendar-question'])
+        No Upcoming Events
+      @endcomponent
     @endif
   </div>
 </div>

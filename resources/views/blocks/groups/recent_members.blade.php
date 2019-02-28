@@ -6,7 +6,15 @@
     </h2>
   </div>
   <div class="card_section card_list">
-    @each('blocks.members.list_item', $group->users->sortByDesc('created_at')->take(5), 'user', 'blocks.members.empty')
+    @if(count($members))
+      @foreach($members as $member)
+        @include('blocks.members.list_item', ['user'=>$member])
+      @endforeach
+    @else
+      @component('components.empty', ['icon'=>'account-question-outline','class'=>'list_empty'])
+        No Members
+      @endcomponent
+    @endif
   </div>
   <div class="card_section card_buttons">
     <a href="{{ route('groups.members', ['group'=>$group]) }}" class="button button-text">View All Members</a>

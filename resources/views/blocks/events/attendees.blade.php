@@ -6,6 +6,14 @@
     </h2>
   </div>
   <div class="card_section card_list">
-    @each('blocks.attendees.list_item', $attendees, 'user', 'blocks.attendees.empty')
+    @if(count($attendees))
+      @foreach($attendees as $attendee)
+        @include('blocks.attendees.list_item', ['user'=>$attendee])
+      @endforeach
+    @else
+      @component('components.empty', ['icon'=>'account-question-outline','class'=>'list_empty'])
+        No Attendees
+      @endcomponent
+    @endif
   </div>
 </div>

@@ -24,7 +24,7 @@
       ></comment-display>
     </div>
     <div class="card_section comments_section" v-else>
-      <div class="comments-empty">
+      <div class="empty">
         <material-icon name='comment-question-outline'></material-icon>
         <h2>No Comments Found</h2>
       </div>
