@@ -9,6 +9,12 @@
     </a>
   </div>
   <div class="card_section upcoming_events_section">
-    @each('blocks.events.summary', $events, 'event', 'blocks.events.empty')
+    @if(count($events))
+      @foreach($events as $event)
+        @include('blocks.events.summary', ['event'=>$event,'mini'=>true])
+      @endforeach
+    @else
+      @include('blocks.events.empty')
+    @endif
   </div>
 </div>
