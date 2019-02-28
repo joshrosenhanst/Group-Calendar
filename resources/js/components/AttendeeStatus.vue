@@ -40,19 +40,7 @@
 </template>
 
 <script>
-const status_icons = {
-  'pending': 'account-question',
-  'interested': 'star',
-  'going': 'account-check',
-  'unavailable': 'account-remove'
-};
-const status_text = {
-  'pending': 'Pending',
-  'interested': 'Interested',
-  'going': 'Going',
-  'unavailable': 'Unavailable'
-};
-
+import { status_icons,status_text } from '../lang/status.js';
 export default {
   mounted(){
     console.log('AttendeeStatus mounted.');
