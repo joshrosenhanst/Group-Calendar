@@ -24,6 +24,7 @@ Vue.component('tab-wrapper', require('./components/tabs/TabWrapper.vue').default
 Vue.component('attendee-status', require('./components/AttendeeStatus.vue').default);
 Vue.component('material-icon', require('./components/MaterialIcon.vue').default);
 Vue.component('comments-card', require('./components/CommentsCard.vue').default);
+Vue.component('attendees-card', require('./components/AttendeesCard.vue').default);
 Vue.component('member-list', require('./components/MemberList.vue').default);
 Vue.component('full-calendar', require('./components/FullCalendar.vue').default);
 
