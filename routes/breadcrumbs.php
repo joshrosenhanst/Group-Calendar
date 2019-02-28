@@ -7,8 +7,7 @@ Breadcrumbs::for('home', function ($trail) {
 /* GROUPS */
 // Home / Groups
 Breadcrumbs::for('groups.index', function ($trail) {
-  $trail->parent('home');
-  $trail->push('Groups', route('groups.index'));
+  $trail->push('My Groups', route('groups.index'));
 });
 // Home / Groups / New
 Breadcrumbs::for('groups.new', function ($trail, $group) {
