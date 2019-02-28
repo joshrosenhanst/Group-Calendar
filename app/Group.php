@@ -90,13 +90,27 @@ class Group extends Model
   /*
     getMonthlyUpcomingEvents() - Grab events that are in the future, grouped by month. 
     Ex: [
-      '01' => [$event_in_jan1, $event_in_jan2,etc],
-      '02' => [$event_in_feb]
+      'January' => [$event_in_jan1, $event_in_jan2,etc],
+      'February' => [$event_in_feb]
     ]
   */
   public function getMonthlyUpcomingEvents(){
     $upcoming = $this->events()->upcoming()->get()->groupBy(function($item){
-      return $item->start_date->format('F');
+      return $item->start_date->format('F Y');
+    });
+
+    return $upcoming;
+  }
+  /*
+    getMonthlyPastEvents() - Grab events that are in the past, grouped by month + year. 
+    Ex: [
+      'January 2019' => [$event_in_jan1, $event_in_jan2,etc],
+      'February 2019' => [$event_in_feb]
+    ]
+  */
+  public function getMonthlyPastEvents(){
+    $upcoming = $this->events()->past()->get()->groupBy(function($item){
+      return $item->start_date->format('F Y');
     });
 
     return $upcoming;

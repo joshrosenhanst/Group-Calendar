@@ -19,10 +19,12 @@ class GroupController extends Controller{
   */
   public function events(\App\Group $group) {
     $monthly_upcoming_events = $group->getMonthlyUpcomingEvents();
+    $monthly_past_events = $group->getMonthlyPastEvents();
 
     return view('groups.events', [
       'group'=>$group,
-      'monthly_upcoming_events' => $monthly_upcoming_events
+      'monthly_upcoming_events' => $monthly_upcoming_events,
+      'monthly_past_events' => $monthly_past_events
     ]);
   }
 
