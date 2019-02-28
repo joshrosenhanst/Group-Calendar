@@ -17,20 +17,21 @@
     </div>
   </div>
 
-  <div class="tabs">
-    <ul>
-      <li class="tab_active"><a>
-        <span class="icon">@materialicon('calendar-text')</span>
-        <span>Upcoming Events</span>
-      </a></li>
-      <li><a>
-        <span class="icon">@materialicon('calendar-clock')</span>
-        <span>Past Events</span>  
-      </a></li>
-    </ul>
-  </div>
+  <tab-wrapper
+    v-bind:tab-items="tabs"
+    v-on:select-tab="selectTab"
+  >
+    <template slot="upcoming_events">
+      <span class="icon">@materialicon('calendar-text')</span>
+      <span>Upcoming Events</span>
+    </template>
+    <template slot="past_events">
+      <span class="icon">@materialicon('calendar-clock')</span>
+      <span>Past Events</span>  
+    </template>
+  </tab-wrapper>
 
-    
+  <div class="tab upcoming_events_tab" v-show="activeTab === 'upcoming_events'">
   @foreach($monthly_upcoming_events as $month=>$monthly_events)
     <div class="card card-has_tabs">
       <div class="card_sub_header">
@@ -66,6 +67,14 @@
       @endforeach
     </div>
   @endforeach
+  </div>
+
+  <div class="tab past_events_tab" v-show="activeTab === 'past_events'">
+    <div class="card">
+      <div class="card_header card_header-no_content"></div>
+      <div class="card_section">Past Events!</div>
+    </div>
+  </div>
 
 </article>
 
@@ -83,13 +92,16 @@
 const app = new Vue({
   el: '#app',
   data: {
-    events: @json($group->getCalendarEvents())
+    tabs: ['upcoming_events','past_events'],
+    activeTab: 'upcoming_events'
   },
   mounted: function(){
     console.log("mount");
   },
   methods: {
-
+    selectTab(tab){
+      this.activeTab = tab;
+    }
   }
 });
 </script>
