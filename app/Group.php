@@ -60,10 +60,24 @@ class Group extends Model
   }
 
   /*
-    events() - Defines a one to many relationship with the Event model.
+    events() - Defines a one-to-many relationship with the Event model.
   */
   public function events(){
     return $this->hasMany('App\Event')->orderBy('start_date','asc');
+  }
+
+  /*
+    upcoming_events() - Defines a one-to-many relationship with the Event model that is filtered by events after today.
+  */
+  public function upcoming_events(){
+    return $this->hasMany('App\Event')->whereDate('start_date', '>=', Carbon::today())->orderBy('start_date','asc');
+  }
+
+  /*
+    past_events() - Defines a one-to-many relationship with the Event model that is filtered by events after today.
+  */
+  public function past_events(){
+    return $this->hasMany('App\Event')->whereDate('start_date', '<', Carbon::today())->orderBy('start_date','asc');
   }
 
   /*
@@ -95,7 +109,8 @@ class Group extends Model
     ]
   */
   public function getMonthlyUpcomingEvents(){
-    $upcoming = $this->events()->upcoming()->get()->groupBy(function($item){
+    $this->loadMissing('upcoming_events.auth_user_status');
+    $upcoming = $this->upcoming_events->groupBy(function($item){
       return $item->start_date->format('F Y');
     });
 
@@ -109,11 +124,12 @@ class Group extends Model
     ]
   */
   public function getMonthlyPastEvents(){
-    $upcoming = $this->events()->past()->get()->groupBy(function($item){
+    $this->loadMissing('past_events.auth_user_status');
+    $past = $this->past_events->groupBy(function($item){
       return $item->start_date->format('F Y');
     });
 
-    return $upcoming;
+    return $past;
   }
 
   /*
