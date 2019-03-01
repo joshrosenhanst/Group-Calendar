@@ -15,10 +15,10 @@
         <a v-bind:href="`/users/${attendee.id}`" class="preview_thumbnail">
           <img v-bind:src="`/${attendee.avatar}`" v-bind:alt="`${attendee.name} Avatar`">
         </a>
-        <a v-bind:href="`/users/${attendee.id}`" class="preview_name">
-          <span>{{ attendee.name }}</span>
+        <div class="preview_name">
+          <a v-bind:href="`/users/${attendee.id}`">{{ attendee.name }}</a>
           <small class="status" v-bind:class="attendee.pivot.status">{{ status_text[attendee.pivot.status] }}</small>
-        </a>
+        </div>
       </div>
     </div>
     <div class="card_section card_list" v-else>
