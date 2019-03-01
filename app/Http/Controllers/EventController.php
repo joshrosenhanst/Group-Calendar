@@ -146,10 +146,11 @@ class EventController extends Controller
       destroy() - Delete the event model from the database.
     */
     public function destroy(Request $request, \App\Event $event){
+      $group = $event->group;
       $event->delete();
 
       //trigger "event deleted" Event
 
-      return redirect()->route('events.index')->with('status', 'The event has been deleted.');
+      return redirect()->route('groups.events.index', ['group'=>$group])->with('status', 'The event has been deleted.');
     }
 }

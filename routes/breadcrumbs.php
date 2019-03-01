@@ -53,9 +53,9 @@ Breadcrumbs::for('groups.events.edit', function ($trail, $group, $event) {
 });
 
 // My Groups / [group] / Events / [event->title] / Delete
-Breadcrumbs::for('events.delete', function ($trail, $group, $event) {
+Breadcrumbs::for('groups.events.delete', function ($trail, $group, $event) {
   $trail->parent('groups.events.view', $group, $event);
-  $trail->push($event->name, route('groups.events.delete', ['event'=>$event,'group'=>$group]));
+  $trail->push('Delete', route('groups.events.delete', ['event'=>$event,'group'=>$group]));
 });
 
 // My Groups / [group->title] / Members
