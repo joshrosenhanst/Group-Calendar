@@ -119,7 +119,7 @@
             <button class="button button-small button-info"
               v-on:click.prevent="showEndDate = !showEndDate"
             >
-              <span class="icon">@materialicon('plus')</span>
+              <material-icon v-bind:name="(showEndDate ? 'minus':'plus')"></material-icon>
               <span>@{{ showEndDate ? 'Remove':'Add' }} End Date</span>
             </button>
           </div>
