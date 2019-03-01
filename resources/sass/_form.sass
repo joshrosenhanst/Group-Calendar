@@ -11,8 +11,7 @@
     .form_input
       border-color: $danger
   .form_inline_group
-    &:not(:last-child)
-      margin-bottom: 25px
+    margin-bottom: 25px
     .field
       display: flex
       column-gap: 15px
@@ -35,6 +34,12 @@
             .icon
               margin-right: 5px
               color: $primary
+        .field_multiple
+          display: flex
+          column-gap: 5px
+          max-width: 450px
+          .field_input
+            flex: 1 0 0
   .form_help
     font-size: $size-small
     color: $text-light
