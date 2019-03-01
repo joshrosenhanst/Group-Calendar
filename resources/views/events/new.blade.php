@@ -39,6 +39,7 @@
         </span>
         <strong>{{ $group->name }}</strong>
         @endcomponent
+        <input type="hidden" id="group" name="group" value="{{ $group->id }}">
       @else
         @include('partials.form_inline_group', [
           'label' => ['text' => 'Group'],
