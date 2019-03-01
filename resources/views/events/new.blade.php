@@ -14,6 +14,7 @@
       @method('PUT')
       @csrf
       
+      {{-- Name --}}
       @include('partials.form_inline_group', [
         'label' => ['text' => 'Event Name'],
         'input' => [
@@ -27,6 +28,8 @@
         'help' => 'This is a help block',
         'errors' => $errors->get('name')
       ])
+
+      {{-- Group --}}
       @include('partials.form_inline_group', [
         'label' => ['text' => 'Group'],
         'input' => [
@@ -42,37 +45,88 @@
         'help' => 'This is a help block',
         'errors' => $errors->get('group')
       ])
-      @include('partials.form_inline_group', [
-        'label' => ['text' => 'Start Date'],
-        'input' => [
-          'name' => 'start_date',
-          'type' => 'date',
-          'value' => \Carbon\Carbon::today()->toDateString(),
-          'min' => '2019-01-01',
-          'id' => 'start_date',
-          'required' => true,
-          'old' => old('start_date')
+
+      {{-- Start Date/Time --}}
+      @include('partials.form_inline_group_multiple', [
+        'label' => ['text' => 'Start Date','required'=>true,'label_for'=>'start_date'],
+        'inputs' => [
+          [
+            'name' => 'start_date',
+            'type' => 'date',
+            'min' => '2019-01-01',
+            'value' => \Carbon\Carbon::today()->toDateString(),
+            'id' => 'start_date',
+            'old' => old('start_date'),
+            'icon' => [
+              'align' => 'left',
+              'name' => 'calendar'
+            ]
+          ],
+          [
+            'name' => 'start_time',
+            'type' => 'time',
+            'id' => 'start_time',
+            'old' => old('start_time'),
+            'icon' => [
+              'align' => 'left',
+              'name' => 'clock-outline'
+            ]
+          ]
         ],
-        'icon' => [
-          'align' => 'left',
-          'name' => 'calendar'
-        ],
-        'errors' => $errors->get('start_date')
+        'help' => 'You can optionally add an end date and time.',
+        'has_errors' => ( $errors->has('start_date') || $errors->has('start_time') ),
+        'error_group' => [ $errors->get('start_date'), $errors->get('start_time') ]
       ])
-      @include('partials.form_inline_group', [
-        'label' => ['text' => 'Start Time'],
-        'input' => [
-          'name' => 'start_time',
-          'type' => 'time',
-          'id' => 'start_time',
-          'old' => old('start_time')
-        ],
-        'icon' => [
-          'align' => 'left',
-          'name' => 'clock-outline'
-        ],
-        'errors' => $errors->get('start_time')
-      ])
+
+      {{-- End Date/Time --}}
+      <div class="form_group_wrapper" v-if="showEndDate">
+        @include('partials.form_inline_group_multiple', [
+          'label' => ['text' => 'End Date','label_for'=>'end_date'],
+          'inputs' => [
+            [
+              'name' => 'end_date',
+              'type' => 'date',
+              'min' => '2019-01-01',
+              'value' => \Carbon\Carbon::today()->toDateString(),
+              'id' => 'end_date',
+              'old' => old('end_date'),
+              'icon' => [
+                'align' => 'left',
+                'name' => 'calendar'
+              ]
+            ],
+            [
+              'name' => 'end_time',
+              'type' => 'time',
+              'id' => 'end_time',
+              'old' => old('end_time'),
+              'icon' => [
+                'align' => 'left',
+                'name' => 'clock-outline'
+              ]
+            ]
+          ],
+          'has_errors' => ( $errors->has('end_date') || $errors->has('end_time') ),
+          'error_group' => [ $errors->get('end_date'), $errors->get('end_time') ]
+        ])
+      </div>
+
+      {{--Button prompt to show/hide the End Date fields --}}
+      <div class="form_inline_group">
+        <div class="field">
+          <div class="field_label"></div>
+          <div class="field_body">
+            <button class="button button-small button-info"
+              v-on:click.prevent="showEndDate = !showEndDate"
+            >
+              <span class="icon">@materialicon('plus')</span>
+              <span>@{{ showEndDate ? 'Remove':'Add' }} End Date</span>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      {{-- Description --}}
       @include('partials.form_inline_group', [
         'label' => ['text' => 'Description'],
         'input' => [
@@ -101,3 +155,14 @@
   @include('layouts.sidebar.user')
 </aside>
 @endsection
+
+@push('scripts')
+<script>
+const app = new Vue({
+  el: '#app',
+  data: {
+    showEndDate: false
+  }
+});
+</script>
+@endpush

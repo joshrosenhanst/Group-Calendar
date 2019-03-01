@@ -34,9 +34,11 @@ class EventController extends Controller
     public function create(Request $request){
       $request->validate([
         'name' => 'required',
-        'group' => 'required',
-        'start_date' => 'required|date',
-        'end_date' => 'nullable|date'
+        'group' => 'required|numeric|exists:groups,id',
+        'start_date' => 'required|date_format:Y-m-d',
+        'start_time' => 'nullable|date_format:H:i',
+        'end_date' => 'nullable|date_format:Y-m-d|after_or_equal:start_date',
+        'end_time' => 'nullable|date_format:H:i',
       ]);
 
       $event = \App\Event::create([
@@ -78,8 +80,10 @@ class EventController extends Controller
     public function update(Request $request, \App\Event $event){
       $request->validate([
         'name' => 'required',
-        'start_date' => 'required|date',
-        'end_date' => 'nullable|date'
+        'start_date' => 'required|date_format:Y-m-d',
+        'start_time' => 'nullable|date_format:H:i',
+        'end_date' => 'nullable|date_format:Y-m-d|after_or_equal:start_date',
+        'end_time' => 'nullable|date_format:H:i',
       ]);
 
       $event->update([
