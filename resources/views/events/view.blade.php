@@ -29,7 +29,7 @@
       <div class="event_detail">
         <div class="icon icon-full_size">@materialicon('map-marker')</div>
         <div class="detail_content">
-          <a href="#">1256 Franklin St<small>Brooklyn, NY 07747</small></a>
+          <a href="#" title="View Location Map">1256 Franklin St<small>Brooklyn, NY 07747</small></a>
         </div>
       </div>
 
@@ -37,12 +37,13 @@
       <div class="event_detail">
         <div class="icon icon-full_size">@materialicon('account-group')</div>
         <div class="detail_content">
-          <a href="#attendees">{{ $event->group->name }}
-            <small class="seperated_count">
+          <a href="{{ route('groups.view', ['group'=>$event->group]) }}">{{ $event->group->name }}</a>
+          <small>
+            <a href="#attendees" class="seperated_count" title="View Event Attendees">
               <span v-if="going_attendees_count">@{{ going_attendees_count }} Going</span>
               <span v-if="interested_attendees_count">@{{ interested_attendees_count }} Interested</span>
-            </small>
-          </a>
+            </a>
+          </small>
         </div>
       </div>
 
@@ -55,32 +56,41 @@
     <div class="card_section event_card_section-description">
 
       {{-- Event Description --}}
+      @isset($event->description)
       <div class="description">
         {{ $event->description }}
       </div>
+      @endisset
 
       {{-- Event Creator / Link --}}
       <dl class="event_description_list">
-        <div class="description_list_group">
-          <dt>Created</dt>
-          <dd>
-            <strong>{{ $event->created_at->format('m/d/Y h:i A') }}</strong> by <a href="{{ route('users.view', ['user'=>$event->creator]) }}">{{ $event->creator->name }}</a>
-          </dd>
-        </div>
-        @if($event->edited)
-        <div class="description_list_group">
-          <dt>Updated</dt>
-          <dd>
-            <strong>{{ $event->updated_at->format('m/d/Y h:i A') }}</strong> by <a href="{{ route('users.view', ['user'=>$event->updater]) }}">{{ $event->updater->name }}</a>
-          </dd>
-        </div>
-        @endif
+
+        {{--Event Link --}}
         <div class="description_list_group">
           <dt>Event Link</dt>
           <dd>
             <a href="{{ route('events.view', ['event'=>$event]) }}">{{ route('events.view', ['event'=>$event]) }}</a>
           </dd>
         </div>
+
+        {{--Created At timestamp --}}
+        <div class="description_list_group">
+          <dt>Created</dt>
+          <dd>
+            <span class="description_timestamp">{{ $event->created_at->format('m/d/Y h:i A') }}</span> by <a href="{{ route('users.view', ['user'=>$event->creator]) }}">{{ $event->creator->name }}</a>
+          </dd>
+        </div>
+
+        {{--Updated At timestamp --}}
+        @if($event->edited)
+        <div class="description_list_group">
+          <dt>Updated</dt>
+          <dd>
+            <span class="description_timestamp">{{ $event->updated_at->format('m/d/Y h:i A') }}</span> by <a href="{{ route('users.view', ['user'=>$event->updater]) }}">{{ $event->updater->name }}</a>
+          </dd>
+        </div>
+        @endif
+
       </dl>
     </div>
   </div>
