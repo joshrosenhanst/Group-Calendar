@@ -22,7 +22,7 @@
       </div>
     </div>
     <div class="card_section card_list" v-else>
-      <div class="empty">
+      <div class="empty list_empty">
         <material-icon name='account-question-outline'></material-icon>
         <h2>No Attendees</h2>
       </div>
