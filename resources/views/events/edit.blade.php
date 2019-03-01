@@ -7,7 +7,7 @@
   <div class="card">
     <div class="card_header card_header-no_content"></div>
     <div class="card_section card_section-title">
-      {{ Breadcrumbs::render('events.edit', $event) }}
+      {{ Breadcrumbs::render('groups.events.edit', $event->group, $event) }}
       <h1 class="title">Edit Event</h1>
     </div>
     <form action="{{ route('events.update', ['event'=>$event]) }}" id="event_form" class="form card_section card_section-form" method="POST">
@@ -29,14 +29,15 @@
       ])
 
       {{-- Group --}}
-      @include('partials.form_inline_static', [
-        'label' => ['text' => 'Group'],
-        'icon' => [
-          'align' => 'left',
-          'name' => 'account-multiple'
-        ],
-        'slot' => $event->group->name
+      @component('partials.form_inline_static', [
+        'label' => ['text' => 'Group']
       ])
+
+        <span class="preview_thumbnail">
+          <img src="{{ asset($event->group->avatar) }}" alt="{{ $event->group->name }} Avatar">
+        </span>
+        <strong>{{ $event->group->name }}</strong>
+      @endcomponent
 
       {{-- Start Date/Time --}}
       @include('partials.form_inline_group_multiple', [

@@ -31,14 +31,14 @@
 
       {{-- Group --}}
       @if($group)
-        @include('partials.form_inline_static', [
-          'label' => ['text' => 'Group'],
-          'icon' => [
-            'align' => 'left',
-            'name' => 'account-multiple'
-          ],
-          'slot' => $group->name
+        @component('partials.form_inline_static', [
+          'label' => ['text' => 'Group']
         ])
+        <span class="preview_thumbnail">
+          <img src="{{ asset($group->avatar) }}" alt="{{ $group->name }} Avatar">
+        </span>
+        <strong>{{ $group->name }}</strong>
+        @endcomponent
       @else
         @include('partials.form_inline_group', [
           'label' => ['text' => 'Group'],
