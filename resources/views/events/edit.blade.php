@@ -168,6 +168,10 @@
 
 {{-- Sidebars --}}
 <aside id="sidebars">
+  {{-- Event Sidebar --}}
+  @include('layouts.sidebar.event', ['event'=>$event])
+  {{-- Group Sidebar --}}
+  @include('layouts.sidebar.group', ['group'=>$event->group])
   {{-- User Sidebar --}}
   @include('layouts.sidebar.user')
 </aside>
