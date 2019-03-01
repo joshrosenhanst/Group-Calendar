@@ -44,7 +44,7 @@ class Event extends Model
     isMultiDayEvent() - Boolean check if the event is a multi day event. Check if the `end_date` is set and also check that the `start_date` doesn't match the `end_date`.
   */
   public function isMultiDayEvent(){
-    return ($this->end_date && $this->start_date !== $this->end_date);
+    return ($this->end_date && $this->start_date->toDateString() !== $this->end_date->toDateString());
   }
 
   public function getHeaderAttribute(){
@@ -74,7 +74,7 @@ class Event extends Model
       }
     }else{
       if($this->end_time){
-        $summary .= " to ".Carbon::parse($this->end_time)->format('h:i A');
+        $summary .= " - ".Carbon::parse($this->end_time)->format('h:i A');
       }
     }
     return $summary;
