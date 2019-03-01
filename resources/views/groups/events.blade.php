@@ -8,7 +8,7 @@
     {{-- Page Header --}}
     <div class="card_header card_header-no_content"></div>
     <div class="card_section card_section-title">
-      {{ Breadcrumbs::render('groups.events', $group) }}
+      {{ Breadcrumbs::render('groups.events.index', $group) }}
       <h1 class="title">
         <span class="icon">@materialicon('calendar-range')</span>
         <span>@lang('pages.groups.events.title')</span>

@@ -9,11 +9,11 @@
     </h1>
   </div>
   <div class="sidebar_section sidebar_links">
-    <a href="{{ route('events.new') }}" class="sidebar_link">
+    <a href="{{ route('groups.events.new', ['group'=>$group]) }}" class="sidebar_link">
       <span class="icon">@materialicon('calendar-plus')</span>
       <span>New Event</span>
     </a>
-    <a href="{{ route('groups.events', ['group'=>$group]) }}" class="sidebar_link">
+    <a href="{{ route('groups.events.index', ['group'=>$group]) }}" class="sidebar_link">
       <span class="icon">@materialicon('calendar-text')</span>
       <span>Group Events</span>
     </a>

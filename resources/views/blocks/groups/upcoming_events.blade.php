@@ -4,7 +4,7 @@
       <span class="icon">@materialicon('calendar')</span>
       <span>Upcoming Events</span>
     </h2>
-    <a href="{{ route('groups.events', ['group'=>$group]) }}" class="button">
+    <a href="{{ route('groups.events.index', ['group'=>$group]) }}" class="button">
       <span class="icon">@materialicon('calendar-text')</span>
       <span>View All Events</span>
     </a>

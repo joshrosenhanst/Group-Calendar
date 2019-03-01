@@ -8,7 +8,7 @@
     {{-- Page Header --}}
     <div class="card_header card_header-no_content"></div>
     <div class="card_section card_section-title">
-      {{ Breadcrumbs::render('events.view', $event) }}
+      {{ Breadcrumbs::render('groups.events.view', $event->group,$event) }}
     </div>
 
     {{-- Event Details --}}
@@ -119,6 +119,8 @@
 
 {{-- Sidebars --}}
 <aside id="sidebars">
+  {{-- Group Sidebar --}}
+  @include('layouts.sidebar.group', ['group'=>$event->group])
   {{-- User Sidebar --}}
   @include('layouts.sidebar.user')
 </aside>

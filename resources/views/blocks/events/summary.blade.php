@@ -2,7 +2,7 @@
 <div class="event_summary {{ ($mini ? 'card':'') }}">
   {{-- Summary Header - img link for mini card, background header for large --}}
   @if($mini)
-  <a class="summary_header" href="{{ route('events.view', ['event'=>$event]) }}">
+  <a class="summary_header" href="{{ route('groups.events.view', ['event'=>$event, 'group'=>$event->group]) }}">
     <img src="{{ asset($event->header) }}" alt="{{ $event->name }} header image">
   </a>
   @else
@@ -20,7 +20,7 @@
 
     <div class="summary_info">
 
-      <a class="summary_name" href="{{ route('events.view', ['event'=>$event]) }}">{{ $event->name }}</a>
+      <a class="summary_name" href="{{ route('groups.events.view', ['event'=>$event, 'group'=>$event->group]) }}">{{ $event->name }}</a>
 
       <div class="summary_location">
         @if($mini)
@@ -34,7 +34,7 @@
       {{-- Show user status with relevant icon and link to change status | large card only --}}
       <div class="summary_status">
         <strong class="status_display {{ $event->user_status }}">@lang('status.attendee.'.$event->user_status)
-        </strong> · <a href="{{ route('events.view', ['event'=>$event]) }}" class="update_status">Change My Status</a>
+        </strong> · <a href="{{ route('groups.events.view', ['event'=>$event, 'group'=>$event->group]) }}" class="update_status">Change My Status</a>
       </div>
       @endif
     </div>
@@ -42,7 +42,7 @@
     @if(!$mini)
     {{-- Event links | large card only --}}
     <div class="summary_links">
-      <a href="{{ route('events.view', ['event'=>$event]) }}" class="button button-link button-inverted">
+      <a href="{{ route('groups.events.view', ['event'=>$event, 'group'=>$event->group]) }}" class="button button-link button-inverted">
         <span class="icon">@materialicon('calendar-text-outline')</span>
         <span>Details</span>
       </a>

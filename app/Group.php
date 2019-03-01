@@ -141,7 +141,7 @@ class Group extends Model
       $calendar_events[] = [
         'title' => $event->name,
         'summary' => $event->start_date->format('M d').' - '.$event->name.' · '.$this->name,
-        'link' => route('events.view', ['event'=>$event]),
+        'link' => route('groups.events.view', ['event'=>$event, 'group'=>$event->group]),
         'startDate' => ($event->start_date ? $event->start_date->toDateString() : null),
         'endDate' => ($event->end_date ? $event->end_date->toDateString() : null)
       ];

@@ -24,8 +24,8 @@ class EventController extends Controller
     /*
       new() - Display the `events.new` page template.
     */
-    public function new(){
-      return view('events.new');
+    public function new(Request $request, \App\Group $group = null){
+      return view('events.new', ['group'=>$group]);
     }
 
     /*
@@ -55,13 +55,20 @@ class EventController extends Controller
 
       //trigger "event created" Event
 
-      return redirect()->route('events.view', ['event'=>$event])->with('status', 'Your event has been created.');
+      return redirect()->route('groups.events.view', ['event'=>$event, 'group'=>$event->group])->with('status', 'Your event has been created.');
+    }
+
+    /*
+      event_redirect() - Redirect the user to the full groups.events.view path.
+    */
+    public function event_redirect(\App\Event $event){
+      return redirect()->route('groups.events.view', ['event'=>$event,'group'=>$event->group]);
     }
 
     /*
       view() - Display the `events.view` page template.
     */
-    public function view(\App\Event $event){
+    public function view(\App\Event $group, \App\Event $event){
       $event->loadMissing('comments.user');
 
       return view('events.view', ['event'=>$event]);
@@ -105,7 +112,7 @@ class EventController extends Controller
         ]);
       }
 
-      return redirect()->route('events.view', ['event'=>$event])->with('status', 'The event has been updated.');
+      return redirect()->route('groups.events.view', ['event'=>$event, 'group'=>$event->group])->with('status', 'The event has been updated.');
     }
 
     /*
@@ -125,7 +132,7 @@ class EventController extends Controller
 
       //trigger "event attendee updated" Event
 
-      return redirect()->route('events.view', ['event'=>$event])->with('status', 'Your attendee status has been updated.');
+      return redirect()->route('groups.events.view', ['event'=>$event, 'group'=>$event->group])->with('status', 'Your attendee status has been updated.');
     }
 
     /*

@@ -18,29 +18,30 @@ Route::middleware('auth')->prefix('groups')->name('groups.')->group(function(){
   Route::get('/{group}/members','GroupController@members')->name('members');
   Route::get('/{group}/invite','GroupController@invite')->name('invite');
   Route::get('/{group}/join','GroupController@join')->name('join');
-  Route::get('/{group}/events', 'GroupController@events')->name('events');
 
   Route::put('/create', 'GroupController@create')->name('create');
   Route::put('/sendInvite', 'GroupController@sendInvite')->name('sendInvite');
   Route::put('/acceptInvite', 'GroupController@acceptInvite')->name('acceptInvite');
   Route::put('/update', 'GroupController@update')->name('update');
   Route::delete('/delete', 'GroupController@destroy')->name('destroy');
-
-  // Group specific events
-  //Route::get('/{group}/events','GroupController@events')->name('events');
-  //Route::get('/{group}/events/new','GroupController@new_event')->name('events.new');
 });
 
-/* Events - Generic Events listing with optional group paramater */
-Route::middleware('auth')->prefix('events/')->name('events.')->group(function(){
-  Route::get('/','EventController@index')->name('index');
+/* Group Events */
+Route::middleware('auth')->prefix('groups/{group}/events')->name('groups.events.')->group(function(){
+  Route::get('/', 'GroupController@events')->name('index');
   Route::get('/new','EventController@new')->name('new');
-  Route::get('/calendar','EventController@calendar')->name('calendar');
 
   Route::get('/{event}','EventController@view')->name('view');
   Route::get('/{event}/edit','EventController@edit')->name('edit');
   Route::get('/{event}/attend','EventController@attend')->name('attend');
   Route::get('/{event}/delete','EventController@delete')->name('delete');
+});
+
+/* Events - Generic Events, no group required */
+Route::middleware('auth')->prefix('events/')->name('events.')->group(function(){
+  Route::get('/','EventController@index')->name('index');
+  Route::get('/new','EventController@new')->name('new');
+  Route::get('/{event}','EventController@event_redirect')->name('view');
 
   Route::put('/create', 'EventController@create')->name('create');
   Route::put('/{event}/update', 'EventController@update')->name('update');

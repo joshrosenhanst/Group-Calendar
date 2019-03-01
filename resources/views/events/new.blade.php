@@ -7,7 +7,7 @@
   <div class="card">
     <div class="card_header card_header-no_content"></div>
     <div class="card_section card_section-title">
-      {{ Breadcrumbs::render('events.new') }}
+      {{ Breadcrumbs::render('events.new', $group) }}
       <h1 class="title">New Event</h1>
     </div>
     <form action="{{ route('events.create') }}" id="event_form" class="form card_section card_section-form" method="POST">
@@ -30,21 +30,32 @@
       ])
 
       {{-- Group --}}
-      @include('partials.form_inline_group', [
-        'label' => ['text' => 'Group'],
-        'input' => [
-          'name' => 'group',
-          'type' => 'select',
-          'id' => 'group',
-          'placeholder' => 'Group',
-          'required' => true,
-          'default_option' => 'Select a Group',
-          'options' => Auth::user()->group_select,
-          'old' => old('group', request('group'))
-        ],
-        'help' => 'This is a help block',
-        'errors' => $errors->get('group')
-      ])
+      @if($group)
+        @include('partials.form_inline_static', [
+          'label' => ['text' => 'Group'],
+          'icon' => [
+            'align' => 'left',
+            'name' => 'account-multiple'
+          ],
+          'slot' => $group->name
+        ])
+      @else
+        @include('partials.form_inline_group', [
+          'label' => ['text' => 'Group'],
+          'input' => [
+            'name' => 'group',
+            'type' => 'select',
+            'id' => 'group',
+            'placeholder' => 'Group',
+            'required' => true,
+            'default_option' => 'Select a Group',
+            'options' => Auth::user()->group_select,
+            'old' => old('group', request('group'))
+          ],
+          'help' => 'This is a help block',
+          'errors' => $errors->get('group')
+        ])
+      @endif
 
       {{-- Start Date/Time --}}
       @include('partials.form_inline_group_multiple', [
@@ -151,6 +162,10 @@
 
 {{-- Sidebars --}}
 <aside id="sidebars">
+  @if($group)
+    {{-- Group Sidebar --}}
+    @include('layouts.sidebar.group', ['group'=>$group])
+  @endif
   {{-- User Sidebar --}}
   @include('layouts.sidebar.user')
 </aside>

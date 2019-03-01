@@ -9,7 +9,7 @@
     </h1>
   </div>
   <div class="sidebar_section sidebar_links">
-    <a href="{{ route('events.calendar') }}" class="sidebar_link">
+    <a href="{{ route('events.index') }}" class="sidebar_link">
       <span class="icon">@materialicon('calendar')</span>
       <span>My Calendar</span>
     </a>
