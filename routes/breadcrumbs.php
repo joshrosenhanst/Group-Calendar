@@ -49,7 +49,7 @@ Breadcrumbs::for('groups.events.view', function ($trail, $group, $event) {
 // My Groups / [group] / Events / [event->title] / Edit
 Breadcrumbs::for('groups.events.edit', function ($trail, $group, $event) {
   $trail->parent('groups.events.view', $group, $event);
-  $trail->push($event->name, route('groups.events.edit', ['event'=>$event,'group'=>$group]));
+  $trail->push('Edit', route('groups.events.edit', ['event'=>$event,'group'=>$group]));
 });
 
 // My Groups / [group] / Events / [event->title] / Delete

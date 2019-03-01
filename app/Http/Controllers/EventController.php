@@ -77,7 +77,7 @@ class EventController extends Controller
     /*
       edit() - Display the `events.edit` page template.
     */
-    public function edit(\App\Event $event){
+    public function edit(\App\Group $group, \App\Event $event){
       return view('events.edit', ['event'=>$event]);
     }
 
@@ -138,7 +138,7 @@ class EventController extends Controller
     /*
       delete() - Display the `events.delete` page template.
     */
-    public function delete(\App\Event $event){
+    public function delete(\App\Group $group, \App\Event $event){
       return view('events.delete', ['event'=>$event]);
     }
 

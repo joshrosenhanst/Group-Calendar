@@ -33,7 +33,6 @@ Route::middleware('auth')->prefix('groups/{group}/events')->name('groups.events.
 
   Route::get('/{event}','EventController@view')->name('view');
   Route::get('/{event}/edit','EventController@edit')->name('edit');
-  Route::get('/{event}/attend','EventController@attend')->name('attend');
   Route::get('/{event}/delete','EventController@delete')->name('delete');
 });
 
@@ -44,6 +43,7 @@ Route::middleware('auth')->prefix('events/')->name('events.')->group(function(){
   Route::get('/{event}','EventController@event_redirect')->name('view');
 
   Route::put('/create', 'EventController@create')->name('create');
+  Route::put('/{event}/attend','EventController@attend')->name('attend');
   Route::put('/{event}/update', 'EventController@update')->name('update');
   Route::delete('/{event}/delete', 'EventController@destroy')->name('destroy');
 
