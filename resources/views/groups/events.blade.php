@@ -31,11 +31,13 @@
     </template>
   </tab-wrapper>
 
-  <div class="tab upcoming_events_tab card card-has_tabs" v-show="activeTab === 'upcoming_events'">
-    <div class="card_section">
+  <div class="tab upcoming_events_tab" v-show="activeTab === 'upcoming_events'">
       @if(count($monthly_upcoming_events))
         @foreach($monthly_upcoming_events as $month=>$monthly_events)
-          <div class="card card-inner_card">
+          <div class="card {{ $loop->first?'card-has_tabs':'' }}">
+            @if(!$loop->first)
+            <div class="card_header card_header-no_content"></div>
+            @endif
             <div class="card_sub_header">
               <h1 class="sub_title">{{$month}} Events</h1>
             </div>
@@ -51,15 +53,17 @@
         @endcomponent
       @endif
       
-    </div>
   </div>
 
-  <div class="tab past_events_tab card card-has_tabs" v-show="activeTab === 'past_events'">
+  <div class="tab past_events_tab" v-show="activeTab === 'past_events'">
     <div class="card_section">
       
       @if(count($monthly_past_events))
         @foreach($monthly_past_events as $month=>$monthly_events)
-          <div class="card card-inner_card">
+          <div class="card {{ $loop->first?'card-has_tabs':'' }}">
+            @if(!$loop->first)
+            <div class="card_header card_header-no_content"></div>
+            @endif
             <div class="card_sub_header">
               <h1 class="sub_title">{{$month}} Events</h1>
             </div>
