@@ -1,8 +1,11 @@
 <?php
 
 return [
+  /* Home */
+  'home.title' => 'GroupCalendar Dashboard',
+  'home.subtitle' => 'Welcome to the GroupCalendar Event Planner! GroupCalendar helps you to plan and create events with your groups. Group events are private and can only be seen by other group members.',
+
   /* Profile */
-  'profile.index.title' => 'My Profile',
   'profile.edit.title' => 'Edit Profile',
   'profile.password.title' => 'Change Password',
 

@@ -9,21 +9,25 @@
     </h1>
   </div>
   <div class="sidebar_section sidebar_links">
-    <a href="{{ route('events.index') }}" class="sidebar_link">
-      <span class="icon">@materialicon('calendar')</span>
-      <span>My Calendar</span>
+    <a href="{{ route('home') }}" class="sidebar_link">
+      <span class="icon">@materialicon('home')</span>
+      <span>Dashboard</span>
     </a>
-    <a href="{{ route('groups.index') }}" class="sidebar_link">
-      <span class="icon">@materialicon('account-group')</span>
-      <span>My Groups</span>
+    <a href="{{ route('events.index') }}" class="sidebar_link">
+      <span class="icon">@materialicon('calendar-text')</span>
+      <span>My Events</span>
     </a>
     <a href="{{ route('notifications.index') }}" class="sidebar_link">
       <span class="icon">@materialicon('bell')</span>
       <span>Notifications</span>
     </a>
-    <a href="{{ route('profile.index') }}" class="sidebar_link">
+    <a href="{{ route('profile.edit') }}" class="sidebar_link">
       <span class="icon">@materialicon('account-box')</span>
-      <span>My Profile</span>
+      <span>Edit Profile</span>
+    </a>
+    <a href="{{ route('profile.password') }}" class="sidebar_link">
+      <span class="icon">@materialicon('lock')</span>
+      <span>Change Password</span>
     </a>
     <a href="{{ route('logout') }}" class="sidebar_link">
       <span class="icon">@materialicon('logout')</span>

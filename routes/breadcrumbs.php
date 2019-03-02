@@ -5,76 +5,73 @@ Breadcrumbs::for('home', function ($trail) {
 });
 
 /* PROFILE */
-// My Profile
-Breadcrumbs::for('profile.index', function ($trail) {
-  $trail->push('My Profile', route('profile.index'));
-});
-
-// My Profile / Edit
+// Home / Edit Profile
 Breadcrumbs::for('profile.edit', function ($trail) {
-  $trail->push('Edit', route('profile.edit'));
+  $trail->parent('home');
+  $trail->push('Edit Profile', route('profile.edit'));
 });
 
-// My Profile / Change Password
+// Home / Change Password
 Breadcrumbs::for('profile.password', function ($trail) {
+  $trail->parent('home');
   $trail->push('Change Password', route('profile.password'));
 });
 
 /* GROUPS */
 // My Groups
-Breadcrumbs::for('groups.index', function ($trail) {
+/*Breadcrumbs::for('groups.index', function ($trail) {
   $trail->push('My Groups', route('groups.index'));
-});
+});*/
 
-// My Groups / New
+// Home / New Group
 Breadcrumbs::for('groups.new', function ($trail, $group) {
-  $trail->parent('groups.index');
-  $trail->push('New', route('groups.new'));
+  $trail->parent('home');
+  $trail->push('New Group', route('groups.new'));
 });
 
-// My Groups / [group->title] / Edit
+// Home / [group->title]
+Breadcrumbs::for('groups.view', function ($trail, $group) {
+  $trail->parent('home');
+  $trail->push($group->name, route('groups.view', ['group'=>$group]));
+});
+
+// Home / [group->title] / Edit
 Breadcrumbs::for('groups.edit', function ($trail, $group) {
   $trail->parent('groups.view', $group);
   $trail->push('Edit', route('groups.edit', ['group'=>$group]));
 });
 
-// My Groups / [group->title]
-Breadcrumbs::for('groups.view', function ($trail, $group) {
-  $trail->parent('groups.index');
-  $trail->push($group->name, route('groups.view', ['group'=>$group]));
-});
-
-// My Groups / [group->title] / Events
+// Home / [group->title] / Events
 Breadcrumbs::for('groups.events.index', function ($trail, $group) {
   $trail->parent('groups.view', $group);
   $trail->push('Events', route('groups.events.index', ['group'=>$group]));
 });
 
-// My Groups / [group->title] / Events / New
+// Home / [group->title] / Events / New Event
 Breadcrumbs::for('groups.events.new', function ($trail, $group) {
   $trail->parent('groups.events.index', $group);
-  $trail->push('New', route('groups.events.new', ['group'=>$group]));
+  $trail->push('New Event', route('groups.events.new', ['group'=>$group]));
 });
 
-// My Groups / [group->title] / Events / [event->title]
+// Home / [group->title] / Events / [event->title]
 Breadcrumbs::for('groups.events.view', function ($trail, $group, $event) {
   $trail->parent('groups.events.index', $group);
   $trail->push($event->name, route('groups.events.view', ['group'=>$group, 'event'=>$event]));
 });
 
-// My Groups / [group] / Events / [event->title] / Edit
+// Home / [group] / Events / [event->title] / Edit
 Breadcrumbs::for('groups.events.edit', function ($trail, $group, $event) {
   $trail->parent('groups.events.view', $group, $event);
   $trail->push('Edit', route('groups.events.edit', ['event'=>$event,'group'=>$group]));
 });
 
-// My Groups / [group] / Events / [event->title] / Delete
+// Home / [group] / Events / [event->title] / Delete
 Breadcrumbs::for('groups.events.delete', function ($trail, $group, $event) {
   $trail->parent('groups.events.view', $group, $event);
   $trail->push('Delete', route('groups.events.delete', ['event'=>$event,'group'=>$group]));
 });
 
-// My Groups / [group->title] / Members
+// Home / [group->title] / Members
 Breadcrumbs::for('groups.members', function ($trail, $group) {
   $trail->parent('groups.view', $group);
   $trail->push('Members', route('groups.members', ['group'=>$group]));
@@ -83,7 +80,7 @@ Breadcrumbs::for('groups.members', function ($trail, $group) {
 /* Events */
 // Events can optionally have a [group] prefix, if the group is set on the request
 // Home / Events (no group)
-// My Groups / [group] / Events
+// Home / [group] / Events
 Breadcrumbs::for('events.index', function ($trail, $group=null) {
   if($group){
     $trail->parent('groups.view', $group);
@@ -94,7 +91,7 @@ Breadcrumbs::for('events.index', function ($trail, $group=null) {
   }
 });
 // Events / New (no group)
-// My Groups / [group] / Events / New
+// Home / [group] / Events / New
 Breadcrumbs::for('events.new', function ($trail, $group=null) {
   $trail->parent('events.index', $group);
   if($group){

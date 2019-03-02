@@ -56,12 +56,13 @@ class LoginController extends Controller{
     home() - Redirect the user to the `groups.view` route if they have 1 group, or the `groups.list` otherwise.
   */
   public function home(){
-    $groups = Auth::user()->groups()->with(['events.comments'])->get();
+    /*$groups = Auth::user()->groups()->with(['events.comments'])->get();
     if($groups->count() === 1){
       return redirect()->route('groups.view', ['group'=>$groups->first()]);
     }else{
       return redirect()->route('groups.index');
-    }
+    }*/
+    return view('home');
   }
 
   /*

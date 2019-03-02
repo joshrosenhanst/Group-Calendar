@@ -11,13 +11,6 @@ use Illuminate\Support\Facades\Hash;
 class ProfileController extends Controller
 {
   /*
-    index() - Display the `profile.index` template.
-  */
-  public function index(){
-    return view('profile.index');
-  }
-
-  /*
     edit() - Display the `profile.edit` template.
   */
   public function edit(){

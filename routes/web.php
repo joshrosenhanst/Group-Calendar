@@ -56,7 +56,7 @@ Route::middleware('auth')->prefix('users')->name('users.')->group(function(){
 
 /* My Profile */
 Route::middleware('auth')->prefix('profile')->name('profile.')->group(function(){
-  Route::get('/','ProfileController@index')->name('index'); // my profile
+  Route::redirect('/','/home');
   Route::get('/edit','ProfileController@edit')->name('edit');
   Route::get('/password','ProfileController@password')->name('password');
   
