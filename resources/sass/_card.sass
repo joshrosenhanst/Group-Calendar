@@ -152,14 +152,20 @@
     display: flex
     align-items: center
     padding: 0
+    border: 1px solid $card-border-color
     .button
       flex: 1 1
+      color: $link
+      font-weight: 400
+      text-decoration: none
+      border: 0
+      .icon
+        color: $primary
       &:hover
         background-color: $grey-lightest
-      &:not(:only-of-type)
+        color: darken($link, 2.5%)
+      &:not(:last-of-type)
         border-right: 1px solid $card-border-color
-        &:last-of-type
-          border-right: 0
   .card_buttons-top_right
     position: absolute
     right: 0.5rem

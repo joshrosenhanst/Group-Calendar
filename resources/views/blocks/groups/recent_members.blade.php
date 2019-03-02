@@ -16,7 +16,10 @@
       @endcomponent
     @endif
   </div>
-  <div class="card_section card_buttons">
-    <a href="{{ route('groups.members', ['group'=>$group]) }}" class="button button-text">View All Members</a>
+  <div class="card_buttons">
+    <a href="{{ route('groups.members', ['group'=>$group]) }}" class="button">
+      <span class="icon">@materialicon('account-multiple')</span>
+      <span>View All Members</span>
+    </a>
   </div>
 </div>
