@@ -57,9 +57,11 @@ Route::middleware('auth')->prefix('users')->name('users.')->group(function(){
 /* My Profile */
 Route::middleware('auth')->prefix('profile')->name('profile.')->group(function(){
   Route::get('/','ProfileController@index')->name('index'); // my profile
-  Route::get('/edit','EventController@edit')->name('edit');
+  Route::get('/edit','ProfileController@edit')->name('edit');
+  Route::get('/password','ProfileController@password')->name('password');
   
-  Route::put('/update', 'EventController@update')->name('update');
+  Route::put('/update', 'ProfileController@update')->name('update');
+  Route::put('/updatePassword', 'ProfileController@updatePassword')->name('updatePassword');
 });
 
 /* Notifications */

@@ -4,6 +4,22 @@ Breadcrumbs::for('home', function ($trail) {
   $trail->push('Home', route('home'));
 });
 
+/* PROFILE */
+// My Profile
+Breadcrumbs::for('profile.index', function ($trail) {
+  $trail->push('My Profile', route('profile.index'));
+});
+
+// My Profile / Edit
+Breadcrumbs::for('profile.edit', function ($trail) {
+  $trail->push('Edit', route('profile.edit'));
+});
+
+// My Profile / Change Password
+Breadcrumbs::for('profile.password', function ($trail) {
+  $trail->push('Change Password', route('profile.password'));
+});
+
 /* GROUPS */
 // My Groups
 Breadcrumbs::for('groups.index', function ($trail) {

@@ -23,7 +23,7 @@
     </a>
     <a href="{{ route('profile.index') }}" class="sidebar_link">
       <span class="icon">@materialicon('account-box')</span>
-      <span>Edit Profile</span>
+      <span>My Profile</span>
     </a>
     <a href="{{ route('logout') }}" class="sidebar_link">
       <span class="icon">@materialicon('logout')</span>

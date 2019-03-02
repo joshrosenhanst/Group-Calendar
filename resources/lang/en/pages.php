@@ -1,6 +1,11 @@
 <?php
 
 return [
+  /* Profile */
+  'profile.index.title' => 'My Profile',
+  'profile.edit.title' => 'Edit Profile',
+  'profile.password.title' => 'Change Password',
+
   /* Groups */
   'groups.index.title' => 'My Groups',
   'groups.index.subtitle' => 'Choose a group from your list or create a new group. You can invite members to your group and create events for the group. Group events are private and only group members can attend.',
