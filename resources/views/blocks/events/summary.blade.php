@@ -1,13 +1,7 @@
 {{-- Event Summary template --}}
-<div class="event_summary {{ ($mini ? 'card':'') }}">
+<div class="event_summary {{ ($mini ? 'card event_summary-mini':'') }}">
   {{-- Summary Header - img link for mini card, background header for large --}}
-  @if($mini)
-  <a class="summary_header" href="{{ route('groups.events.view', ['event'=>$event, 'group'=>$event->group]) }}">
-    <img src="{{ asset($event->header) }}" alt="{{ $event->name }} header image">
-  </a>
-  @else
-  <div class="summary_header summary_header-background_image" style="background-image: url({{ asset($event->header) }})">&nbsp;</div>
-  @endif
+  <a href="{{ route('groups.events.view', ['event'=>$event, 'group'=>$event->group]) }}" class="summary_header summary_header-background_image" style="background-image: url({{ asset($event->header) }})">&nbsp;</a>
 
   {{-- Details --}}
   <div class="card_section summary_details">

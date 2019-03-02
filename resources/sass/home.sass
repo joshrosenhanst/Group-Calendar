@@ -11,12 +11,62 @@
 .upcoming_events_section
   display: flex
   align-items: flex-start
-  justify-content: center
-  column-gap: 10px
+  justify-content: flex-start
+  column-gap: 15px
+  flex-wrap: nowrap
+  padding: 25px 20px
+  overflow: hidden
   .event_summary
-    max-width: 250px
+    flex: none
+    max-width: 300px
     box-shadow: $card-box-shadow-emphasis
+    margin: 0
 
 /* Empty display */
 .empty
   +icon-empty
+
+.card_section.slider
+  padding: 0
+.slider
+  position: relative
+  .slider_nav_buttons
+    position: absolute
+    top: 50%
+    left: 0
+    width: 100%
+    height: 100%
+    padding: 0 10px
+    z-index: 20
+    display: flex
+    align-items: center
+    justify-content: space-between
+
+  .slider_button
+    position: absolute
+    top: calc(50% - 21px)
+    padding: 0
+    margin: 0
+    width: 42px
+    height: 42px
+    background-color: $white
+    color: $primary
+    border: 1px solid $card-border-color
+    box-shadow: $card-box-shadow-emphasis
+    border-radius: 50%
+    cursor: pointer
+    z-index: 20
+    display: inline-flex
+    align-items: center
+    justify-content: center
+    &>svg
+      fill: currentColor
+      height: 100%
+      width: 100%
+    &:hover
+      color: $link
+      background-color: $grey-lightest
+  .slider_prev
+    left: -15px
+  .slider_next
+    right: -15px
