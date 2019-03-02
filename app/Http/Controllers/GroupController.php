@@ -15,6 +15,13 @@ class GroupController extends Controller{
   }
 
   /*
+    new() - Display the `groups.new` page template.
+  */
+  public function new(){
+    return view('groups.new');
+  }
+
+  /*
     events() - Display the `groups.events` page template.
   */
   public function events(\App\Group $group) {
