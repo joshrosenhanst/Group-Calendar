@@ -16,7 +16,12 @@
   </div>
 
   {{-- Upcoming Events --}}
-  @include('blocks.groups.upcoming_events')
+  @include('blocks.upcoming_events', [
+    'events'=>$events,
+    'show_groups'=>false,
+    'title'=>'Upcoming Events',
+    'events_route' => route('groups.events.index', ['group'=>$group])
+  ])
 
   <div class="maincontent_container">
     <div class="maincontent_mid_section">
