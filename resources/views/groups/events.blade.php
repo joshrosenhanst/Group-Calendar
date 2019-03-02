@@ -48,9 +48,13 @@
           </div>
         @endforeach
       @else
-        @component('components.empty', ['icon'=>'calendar-question'])
-          No Upcoming Events
-        @endcomponent
+        <div class="card card-has_tabs">
+          <div class="card_section">
+            @component('components.empty', ['icon'=>'calendar-question'])
+              No Upcoming Events
+            @endcomponent
+          </div>
+        </div>
       @endif
       
   </div>
@@ -74,9 +78,13 @@
           </div>
         @endforeach
       @else
-        @component('components.empty', ['icon'=>'calendar-question'])
-          No Past Events
-        @endcomponent
+        <div class="card card-has_tabs">
+          <div class="card_section">
+            @component('components.empty', ['icon'=>'calendar-question'])
+              No Past Events
+            @endcomponent
+          </div>
+        </div>
       @endif
 
     </div>
