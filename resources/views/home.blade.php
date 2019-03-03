@@ -61,3 +61,11 @@
   @include('layouts.sidebar.user')
 </aside>
 @endsection
+
+@push('scripts')
+<script>
+const app = new Vue({
+  el: '#app'
+});
+</script>
+@endpush
