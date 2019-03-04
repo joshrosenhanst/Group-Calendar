@@ -214,3 +214,13 @@
   .button_group
     display: inline-flex
     column-gap: 5px
+
+.form.form-centered
+  +desktop
+    .form_inline_group .field
+      .field_label
+        flex: 4 0
+      .field_body
+        flex: 6 1
+        .form_input,.form_select
+          max-width: 300px

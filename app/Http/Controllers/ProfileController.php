@@ -48,25 +48,28 @@ class ProfileController extends Controller
       //avatar url
     ]);
 
-    return redirect()->route('profile.index')->with('status', 'Your profile has been updated.');
+    return redirect()->route('home')->with('status', 'Your profile has been updated.');
   }
 
   public function updatePassword(Request $request){
     $validator = Validator::make($request->all(), [
       'current_password' => 'required|string',
-      'new_password' => 'required|string|min:6|different:current_password|confirmed'
+      'new_password' => 'required|string|min:6|different:current_password|confirmed',
+      'new_password_confirmation' => 'required|string'
     ]);
 
     $validator->after(function($validator) use ($request){
       if( !Hash::check($request->current_password, Auth::user()->password) ){
-        $validator->errors->add('current_password', 'Incorrect password.');
+        $validator->errors()->add('current_password', 'Incorrect password.');
       }
     });
+
+    $validator->validate();
 
     Auth::user()->update([
       'password' => Hash::make($request->new_password)
     ]);
 
-    return redirect()->route('profile.index')->with('status', 'Your password has been updated.');
+    return redirect()->route('home')->with('status', 'Your password has been updated.');
   }
 }
