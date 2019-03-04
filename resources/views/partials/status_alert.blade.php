@@ -1,10 +1,10 @@
-@if(session('status'))
-<div class="alert alert-info">
+@isset($body)
+<div class="alert {{ $color ? 'alert-'.$color: '' }}">
   <div class="alert_buttons">
     <button class="button-icon" aria-label="Hide Alert" v-on:click="$emit('hide-alert')">
       <span class="icon">@materialicon('close')</span>
     </button>
   </div>
-  <strong>Note: </strong>{{ session('status') }}
+  <strong>Note: </strong>{{ $body }}
 </div>
-@endif
+@endisset
