@@ -7,6 +7,8 @@
   </a>
   <div class="mini_details">
     <a class="mini_name" href="{{ route('groups.events.view', ['event'=>$event, 'group'=>$event->group]) }}">{{ $event->name }}</a>
-    <div class="mini_location">Brooklyn, NY</div>
+    <div class="mini_location">
+      Brooklyn, NY
+    </div>
   </div>
 </div>
