@@ -139,6 +139,7 @@
 const app = new Vue({
   el: '#app',
   data: {
+    statusVisible: true,
     user: @json(Auth::user()),
     event: @json($event->id),
     user_status: @json($event->user_status),

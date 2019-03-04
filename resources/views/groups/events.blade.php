@@ -114,6 +114,7 @@
 const app = new Vue({
   el: '#app',
   data: {
+    statusVisible: true,
     tabs: ['upcoming_events','past_events'],
     activeTab: 'upcoming_events'
   },

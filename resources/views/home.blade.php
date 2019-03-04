@@ -72,7 +72,10 @@
 @push('scripts')
 <script>
 const app = new Vue({
-  el: '#app'
+  el: '#app',
+  data: {
+    statusVisible: true
+  }
 });
 </script>
 @endpush
