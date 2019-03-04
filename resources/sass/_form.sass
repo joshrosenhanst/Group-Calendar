@@ -10,40 +10,6 @@
       color: $danger
     .form_input
       border-color: $danger
-  .form_inline_group
-    margin-bottom: 25px
-    .field
-      display: flex
-      column-gap: 15px
-      .field_label
-        flex: 1 0
-        text-align: right
-        display: flex
-        justify-content: flex-end
-        .form_label
-          margin-bottom: 0
-          font-size: $size-normal
-      .field_body
-        flex: 5 1
-        .form_input,.form_select
-          max-width: 450px
-        &.field_body-static
-          .form_input-static
-            display: flex
-            align-items: center
-            .preview_thumbnail
-              width: 24px
-              height: 24px
-              margin-right: 5px
-            .icon
-              margin-right: 5px
-              color: $primary
-        .field_multiple
-          display: flex
-          column-gap: 5px
-          max-width: 450px
-          .field_input
-            flex: 1 0 0
   .form_help
     font-size: $size-small
     color: $text-light
@@ -207,6 +173,46 @@
       color: $text-light
       font-size: $size-normal
 
+.form_inline_group
+  margin-bottom: 25px
+  .field_multiple
+    display: flex
+    max-width: 450px
+    .field_input
+      flex: 1 0 0
+      &:not(:last-of-type)
+        margin-right: 5px
+  .form_input,.form_select
+    max-width: 450px
+  +until($desktop)
+    margin: 0 auto 25px auto
+    max-width: 450px
+  +desktop
+    .field
+      display: flex
+      .field_label
+        flex: 1 0
+        text-align: right
+        display: flex
+        justify-content: flex-end
+        margin-right: 15px
+        .form_label
+          margin-bottom: 0
+          font-size: $size-normal
+      .field_body
+        flex: 5 1
+        &.field_body-static
+          .form_input-static
+            display: flex
+            align-items: center
+            .preview_thumbnail
+              width: 24px
+              height: 24px
+              margin-right: 5px
+            .icon
+              margin-right: 5px
+              color: $primary
+
 .form.embedded_form
   padding: 10px 0
   .form_group
@@ -216,11 +222,15 @@
     column-gap: 5px
 
 .form.form-centered
+  .form_input,.form_select
+    max-width: 300px
+  .form_inline_group
+    +until($desktop)
+      margin: 0 auto 25px auto
+      max-width: 300px
   +desktop
-    .form_inline_group .field
+    .field
       .field_label
         flex: 4 0
       .field_body
         flex: 6 1
-        .form_input,.form_select
-          max-width: 300px
