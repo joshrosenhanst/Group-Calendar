@@ -9,6 +9,12 @@
     <div class="card_header card_header-no_content"></div>
     <div class="card_section card_section-title">
       {{ Breadcrumbs::render('groups.events.view', $event->group,$event) }}
+
+      {{-- Session Status Alert --}}
+      @include('partials.status_alert', [
+        'color' => 'info',
+        'body' => session('status')
+      ])
     </div>
 
     {{-- Event Details --}}
