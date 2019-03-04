@@ -10,7 +10,7 @@
     <div class="card_section card_section-title">
       {{ Breadcrumbs::render('profile.password') }}
       <h1 class="title">
-        <span class="icon">@materialicon('account-box')</span>
+        <span class="icon">@materialicon('lock')</span>
         <span>@lang('pages.profile.password.title')</span>
       </h1>
     </div>
