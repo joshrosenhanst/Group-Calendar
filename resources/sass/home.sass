@@ -9,63 +9,14 @@
 
 /* Upcoming events display */
 .upcoming_events_section
-  .slider_content
+  display: flex
+  overflow-x: auto
+.card_section.upcoming_events_section
+  padding: 0
+  .events_wrapper
+    padding: 15px
     display: flex
-    align-items: flex-start
-    justify-content: flex-start
-    column-gap: 15px
-    flex-wrap: nowrap
-    padding: 25px 20px
-  .event_summary
-    flex: none
-    max-width: 250px
-    box-shadow: $card-box-shadow-emphasis
-    margin: 0
 
 /* Empty display */
 .empty
   +icon-empty
-
-.card_section.slider
-  padding: 0
-.slider
-  position: relative
-  .slider_button
-    position: absolute
-    top: calc(50% - 21px)
-    padding: 0
-    margin: 0
-    width: 42px
-    height: 42px
-    background-color: $white
-    color: $primary
-    border: 1px solid $card-border-color
-    box-shadow: $card-box-shadow-emphasis
-    border-radius: 50%
-    cursor: pointer
-    z-index: 20
-    display: inline-flex
-    align-items: center
-    justify-content: center
-    opacity: 0.9
-    &>svg
-      fill: currentColor
-      height: 100%
-      width: 100%
-      filter: drop-shadow($card-header-text-shadow)
-    &:hover
-      color: $link
-      background-color: $grey-lightest
-      border-color: $link
-      opacity: 1
-  .slider_prev
-    left: -15px
-  .slider_next
-    right: -15px
-  .slider_wrapper
-    width: 100%
-    position: relative
-    overflow: hidden
-  .slider_content
-    transition: transform 0.5s ease 0s
-    transform: translate3d(0,0,0)

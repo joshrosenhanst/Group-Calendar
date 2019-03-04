@@ -133,7 +133,54 @@
     padding: 10px
 
 .event_summary.event_summary-mini
+  .summary_header
+    width: 250px
   .summary_info
     padding: 8px
   .summary_name
     font-size: $size-small
+
+.event_mini_card
+  flex: none
+  width: 250px
+  height: 240px
+  box-shadow: $card-box-shadow-emphasis
+  border-radius: 2px
+  border: 1px solid $card-border-color
+  &:not(:last-of-type)
+    margin-right: 15px
+  .mini_header
+    display: block
+    height: 150px
+    background-position: center
+    background-size: cover
+    position: relative
+    opacity: 0.9
+    border-top: 4px solid $primary
+    border-bottom: 4px solid $primary
+    &:hover
+      opacity: 1
+  .mini_date
+    border-radius: 4px
+    position: absolute
+    right: 10px
+    bottom: 10px
+    background: $white
+    padding: 10px
+    text-transform: uppercase
+    color: $primary
+    font-size: 0.8rem
+    line-height: 1.2
+    text-align: center
+    box-shadow: $card-box-shadow
+    text-align: center
+    .date
+      font-size: 1.5rem
+    .month
+      font-weight: 700
+  .mini_details
+    padding: 8px
+    font-size: $size-small
+    .mini_name
+    .mini_location
+      color: $text-light
