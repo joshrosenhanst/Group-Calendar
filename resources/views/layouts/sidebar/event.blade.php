@@ -1,6 +1,6 @@
 <div class="sidebar">
   <div class="sidebar_header sidebar_header-no_content"></div>
-  <div class="sidebar_header">
+  <div class="sidebar_title">
     <h1 class="title">{{ $event->name }}</h1>
   </div>
   <div class="sidebar_section sidebar_links">

@@ -1,6 +1,6 @@
 <div class="sidebar">
   <div class="sidebar_header sidebar_header-no_content"></div>
-  <div class="sidebar_header">
+  <div class="sidebar_title">
     <h1 class="title">
       <span class="preview_thumbnail">
         <img src="{{ asset($group->avatar) }}" alt="{{ $group->name }} Avatar">

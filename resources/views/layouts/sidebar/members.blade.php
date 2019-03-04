@@ -1,6 +1,6 @@
 <div class="sidebar">
     <div class="sidebar_header sidebar_header-no_content"></div>
-    <div class="sidebar_header">
+    <div class="sidebar_title">
       <h1 class="title">
         <span class="icon">@materialicon('account-multiple')</span>
         <span>@lang('pages.groups.members.title')</span>
