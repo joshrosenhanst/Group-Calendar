@@ -72,12 +72,25 @@ class User extends Authenticatable
     return $this->getEvents();
   }
 
+  public function getUpcomingEventsAttribute(){
+    return $this->getUpcomingEvents();
+  }
+
   /*
     getEvents() - Returns a collection of all available events via the user's group relation. Used by the `getEventsAttribute()` accessor.
   */
   public function getEvents(){
     $this->load('groups.events');
     $collection = collect($this->groups->pluck('events'))->collapse()->unique();
+    return $collection;
+  }
+
+  /*
+    getUpcomingEvents() - Returns a collection of all available events via the user's group relation. Used by the `getEventsAttribute()` accessor.
+  */
+  public function getUpcomingEvents(){
+    $this->load('groups.upcoming_events');
+    $collection = collect($this->groups->pluck('upcoming_events'))->collapse()->unique();
     return $collection;
   }
 

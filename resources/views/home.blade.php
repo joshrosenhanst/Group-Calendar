@@ -20,8 +20,7 @@
   @include('blocks.upcoming_events', [
     'title' => 'My Upcoming Events',
     'events_route' => route('events.index'),
-    'show_groups' => true,
-    'events' => Auth::user()->events
+    'events' => Auth::user()->upcoming_events
   ])
 
   <div class="card">  
