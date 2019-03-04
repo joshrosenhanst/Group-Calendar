@@ -1,10 +1,13 @@
 $sidebar-width: 250px
 main#app-body
-  display: flex
-  //flex-direction: row-reverse
-  align-items: flex-start
-  +container
   margin-bottom: 15px
+  +container
+  +tablet
+    padding: 0 15px
+  +desktop
+    display: flex
+    align-items: flex-start
+    padding: 0
 
 aside#sidebars
   flex-grow: 0
