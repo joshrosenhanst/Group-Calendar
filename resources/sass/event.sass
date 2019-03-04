@@ -67,6 +67,9 @@
     margin-top: 15px
 
 .event_summary
+  display: flex
+  border: 1px solid $card-border-color
+  margin-bottom: -1px
   .summary_header
     display: block
     img
@@ -76,10 +79,6 @@
       height: 150px
       background-position: center
       background-size: cover
-  .summary_details
-    display: flex
-    border-top: 4px solid $primary
-    padding: 0
   .summary_date
     padding: 10px 15px
     border-right: 1px solid $card-border-color
@@ -102,16 +101,21 @@
   .summary_info
     padding: 10px
     flex-grow: 1
+    line-height: 1.4
+    display: flex
+    flex-direction: column
   .summary_name
     font-size: 1.1rem
-    line-height: 1.2
     display: block
+    color: $primary
+    font-weight: 700
   .summary_location
     color: $text-light
     font-size: $size-small
   .summary_status
     color: $text-light
     font-size: $size-small
+    margin-top: auto
     .status_display
       &.pending
         color: $text-light
@@ -190,6 +194,6 @@
     .mini_name
       display: block
       color: $primary
-      font-weight: bold
+      font-weight: 700
     .mini_location
       color: $text-light

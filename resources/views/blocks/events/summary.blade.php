@@ -1,10 +1,6 @@
 {{-- Event Summary template --}}
 <div class="event_summary {{ ($mini ? 'card event_summary-mini':'') }}">
-  {{-- Summary Header - img link for mini card, background header for large --}}
-  <a href="{{ route('groups.events.view', ['event'=>$event, 'group'=>$event->group]) }}" class="summary_header summary_header-background_image" style="background-image: url({{ asset($event->header) }})">&nbsp;</a>
 
-  {{-- Details --}}
-  <div class="card_section summary_details">
     {{-- Date (displays DAY/DATE/MONTH in vertical lines )--}}
     <div class="summary_date">
       <span class="day">{{ $event->start_date->format('D') }}</span>
@@ -14,10 +10,12 @@
 
     <div class="summary_info">
 
+      {{-- Event Name --}}
       <a class="summary_name" href="{{ route('groups.events.view', ['event'=>$event, 'group'=>$event->group]) }}">{{ $event->name }}</a>
 
+      {{-- Event Location and Start Time --}}
       <div class="summary_location">
-        @if($mini)
+        @if($mini || !$event->start_time_subtext)
         <span>Brooklyn, NY</span>
         @else
         <span>{{ $event->start_time_subtext }}</span> · <span>Brooklyn, NY</span>
@@ -42,7 +40,5 @@
       </a>
     </div>
     @endif
-
-  </div>
 
 </div>
