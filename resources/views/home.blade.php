@@ -9,11 +9,15 @@
     <div class="card_header card_header-no_content"></div>
     <div class="card_section card_section-title">
       {{ Breadcrumbs::render('home') }}
+      
       <h1 class="title">
         <span class="icon">@materialicon('home')</span>
         <span>@lang('pages.home.title')</span>
       </h1>
+
       <div class="subtitle">@lang('pages.home.subtitle')</div>
+
+      @include('partials.status_alert')
     </div>
   </div>
 
