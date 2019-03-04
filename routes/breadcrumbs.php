@@ -17,6 +17,13 @@ Breadcrumbs::for('profile.password', function ($trail) {
   $trail->push('Change Password', route('profile.password'));
 });
 
+/* USERS */
+// Home / [user->name]
+Breadcrumbs::for('users.view', function ($trail, $user) {
+  $trail->parent('home');
+  $trail->push($user->name, route('users.view', ['user'=>$user]));
+});
+
 /* GROUPS */
 // My Groups
 /*Breadcrumbs::for('groups.index', function ($trail) {

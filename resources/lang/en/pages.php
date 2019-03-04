@@ -9,6 +9,9 @@ return [
   'profile.edit.title' => 'Edit Profile',
   'profile.password.title' => 'Change Password',
 
+  /* Users */
+  'users.view.subtitle' => "On the user's account page you can view the groups that the user belongs to.",
+
   /* Groups */
   'groups.index.title' => 'My Groups',
   'groups.index.subtitle' => 'Choose a group from your list or create a new group. You can invite members to your group and create events for the group. Group events are private and only group members can attend.',
