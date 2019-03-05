@@ -20,6 +20,7 @@
     <a href="{{ route('notifications.index') }}" class="sidebar_link">
       <span class="icon">@materialicon('bell')</span>
       <span>Notifications</span>
+      <span class="badge">3</span>
     </a>
     <a href="{{ route('profile.edit') }}" class="sidebar_link">
       <span class="icon">@materialicon('account-box')</span>

@@ -1,6 +1,6 @@
 .dropdown
   position: relative
-  &:hover,&.dropdown-active
+  &.dropdown-active
     .dropdown_items
       display: block
   .dropdown_toggle
@@ -49,3 +49,26 @@
     border: 0
     height: 2px
     margin: 0
+
+
+.navbar_dropdown
+  padding: 0
+  flex: 0 1 auto
+  display: flex
+  &.dropdown-active
+    .navbar_item.dropdown_toggle
+      background-color: $navbar-hover
+      text-decoration: none
+  .dropdown_items
+    right: -1px
+    border-top: 1px solid $navbar-border
+  .dropdown_toggle-arrow
+    padding-right: 2em
+    &:hover
+      text-decoration: none
+    &::after
+      +arrow
+      border-color: $navbar-dropdown-arrow
+      margin-top: -0.4em
+      right: 12px
+      box-shadow: $navbar-item-text-shadow

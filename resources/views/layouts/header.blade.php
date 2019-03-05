@@ -1,5 +1,5 @@
 <header id="site_header">
-  <nav class="navbar">
+  <nav class="navbar" role="navigation" aria-label="main navigation">
     <div class="navbar_left">
       <a href="/" class="navbar_logo navbar_item" title="GroupCalendar">
         @materialicon('calendar-heart')
@@ -8,9 +8,23 @@
     </div>
     @auth
     <div class="navbar_right">
-      <a href="/notifications" class="navbar_item" aria-label="Notifications" title="Notifications">
-        <span class="icon">@materialicon('bell')</span>
-      </a>
+      <app-dropdown
+        class="navbar_dropdown"
+        aria-label="Notifications dropdown" title="Notifications"
+        trigger_classes="navbar_item navbar_item-icon has_badge"
+        url="/notifications"
+      >
+        <template slot="trigger">
+          <span class="badge">4</span>
+          <span class="icon">@materialicon('bell')</span>
+        </template>
+
+        <template slot="dropdown_items">
+          <div class="dropdown_item">Test</div>
+          <a href="#" class="dropdown_item">test 1</a>
+          <a href="#" class="dropdown_item">test 2</a>
+        </template>
+      </app-dropdown>
       <a href="{{ route('home') }}" class="navbar_item" title="Go to Home Page">
         <img class="navbar_image" src="{{ asset(Auth::user()->avatar) }}" alt="{{ Auth::user()->name }} avatar">
         <span>{{ Auth::user()->name }}</span>
