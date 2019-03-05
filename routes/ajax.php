@@ -8,6 +8,11 @@ use Illuminate\Http\Request;
 |--------------------------------------------------------------------------
   Ajax routes are essentially web routes that do a single action used by JS - Ajax routes have sessions, CSRF protection, etc.
 */
+/* NOTIFICATIONS */
+Route::middleware('auth')->prefix('notifications/')->name('notifications.')->group(function(){
+  Route::put('/{user}/readAll','NotificationController@readAll')->name('readAll');
+});
+
 /* EVENTS */
 Route::middleware('auth')->prefix('events/')->name('events.')->group(function(){
   /* Attendees */

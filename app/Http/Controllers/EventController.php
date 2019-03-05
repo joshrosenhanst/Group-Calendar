@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Notification;
+use App\Notifications\EventCreated;
 
 class EventController extends Controller
 {
@@ -53,9 +55,12 @@ class EventController extends Controller
         'end_time' => $request->end_time
       ]);
 
-      //trigger "event created" Event
+      $group = \App\Group::find($request->group);
 
-      return redirect()->route('groups.events.view', ['event'=>$event, 'group'=>$event->group])->with('status', 'Your event has been created.');
+      //trigger "event created" Event
+      $group->notify(new EventCreated(Auth::user(), $event->id, $group->name));
+
+      return redirect()->route('groups.events.view', ['event'=>$event, 'group'=>$group])->with('status', 'Your event has been created.');
     }
 
     /*

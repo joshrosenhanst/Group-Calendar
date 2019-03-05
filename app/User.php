@@ -68,19 +68,68 @@ class User extends Authenticatable
     return $this->created_at->format('F Y');
   }
 
+  /*
+    getEventsAttribute() - Accessor method that returns all events in the user's groups.
+  */
   public function getEventsAttribute(){
     return $this->getEvents();
   }
 
+  /*
+    getEventsAttribute() - Accessor method that returns upcoming events in the user's groups.
+  */
   public function getUpcomingEventsAttribute(){
     return $this->getUpcomingEvents();
+  }
+
+  /*
+    getAllNotificationsAttribute() - Accessor method that returns a collection of the user's notifications and group_notifications.
+  */
+  public function getAllNotificationsAttribute(){
+    $group_notifications = $this->getGroupNotifications();
+    $collection = $group_notifications->concat($this->notifications)->sortByDesc('created_at');
+    return $collection;
+  }
+  
+  /*
+    getAllUnreadNotificationsAttribute() - Accessor method that returns a colleciton of the user's unread notifications and unread group_unread_notifications.
+  */
+  public function getAllUnreadNotificationsAttribute(){
+    $group_notifications = $this->getUnreadGroupNotifications();
+    $collection = $group_notifications->concat($this->unreadNotifications)->sortByDesc('created_at');
+    return $collection;
+  }
+
+  /*
+    getGroupNotificationsAttribute() - Accessor method that returns notifications in the user's groups.
+  */
+  public function getGroupNotificationsAttribute(){
+    return $this->getGroupNotifications();
+  }
+  
+  /*
+    getGroupNotifications() - Returns a collection of all notifications via the user's group relation. Used by the `getGroupNotificationsAttribute()` accessor.
+  */
+  public function getGroupNotifications(){
+    $this->loadMissing('groups.notifications');
+    $collection = collect($this->groups->pluck('notifications'))->collapse()->unique();
+    return $collection;
+  }
+
+  /*
+    getUnreadGroupNotifications() - Returns a collection of all unread notifications via the user's group relation.
+  */
+  public function getUnreadGroupNotifications(){
+    $this->loadMissing('groups.unreadNotifications');
+    $collection = collect($this->groups->pluck('unreadNotifications'))->collapse()->unique();
+    return $collection;
   }
 
   /*
     getEvents() - Returns a collection of all available events via the user's group relation. Used by the `getEventsAttribute()` accessor.
   */
   public function getEvents(){
-    $this->load('groups.events');
+    $this->loadMissing('groups.events');
     $collection = collect($this->groups->pluck('events'))->collapse()->unique();
     return $collection;
   }
@@ -89,7 +138,7 @@ class User extends Authenticatable
     getUpcomingEvents() - Returns a collection of all available events via the user's group relation. Used by the `getEventsAttribute()` accessor.
   */
   public function getUpcomingEvents(){
-    $this->load('groups.upcoming_events');
+    $this->loadMissing('groups.upcoming_events');
     $collection = collect($this->groups->pluck('upcoming_events'))->collapse()->unique();
     return $collection;
   }

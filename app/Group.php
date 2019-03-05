@@ -9,11 +9,14 @@
 
 namespace App;
 
+use Illuminate\Notifications\Notifiable;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Carbon;
 
 class Group extends Model
 {
+  use Notifiable;
+  
   protected $fillable = [
     'name','avatar_url'
   ];

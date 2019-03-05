@@ -9,6 +9,9 @@ return [
   'profile.edit.title' => 'Edit Profile',
   'profile.password.title' => 'Change Password',
 
+  /* Notifications */
+  'notifications.index.title' => 'Notifications',
+
   /* Users */
   'users.view.subtitle' => "On the user's account page you can view the groups that the user belongs to.",
 

@@ -33,22 +33,50 @@
     border: 1px solid $card-border-color
     margin-bottom: -1px
     line-height:1.5em
-    &:hover
-      color: $link
-      background-color: $grey-lightest
-      text-decoration: none
     .icon
       margin-right: 5px
       color: $primary
       svg
         width: 2rem
         height: 2rem
+    .subtext
+      color: $text-light
+    &:hover
+      color: $link
+      background-color: $grey-lightest
+      text-decoration: none
+      .subtext
+        color: $text-light
   .dropdown_divider
     display: block
     background-color: $primary
     border: 0
     height: 2px
     margin: 0
+  .empty
+    padding: 10px
+    border: 1px solid $card-border-color
+    margin-bottom: -1px
+    h2
+      font-size: $size-small
+  .dropdown_footer
+    border: 1px solid $card-border-color
+    display: flex
+    align-items: center
+    .button
+      flex: 1 1
+      color: $link
+      font-weight: 400
+      text-decoration: none
+      border: 0
+      font-size: $size-small
+      .icon
+        color: $primary
+      &:hover
+        background-color: $grey-lightest
+        color: darken($link, 2.5%)
+      &:not(:last-of-type)
+        border-right: 1px solid $card-border-color
 
 
 .navbar_dropdown
@@ -72,3 +100,25 @@
       margin-top: -0.4em
       right: 12px
       box-shadow: $navbar-item-text-shadow
+
+.dropdown_notifications
+  width: 300px
+  max-height: 500px
+  overflow-y: auto
+  .empty
+    margin-bottom: 0
+    border-bottom: 0
+  .dropdown_item
+    font-size: 0.8rem
+    white-space: normal
+    .subtext
+      color: $text-light
+    &:last-of-type
+      margin-bottom: 0
+      border-bottom: 0
+    &:hover
+      text-decoration: none
+      background-color: $grey-lightest
+      color: $link
+      .subtext
+        color: $text-light

@@ -12,17 +12,21 @@
         class="navbar_dropdown"
         aria-label="Notifications dropdown" title="Notifications"
         trigger_classes="navbar_item navbar_item-icon has_badge"
-        url="/notifications"
+        url="{{ route('notifications.index') }}"
       >
         <template slot="trigger">
-          <span class="badge">4</span>
+
+          @if(Auth::user()->all_unread_notifications->count())
+          <span class="badge">{{ Auth::user()->all_unread_notifications->count() }}</span>
+          @endif
+          
           <span class="icon">@materialicon('bell')</span>
         </template>
 
         <template slot="dropdown_items">
-          <div class="dropdown_item">Test</div>
-          <a href="#" class="dropdown_item">test 1</a>
-          <a href="#" class="dropdown_item">test 2</a>
+          @include('partials.notifications', [
+            'notifications'=>Auth::user()->all_unread_notifications->take(5)
+          ])
         </template>
       </app-dropdown>
       <a href="{{ route('home') }}" class="navbar_item" title="Go to Home Page">

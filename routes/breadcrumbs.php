@@ -17,6 +17,12 @@ Breadcrumbs::for('profile.password', function ($trail) {
   $trail->push('Change Password', route('profile.password'));
 });
 
+/* NOTIFICATIONS */
+Breadcrumbs::for('notifications.index', function ($trail) {
+  $trail->parent('home');
+  $trail->push('Notifications', route('notifications.index'));
+});
+
 /* USERS */
 // Home / [user->name]
 Breadcrumbs::for('users.view', function ($trail, $user) {
