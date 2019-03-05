@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Validation\Rule;
+use Validator;
 
 class GroupController extends Controller{
   /*
@@ -19,6 +21,13 @@ class GroupController extends Controller{
   */
   public function new(){
     return view('groups.new');
+  }
+
+  /*
+    edit() - Display the `groups.edit` page template.
+  */
+  public function edit(\App\Group $group){
+    return view('groups.edit', ['group'=>$group]);
   }
 
   /*
@@ -55,5 +64,49 @@ class GroupController extends Controller{
     return view('groups.members', [
       'group' => $group,
     ]);
+  }
+
+  public function create(Request $request){
+    $validator = Validator::make($request->all(), [
+      'name' => 'required|string|max:255|unique:groups,name',
+      'avatar' => 'nullable'
+    ]);
+
+    $validator->validate();
+
+    $group = \App\Group::create([
+      'name' => $request->name,
+      //avatar
+    ]);
+    $group->users()->attach(Auth::user()->id, [
+      'role' => 'admin'
+    ]);
+
+    return redirect()->route('groups.view', ['group'=>$group])->with('status', 'The group has been created. You have been added as an admin. You can now invite other members to the group.');
+  }
+
+  public function update(Request $request, \App\Group $group){
+    $validator = Validator::make($request->all(), [
+      'name' => [
+        'required','string','max:255',Rule::unique('groups','name')->ignore($group->id)
+      ],
+      'avatar' => 'nullable'
+    ]);
+
+    $validator->validate();
+
+    $group->update([
+      'name' => $request->name,
+      //avatar
+    ]);
+
+    if($request->update_comment){
+      $group->comments()->create([
+        'text' => $request->update_comment,
+        'user_id' => Auth::user()->id
+      ]);
+    }
+
+    return redirect()->route('groups.view', ['group'=>$group])->with('status','The group has been updated.');
   }
 }

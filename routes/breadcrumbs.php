@@ -31,7 +31,7 @@ Breadcrumbs::for('users.view', function ($trail, $user) {
 });*/
 
 // Home / New Group
-Breadcrumbs::for('groups.new', function ($trail, $group) {
+Breadcrumbs::for('groups.new', function ($trail) {
   $trail->parent('home');
   $trail->push('New Group', route('groups.new'));
 });

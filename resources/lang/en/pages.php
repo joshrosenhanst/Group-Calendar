@@ -25,6 +25,12 @@ return [
   'groups.events.title' => 'Group Events',
   'groups.events.subtitle' => 'The list of upcoming and past events in this group.',
 
+  'groups.new.title' => 'New Group',
+  'groups.new.subtitle' => 'Enter the details for the new group below. You will be automatically added as an admin to the group when it is created and you will be able to invite new members.',
+
+  'groups.edit.title' => 'Edit Group',
+  'groups.edit.subtitle' => "Edit the details of the group. You can optionally leave a comment about your changes.",
+
   /* Events */
   'events.new.title' => 'New Event',
   'events.new.subtitle' => "Enter the details for a new group event below. The event will appear on the group calendar and only this group's members can attend or comment. You can edit the details after you've submitted the event.",

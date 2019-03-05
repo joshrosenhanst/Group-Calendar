@@ -23,7 +23,7 @@
     </a>
     <a href="{{ route('groups.edit', ['group'=>$group]) }}" class="sidebar_link">
       <span class="icon">@materialicon('settings')</span>
-      <span>Settings</span>
+      <span>Group Settings</span>
     </a>
   </div>
   <div class="sidebar_footer sidebar_footer-no_content"></div>

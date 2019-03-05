@@ -14,16 +14,14 @@ Route::middleware('auth')->prefix('groups')->name('groups.')->group(function(){
 
   Route::get('/{group}', 'GroupController@view')->name('view'); // view group
   Route::get('/{group}/edit','GroupController@edit')->name('edit');
-  Route::get('/{group}/delete','GroupController@delete')->name('delete');
   Route::get('/{group}/members','GroupController@members')->name('members');
   Route::get('/{group}/invite','GroupController@invite')->name('invite');
   Route::get('/{group}/join','GroupController@join')->name('join');
 
   Route::put('/create', 'GroupController@create')->name('create');
-  Route::put('/sendInvite', 'GroupController@sendInvite')->name('sendInvite');
-  Route::put('/acceptInvite', 'GroupController@acceptInvite')->name('acceptInvite');
-  Route::put('/update', 'GroupController@update')->name('update');
-  Route::delete('/delete', 'GroupController@destroy')->name('destroy');
+  Route::put('/{group}/sendInvite', 'GroupController@sendInvite')->name('sendInvite');
+  Route::put('/{group}/acceptInvite', 'GroupController@acceptInvite')->name('acceptInvite');
+  Route::put('/{group}/update', 'GroupController@update')->name('update');
 });
 
 /* Group Events */
