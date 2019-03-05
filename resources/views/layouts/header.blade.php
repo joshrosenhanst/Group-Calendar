@@ -15,7 +15,6 @@
         url="{{ route('notifications.index') }}"
       >
         <template slot="trigger">
-
           @if(Auth::user()->all_unread_notifications->count())
           <span class="badge">{{ Auth::user()->all_unread_notifications->count() }}</span>
           @endif

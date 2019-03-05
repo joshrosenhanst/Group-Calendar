@@ -91,6 +91,17 @@ class Group extends Model
   }
 
   /*
+    group_notifications() - Create an alias relationship of `notifications` to allow for lazy loading constraints via the user model. 
+
+    For example, if we want to lazy load all of the notifications of all the user's groups we can do $this->loadMissing('groups.notifications');. 
+
+    However, if we want a 2nd collection of notifications that has a special constraint, using the same relationship name with a lazy-load constraint will override the original lazy-loaded `notifications` collection with our constrained collection.
+  */
+  public function group_notifications(){
+    return $this->notifications();
+  }
+
+  /*
     getUpcomingEvents($limit) - Grab events that are in the future.
     $limit - number of events to grab.
   */

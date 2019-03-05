@@ -13,13 +13,14 @@ namespace App;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Support\Carbon;
 
 class User extends Authenticatable
 {
   use Notifiable;
 
   protected $fillable = [
-    'name', 'email', 'password', 'avatar_url'
+    'name', 'email', 'password', 'avatar_url', 'notifications_last_read_at'
   ];
 
   protected $hidden = [
@@ -28,7 +29,8 @@ class User extends Authenticatable
 
   /* Cast the `demo` database field (boolean integer) as a boolean true/false value */
   protected $casts = [
-    'demo' => 'boolean'
+    'demo' => 'boolean',
+    'notifications_last_read_at' => 'datetime'
   ];
 
   /*
@@ -62,6 +64,15 @@ class User extends Authenticatable
   }
 
   /*
+    markNotificationsAsRead() - Update the `notifications_last_read_at` timestamp to now.
+  */
+  public function markNotificationsAsRead(){
+    $this->update([
+      'notifications_last_read_at' => Carbon::now()
+    ]);
+  }
+
+  /*
     getJoinDateAttribute() - Accessor method that returns a formatted version of the `created_at` db field. Format 'F Y' - Ex: `February 2011`
   */
   public function getJoinDateAttribute(){
@@ -86,17 +97,21 @@ class User extends Authenticatable
     getAllNotificationsAttribute() - Accessor method that returns a collection of the user's notifications and group_notifications.
   */
   public function getAllNotificationsAttribute(){
+    $this->loadMissing('notifications');
     $group_notifications = $this->getGroupNotifications();
+
     $collection = $group_notifications->concat($this->notifications)->sortByDesc('created_at');
     return $collection;
   }
   
   /*
-    getAllUnreadNotificationsAttribute() - Accessor method that returns a colleciton of the user's unread notifications and unread group_unread_notifications.
+    getAllUnreadNotificationsAttribute() - Accessor method that returns a colleciton of the user's unread notifications and unread group_notifications.
   */
   public function getAllUnreadNotificationsAttribute(){
+    $this->loadMissing('unread_notifications');
     $group_notifications = $this->getUnreadGroupNotifications();
-    $collection = $group_notifications->concat($this->unreadNotifications)->sortByDesc('created_at');
+
+    $collection = $group_notifications->concat($this->unread_notifications)->sortByDesc('created_at');
     return $collection;
   }
 
@@ -112,16 +127,24 @@ class User extends Authenticatable
   */
   public function getGroupNotifications(){
     $this->loadMissing('groups.notifications');
+
     $collection = collect($this->groups->pluck('notifications'))->collapse()->unique();
     return $collection;
   }
 
   /*
-    getUnreadGroupNotifications() - Returns a collection of all unread notifications via the user's group relation.
+    getUnreadGroupNotifications() - Returns a collection of all unread notifications (based on the user's `notifications_last_read_at` value) via the user's group relation.
   */
   public function getUnreadGroupNotifications(){
-    $this->loadMissing('groups.unreadNotifications');
-    $collection = collect($this->groups->pluck('unreadNotifications'))->collapse()->unique();
+    if(is_null($this->notifications_last_read_at)){
+      $this->loadMissing('groups.group_notifications');
+    }else{
+      $this->loadMissing(['groups','groups.group_notifications' => function($query){
+        $query->where('created_at','>',$this->notifications_last_read_at);
+      }]);
+    }
+
+    $collection = collect($this->groups->pluck('group_notifications'))->collapse()->unique();
     return $collection;
   }
 
@@ -169,5 +192,16 @@ class User extends Authenticatable
   */
   public function comments(){
     return $this->hasMany('App\Comment');
+  }
+
+  /*
+    unread_notifications() - Return a notifications() relationship filtered by notifcations created after the user's `notifications_last_read_at' timestamp.
+  */
+  public function unread_notifications(){
+    if(is_null($this->notifications_last_read_at)){
+      return $this->notifications();
+    }else{
+      return $this->notifications()->where('created_at','>',$this->notifications_last_read_at);
+    }
   }
 }
