@@ -1,6 +1,9 @@
 {
     "/js/app.js": "/js/app.js",
     "/css/app.css": "/css/app.css",
+    "/js/pages/events/edit.js": "/js/pages/events/edit.js",
+    "/js/pages/events/new.js": "/js/pages/events/new.js",
+    "/js/pages/events/view.js": "/js/pages/events/view.js",
     "/js/pages/groups/events.js": "/js/pages/groups/events.js",
     "/js/pages/groups/members.js": "/js/pages/groups/members.js",
     "/js/pages/groups/view.js": "/js/pages/groups/view.js"

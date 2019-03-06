@@ -42,19 +42,6 @@
 </aside>
 @endsection
 
-@push('scripts')
-<script>
-const app = new Vue({
-  el: '#app',
-  data: {
-    group: @json($group),
-    members: @json($group->users)
-  },
-  
-});
-</script>
-@endpush
-
 {{-- Include the page data variables injected by the controller and the page script which will create the Vue instance. --}}
 @section('page_scripts')
   @include('partials.pagedata')

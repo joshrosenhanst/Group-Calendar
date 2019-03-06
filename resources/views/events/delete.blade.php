@@ -116,14 +116,3 @@
   @include('layouts.sidebar.user')
 </aside>
 @endsection
-
-@push('scripts')
-<script>
-const app = new Vue({
-  el: '#app',
-  data: {
-    showEndDate: (@json( old('end_date',$event->end_date) ) ? true:false)
-  }
-});
-</script>
-@endpush

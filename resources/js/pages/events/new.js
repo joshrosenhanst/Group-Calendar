@@ -1,5 +1,6 @@
 const mixins = [];
 
+window.GroupCalendar = window.GroupCalendar || {};
 GroupCalendar.app = new Vue({
   el: '#app',
   data: {

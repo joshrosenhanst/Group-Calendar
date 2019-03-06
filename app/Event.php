@@ -26,6 +26,10 @@ class Event extends Model
     'end_date' => 'date:Y-m-d',
   ];
 
+  protected $appends = ['user_status'];
+
+  protected $hidden = ['auth_user_status'];
+
   /*
     Eager load the count of `going_attendees` and `interested_attendees` relationships whenever an event is queried.
   */

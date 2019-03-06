@@ -36,12 +36,15 @@ class EventController extends Controller
       ]);
     }
     $event->refresh();
+    $event->loadMissing(['comments.user','attendees']);
     //trigger "event attendee updated" Event
     return response()->json([
-      'user_status' => $new_status,
+      /*'user_status' => $new_status,
       'going_attendees_count' => $event->going_attendees_count,
       'interested_attendees_count' => $event->interested_attendees_count,
-      'attendees' => $event->attendees
+      'attendees' => $event->attendees*/
+      'event' => $event->makeHidden('comments')->toArray(),
+      'comments' => $event->comments
     ]);
   }
 

@@ -105,20 +105,13 @@
 
 {{-- Sidebars --}}
 <aside id="sidebars">
-    {{-- Group Sidebar --}}
-    @include('layouts.sidebar.group', ['group'=>$group])
-    {{-- User Sidebar --}}
-    @include('layouts.sidebar.user')
-  </aside>
+  {{-- Group Sidebar --}}
+  @include('layouts.sidebar.group', ['group'=>$group])
+  {{-- User Sidebar --}}
+  @include('layouts.sidebar.user')
+</aside>
 @endsection
 
 @section('page_scripts')
-<script>
-  window.GroupCalendar = window.GroupCalendar || {};
-  GroupCalendar.data = {
-    tabs: ['upcoming_events','past_events'],
-    activeTab: 'upcoming_events'
-  };
-</script>
 <script src="{{ asset('/js/pages/groups/events.js') }}"></script>
 @endsection

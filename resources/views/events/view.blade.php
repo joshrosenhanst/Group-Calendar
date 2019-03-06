@@ -10,11 +10,14 @@
     <div class="card_section card_section-title">
       {{ Breadcrumbs::render('groups.events.view', $event->group,$event) }}
 
-      {{-- Session Status Alert --}}
-      @include('partials.status_alert', [
-        'color' => 'info',
-        'body' => session('status')
-      ])
+      @if(session('status'))
+        <status-alert class="alert-info" icon="alert-circle"
+          v-bind:close-button="true"
+        >
+          <strong>Note: </strong> {{ session('status') }}
+        </status-alert>
+      @endif
+
     </div>
 
     {{-- Event Details --}}
@@ -46,8 +49,8 @@
           <a href="{{ route('groups.view', ['group'=>$event->group]) }}">{{ $event->group->name }}</a>
           <small>
             <a href="#attendees" class="seperated_count" title="View Event Attendees">
-              <span v-if="going_attendees_count">@{{ going_attendees_count }} Going</span>
-              <span v-if="interested_attendees_count">@{{ interested_attendees_count }} Interested</span>
+              <span v-if="event.going_attendees_count">@{{ event.going_attendees_count }} Going</span>
+              <span v-if="event.interested_attendees_count">@{{ event.interested_attendees_count }} Interested</span>
             </a>
           </small>
         </div>
@@ -55,7 +58,7 @@
 
       {{-- User Attendee Status --}}
       <attendee-status 
-        v-bind:status="user_status"
+        v-bind:status="event.user_status"
         v-on:update="updateStatus"
       ></attendee-status>
     </div>
@@ -103,6 +106,7 @@
 
   {{-- Additional info cards --}}
   <div class="maincontent_container">
+
     <div class="maincontent_mid_section">
       {{-- Event Comments --}}
       <comments-card
@@ -114,10 +118,11 @@
         v-on:delete-comment="deleteComment"
       ></comments-card>
     </div>
+
     <aside class="maincontent_aside">
       {{-- Event Attendees --}}
       <attendees-card
-        v-bind:attendees="attendees"
+        v-bind:attendees="event.attendees"
       ></attendees-card>
     </aside>
   </div>
@@ -134,65 +139,8 @@
 </aside>
 @endsection
 
-@push('scripts')
-<script>
-const app = new Vue({
-  el: '#app',
-  data: {
-    statusVisible: true,
-    user: @json(Auth::user()),
-    event: @json($event->id),
-    user_status: @json($event->user_status),
-    comments: @json($event->comments),
-    going_attendees_count: @json($event->going_attendees_count),
-    interested_attendees_count: @json($event->interested_attendees_count),
-    attendees: @json($event->attendees)
-  },
-  methods: {
-    updateStatus: function(status){
-      axios.put(`/ajax/events/${this.event}/attend/`,{
-        'status': status,
-        'user_id': this.user.id
-      }).then((response) => {
-        this.user_status = response.data.user_status;
-        this.going_attendees_count = response.data.going_attendees_count;
-        this.interested_attendees_count = response.data.interested_attendees_count;
-        this.attendees = response.data.attendees;
-      }).catch((error) => {
-        console.log(error);
-      });
-    },
-    createComment: function(text){
-      console.log("create comment",text,this.user.id);
-      axios.put(`/ajax/events/${this.event}/comment/create`,{
-        'text': text,
-        'user_id': this.user.id
-      }).then((response) => {
-        console.log(response);
-        this.comments = response.data;
-      }).catch((error) => {
-        console.log(error);
-      });
-    },
-    updateComment: function(text,comment_id){
-      axios.put(`/ajax/events/${this.event}/comment/${comment_id}/update`,{
-        'text': text
-      }).then((response) => {
-        console.log(response);
-        this.comments = response.data;
-      }).catch((error) => {
-        console.log(error);
-      });
-    },
-    deleteComment: function(comment_id){
-      axios.delete(`/ajax/events/${this.event}/comment/${comment_id}/delete`).then((response) => {
-        console.log(response);
-        this.comments = response.data;
-      }).catch((error) => {
-        console.log(error);
-      });
-    }
-  }
-});
-</script>
-@endpush
+{{-- Include the page data variables injected by the controller and the page script which will create the Vue instance. --}}
+@section('page_scripts')
+  @include('partials.pagedata')
+  <script src="{{ asset('/js/pages/events/view.js') }}"></script>
+@endsection

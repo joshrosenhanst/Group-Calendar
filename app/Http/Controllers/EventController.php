@@ -79,7 +79,14 @@ class EventController extends Controller
       view() - Display the `events.view` page template.
     */
     public function view(\App\Group $group, \App\Event $event){
-      $event->loadMissing('comments.user');
+      $event->loadMissing(['comments.user','attendees']);
+      JavaScript::put([
+        'data' => [
+          'user' => Auth::user(),
+          'event' => $event->makeHidden('comments')->toArray(),
+          'comments' => $event->comments
+        ]
+      ]);
 
       return view('events.view', ['event'=>$event]);
     }
