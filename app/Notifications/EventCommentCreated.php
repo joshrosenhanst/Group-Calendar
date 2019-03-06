@@ -6,8 +6,9 @@ use Illuminate\Bus\Queueable;
 use Illuminate\Notifications\Notification;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
+use Illuminate\Support\Str;
 
-class EventCreated extends Notification
+class EventCommentCreated extends Notification
 {
   use Queueable;
 
@@ -16,11 +17,11 @@ class EventCreated extends Notification
    *
    * @return void
    */
-  public function __construct($creator,$event,$group)
+  public function __construct($creator,$event, $text)
   {
     $this->creator = $creator;
     $this->event = $event;
-    $this->group = $group;
+    $this->text = Str::limit($text, 100, "...");
   }
 
   /**
@@ -43,10 +44,10 @@ class EventCreated extends Notification
   public function toArray($notifiable)
   {
     return [
-      'text' => "<strong>".e($this->creator->name)."</strong> created an event in <strong>".e($this->group->name)."</strong>",
-      'url' => route('events.view', ['event'=>$this->event->id]),
+      'text' => "<strong>".e($this->creator->name)."</strong> commented on  <strong>".e($this->event->name)."</strong>:<br><span class='notification_comment'>".e($this->text)."</span>",
       'creator_id' => $this->creator->id,
-      'icon' => 'calendar-plus'
+      'url' => route('events.view', ['event'=>$this->event->id]),
+      'icon' => 'comment-plus'
     ];
   }
 }

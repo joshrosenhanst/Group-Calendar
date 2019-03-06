@@ -7,7 +7,7 @@ use Illuminate\Notifications\Notification;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 
-class EventCreated extends Notification
+class EventUpdated extends Notification
 {
   use Queueable;
 
@@ -16,11 +16,10 @@ class EventCreated extends Notification
    *
    * @return void
    */
-  public function __construct($creator,$event,$group)
+  public function __construct($creator,$event)
   {
     $this->creator = $creator;
     $this->event = $event;
-    $this->group = $group;
   }
 
   /**
@@ -43,10 +42,10 @@ class EventCreated extends Notification
   public function toArray($notifiable)
   {
     return [
-      'text' => "<strong>".e($this->creator->name)."</strong> created an event in <strong>".e($this->group->name)."</strong>",
+      'text' => "<strong>".e($this->event->name)."</strong> was updated by <strong>".e($this->creator->name)."</strong>",
       'url' => route('events.view', ['event'=>$this->event->id]),
       'creator_id' => $this->creator->id,
-      'icon' => 'calendar-plus'
+      'icon' => 'calendar-edit'
     ];
   }
 }

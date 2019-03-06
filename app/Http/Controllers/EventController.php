@@ -6,6 +6,9 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Notification;
 use App\Notifications\EventCreated;
+use App\Notifications\EventUpdated;
+use App\Notifications\EventDeleted;
+use App\Notifications\EventCommentCreated;
 
 class EventController extends Controller
 {
@@ -58,7 +61,8 @@ class EventController extends Controller
       $group = \App\Group::find($request->group);
 
       //trigger "event created" Event
-      $group->notify(new EventCreated(Auth::user(), $event->id, $group->name));
+      // notify the group that an event was created
+      $group->notify(new EventCreated(Auth::user(), $event, $group));
 
       return redirect()->route('groups.events.view', ['event'=>$event, 'group'=>$group])->with('status', 'Your event has been created.');
     }
@@ -108,13 +112,18 @@ class EventController extends Controller
         'end_date' => $request->end_date,
         'end_time' => $request->end_time
       ]);
+
       //trigger "event updated" Event
+      // notify the group that an event was updated
+      $event->group->notify(new EventUpdated(Auth::user(), $event));
 
       if($request->update_comment){
         $event->comments()->create([
           'text' => $request->update_comment,
           'user_id' => Auth::user()->id
         ]);
+        // notify the group that a comment has been posted
+        $event->group->notify(new EventCommentCreated(Auth::user(), $event, $request->update_comment));
       }
 
       return redirect()->route('groups.events.view', ['event'=>$event, 'group'=>$event->group])->with('status', 'The event has been updated.');
@@ -152,9 +161,11 @@ class EventController extends Controller
     */
     public function destroy(Request $request, \App\Event $event){
       $group = $event->group;
+      $event_copy = $event;
       $event->delete();
 
       //trigger "event deleted" Event
+      $group->notify(new EventDeleted(Auth::user(), $event_copy));
 
       return redirect()->route('groups.events.index', ['group'=>$group])->with('status', 'The event has been deleted.');
     }
