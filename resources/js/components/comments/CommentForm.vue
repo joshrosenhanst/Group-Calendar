@@ -49,7 +49,6 @@ export default {
   },
   methods: {
     submitComment: function() {
-      console.log("CommentForm submitComment")
       this.errors = [];
       if(this.formText){
         this.$emit('submit-comment',{text:this.formText,id:this.id});
