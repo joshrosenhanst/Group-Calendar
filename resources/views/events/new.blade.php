@@ -172,13 +172,6 @@
 </aside>
 @endsection
 
-@push('scripts')
-<script>
-const app = new Vue({
-  el: '#app',
-  data: {
-    showEndDate: false
-  }
-});
-</script>
-@endpush
+@section('page_scripts')
+<script src="{{ asset('/js/pages/events/new.js') }}"></script>
+@endsection

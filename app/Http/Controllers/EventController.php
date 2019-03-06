@@ -9,6 +9,7 @@ use App\Notifications\EventCreated;
 use App\Notifications\EventUpdated;
 use App\Notifications\EventDeleted;
 use App\Notifications\EventCommentCreated;
+use JavaScript;
 
 class EventController extends Controller
 {
@@ -87,6 +88,11 @@ class EventController extends Controller
       edit() - Display the `events.edit` page template.
     */
     public function edit(\App\Group $group, \App\Event $event){
+      JavaScript::put([
+        'data' => [
+          'showEndDate' => ( old('end_date',$event->end_date)?true:false ),
+        ]
+      ]);
       return view('events.edit', ['event'=>$event]);
     }
 

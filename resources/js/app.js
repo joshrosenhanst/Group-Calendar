@@ -19,6 +19,7 @@ window.Vue = require('vue');
 
 // const files = require.context('./', true, /\.vue$/i)
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))
+Vue.component('status-alert', require('./components/StatusAlert.vue').default);
 Vue.component('app-dropdown', require('./components/AppDropdown.vue').default);
 Vue.component('tab-wrapper', require('./components/tabs/TabWrapper.vue').default);
 Vue.component('attendee-status', require('./components/AttendeeStatus.vue').default);
@@ -27,15 +28,3 @@ Vue.component('comments-card', require('./components/CommentsCard.vue').default)
 Vue.component('attendees-card', require('./components/AttendeesCard.vue').default);
 Vue.component('member-list', require('./components/MemberList.vue').default);
 Vue.component('full-calendar', require('./components/FullCalendar.vue').default);
-
-
-/**
- * Next, we will create a fresh Vue application instance and attach it to
- * the page. Then, you may begin adding components to this application
- * or customize the JavaScript scaffolding to fit your unique needs.
- */
-
-/*const app = new Vue({
-    el: '#app'
-});
-*/

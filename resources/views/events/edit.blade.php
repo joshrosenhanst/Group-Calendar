@@ -177,13 +177,8 @@
 </aside>
 @endsection
 
-@push('scripts')
-<script>
-const app = new Vue({
-  el: '#app',
-  data: {
-    showEndDate: (@json( old('end_date',$event->end_date) ) ? true:false)
-  }
-});
-</script>
-@endpush
+{{-- Include the page data variables injected by the controller and the page script which will create the Vue instance. --}}
+@section('page_scripts')
+  @include('partials.pagedata')
+  <script src="{{ asset('/js/pages/groups/view.js') }}"></script>
+@endsection

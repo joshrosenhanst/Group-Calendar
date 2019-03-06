@@ -10,6 +10,7 @@
     @stack('css')
 </head>
 <body>
+
   {{-- remove vue js #app and script --}}
   <div id="app">
     @include('layouts.header')
@@ -17,7 +18,23 @@
       @yield('content')
     </main>
   </div>
+
   <script src="{{ asset('js/app.js') }}"></script>
-  @stack('scripts')
+  @hasSection ('page_scripts')
+    @yield('page_scripts')
+  @else
+    <script>
+      const GroupCalendar = {};
+      GroupCalendar.app = new Vue({
+        el: '#app',
+        mounted: function(){
+          console.log("default root app mounted");
+        }
+      });
+    </script>
+  @endif
+
+  @stack('extra_scripts')
+
 </body>
 </html>

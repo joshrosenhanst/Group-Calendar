@@ -16,12 +16,15 @@
       </h1>
 
       <div class="subtitle">@lang('pages.groups.events.subtitle')</div>
+    
+      @if(session('status'))
+        <status-alert class="alert-info" icon="alert-circle"
+          v-bind:close-button="true"
+        >
+          <strong>Note: </strong> {{ session('status') }}
+        </status-alert>
+      @endif
 
-      {{-- Session Status Alert --}}
-      @include('partials.status_alert', [
-        'color' => 'info',
-        'body' => session('status')
-      ])
     </div>
   </div>
 
@@ -109,23 +112,13 @@
   </aside>
 @endsection
 
-@push('scripts')
+@section('page_scripts')
 <script>
-const app = new Vue({
-  el: '#app',
-  data: {
-    statusVisible: true,
+  window.GroupCalendar = window.GroupCalendar || {};
+  GroupCalendar.data = {
     tabs: ['upcoming_events','past_events'],
     activeTab: 'upcoming_events'
-  },
-  mounted: function(){
-    console.log("mount");
-  },
-  methods: {
-    selectTab(tab){
-      this.activeTab = tab;
-    }
-  }
-});
+  };
 </script>
-@endpush
+<script src="{{ asset('/js/pages/groups/events.js') }}"></script>
+@endsection

@@ -55,49 +55,8 @@
 </aside>
 @endsection
 
-@push('scripts')
-<script>
-const app = new Vue({
-  el: '#app',
-  data: {
-    user: @json(Auth::user()),
-    group: @json($group),
-    comments: @json($group->comments)
-  },
-  methods: {
-
-    /* COMMENTS */
-    createComment: function(text){
-      console.log("create comment",text,this.user.id);
-      axios.put(`/ajax/groups/${this.group.id}/comment/create`,{
-        'text': text,
-        'user_id': this.user.id
-      }).then((response) => {
-        console.log(response);
-        this.comments = response.data;
-      }).catch((error) => {
-        console.log(error);
-      });
-    },
-    updateComment: function(text,comment_id){
-      axios.put(`/ajax/groups/${this.group.id}/comment/${comment_id}/update`,{
-        'text': text
-      }).then((response) => {
-        console.log(response);
-        this.comments = response.data;
-      }).catch((error) => {
-        console.log(error);
-      });
-    },
-    deleteComment: function(comment_id){
-      axios.delete(`/ajax/groups/${this.group.id}/comment/${comment_id}/delete`).then((response) => {
-        console.log(response);
-        this.comments = response.data;
-      }).catch((error) => {
-        console.log(error);
-      });
-    }
-  }
-});
-</script>
-@endpush
+{{-- Include the page data variables injected by the controller and the page script which will create the Vue instance. --}}
+@section('page_scripts')
+  @include('partials.pagedata')
+  <script src="{{ asset('/js/pages/groups/view.js') }}"></script>
+@endsection

@@ -17,14 +17,16 @@
 
       <div class="subtitle">@lang('pages.home.subtitle')</div>
 
-      {{-- Session Status Alert --}}
-      @include('partials.status_alert', [
-        'color' => 'info',
-        'body' => session('status')
-      ])
+      @if(session('status'))
+        <status-alert class="alert-info" icon="alert-circle"
+          v-bind:close-button="true"
+        >
+          <strong>Note: </strong> {{ session('status') }}
+        </status-alert>
+      @endif
+
     </div>
   </div>
-
   @include('blocks.upcoming_events', [
     'title' => 'My Upcoming Events',
     'events_route' => route('events.index'),
@@ -68,14 +70,3 @@
   @include('layouts.sidebar.user')
 </aside>
 @endsection
-
-@push('scripts')
-<script>
-const app = new Vue({
-  el: '#app',
-  data: {
-    statusVisible: true
-  }
-});
-</script>
-@endpush

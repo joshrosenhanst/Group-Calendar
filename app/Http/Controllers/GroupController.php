@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\Rule;
 use Validator;
+use JavaScript;
 
 class GroupController extends Controller{
   /*
@@ -50,6 +51,15 @@ class GroupController extends Controller{
   public function view(\App\Group $group) {
     $group->loadMissing(['users','comments.user']);
     $upcoming_events = $group->getUpcomingEvents();
+
+    JavaScript::put([
+      'data' => [
+        'user' => Auth::user(),
+        'group' => $group,
+        'comments' => $group->comments
+      ]
+    ]);
+
     return view('groups.view', [
       'group' => $group,
       'events' => $upcoming_events
@@ -61,6 +71,14 @@ class GroupController extends Controller{
   */
   public function members(\App\Group $group) {
     $group->loadMissing(['users']);
+
+    JavaScript::put([
+      'data' => [
+        'group' => $group,
+        'members' => $group->users
+      ]
+    ]);
+
     return view('groups.members', [
       'group' => $group,
     ]);

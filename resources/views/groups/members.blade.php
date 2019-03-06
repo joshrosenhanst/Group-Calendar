@@ -50,31 +50,13 @@ const app = new Vue({
     group: @json($group),
     members: @json($group->users)
   },
-  methods: {
-    updateMember: function(role,id){
-      axios.put(`/ajax/groups/${this.group.id}/member/update`,{
-        'role': role,
-        'user_id': id
-      }).then((response) => {
-        console.log(response);
-        this.members = response.data;
-      }).catch((error) => {
-        console.log(error);
-      });
-    },
-    removeMember: function(id){
-      axios.delete(`/ajax/groups/${this.group.id}/member/remove`,{
-        data:{
-          'user_id': id
-        }
-      }).then((response) => {
-        console.log(response);
-        this.members = response.data;
-      }).catch((error) => {
-        console.log(error);
-      });
-    }
-  }
+  
 });
 </script>
 @endpush
+
+{{-- Include the page data variables injected by the controller and the page script which will create the Vue instance. --}}
+@section('page_scripts')
+  @include('partials.pagedata')
+  <script src="{{ asset('/js/pages/groups/members.js') }}"></script>
+@endsection
