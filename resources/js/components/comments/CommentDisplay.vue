@@ -1,9 +1,13 @@
 <template>
   <div class="list_item comment_display">
     <div class="comment_avatar">
-      <a v-bind:href="`/users/${comment.user.id}`" class="preview_thumbnail">
+      <a v-if="comment.user"
+      v-bind:href="`/users/${comment.user.id}`" class="preview_thumbnail">
         <img v-bind:src="`/${comment.user.avatar}`" v-bind:alt="`${comment.user.name} Avatar`">
       </a>
+      <span v-else class="preview_thumbnail">
+        <img src="/img/default_user_avatar.png" alt="Default User Avatar">
+      </span>
     </div>
     <div class="comment_body">
       <div class="comment_meta">
@@ -22,7 +26,11 @@
             <material-icon name='delete'></material-icon>
           </button>
         </div>
-        <a v-bind:href="`/users/${comment.user.id}`" class="comment_user_name">{{ comment.user.name }}</a>
+        <a v-if="comment.user"
+          v-bind:href="`/users/${comment.user.id}`" 
+          class="comment_user_name"
+        >{{ comment.user.name }}</a>
+        <span class="comment_user_name comment_user_default" v-else>Deleted User</span>
         <span class="comment_date" v-bind:title="comment.created_at"> · {{ comment.created_text }}</span>
       </div>
       <div class="comment_text">
