@@ -8,7 +8,7 @@
 
   <div class="card_header card_header-no_content"></div>
   <div class="card_section card_section-title">
-    {{ Breadcrumbs::render('groups.invites.join') }}
+    {{ Breadcrumbs::render('groups.invites.join', $group) }}
 
     <h1 class="title">
       <span class="icon">@materialicon('account-plus')</span>
@@ -57,7 +57,7 @@
         <span>Yes, Join Group</span>
       </button>
 
-      <a href="{{ route('groups.decline', ['event'=>$event, 'group'=>$event->group]) }}" class="button button-danger">
+      <a href="{{ route('groups.invites.decline', ['group'=>$group]) }}" class="button button-danger">
         <span class="icon">@materialicon('close')</span>
         <span>No, Decline Invitation</span>
       </a>

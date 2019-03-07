@@ -16,9 +16,9 @@ class NewUserInvited extends Notification
    *
    * @return void
    */
-  public function __construct($invite, $user, $group, $creator)
+  public function __construct($token, $user, $group, $creator)
   {
-    $this->invite = $invite;
+    $this->token = $token;
     $this->user = $user;
     $this->group = $group;
     $this->creator = $creator;
@@ -45,7 +45,7 @@ class NewUserInvited extends Notification
   {
     return [
       'text' => 'You have been invited to join <strong>'.e($this->group->name).'</strong> by <strong>'.e($this->creator->name).'</strong>',
-      'url' => route('register', ['token'=>$invite->token]),
+      'url' => route('register', ['token'=>$this->token]),
       'creator_id' => $this->creator->id,
       'icon' => 'account-plus'
     ];

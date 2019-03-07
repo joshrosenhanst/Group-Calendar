@@ -3,7 +3,7 @@
 @section('title', 'New User Registration')
 
 @section('content')
-<article id="maincontent">
+<article id="maincontent" class="no_sidebar">
   <div class="card">
 
   <div class="card_header card_header-no_content"></div>
@@ -56,7 +56,7 @@
           'id' => 'name',
           'placeholder' => 'Account Name',
           'required' => true,
-          'old' => old('name')
+          'old' => old('name', $user->name)
         ],
         'help' => 'Your name as it is displayed on GroupCalendar.',
         'errors' => $errors->get('name')
@@ -71,7 +71,7 @@
           'id' => 'email',
           'placeholder' => 'Account Email Address',
           'required' => true,
-          'old' => old('email')
+          'old' => old('email', $user->email)
         ],
         'help' => 'The email address that you use to log into GroupCalendar.',
         'errors' => $errors->get('email')
@@ -118,10 +118,4 @@
 
   </div>
 </article>
-
-{{-- Sidebars --}}
-<aside id="sidebars">
-  {{-- User Sidebar --}}
-  @include('layouts.sidebar.user')
-</aside>
 @endsection

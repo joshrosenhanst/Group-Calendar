@@ -56,7 +56,7 @@ class InviteController extends Controller
         }else{
           $group->group_invites()->attach($user->id, [
             'creator_id' => Auth::user()->id,
-            'token' => Str::uuid()
+            'token' => (string) Str::uuid()
           ]);
 
           // notify the user
@@ -75,19 +75,21 @@ class InviteController extends Controller
       $user = \App\User::create([
         'name' => $request->name,
         'email' => $request->email,
+        'password' => Hash::make('default_pw'),
         'account_setup' => false
       ]);
 
-      $invite = $group->group_invites()->attach($user->id, [
+      $token = (string) Str::uuid();
+      $group->group_invites()->attach($user->id, [
         'creator_id' => Auth::user()->id,
-        'token' => Str::uuid()
+        'token' => $token
       ]);
 
       // notify the user and send them a checksum email link
-      $user->notify(new NewUserInvited($invite,$user,$group,Auth::user()));
+      $user->notify(new NewUserInvited($token,$user,$group,Auth::user()));
 
       // notify the group
-      $group->notify(new UserInvitedGroupMessage($user,$group));
+      $group->notify(new UserInvitedGroupMessage($user,$group,Auth::user()));
 
       return redirect()->route('groups.members',['group'=>$group])->with('status', 'The user has been invited to the group.');
 
@@ -100,7 +102,7 @@ class InviteController extends Controller
   public function join(\App\Group $group){
     $invite = $group->group_invites()->where('user_id',Auth::user()->id)->first();
     if($invite){
-      $creator = User::find($invite->creator_id);
+      $creator = \App\User::find($invite->pivot->creator_id);
       return view('groups.invites.join', ['group'=>$group,'creator'=>$creator]);
     }else{
       if($group->users()->where('user_id',Auth::user()->id)->exists()){
@@ -115,8 +117,10 @@ class InviteController extends Controller
     decline() - Check if the auth::user() has been invited to the group, then display the `groups.invites.decline` view.
   */
   public function decline(\App\Group $group){
-    if($group->group_invites()->where('user_id',Auth::user()->id)->exists()){
-      return view('groups.invites.decline', ['group'=>$group]);
+    $invite = $group->group_invites()->where('user_id',Auth::user()->id)->first();
+    if($invite){
+      $creator = \App\User::find($invite->pivot->creator_id);
+      return view('groups.invites.decline', ['group'=>$group,'creator'=>$creator]);
     }else{
       if($group->users()->where('user_id',Auth::user()->id)->exists()){
         return redirect()->route('groups.view', ['group'=>$group])->with('status', 'You are already a member of this group.');
@@ -137,7 +141,7 @@ class InviteController extends Controller
     if($invite){
 
       $group->users()->attach(Auth::user()->id);
-      $group->group_invites()->detach($invite->id);
+      $group->group_invites()->detach($invite->pivot->id);
 
       // notify the group
       $group->notify(new UserJoined(Auth::user(),$group));
@@ -165,11 +169,11 @@ class InviteController extends Controller
 
     if($invite){
 
-      $group->group_invites()->detach($invite->id);
+      $group->group_invites()->detach($invite->pivot->id);
 
       // notify the group
       $group->notify(new UserDeclined(Auth::user(),$group));
-      return redirect()->route('groups.view')->with('status', 'You have declined the invitation from the group.');
+      return redirect()->route('groups.view', ['group'=>$group])->with('status', 'You have declined the invitation from the group.');
 
     }else{
 
@@ -232,7 +236,7 @@ class InviteController extends Controller
           'account_setup' => true
         ]);
         $group->users()->attach($user->id);
-        $group->group_invites()->detach($invite->id);
+        $group->group_invites()->detach($user->id);
 
         // log the user in
         Auth::login($user);

@@ -9,6 +9,7 @@ use Illuminate\Database\Eloquent\Relations\Pivot;
 
 class GroupInvites extends Pivot
 {
+  protected $table = 'group_invites';
   /*
     creator() - Defines an inverse one-to-many relationship with the User model for the user that created this invite.
   */
