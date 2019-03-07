@@ -22,6 +22,7 @@
   <script src="{{ asset('js/app.js') }}"></script>
   <script>
     window.GroupCalendar = window.GroupCalendar || {};
+    @auth
     GroupCalendar.defaultMixin = {
       data: function(){
         return {
@@ -30,6 +31,9 @@
         };
       }
     };
+    @else
+    GroupCalendar.defaultMixin = {};
+    @endauth
   </script>
   @hasSection ('page_scripts')
     @yield('page_scripts')
