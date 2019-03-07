@@ -4,9 +4,12 @@ Route::get('/', 'LoginController@landing')->name('landing');
 Route::get('/home', 'LoginController@home')->name('home')->middleware('auth');
 Route::get('/demo', 'LoginController@demo')->name('demo');
 Route::get('/login', 'LoginController@login')->name('login')->middleware('guest');
-Route::get('/joinGroup', 'InviteController@newUserJoin')->name('joinGroup')->middleware('guest');
 Route::post('/authenticate', 'LoginController@authenticate')->name('authenticate');
 Route::get('/logout', 'LoginController@logout')->name('logout');
+
+/* New User Invitations */
+Route::get('/joinGroup', 'InviteController@newUserJoin')->name('joinGroup')->middleware('guest');
+Route::put('/acceptInvite', 'InviteController@newUserAcceptInvite')->name('acceptInvite')->middleware('guest');
 
 /* Groups */
 Route::middleware('auth')->prefix('groups')->name('groups.')->group(function(){
