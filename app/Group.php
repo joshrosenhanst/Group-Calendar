@@ -63,6 +63,13 @@ class Group extends Model
   }
 
   /*
+    invited_users() - Defines a many-to-many relationship with the User model using the `group_invites` table.
+  */
+  public function invited_users(){
+    return $this->belongsToMany('App\User','group_invites')->withPivot('creator_id');
+  }
+
+  /*
     events() - Defines a one-to-many relationship with the Event model.
   */
   public function events(){

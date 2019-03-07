@@ -4,24 +4,29 @@ Route::get('/', 'LoginController@landing')->name('landing');
 Route::get('/home', 'LoginController@home')->name('home')->middleware('auth');
 Route::get('/demo', 'LoginController@demo')->name('demo');
 Route::get('/login', 'LoginController@login')->name('login')->middleware('guest');
+Route::get('/joinGroup', 'InviteController@newUserJoin')->name('joinGroup')->middleware('guest');
 Route::post('/authenticate', 'LoginController@authenticate')->name('authenticate');
 Route::get('/logout', 'LoginController@logout')->name('logout');
 
 /* Groups */
 Route::middleware('auth')->prefix('groups')->name('groups.')->group(function(){
   Route::get('/', 'GroupController@index')->name('index'); // my groups
-  Route::get('/new','GroupController@new')->name('new');
+  Route::get('/new','GroupController@new')->name('new');  //non-demo auth
 
   Route::get('/{group}', 'GroupController@view')->name('view'); // view group
-  Route::get('/{group}/edit','GroupController@edit')->name('edit');
+  Route::get('/{group}/edit','GroupController@edit')->name('edit'); //group admin auth
   Route::get('/{group}/members','GroupController@members')->name('members');
-  Route::get('/{group}/invite','GroupController@invite')->name('invite');
-  Route::get('/{group}/join','GroupController@join')->name('join');
 
-  Route::put('/create', 'GroupController@create')->name('create');
-  Route::put('/{group}/sendInvite', 'GroupController@sendInvite')->name('sendInvite');
-  Route::put('/{group}/acceptInvite', 'GroupController@acceptInvite')->name('acceptInvite');
-  Route::put('/{group}/update', 'GroupController@update')->name('update');
+  Route::get('/{group}/invite','InviteController@invite')->name('invite'); //group admin auth
+  Route::get('/{group}/join','InviteController@join')->name('join');
+  Route::get('/{group}/decline','InviteController@decline')->name('decline');
+
+  Route::put('/create', 'GroupController@create')->name('create');  //non-demo auth
+  Route::put('/{group}/update', 'GroupController@update')->name('update'); //group admin auth
+
+  Route::put('/{group}/createInvite', 'InviteController@createInvite')->name('createInvite'); //group admin auth
+  Route::put('/{group}/acceptInvite', 'InviteController@acceptInvite')->name('acceptInvite');
+  Route::put('/{group}/declineInvite', 'InviteController@declineInvite')->name('declineInvite');
 });
 
 /* Group Events */

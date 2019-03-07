@@ -20,7 +20,7 @@ class User extends Authenticatable
   use Notifiable;
 
   protected $fillable = [
-    'name', 'email', 'password', 'avatar_url', 'notifications_last_read_at'
+    'name', 'email', 'password', 'avatar_url', 'notifications_last_read_at', 'account_setup'
   ];
 
   protected $hidden = [
@@ -30,6 +30,7 @@ class User extends Authenticatable
   /* Cast the `demo` database field (boolean integer) as a boolean true/false value */
   protected $casts = [
     'demo' => 'boolean',
+    'account_setup' => 'boolean',
     'notifications_last_read_at' => 'datetime'
   ];
 
