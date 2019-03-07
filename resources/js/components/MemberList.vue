@@ -15,11 +15,14 @@
     <div class="item_details">
       <a v-bind:href="`/users/${member.id}`" class="preview_name">{{ member.name }}</a>
 
-      <div class="subtext">
-        <strong class="capitalize">{{ member.pivot.role }}</strong> · <span>Joined {{ member.join_date }}</span>
+      <div class="subtext" v-if="(type === 'members')">
+        <strong class="capitalize">{{ member.pivot.role }}</strong> · <span >Joined {{ member.join_date }}</span>
+      </div>
+      <div class="subtext" v-else>
+        <span>Invited {{ member.join_date }}</span>
       </div>
 
-      <div class="item_form">
+      <div class="item_form" v-if="show_controls">
         <member-form
           v-bind:role="member.pivot.role"
           v-bind:id="member.id"
@@ -39,7 +42,7 @@
       </div>
     </div>
 
-    <div class="item_controls button_group-controls">
+    <div class="item_controls button_group-controls"  v-if="show_controls">
       <button class="button button-text_info" aria-label="Update Member Role" title="Update Member Role"
         v-bind:class="{ 'button-active': (openMemberForm === member.id) }"
         v-on:click="toggleMemberForm(member.id)"
@@ -72,7 +75,9 @@ export default {
     MemberForm, MemberRemoveForm
   },
   props: {
-    members: Array
+    members: Array,
+    show_controls: Boolean,
+    type: String
   },
   methods: {
     updateMember: function(event){

@@ -70,12 +70,13 @@ class GroupController extends Controller{
     members() - Display the `groups.members` page template.
   */
   public function members(\App\Group $group) {
-    $group->loadMissing(['users']);
+    $group->loadMissing(['users','group_invites']);
 
     JavaScript::put([
       'data' => [
         'group' => $group,
-        'members' => $group->users
+        'members' => $group->users,
+        'invited' => $group->group_invites
       ]
     ]);
 
