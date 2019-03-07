@@ -1,6 +1,6 @@
 import members from '../../mixins/group_members.js';
 
-const mixins = [members];
+const mixins = [members,GroupCalendar.defaultMixin];
 
 GroupCalendar.app = new Vue({
   el: '#app',

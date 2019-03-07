@@ -1,8 +1,7 @@
 import tabs from '../../mixins/tabs.js';
 
-const mixins = [tabs];
+const mixins = [tabs,GroupCalendar.defaultMixin];
 
-window.GroupCalendar = window.GroupCalendar || {};
 GroupCalendar.data = {
   tabs: ['upcoming_events','past_events'],
   activeTab: 'upcoming_events'

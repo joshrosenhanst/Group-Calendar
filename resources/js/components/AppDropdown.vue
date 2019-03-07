@@ -41,6 +41,7 @@ export default {
       if(!this.isActive){
         this.$nextTick(() => {
           this.isActive = !this.isActive;
+          this.$emit('dropdown-active');
         });
       }else{
         this.isActive = !this.isActive;
@@ -48,11 +49,9 @@ export default {
     },
     isInWhiteList(target){
       if(target === this.$refs.trigger || this.$refs.trigger.contains(target) || target === this.$refs.dropdown_items || this.$refs.dropdown_items.contains(target)){
-        console.log("whitelist");
         return true;
       }
 
-      console.log("outside click");
       return false;
     },
     clickedOutside(event){

@@ -1,7 +1,7 @@
 import event_comments from '../../mixins/event_comments.js';
 import event_status from '../../mixins/event_status.js';
 
-const mixins = [event_comments,event_status];
+const mixins = [event_comments,event_status,GroupCalendar.defaultMixin];
 
 GroupCalendar.app = new Vue({
   el: '#app',

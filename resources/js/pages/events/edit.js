@@ -1,4 +1,4 @@
-const mixins = [];
+const mixins = [GroupCalendar.defaultMixin];
 
 GroupCalendar.app = new Vue({
   el: '#app',

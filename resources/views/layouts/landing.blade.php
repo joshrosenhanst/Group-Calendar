@@ -20,13 +20,24 @@
   </div>
 
   <script src="{{ asset('js/app.js') }}"></script>
+  <script>
+    window.GroupCalendar = window.GroupCalendar || {};
+    GroupCalendar.defaultMixin = {
+      data: function(){
+        return {
+          currentUser: @json(Auth::user()->append('all_notifications')->toArray()),
+          currentUnreadCount: @json(Auth::user()->all_unread_notifications->count())
+        };
+      }
+    };
+  </script>
   @hasSection ('page_scripts')
     @yield('page_scripts')
   @else
     <script>
-      const GroupCalendar = {};
       GroupCalendar.app = new Vue({
         el: '#app',
+        mixins: [GroupCalendar.defaultMixin],
         mounted: function(){
           console.log("default root app mounted");
         }
