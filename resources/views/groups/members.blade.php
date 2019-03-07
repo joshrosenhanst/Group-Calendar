@@ -55,6 +55,14 @@
         v-on:remove-member="removeMember"
         type="members"
       ></member-list>
+
+      <div class="card_section card_list">
+        <div class="empty list_empty" v-if="members.length == 0">
+          <span class="icon">@materialicon('account-question-outline')</span>
+          <h2>No Members</h2>
+        </div>
+      </div>
+
     </div>
   </div>
 
@@ -69,6 +77,14 @@
         v-bind:show_controls="false"
         type="invited"
       ></member-list>
+
+      <div class="card_section card_list">
+        <div class="empty list_empty" v-if="invited.length == 0">
+          <span class="icon">@materialicon('account-question-outline')</span>
+          <h2>No Invited Users</h2>
+        </div>
+      </div>
+
     </div>
   </div>
 
