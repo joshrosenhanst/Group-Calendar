@@ -9,6 +9,15 @@
     <div class="card_header card_header-no_content"></div>
     <div class="card_section card_section-title">
       {{ Breadcrumbs::render('groups.view', $group) }}
+    
+      @if(session('status'))
+        <status-alert class="alert-info" icon="alert-circle"
+          v-bind:close-button="true"
+        >
+          <strong>Note: </strong> {{ session('status') }}
+        </status-alert>
+      @endif
+      
     </div>
 
     {{-- Group Details --}}
