@@ -5,8 +5,8 @@ export default {
         'role': role,
         'user_id': id
       }).then((response) => {
-        console.log(response);
-        this.members = response.data;
+        this.members = response.data.members;
+        this.invited = response.data.invited;
       }).catch((error) => {
         console.log(error);
       });
@@ -17,8 +17,8 @@ export default {
           'user_id': id
         }
       }).then((response) => {
-        console.log(response);
-        this.members = response.data;
+        this.members = response.data.members;
+        this.invited = response.data.invited;
       }).catch((error) => {
         console.log(error);
       });
