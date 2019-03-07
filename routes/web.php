@@ -8,8 +8,8 @@ Route::post('/authenticate', 'LoginController@authenticate')->name('authenticate
 Route::get('/logout', 'LoginController@logout')->name('logout');
 
 /* New User Invitations */
-Route::get('/joinGroup', 'InviteController@newUserJoin')->name('joinGroup')->middleware('guest');
-Route::put('/acceptInvite', 'InviteController@newUserAcceptInvite')->name('acceptInvite')->middleware('guest');
+Route::get('/register', 'InviteController@register')->name('register')->middleware('guest');
+Route::put('/submitRegistration', 'InviteController@submitRegistration')->name('submitRegistration')->middleware('guest');
 
 /* Groups */
 Route::middleware('auth')->prefix('groups')->name('groups.')->group(function(){
@@ -21,15 +21,15 @@ Route::middleware('auth')->prefix('groups')->name('groups.')->group(function(){
   Route::get('/{group}/members','GroupController@members')->name('members');
 
   Route::get('/{group}/invite','InviteController@invite')->name('invite'); //group admin auth
-  Route::get('/{group}/join','InviteController@join')->name('join');
-  Route::get('/{group}/decline','InviteController@decline')->name('decline');
+  Route::get('/{group}/join','InviteController@join')->name('invites.join');
+  Route::get('/{group}/decline','InviteController@decline')->name('invites.decline');
 
   Route::put('/create', 'GroupController@create')->name('create');  //non-demo auth
   Route::put('/{group}/update', 'GroupController@update')->name('update'); //group admin auth
 
-  Route::put('/{group}/createInvite', 'InviteController@createInvite')->name('createInvite'); //group admin auth
-  Route::put('/{group}/acceptInvite', 'InviteController@acceptInvite')->name('acceptInvite');
-  Route::put('/{group}/declineInvite', 'InviteController@declineInvite')->name('declineInvite');
+  Route::put('/{group}/createInvite', 'InviteController@createInvite')->name('invites.createInvite'); //group admin auth
+  Route::put('/{group}/acceptInvite', 'InviteController@acceptInvite')->name('invites.acceptInvite');
+  Route::put('/{group}/declineInvite', 'InviteController@declineInvite')->name('invites.declineInvite');
 });
 
 /* Group Events */

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Str;
 use Validator;
 use Illuminate\Validation\Rule;
 use Illuminate\Support\Facades\Hash;
@@ -42,23 +43,30 @@ class InviteController extends Controller
 
       if($group->users()->where('user_id',$user->id)->exists()){
 
-        return redirect()->route('groups.invites', ['group'=>$group])->withErrors([
+        return redirect()->route('groups.invite', ['group'=>$group])->withErrors([
           'email' => 'The user is already a member of the group.'
         ])->withInput();
 
       }else{
 
-        $group->group_invites()->attach($user->id, [
-          'creator_id' => Auth::user()->id
-        ]);
+        if($group->group_invites()->where('user_id',$user->id)->exists()){
+          return redirect()->route('groups.invite', ['group'=>$group])->withErrors([
+            'email' => 'The user has already been invited.'
+          ])->withInput();
+        }else{
+          $group->group_invites()->attach($user->id, [
+            'creator_id' => Auth::user()->id,
+            'token' => Str::uuid()
+          ]);
 
-        // notify the user
-        $user->notify(new UserInvited($user,$group,Auth::user()));
+          // notify the user
+          $user->notify(new UserInvited($user,$group,Auth::user()));
 
-        // notify the group
-        $group->notify(new UserInvitedGroupMessage($user,$group));
+          // notify the group
+          $group->notify(new UserInvitedGroupMessage($user,$group,Auth::user()));
 
-        return redirect()->route('groups.members',['group'=>$group])->with('status', 'The user has been invited to the group.');
+          return redirect()->route('groups.members',['group'=>$group])->with('status', 'The user has been invited to the group.');
+        }
 
       }
 
@@ -70,12 +78,13 @@ class InviteController extends Controller
         'account_setup' => false
       ]);
 
-      $group->group_invites()->attach($user->id, [
-        'creator_id' => Auth::user()->id
+      $invite = $group->group_invites()->attach($user->id, [
+        'creator_id' => Auth::user()->id,
+        'token' => Str::uuid()
       ]);
 
       // notify the user and send them a checksum email link
-      $user->notify(new NewUserInvited($user,$group,Auth::user()));
+      $user->notify(new NewUserInvited($invite,$user,$group,Auth::user()));
 
       // notify the group
       $group->notify(new UserInvitedGroupMessage($user,$group));
@@ -86,11 +95,13 @@ class InviteController extends Controller
   }
 
   /*
-    join() - Check if the auth::user() has been invited to the group, then display the `groups.join` view.
+    join() - Check if the auth::user() has been invited to the group, then display the `groups.invites.join` view.
   */
   public function join(\App\Group $group){
-    if($group->group_invites()->where('user_id',Auth::user()->id)->exists()){
-      return view('groups.invites.join', ['group'=>$group]);
+    $invite = $group->group_invites()->where('user_id',Auth::user()->id)->first();
+    if($invite){
+      $creator = User::find($invite->creator_id);
+      return view('groups.invites.join', ['group'=>$group,'creator'=>$creator]);
     }else{
       if($group->users()->where('user_id',Auth::user()->id)->exists()){
         return redirect()->route('groups.view', ['group'=>$group])->with('status', 'You are already a member of this group.');
@@ -101,7 +112,7 @@ class InviteController extends Controller
   }
 
   /*
-    decline() - Check if the auth::user() has been invited to the group, then display the `groups.decline` view.
+    decline() - Check if the auth::user() has been invited to the group, then display the `groups.invites.decline` view.
   */
   public function decline(\App\Group $group){
     if($group->group_invites()->where('user_id',Auth::user()->id)->exists()){
@@ -157,7 +168,7 @@ class InviteController extends Controller
       $group->group_invites()->detach($invite->id);
 
       // notify the group
-      $group->notify(new UserDecline(Auth::user(),$group));
+      $group->notify(new UserDeclined(Auth::user(),$group));
       return redirect()->route('groups.view')->with('status', 'You have declined the invitation from the group.');
 
     }else{
@@ -173,9 +184,9 @@ class InviteController extends Controller
   }
 
   /*
-    newUserJoin() - Display the `invites.newUserJoin` view if the provided $request->token is valid.
+    register() - Allow a new user to register and join the group. Display the `register` view if the provided $request->token is valid.
   */
-  public function newUserJoin(Request $request){
+  public function register(Request $request){
     if($request->token){
       $invite = \App\GroupInvites::where('token', $request->token)->first();
       if($invite){
@@ -183,7 +194,7 @@ class InviteController extends Controller
         $group = \App\Group::find($invite->group_id);
         $creator = \App\User::find($invite->creator_id);
 
-        return view('groups.invites.newUserJoin', ['user'=>$user,'group'=>$group,'creator'=>$creator]);
+        return view('register', ['user'=>$user,'group'=>$group,'creator'=>$creator, 'token'=>$invite->token]);
       }else{
         return redirect()->route('login')->with('status', 'Invalid token provided. Please click the link in the group invitation email.');
       }
@@ -193,9 +204,9 @@ class InviteController extends Controller
   }
 
   /*
-    newUserAcceptInvite() - Check that the token is valid and exists. Validate the name, email and password fields. Then update the temp user account and set `account_setup` to true. Add the user to the group as a member and delete the GroupInvite record. Redirect to the `groups.view` page.
+    submitRegistration() - Check that the token is valid and exists. Validate the name, email and password fields. Then update the temp user account and set `account_setup` to true. Add the user to the group as a member and delete the GroupInvite record. Redirect to the `groups.view` page.
   */
-  public function newUserAcceptInvite(Request $request){
+  public function submitRegistration(Request $request){
     if($request->token){
 
       $invite = \App\GroupInvites::where('token', $request->token)->first();

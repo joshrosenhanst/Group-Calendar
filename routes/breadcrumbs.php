@@ -90,6 +90,21 @@ Breadcrumbs::for('groups.members', function ($trail, $group) {
   $trail->push('Members', route('groups.members', ['group'=>$group]));
 });
 
+/* Group Invitations */
+Breadcrumbs::for('groups.invite', function ($trail, $group) {
+  $trail->parent('groups.view', $group);
+  $trail->push('Invite To Group', route('groups.invite', ['group'=>$group]));
+});
+
+Breadcrumbs::for('groups.invites.join', function ($trail, $group) {
+  $trail->parent('home');
+  $trail->push('Join Group', route('groups.invites.join', ['group'=>$group]));
+});
+
+Breadcrumbs::for('groups.invites.decline', function ($trail, $group) {
+  $trail->parent('home');
+  $trail->push('Decline Invitation', route('groups.invites.decline', ['group'=>$group]));
+});
 /* Events */
 // Events can optionally have a [group] prefix, if the group is set on the request
 // Home / Events (no group)

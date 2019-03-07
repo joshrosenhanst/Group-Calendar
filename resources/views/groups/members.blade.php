@@ -15,18 +15,61 @@
       </h1>
       {{-- Note: replace with conditional guard check to show pages.groups.members.subtitle.admin text--}}
       <div class="subtitle">@lang('pages.groups.members.subtitle')</div>
-      <div class="center_title">
-        {{ $group->name }} - {{ trans_choice('messages.member_count',$group->users_count) }}
-      </div>
+
+      @if(session('status'))
+        <status-alert class="alert-info" icon="alert-circle"
+          v-bind:close-button="true"
+        >
+          <strong>Note: </strong> {{ session('status') }}
+        </status-alert>
+      @endif
+
     </div>
 
-    {{-- List of Members --}}
-    <member-list
-      v-bind:members="members"
-      v-on:update-member="updateMember"
-      v-on:remove-member="removeMember"
-    ></member-list>
+  </div>
 
+  <tab-wrapper
+    v-bind:tab-items="tabs"
+    v-on:select-tab="selectTab"
+  >
+    <template slot="members">
+      <span class="icon">@materialicon('account-multiple')</span>
+      <span>Members</span>
+    </template>
+    <template slot="invited">
+      <span class="icon">@materialicon('account-plus')</span>
+      <span>Invited</span>  
+    </template>
+  </tab-wrapper>
+
+  <div class="tab members_tab" v-show="activeTab === 'members'">
+    <div class="card card-has_tabs">
+      <div class="card_sub_header">
+        <h1 class="sub_title">{{ $group->name }} - @{{ member_count }}</h1>
+      </div>
+      {{-- List of Members --}}
+      <member-list
+        v-bind:members="members"
+        v-bind:show_controls="true"
+        v-on:update-member="updateMember"
+        v-on:remove-member="removeMember"
+        type="members"
+      ></member-list>
+    </div>
+  </div>
+
+  <div class="tab invited_tab" v-show="activeTab === 'invited'">
+    <div class="card card-has_tabs">
+      <div class="card_sub_header">
+        <h1 class="sub_title">{{ $group->name }} - @{{ invited_count }}</h1>
+      </div>
+      {{-- List of Invited Users --}}
+      <member-list
+        v-bind:members="invited"
+        v-bind:show_controls="false"
+        type="invited"
+      ></member-list>
+    </div>
   </div>
 
 </article>

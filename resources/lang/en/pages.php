@@ -5,6 +5,10 @@ return [
   'home.title' => 'GroupCalendar Dashboard',
   'home.subtitle' => 'Welcome to the GroupCalendar Event Planner! GroupCalendar helps you to plan and create events with your groups. Group events are private and can only be seen by other group members.',
 
+  /* Registration */
+  'register.title' => 'New User Registration',
+  'register.subtitle' => 'Welcome to GroupCalendar! Complete your registration below to join your first group. Once you have joined the group you can attend and create events.',
+
   /* Profile */
   'profile.edit.title' => 'Edit Profile',
   'profile.password.title' => 'Change Password',
@@ -33,6 +37,13 @@ return [
 
   'groups.edit.title' => 'Edit Group',
   'groups.edit.subtitle' => "Edit the details of the group. You can optionally leave a comment about your changes.",
+
+  /* Group Invites */
+  'groups.invite.title' => 'Invite To Group',
+  'groups.invite.subtitle' => 'Enter the name and email address of the new member below to send them an invite. You will be notified if the user accepts or declines the invitation.',
+  'groups.invites.join.title' => 'Join Group',
+  'groups.invites.join.subtitle' => 'Once you confirm your invitation to the group you will be able to attend and create group events. You can also decline the invitation.',
+  'groups.invites.decline.title' => 'Decline Invitation',
 
   /* Events */
   'events.new.title' => 'New Event',

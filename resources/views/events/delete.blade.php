@@ -87,7 +87,7 @@
 
       </div>
 
-      <h2 class="form_delete_confirmation">
+      <h2 class="form_confirmation">
         Are you sure you want to <strong>delete</strong> this event?<small>Note: The event will be permanently deleted.</small>
       </h2>
 

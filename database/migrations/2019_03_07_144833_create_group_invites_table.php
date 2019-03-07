@@ -18,7 +18,7 @@ class CreateGroupInvitesTable extends Migration
             $table->unsignedInteger('group_id');
             $table->unsignedInteger('user_id');
             $table->unsignedInteger('creator_id');
-            $table->unsignedInteger('token');
+            $table->uuid('token');
             $table->timestamps();
         });
     }
