@@ -101,7 +101,7 @@ class User extends Authenticatable
     getAllNotificationsAttribute() - Accessor method that returns a collection of the user's notifications and group_notifications.
   */
   public function getAllNotificationsAttribute(){
-    $this->loadMissing('notifications');
+    //$this->loadMissing('notifications');
     $group_notifications = $this->getGroupNotifications();
 
     $collection = $group_notifications->concat($this->notifications)->sortByDesc('created_at');
@@ -112,7 +112,7 @@ class User extends Authenticatable
     getAllUnreadNotificationsAttribute() - Accessor method that returns a colleciton of the user's unread notifications and unread group_notifications.
   */
   public function getAllUnreadNotificationsAttribute(){
-    $this->loadMissing('unread_notifications');
+    //$this->loadMissing('unread_notifications');
     $group_notifications = $this->getUnreadGroupNotifications();
 
     $collection = $group_notifications->concat($this->unread_notifications)->sortByDesc('created_at');
