@@ -15,7 +15,6 @@ aside#sidebars
   flex-basis: $sidebar-width
   display: flex
   flex-direction: column
-  row-gap: 15px
 
 article#maincontent
   flex-grow: 1
@@ -30,9 +29,11 @@ article#maincontent
 
 .maincontent_container
   display: flex
-  column-gap: 15px
   .maincontent_mid_section
     flex: 2 0
+    +desktop
+      &:not(:last-child)
+        margin-right: 15px
   .maincontent_aside
     flex: 1 0
   .maincontent_calendar_section
