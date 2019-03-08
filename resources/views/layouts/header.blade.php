@@ -20,11 +20,11 @@
 
       <a href="{{ route('home') }}" class="navbar_item" title="Go to Home Page">
         <img class="navbar_image" src="{{ asset(Auth::user()->avatar) }}" alt="{{ Auth::user()->name }} avatar">
-        <span>{{ Auth::user()->name }}</span>
+        <span class="navbar_item_text">{{ Auth::user()->name }}</span>
       </a>
       <a href="{{ route('logout') }}" class="navbar_item">
         <span class="icon">@materialicon('logout')</span>
-        <span>Log Out</span>
+        <span class="navbar_item_text">Log Out</span>
       </a>
     </div>
     @else

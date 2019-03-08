@@ -184,10 +184,21 @@
         margin-right: 5px
   .form_input,.form_select
     max-width: 450px
-  +until($desktop)
+  +desktop
     margin: 0 auto 25px auto
     max-width: 450px
-  +desktop
+  .field_body.field_body-static
+    .form_input-static
+      display: flex
+      align-items: center
+      .preview_thumbnail
+        width: 24px
+        height: 24px
+        margin-right: 5px
+      .icon
+        margin-right: 5px
+        color: $primary
+  +tablet
     .field
       display: flex
       .field_label
@@ -201,17 +212,6 @@
           font-size: $size-normal
       .field_body
         flex: 5 1
-        &.field_body-static
-          .form_input-static
-            display: flex
-            align-items: center
-            .preview_thumbnail
-              width: 24px
-              height: 24px
-              margin-right: 5px
-            .icon
-              margin-right: 5px
-              color: $primary
 
 .form.embedded_form
   padding: 10px 0
@@ -226,12 +226,17 @@
   .form_input,.form_select
     max-width: 300px
   .form_inline_group
-    +until($desktop)
+    +desktop
       margin: 0 auto 25px auto
-      max-width: 300px
-  +desktop
-    .field
+      //max-width: 300px
+  .field
+    +tablet
       .field_label
-        flex: 4 0
+        flex: 1 0
       .field_body
-        flex: 6 1
+        flex: 2 1
+    +desktop
+      .field_label
+        flex: 2 0
+      .field_body
+        flex: 3 1

@@ -3,40 +3,43 @@ main#app-body
   margin-bottom: 15px
   +container
   +tablet
-    padding: 0 15px
-  +desktop
     display: flex
     align-items: flex-start
+    padding: 0 15px
+  +desktop
     padding: 0
 
 aside#sidebars
   flex-grow: 0
   flex-shrink: 0
-  flex-basis: $sidebar-width
   display: flex
   flex-direction: column
+  flex-basis: auto
+  +desktop
+    flex-basis: $sidebar-width
 
 article#maincontent
   flex-grow: 1
   flex-shrink: 1
+  +tablet
+    margin-right: 15px
   +desktop
     max-width: $desktop - (2 * $gap) - $sidebar-width - 15px
-    margin-right: 15px
   +widescreen
     max-width: $widescreen - (2 * $gap) - $sidebar-width - 15px
   &.no_sidebar
     margin: 0 auto
 
 .maincontent_container
-  display: flex
-  .maincontent_mid_section
-    flex: 2 0
-    +desktop
+  +desktop
+    display: flex
+    .maincontent_mid_section
+      flex: 2 0
       &:not(:last-child)
         margin-right: 15px
-  .maincontent_aside
-    flex: 1 0
-  .maincontent_calendar_section
-    flex: 3 0
-  .maincontent_events_section
-    flex: 2 0
+    .maincontent_aside
+      flex: 1 0
+    .maincontent_calendar_section
+      flex: 3 0
+    .maincontent_events_section
+      flex: 2 0

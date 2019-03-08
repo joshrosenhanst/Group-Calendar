@@ -61,10 +61,14 @@
     align-items: center
     padding: 0 20px 10px 20px
     border-top: 4px solid $primary
+    +mobile
+      flex-direction: column
+      text-align: center
     .group_links
-      margin-left: auto
       display: flex
       flex-wrap: wrap
+      +tablet
+        margin-left: auto
       .button
         &:not(:first-of-type)
           margin-left: -1px
@@ -75,6 +79,10 @@
       border-radius: 50%
       border: 4px solid $primary
       margin-top: -75px
+      +tablet-only
+        width: 100px
+        height: 100px
+        margin-top: 10px
     .group_details
       padding: 10px
       .group_name

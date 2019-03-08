@@ -39,11 +39,16 @@
     &:hover, &:focus, &:active
       background-color: $navbar-hover
       text-decoration: none
+    .navbar_item_text
+      display: none
+      +tablet
+        display: inline
     &>.icon
-      &:not(:last-child)
-        margin-right: 5px
       svg
         filter: drop-shadow($navbar-item-text-shadow)
+      +tablet
+        &:not(:last-child)
+          margin-right: 5px
     &.navbar_item-icon>.icon
       margin: 0
     .navbar_image
@@ -53,7 +58,8 @@
       display: inline-block
       flex: 1 1 auto
       border: 1px solid $navbar-border
-      margin-right: 4px
+      +tablet
+        margin-right: 4px
 
   .navbar_logo
     font-size: $size-large
