@@ -7,9 +7,6 @@ main#app-body
   +tablet
     display: flex
     align-items: flex-start
-    padding: 0 15px
-  +desktop
-    padding: 0
 
 aside#sidebars
   flex-grow: 0
@@ -45,7 +42,7 @@ article#maincontent
   +tablet
     margin-right: 15px
   +desktop
-    max-width: $desktop - (2 * $gap) - $sidebar-width - 15px
+    max-width: $widescreen - (2 * $gap) - $sidebar-width - 15px
   +widescreen
     max-width: $widescreen - (2 * $gap) - $sidebar-width - 15px
   &.no_sidebar

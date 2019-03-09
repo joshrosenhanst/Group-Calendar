@@ -1,9 +1,12 @@
 =container
   margin: 0 auto
   position: relative
+  +tablet
+    padding: 0 15px
   +desktop
-    max-width: $desktop - (2 * $gap)
-    width: $desktop - (2 * $gap)
+    max-width: $widescreen - (2 * $gap)
+    //width: $desktop - (2 * $gap)
+    width: auto
     &.is-fluid
       margin-left: $gap
       margin-right: $gap
@@ -12,8 +15,8 @@
   +until-widescreen
     &.is-widescreen
       max-width: $widescreen - (2 * $gap)
-      width: autollhd - (2 * $gap)
       width: auto
   +widescreen
     max-width: $widescreen - (2 * $gap)
     width: $widescreen - (2 * $gap)
+    padding: 0
