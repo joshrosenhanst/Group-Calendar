@@ -28,6 +28,7 @@
       </a>
       <navbar-menu-button
         v-on:navbar-menu-toggle="onNavbarButtonToggle"
+        whitelist="#sidebars"
       ></navbar-menu-button>
     </div>
     @else

@@ -21,9 +21,8 @@ aside#sidebars
     display: none
     width: 300px
     padding: 15px
-    background-color: $primary
-    border: 1px solid darken($primary, 2.5%)
-    border-top: 0
+    background-color: $navbar-hover
+    border: 1px solid $navbar-border
     border-bottom-left-radius: $radius
     border-bottom-right-radius: $radius
     box-shadow: $card-box-shadow
@@ -31,10 +30,8 @@ aside#sidebars
     &.sidebars-open
       display: flex
       .sidebar
-        .sidebar_header.sidebar_header-no_content
-          display: none
-        .sidebar_footer.sidebar_footer-no_content
-          display: none
+        border-top: 0
+        border-bottom: 0
   +tablet-only
     flex-basis: $sidebar-tablet-width
 
