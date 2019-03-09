@@ -3,15 +3,12 @@
     aria-label="Unread Notifications dropdown" v-bind:title="title"
     v-on:dropdown-active="markUserNotifcationsAsRead"
   >
-
-    <template slot="trigger">
-      <a href="/notifications" class="navbar_item navbar_item-icon has_badge">
-        <span class="badge" v-show="unread_notifications">
-          {{ unread_notifications }}
-        </span>
-        <material-icon name="bell"></material-icon>
-      </a>
-    </template>
+    <a href="/notifications" class="navbar_item navbar_item-icon has_badge" slot="trigger">
+      <span class="badge" v-show="unread_notifications">
+        {{ unread_notifications }}
+      </span>
+      <material-icon name="bell"></material-icon>
+    </a>
 
     <slot slot="dropdown_items"></slot>
 
