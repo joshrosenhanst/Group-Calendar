@@ -6,7 +6,6 @@
 <article id="maincontent">
   <div class="card card_has_avatar">
     
-    <div class="card_header card_header-no_content"></div>
     <div class="card_section card_section-title">
       {{ Breadcrumbs::render('profile.edit') }}
       <h1 class="title">

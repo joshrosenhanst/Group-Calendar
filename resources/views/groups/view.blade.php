@@ -6,7 +6,7 @@
 <article id="maincontent">
   <div class="card">
     {{-- Page Header --}}
-    <div class="card_header card_header-no_content"></div>
+    
     <div class="card_section card_section-title">
       {{ Breadcrumbs::render('groups.view', $group) }}
     

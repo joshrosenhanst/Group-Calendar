@@ -1,4 +1,4 @@
-<div class="card">
+<div class="card card-has_header">
   <div class="card_header">
     <h2>
       <span class="icon">@materialicon('comment-multiple')</span>

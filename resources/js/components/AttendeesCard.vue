@@ -1,5 +1,5 @@
 <template>
-  <div class="card" id="attendees">
+  <div class="card card-has_header" id="attendees">
     <div class="card_header">
       <h2>
         <material-icon name='account-multiple'></material-icon>

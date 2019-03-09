@@ -5,11 +5,12 @@
 @section('content')
 <article id="maincontent">
   <div class="card">
-    <div class="card_header card_header-no_content"></div>
+    
     <div class="card_section card_section-title">
       {{ Breadcrumbs::render('groups.events.edit', $event->group, $event) }}
       <h1 class="title">Edit Event</h1>
     </div>
+    
     <form action="{{ route('events.update', ['event'=>$event]) }}" id="event_form" class="form card_section card_section-form" method="POST">
       @method('PUT')
       @csrf

@@ -1,5 +1,5 @@
 <div class="sidebar">
-  <div class="sidebar_header sidebar_header-no_content"></div>
+  
   <div class="sidebar_title">
     <h1 class="title">
       <span class="preview_thumbnail">
@@ -8,6 +8,7 @@
       <span>{{ $group->name }}</span>
     </h1>
   </div>
+
   <div class="sidebar_section sidebar_links">
     <a href="{{ route('groups.events.new', ['group'=>$group]) }}" class="sidebar_link">
       <span class="icon">@materialicon('calendar-plus')</span>
@@ -26,5 +27,5 @@
       <span>Edit Group Settings</span>
     </a>
   </div>
-  <div class="sidebar_footer sidebar_footer-no_content"></div>
+  
 </div>

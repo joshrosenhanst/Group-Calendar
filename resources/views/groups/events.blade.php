@@ -6,7 +6,7 @@
 <article id="maincontent">
   <div class="card event_card">
     {{-- Page Header --}}
-    <div class="card_header card_header-no_content"></div>
+    
     <div class="card_section card_section-title">
       {{ Breadcrumbs::render('groups.events.index', $group) }}
 
@@ -46,9 +46,7 @@
       @if(count($monthly_upcoming_events))
         @foreach($monthly_upcoming_events as $month=>$monthly_events)
           <div class="card {{ $loop->first?'card-has_tabs':'' }}">
-            @if(!$loop->first)
-            <div class="card_header card_header-no_content"></div>
-            @endif
+
             <div class="card_sub_header">
               <h1 class="sub_title">{{$month}} Events</h1>
             </div>
@@ -76,9 +74,7 @@
       @if(count($monthly_past_events))
         @foreach($monthly_past_events as $month=>$monthly_events)
           <div class="card {{ $loop->first?'card-has_tabs':'' }}">
-            @if(!$loop->first)
-            <div class="card_header card_header-no_content"></div>
-            @endif
+            
             <div class="card_sub_header">
               <h1 class="sub_title">{{$month}} Events</h1>
             </div>

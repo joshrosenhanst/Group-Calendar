@@ -1,4 +1,4 @@
-<div class="card card_members_list">
+<div class="card card-has_header card_members_list">
   <div class="card_header">
     <h2>
       <span class="icon">@materialicon('account-multiple')</span>

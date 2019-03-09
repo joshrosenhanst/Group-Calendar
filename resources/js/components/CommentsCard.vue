@@ -1,5 +1,5 @@
 <template>
-  <div class="card comments_card">
+  <div class="card card-has_header comments_card">
     <div class="card_header">
       <h2>
         <material-icon name='comment-multiple'></material-icon>

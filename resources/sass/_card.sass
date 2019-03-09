@@ -4,33 +4,21 @@
   max-width: 100%
   position: relative
   box-shadow: $card-box-shadow
+  border-top: 5px solid $primary
+  border-bottom: 5px solid $primary
+  +tablet
+    border-radius: $card-border-radius
+  &.card-has_header
+    border-radius: 0
+    border-top: 0
+    border-bottom: 0
   .card_header,.sidebar_header
     +tablet
       border-top-left-radius: $card-border-radius
       border-top-right-radius: $card-border-radius
-    &.card_header-no_content,&.sidebar_header-no_content
-      padding:2px
-      margin-bottom: -1px
-      +until($tablet)
-        border-width: 1px 0
-        border-style: solid
-        border-color: $card-border-color
-      +tablet
-        border: 1px solid $card-border-color
   .card_section,.sidebar_section
     &:not(&:first-of-type)
       border-top: 1px solid $card-border-color
-  .card_footer,.sidebar_footer
-    background-color: $primary
-    padding: 2px
-    +until($tablet)
-      border-width: 1px 0
-      border-style: solid
-      border-color: $card-border-color
-    +tablet
-      border: 1px solid $card-border-color
-      border-bottom-left-radius: $radius
-      border-bottom-right-radius: $radius
 
 .card
   display: flex
@@ -38,7 +26,7 @@
   margin-bottom: 15px
   &.card-no_header
     overflow: hidden
-  .card_header
+  .card_header,.card_section-header
     text-shadow: $card-header-text-shadow
     background-color: $card-header-background
     color: $white
@@ -123,7 +111,7 @@
     background-size: cover
     height: 200px
     padding: 0
-    border-top: 4px solid $primary
+    border: 0
   .card_section-title
     padding: 10px 15px
     .title

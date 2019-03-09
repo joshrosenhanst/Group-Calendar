@@ -5,11 +5,12 @@
 @section('content')
 <article id="maincontent">
   <div class="card">
-    <div class="card_header card_header-no_content"></div>
+    
     <div class="card_section card_section-title">
       {{ Breadcrumbs::render('groups.events.delete', $event->group, $event) }}
       <h1 class="title">Delete Event</h1>
     </div>
+    
     <form action="{{ route('events.destroy', ['event'=>$event]) }}" id="event_form" class="form card_section card_section-form" method="POST">
       @method('DELETE')
       @csrf
