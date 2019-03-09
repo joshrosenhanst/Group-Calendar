@@ -46,7 +46,6 @@
       border-right: 1px solid $navbar-border
       &:last-child:not(.navbar_menu_button)
         border-left: 0
-        margin-right: 0
       &:first-child:last-child
         border-left: 1px solid $navbar-border
     &:hover, &:focus, &:active
@@ -58,8 +57,10 @@
       +tablet
         &:not(:last-child)
           margin-right: 5px
-    &.navbar_item-icon>.icon
-      margin: 0
+    &.navbar_item-icon
+      height: 100%
+      &>.icon
+        margin: 0
     .navbar_image
       border-radius: 50%
       width: 1.5em

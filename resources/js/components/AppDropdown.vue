@@ -1,15 +1,14 @@
 <template>
   <span class="dropdown" v-bind:class="{ 'dropdown-active': isActive }"
     aria-haspopup="true"
+    v-bind:aria-expanded="isActive"
     role="button"
   >
-    <a class="dropdown_toggle" ref="trigger"
-      v-bind:class="trigger_classes"
-      v-bind:href="url"
+    <div class="dropdown_toggle" ref="trigger"
       v-on:click.prevent="toggleDropdown"
     >
       <slot name="trigger"></slot>
-    </a>
+    </div>
     <div class="dropdown_items" aria-role="menu"
       ref="dropdown_items"
       v-bind:aria-hidden="!isActive"
@@ -27,14 +26,6 @@ export default {
     }
   },
   props: {
-    url: {
-      type: String,
-      default: null
-    },
-    trigger_classes:{
-      type: String,
-      default: null
-    }
   },
   methods: {
     toggleDropdown(){
