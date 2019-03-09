@@ -5,41 +5,57 @@
   position: relative
   box-shadow: $card-box-shadow
   .card_header,.sidebar_header
-    border-top-left-radius: $card-border-radius
-    border-top-right-radius: $card-border-radius
+    +tablet
+      border-top-left-radius: $card-border-radius
+      border-top-right-radius: $card-border-radius
     &.card_header-no_content,&.sidebar_header-no_content
       padding:2px
       margin-bottom: -1px
-      border: 1px solid $card-border-color
+      +until($tablet)
+        border-width: 1px 0
+        border-style: solid
+        border-color: $card-border-color
+      +tablet
+        border: 1px solid $card-border-color
   .card_section,.sidebar_section
     &:not(&:first-of-type)
       border-top: 1px solid $card-border-color
   .card_footer,.sidebar_footer
     background-color: $primary
     padding: 2px
-    border-bottom-left-radius: $radius
-    border-bottom-right-radius: $radius
-    border-top: 1px solid $card-border-color
+    +until($tablet)
+      border-width: 1px 0
+      border-style: solid
+      border-color: $card-border-color
+    +tablet
+      border: 1px solid $card-border-color
+      border-bottom-left-radius: $radius
+      border-bottom-right-radius: $radius
 
 .card
   display: flex
   flex-direction: column
   margin-bottom: 15px
-  border-radius: $card-border-radius
   &.card-no_header
     overflow: hidden
   .card_header
-    padding: 10px 15px
     text-shadow: $card-header-text-shadow
     background-color: $card-header-background
     color: $white
     display: flex
+    +until($tablet)
+      flex-direction: column
+      padding: 10px
+    +tablet
+      padding: 10px 15px
     h1,h2
       flex-grow: 1
       flex-shrink: 0
       display: flex
       align-items: center
       font-weight: 700
+      +until($tablet)
+        justify-content: center
       .icon
         margin-right: 5px
         &>svg
@@ -55,21 +71,29 @@
       flex-grow: 0
       flex-shrink: 0
       font-size: $size-small
-      padding: 6px 6px 6px 12px
+      +until($tablet)
+        margin: 5px auto 0 auto
+        padding: 6px 12px 6px 18px
+      +tablet
+        padding: 6px 6px 6px 12px
       &:hover
         background-color: darken($primary, 2.5%)
   .card_sub_header
     padding: 10px 15px
-    border: 1px solid $card-border-color
     text-align: center
     margin-bottom: -1px
+    +until($tablet)
+      border-width: 1px 0
+      border-style: solid
+      border-color: $card-border-color
+    +tablet
+      border: 1px solid $card-border-color
     .sub_title
       font-weight: 700
       color: $text-light
     h1.sub_title
       font-size: $size-medium
   .center_title
-    border: 1px solid $card-border-color
     margin-bottom: -1px
     padding: 10px 15px
     text-align: center
@@ -77,12 +101,23 @@
     color: $text-light
     margin-top: 10px
     font-size: $size-medium
+    +until($tablet)
+      border-width: 1px 0
+      border-style: solid
+      border-color: $card-border-color
+    +tablet
+      border: 1px solid $card-border-color
 
 
   .card_section
     padding: 25px 20px
-    border: 1px solid $card-border-color
     margin-bottom: -1px
+    +until($tablet)
+      border-width: 1px 0
+      border-style: solid
+      border-color: $card-border-color
+    +tablet
+      border: 1px solid $card-border-color
   .card_section-background_image
     background-position: center
     background-size: cover
@@ -165,7 +200,12 @@
     display: flex
     align-items: center
     padding: 0
-    border: 1px solid $card-border-color
+    +until($tablet)
+      border-width: 1px 0
+      border-style: solid
+      border-color: $card-border-color
+    +tablet
+      border: 1px solid $card-border-color
     .button
       flex: 1 1
       color: $link
