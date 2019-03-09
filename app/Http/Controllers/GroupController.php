@@ -49,7 +49,9 @@ class GroupController extends Controller{
     view() - Display the `groups.home` page template.
   */
   public function view(\App\Group $group) {
-    $group->loadMissing(['users','comments.user']);
+    $group->loadMissing(['comments.user','users' => function($query){
+      $query->limit(5);
+    }]);
     $upcoming_events = $group->getUpcomingEvents();
 
     JavaScript::put([

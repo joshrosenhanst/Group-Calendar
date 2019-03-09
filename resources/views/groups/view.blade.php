@@ -49,7 +49,7 @@
 
       {{-- Recent Members --}}
       @include('blocks.groups.recent_members', [
-        'members'=>$group->users->sortByDesc('created_at')->take(5) 
+        'members'=>$group->users
       ])
     </aside>
   </div>

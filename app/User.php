@@ -73,11 +73,11 @@ class User extends Authenticatable
   }
 
   /*
-    getJoinDateAttribute() - Accessor method that returns a formatted version of the `created_at` db field. Format 'F Y' - Ex: `February 2011`
+    getJoinDateAttribute() - Accessor method that returns a formatted version of the `pivot->created_at` db field. Formatted as '22 hours ago'. Because pivot is generic, this can apply to both the `GroupUser` and `GroupInvites` pivots.
   */
   public function getJoinDateAttribute(){
-    if($this->created_at){
-      return $this->created_at->format('F Y');
+    if($this->pivot && $this->pivot->created_at){
+      return $this->pivot->created_at->diffForHumans();
     }else{
       return null;
     }
@@ -174,7 +174,7 @@ class User extends Authenticatable
     groups() - Defines a many-to-many relationship with the Group model.
   */
   public function groups(){
-    return $this->belongsToMany('App\Group')->withPivot('role');
+    return $this->belongsToMany('App\Group')->withPivot(['role','created_at'])->withTimestamps();
   }
 
   /*
