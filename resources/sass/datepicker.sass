@@ -1,0 +1,114 @@
+.datepicker
+  font-size: 0.875rem
+  .dropdown,
+  .dropdown-trigger
+    width: 100%
+  
+  .dropdown-item
+    font-size: inherit
+  
+  .datepicker-header
+    padding-bottom: 0.875rem
+    margin-bottom: 0.875rem
+    border-bottom: 1px solid $grey-lighter
+    .pagination
+      display: flex
+      align-items: center
+      justify-content: space-between
+      text-align: center
+      .pagination-previous
+        order: 1
+      .pagination-list
+        order: 2
+        flex-grow: 1
+        flex-shrink: 1
+        display: flex
+        align-items: center
+        text-align: center
+        justify-content: center
+        .field.has-addons
+          display: flex
+          .control
+            &:not(:last-child)
+              margin-right: -1px
+            .select
+              select
+                border-color: $input-border-color
+      .pagination-next
+        order: 3
+  
+  .datepicker-content
+    height: 16.25rem
+  
+  .datepicker-footer
+    margin-top: 0.875rem
+    padding-top: 0.875rem
+    border-top: 1px solid $grey-lighter
+  
+  .datepicker-table
+    display: table
+    margin: 0 auto 0 auto
+    .datepicker-cell
+      text-align: center
+      vertical-align: middle
+      display: table-cell
+      border-radius: $radius
+      padding: 0.5rem 0.75rem
+    .datepicker-header
+      display: table-header-group
+      .datepicker-cell
+        color: $grey
+        font-weight: 500
+        
+    .datepicker-body
+      display: table-row-group
+      .datepicker-row
+        display: table-row
+        .datepicker-cell
+          &.is-unselectable
+            color: $grey-light
+          &.is-today
+            border: solid 1px rgba($primary, 0.5)
+          &.is-selectable
+            color: $grey-dark
+            &:hover:not(.is-selected),
+            &:focus:not(.is-selected)
+              background-color: $white
+              color: $black
+              cursor: pointer
+          &.is-selected
+            background-color: $primary
+            color: $white
+                
+        &.has-events
+          .datepicker-cell
+            padding: 0.3rem 0.75rem 0.75rem
+            &.has-event
+              position: relative
+              .events
+                bottom: .425rem
+                display: flex
+                justify-content: center
+                left: 0
+                padding: 0 .35rem
+                position: absolute
+                width: 100%
+                .event
+                          
+                &.dots .event
+                  border-radius: 50%
+                  height: .35em
+                  margin: 0 .1em
+                  width: .35em
+                
+                &.bars .event
+                  height: .25em
+                  width: 100%
+                
+            &.is-selected
+              overflow: hidden
+              .events .event
+                // Currently datepicker only uses primary coloring
+                // Ensure indicator is visible when selected
+                &.is-primary
+                  background-color: lighten($primary,15)    

@@ -14,6 +14,8 @@
     <form action="{{ route('events.create') }}" id="event_form" class="form card_section card_section-form" method="POST">
       @method('PUT')
       @csrf
+
+      <app-datepicker inline></app-datepicker>
       
       {{-- Name --}}
       @include('partials.form_inline_group', [
@@ -26,7 +28,6 @@
           'required' => true,
           'old' => old('name')
         ],
-        'help' => 'This is a help block',
         'errors' => $errors->get('name')
       ])
 
