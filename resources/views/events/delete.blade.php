@@ -107,12 +107,12 @@
 </article>
 
 {{-- Sidebars --}}
-<aside id="sidebars">
+<sidebar-wrapper v-bind:active="navbarMenuActive">
   {{-- Event Sidebar --}}
   @include('layouts.sidebar.event', ['event'=>$event])
   {{-- Group Sidebar --}}
   @include('layouts.sidebar.group', ['group'=>$event->group])
   {{-- User Sidebar --}}
   @include('layouts.sidebar.user')
-</aside>
+</sidebar-wrapper>
 @endsection

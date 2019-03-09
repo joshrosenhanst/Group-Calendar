@@ -162,14 +162,14 @@
 </article>
 
 {{-- Sidebars --}}
-<aside id="sidebars">
+<sidebar-wrapper v-bind:active="navbarMenuActive">
   @if($group)
     {{-- Group Sidebar --}}
     @include('layouts.sidebar.group', ['group'=>$group])
   @endif
   {{-- User Sidebar --}}
   @include('layouts.sidebar.user')
-</aside>
+</sidebar-wrapper>
 @endsection
 
 @section('page_scripts')

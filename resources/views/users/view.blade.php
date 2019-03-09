@@ -48,8 +48,8 @@
 </article>
 
 {{-- Sidebars --}}
-<aside id="sidebars">
+<sidebar-wrapper v-bind:active="navbarMenuActive">
   {{-- User Sidebar --}}
   @include('layouts.sidebar.user')
-</aside>
+</sidebar-wrapper>
 @endsection

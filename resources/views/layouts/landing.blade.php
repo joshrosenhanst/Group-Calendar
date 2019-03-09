@@ -27,8 +27,14 @@
       data: function(){
         return {
           currentUser: @json(Auth::user()->append('all_notifications')->toArray()),
-          currentUnreadCount: @json(Auth::user()->all_unread_notifications->count())
+          currentUnreadCount: @json(Auth::user()->all_unread_notifications->count()),
+          navbarMenuActive: false
         };
+      },
+      methods: {
+        onNavbarButtonToggle(isActive){
+          this.navbarMenuActive = isActive;
+        }
       }
     };
     @else

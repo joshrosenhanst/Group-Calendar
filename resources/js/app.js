@@ -29,3 +29,5 @@ Vue.component('comments-card', require('./components/CommentsCard.vue').default)
 Vue.component('attendees-card', require('./components/AttendeesCard.vue').default);
 Vue.component('member-list', require('./components/MemberList.vue').default);
 Vue.component('full-calendar', require('./components/FullCalendar.vue').default);
+Vue.component('navbar-menu-button', require('./components/NavbarMenuButton.vue').default);
+Vue.component('sidebar-wrapper', require('./components/SidebarWrapper.vue').default);

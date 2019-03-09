@@ -49,10 +49,10 @@
 </article>
 
 {{-- Sidebars --}}
-<aside id="sidebars">
+<sidebar-wrapper v-bind:active="navbarMenuActive">
   {{-- Groups Sidebar --}}
   @include('layouts.sidebar.groups')
   {{-- User Sidebar --}}
   @include('layouts.sidebar.user')
-</aside>
+</sidebar-wrapper>
 @endsection

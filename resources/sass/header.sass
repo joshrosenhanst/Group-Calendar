@@ -18,6 +18,14 @@
     display: flex
     flex: 1 1 auto
     justify-content: flex-end
+    .navbar_item
+      display: none
+      +tablet
+        display: flex
+      &.navbar_menu_button
+        display: flex
+        +tablet
+          display: none
   .navbar_item
     display: flex
     align-items: center
@@ -28,10 +36,15 @@
     color: $navbar-item-color
     text-shadow: $navbar-item-text-shadow
     line-height: 45px
+    border-top: 0
+    border-bottom: 0
+    &.navbar_menu_button
+      background-color: transparent
+      cursor: pointer
     &:not(.navbar_logo)
       border-left: 1px solid $navbar-border
       border-right: 1px solid $navbar-border
-      &:last-child
+      &:last-child:not(.navbar_menu_button)
         border-left: 0
         margin-right: 0
       &:first-child:last-child
@@ -39,10 +52,6 @@
     &:hover, &:focus, &:active
       background-color: $navbar-hover
       text-decoration: none
-    .navbar_item_text
-      display: none
-      +tablet
-        display: inline
     &>.icon
       svg
         filter: drop-shadow($navbar-item-text-shadow)

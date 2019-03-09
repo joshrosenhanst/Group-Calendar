@@ -56,12 +56,12 @@
 </article>
 
 {{-- Sidebars --}}
-<aside id="sidebars">
+<sidebar-wrapper v-bind:active="navbarMenuActive">
   {{-- Group Sidebar --}}
   @include('layouts.sidebar.group', ['group'=>$group])
   {{-- User Sidebar --}}
   @include('layouts.sidebar.user')
-</aside>
+</sidebar-wrapper>
 @endsection
 
 {{-- Include the page data variables injected by the controller and the page script which will create the Vue instance. --}}

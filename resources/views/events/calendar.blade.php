@@ -20,10 +20,10 @@
 </article>
 
 {{-- Sidebars --}}
-<aside id="sidebars">
-    {{-- User Sidebar --}}
-    @include('layouts.sidebar.user')
-  </aside>
+<sidebar-wrapper v-bind:active="navbarMenuActive">
+  {{-- User Sidebar --}}
+  @include('layouts.sidebar.user')
+</sidebar-wrapper>
 @endsection
 
 @push('scripts')

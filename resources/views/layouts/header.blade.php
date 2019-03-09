@@ -26,6 +26,9 @@
         <span class="icon">@materialicon('logout')</span>
         <span class="navbar_item_text">Log Out</span>
       </a>
+      <navbar-menu-button
+        v-on:navbar-menu-toggle="onNavbarButtonToggle"
+      ></navbar-menu-button>
     </div>
     @else
     <div class="navbar_right">

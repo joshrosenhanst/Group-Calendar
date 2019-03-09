@@ -62,11 +62,10 @@
   
 </article>
 
-{{-- Sidebars --}}
-<aside id="sidebars">
+<sidebar-wrapper v-bind:active="navbarMenuActive">
   {{-- Home Sidebar --}}
   @include('layouts.sidebar.home')
   {{-- User Sidebar --}}
   @include('layouts.sidebar.user')
-</aside>
+</sidebar-wrapper>
 @endsection
