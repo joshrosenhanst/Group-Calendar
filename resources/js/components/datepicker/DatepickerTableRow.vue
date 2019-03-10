@@ -1,11 +1,10 @@
 <template>
-    <div class="datepicker_row">
+    <div class="datepicker_week">
         <template v-for="(day, index) in week">
-            <a
+            <a class="datepicker_day"
                 v-if="selectableDate(day) && !disabled"
                 :key="index"
-                :class="[classObject(day), {'has-event':eventsDateMatch(day)}, indicators]"
-                class="datepicker_cell"
+                :class="[classObject(day), {'datepicker_day-has_events':eventsDateMatch(day)}]"
                 role="button"
                 href="#"
                 :disabled="disabled"
@@ -14,9 +13,9 @@
                 @keydown.space.prevent="emitChosenDate(day)">
                 {{ day.getDate() }}
 
-                <div class="events" v-if="eventsDateMatch(day)">
+                <div class="events_container" v-if="eventsDateMatch(day)">
                     <div
-                        class="event"
+                        class="day_event"
                         :class="event.type"
                         v-for="(event, index) in eventsDateMatch(day)"
                         :key="index"/>
@@ -27,7 +26,7 @@
                 v-else
                 :key="index"
                 :class="classObject(day)"
-                class="datepicker_cell">
+                class="datepicker_day">
                 {{ day.getDate() }}
             </div>
         </template>
@@ -52,7 +51,6 @@
             unselectableDates: Array,
             selectableDates: Array,
             events: Array,
-            indicators: String,
             dateCreator: Function
         },
         methods: {
@@ -71,7 +69,7 @@
                     validity.push(day <= this.maxDate)
                 }
 
-                validity.push(day.getMonth() === this.month)
+                //validity.push(day.getMonth() === this.month)
 
                 if (this.selectableDates) {
                     for (let i = 0; i < this.selectableDates.length; i++) {
@@ -96,14 +94,6 @@
                         )
                     }
                 }
-
-                if (this.unselectableDaysOfWeek) {
-                    for (let i = 0; i < this.unselectableDaysOfWeek.length; i++) {
-                        const dayOfWeek = this.unselectableDaysOfWeek[i]
-                        validity.push(day.getDay() !== dayOfWeek)
-                    }
-                }
-
                 return validity.indexOf(false) < 0
             },
 
@@ -155,7 +145,8 @@
                     'is-selected': dateMatch(day, this.selectedDate),
                     'is-today': dateMatch(day, this.dateCreator()),
                     'is-selectable': this.selectableDate(day) && !this.disabled,
-                    'is-unselectable': !this.selectableDate(day) || this.disabled
+                    'is-unselectable': !this.selectableDate(day) || this.disabled,
+                    'out_calendar': (day.getMonth() !== this.month)
                 }
             }
         }

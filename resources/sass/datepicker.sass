@@ -1,114 +1,114 @@
 .datepicker
-  font-size: 0.875rem
-  .dropdown,
-  .dropdown-trigger
+  font-size: $size-small
+  position: relative
+  
+  .dropdown_items
+    border: 0
     width: 100%
+    margin-top: 2px
+    left: 0
+    right: auto
+    min-width: 300px
   
-  .dropdown-item
-    font-size: inherit
+  .datepicker_header
+    background-color: $primary
+    color: $white
+    display: flex
+    justify-content: space-between
+    align-items: center
+    border-bottom: 1px solid darken($primary, 10%)
+    font-size: $size-medium
+    text-shadow: $card-header-text-shadow
+    .datepicker_chevron
+      padding: 4px
+      border: 1px solid transparent
+      background-color: $primary
+      color: $white
+      cursor: pointer
+      .icon
+        color: $white
+        height: 2rem
+        width: 2rem
+        position: relative
+      svg
+        filter: drop-shadow($card-header-text-shadow)
+      &:hover
+        background-color: darken($primary, 2.5%)
+      &:focus
+        border-color: $button-focus-border-color
+      &:active
+        border-color: $button-active-border-color
+      &.is-disabled
+        cursor: not-allowed
+        background-color: darken($primary, 10%)
+        .icon
+          color: $grey
   
-  .datepicker-header
-    padding-bottom: 0.875rem
-    margin-bottom: 0.875rem
-    border-bottom: 1px solid $grey-lighter
-    .pagination
-      display: flex
-      align-items: center
-      justify-content: space-between
+  .datepicker_month
+    width: 100%
+    height: 100%
+    display: flex
+    flex-direction: column
+    background-color: white
+
+  .datepicker_weeks
+    border-color: $card-border-color
+    border-width: 0 1px 1px 1px
+    border-style: solid
+
+  .datepicker_week
+    display: flex
+    flex: 1
+    border-top: 1px solid #ccc
+
+  .week_header
+    display: flex
+    flex: 1
+    background-color: darken($primary, 10%)
+    color: $white
+    .week_header_day
+      +unselectable
+      flex: 1
+      width: 0
+      padding: 10px
+      overflow: hidden
       text-align: center
-      .pagination-previous
-        order: 1
-      .pagination-list
-        order: 2
-        flex-grow: 1
-        flex-shrink: 1
-        display: flex
-        align-items: center
-        text-align: center
-        justify-content: center
-        .field.has-addons
-          display: flex
-          .control
-            &:not(:last-child)
-              margin-right: -1px
-            .select
-              select
-                border-color: $input-border-color
-      .pagination-next
-        order: 3
-  
-  .datepicker-content
-    height: 16.25rem
-  
-  .datepicker-footer
-    margin-top: 0.875rem
-    padding-top: 0.875rem
-    border-top: 1px solid $grey-lighter
-  
-  .datepicker-table
-    display: table
-    margin: 0 auto 0 auto
-    .datepicker-cell
-      text-align: center
-      vertical-align: middle
-      display: table-cell
-      border-radius: $radius
-      padding: 0.5rem 0.75rem
-    .datepicker-header
-      display: table-header-group
-      .datepicker-cell
-        color: $grey
-        font-weight: 500
-        
-    .datepicker-body
-      display: table-row-group
-      .datepicker-row
-        display: table-row
-        .datepicker-cell
-          &.is-unselectable
-            color: $grey-light
-          &.is-today
-            border: solid 1px rgba($primary, 0.5)
-          &.is-selectable
-            color: $grey-dark
-            &:hover:not(.is-selected),
-            &:focus:not(.is-selected)
-              background-color: $white
-              color: $black
-              cursor: pointer
-          &.is-selected
-            background-color: $primary
-            color: $white
-                
-        &.has-events
-          .datepicker-cell
-            padding: 0.3rem 0.75rem 0.75rem
-            &.has-event
-              position: relative
-              .events
-                bottom: .425rem
-                display: flex
-                justify-content: center
-                left: 0
-                padding: 0 .35rem
-                position: absolute
-                width: 100%
-                .event
-                          
-                &.dots .event
-                  border-radius: 50%
-                  height: .35em
-                  margin: 0 .1em
-                  width: .35em
-                
-                &.bars .event
-                  height: .25em
-                  width: 100%
-                
-            &.is-selected
-              overflow: hidden
-              .events .event
-                // Currently datepicker only uses primary coloring
-                // Ensure indicator is visible when selected
-                &.is-primary
-                  background-color: lighten($primary,15)    
+      border-right: 1px solid transparent
+      &:last-of-type
+        border-right: 0
+
+  .datepicker_day
+    +unselectable
+    flex: 1
+    width: 0
+    border-right: 1px solid $card-border-color
+    padding: 10px
+    overflow: hidden
+    text-align: center
+    margin-right: -1px
+    &.out_calendar
+      color: $grey-light
+    &.is-unselectable
+      background-color: $grey-lighter
+      font-style: italic
+      color: $grey
+      cursor: not-allowed
+    &:hover
+      background-color: $grey-lighter
+      text-decoration: none
+    &.datepicker_day-has_events
+      .events_container
+        position: relative
+        height: 20px
+        margin-top: 1px
+      .day_event
+        flex: 0 1 10px
+        height: 10px
+        margin: 1px
+        background-color: $link
+        border-radius: 50%
+
+.datepicker.datepicker-inline
+  width: 350px
+  height: 260px
+  box-shadow: none

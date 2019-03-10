@@ -1,5 +1,5 @@
 <template>
-  <span class="dropdown" v-bind:class="{ 'dropdown-active': isActive }"
+  <div class="dropdown" v-bind:class="{ 'dropdown-active': isActive }"
     aria-haspopup="true"
     v-bind:aria-expanded="isActive"
     role="button"
@@ -15,27 +15,33 @@
     >
       <slot name="dropdown_items"></slot>
     </div>
-  </span>
+  </div>
 </template>
 
 <script>
 export default {
   data: function(){
     return {
-      isActive: false
+      isActive: this.inline
     }
   },
   props: {
+    inline: {
+      type: Boolean,
+      default: false
+    }
   },
   methods: {
     toggleDropdown(){
-      if(!this.isActive){
-        this.$nextTick(() => {
+      if(!this.inline){
+        if(!this.isActive){
+          this.$nextTick(() => {
+            this.isActive = !this.isActive;
+            this.$emit('dropdown-active');
+          });
+        }else{
           this.isActive = !this.isActive;
-          this.$emit('dropdown-active');
-        });
-      }else{
-        this.isActive = !this.isActive;
+        }
       }
     },
     isInWhiteList(target){
@@ -50,12 +56,12 @@ export default {
     }
   },
   created(){
-    if (typeof window !== 'undefined') {
-        document.addEventListener('click', this.clickedOutside)
+    if (!this.inline && typeof window !== 'undefined') {
+      document.addEventListener('click', this.clickedOutside)
     }
   },
   beforeDestroy() {
-    if (typeof window !== 'undefined') {
+    if (!this.inline && typeof window !== 'undefined') {
       document.removeEventListener('click', this.clickedOutside)
     }
   }

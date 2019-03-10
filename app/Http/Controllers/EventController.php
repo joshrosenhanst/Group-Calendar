@@ -31,6 +31,12 @@ class EventController extends Controller
       new() - Display the `events.new` page template.
     */
     public function new(Request $request, \App\Group $group = null){
+      JavaScript::put([
+        'data' => [
+          'showEndDate' => false,
+          'events' => Auth::user()->events,
+        ]
+      ]);
       return view('events.new', ['group'=>$group]);
     }
 

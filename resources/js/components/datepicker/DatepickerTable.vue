@@ -1,14 +1,14 @@
 <template>
-    <section class="datepicker_table">
-        <header class="datepicker_header">
+    <section class="datepicker_month">
+        <header class="week_header">
             <div
                 v-for="(day, index) in visibleDayNames"
                 :key="index"
-                class="datepicker-cell">
+                class="week_header_day">
                 {{ day }}
             </div>
         </header>
-        <div class="datepicker-body" :class="{'has-events':hasEvents}">
+        <div class="datepicker_weeks">
             <datepicker-table-row
                 v-for="(week, index) in weeksInThisMonth(focused.month, focused.year)"
                 :key="index"
@@ -21,7 +21,6 @@
                 :unselectable-dates="unselectableDates"
                 :selectable-dates="selectableDates"
                 :events="eventsInThisWeek(week, index)"
-                :indicators="indicators"
                 :date-creator="dateCreator"
                 @select="updateSelectedDate"/>
         </div>
@@ -41,7 +40,6 @@
             monthNames: Array,
             firstDayOfWeek: Number,
             events: Array,
-            indicators: String,
             minDate: Date,
             maxDate: Date,
             focused: Object,

@@ -1,8 +1,11 @@
 <template>
-  <div class="datepicker">
+  <div class="datepicker"
+    :class="{ 'datepicker-inline': inline }"
+  >
     <app-dropdown aria-label="Datepicker dropdown"
       v-if="!isMobile || inline"
       ref="dropdown"
+      :inline="inline"
     >
       <input
         v-if="!inline"
@@ -10,22 +13,17 @@
         slot="trigger"
         autocomplete="off"
         class="form_input"
-        type="date"
+        type="text"
         :value="formatValue(dateSelected)"
-        :placeholder="placeholder"
-        :size="size"
-        :icon="icon"
-        :icon-pack="iconPack"
-        :rounded="rounded"
-        :loading="loading"
         :disabled="disabled"
         :readonly="!editable"
-        :name="input.name"
-        :id="input.id"
-        :min="input.min"
-        :max="input.max"
-        :aria-label="input['aria-label']"
-        :class="input.class"
+        :min="minDate"
+        :max="maxDate"
+        :name="input_name"
+        :id="input_id"
+        :placeholder="input_placeholder"
+        :aria-label="input_label"
+        :class="input_class"
         @change.native="onChange($event.target.value)"
         @focus="$emit('focus', $event)"
         @blur="$emit('blur', $event)"
@@ -34,7 +32,8 @@
       <template slot="dropdown_items" :disabled="disabled">
 
         <header class="datepicker_header">
-          <button class="header_chevron" aria-label="Previous Month"
+          <button class="datepicker_chevron" aria-label="Previous Month"
+            v-bind:class="{ 'is-disabled': prevMonthDisabled }"
             v-on:click.prevent="prevMonth"
             v-on:@keydown.enter.prevent="prevMonth"
             v-on:keydown.space.prevent="prevMonth"
@@ -44,7 +43,8 @@
 
           <span class="header_current_month">{{monthDisplay}}</span>
 
-          <button class="header_chevron" aria-label="Next Month"
+          <button class="datepicker_chevron" aria-label="Next Month"
+            v-bind:class="{ 'is-disabled': nextMonthDisabled }"
             v-on:click.prevent="nextMonth"
             v-on:@keydown.enter.prevent="nextMonth"
             v-on:keydown.space.prevent="nextMonth"
@@ -53,24 +53,22 @@
           </button>
         </header>
 
-        <div class="datepicker_content">
-          <datepicker-table
-            v-model="dateSelected"
-            :day-names="dayNames"
-            :month-names="monthNames"
-            :first-day-of-week="firstDayOfWeek"
-            :min-date="minDate"
-            :max-date="maxDate"
-            :focused="focusedDateData"
-            :disabled="disabled"
-            :unselectable-dates="unselectableDates"
-            :selectable-dates="selectableDates"
-            :events="events"
-            :indicators="indicators"
-            :date-creator="dateCreator"
-            @close="$refs.dropdown.isActive = false"
-          ></datepicker-table>
-        </div>
+        <datepicker-table
+          v-model="dateSelected"
+          :day-names="dayNames"
+          :month-names="monthNames"
+          :first-day-of-week="firstDayOfWeek"
+          :min-date="parsedMinDate"
+          :max-date="parsedMaxDate"
+          :focused="focusedDateData"
+          :disabled="disabled"
+          :unselectable-dates="unselectableDates"
+          :selectable-dates="selectableDates"
+          :events="events"
+          :date-creator="dateCreator"
+          @close="$refs.dropdown.isActive = false"
+        ></datepicker-table>
+
       </template>
     </app-dropdown>
 
@@ -82,20 +80,15 @@
       class="form_input"
       type="date"
       :value="formatValue(dateSelected)"
-      :placeholder="placeholder"
-      :size="size"
-      :icon="icon"
-      :icon-pack="iconPack"
-      :rounded="rounded"
-      :loading="loading"
       :disabled="disabled"
       :readonly="!editable"
-      :name="input.name"
-      :id="input.id"
-      :min="input.min"
-      :max="input.max"
-      :aria-label="input['aria-label']"
-      :class="input.class"
+      :min="parsedMinDate"
+      :max="parsedMaxDate"
+      :name="input_name"
+      :id="input_id"
+      :placeholder="input_placeholder"
+      :aria-label="input_label"
+      :class="input_class"
       @change.native="onChange($event.target.value)"
       @focus="$emit('focus', $event)"
       @blur="$emit('blur', $event)"
@@ -113,16 +106,35 @@
       DatepickerTable,
     },
     props: {
-      value: Date,
+      value: String,
       firstDayOfWeek: {
-          type: Number,
-          default: 0
+        type: Number,
+        default: 0
+      },
+      input_name: {
+        type: String,
+        required: false
+      },
+      input_id: {
+        type: String,
+        required: false
+      },
+      input_class: {
+        type: String,
+        required: false
+      },
+      input_label: {
+        type: String,
+        required: false
+      },
+      input_placeholder: {
+        type: String,
+        required: false
       },
       inline: Boolean,
-      minDate: Date,
-      maxDate: Date,
+      minDate: String,
+      maxDate: String,
       focusedDate: Date,
-      placeholder: String,
       editable: Boolean,
       disabled: Boolean,
       unselectableDates: Array,
@@ -140,7 +152,7 @@
       dateParser: {
           type: Function,
           default: (date) => {
-            return new Date(Date.parse(date));
+            return date ? new Date(Date.parse(date)) : new Date();
           }
       },
       dateCreator: {
@@ -154,30 +166,31 @@
         default: true
       },
       position: String,
-      events: Array,
-      indicators: {
-        type: String,
-        default: 'dots'
-      }
+      events: Array
     },
     data() {
-      const focusedDate = this.value || this.focusedDate || this.dateCreator();
+      const focusedDate = this.dateParser(this.value) || this.focusedDate || this.dateCreator();
 
       return {
         dayNames: ['Su','M','Tu','W','Th','F','S'],
         monthNames: ['January','February','March','April','May','June','July','August','September','October','November','December'],
-        dateSelected: this.value,
+        dateSelected: this.dateParser(this.value),
         focusedDateData: {
+          date: focusedDate,
           month: focusedDate.getMonth(),
           year: focusedDate.getFullYear()
         },
         _elementRef: 'input',
-        _isDatepicker: true
+        _isDatepicker: true,
+        parsedMinDate: (this.minDate ? this.dateParser(this.minDate) : null),
+        parsedMaxDate: (this.maxDate ? this.dateParser(this.maxDate) : null),
+        prevMonthDisabled: false,
+        nextMonthDisabled: false
       };
     },
     computed: {
       monthDisplay() {
-        return this.monthNames[this.focusedDateData.month] + this.focusedDateData.year;
+        return this.monthNames[this.focusedDateData.month] + ' ' + this.focusedDateData.year;
       },
       isMobile() {
         return this.mobileNative && isMobile.any()
@@ -191,8 +204,9 @@
         dateSelected(value) {
           const currentDate = !value ? this.dateCreator() : value;
           this.focusedDateData = {
-              month: currentDate.getMonth(),
-              year: currentDate.getFullYear()
+            date: currentDate,
+            month: currentDate.getMonth(),
+            year: currentDate.getFullYear()
           };
           this.$emit('input', value);
           if (this.$refs.dropdown) {
@@ -210,6 +224,7 @@
         focusedDate(value) {
           if (value) {
             this.focusedDateData = {
+              date: value,
               month: value.getMonth(),
               year: value.getFullYear()
             }
@@ -258,20 +273,40 @@
             return null
         }
       },
+      
+      isPrevMonthAvailable(){
+        if(this.parsedMinDate){
+          let testDate = new Date(this.focusedDateData.date);
+          testDate.setMonth(testDate.getMonth() - 1);
+          
+          return ( testDate > this.parsedMinDate );
+        }else{
+          return true;
+        }
+      },
+      
+      isNextMonthAvailable(){
+        if(this.parsedMaxDate){
+          let testDate = new Date(this.focusedDateData.date);
+          testDate.setMonth(testDate.getMonth() + 1);
+          
+          return ( testDate < this.parsedMaxDate );
+        }else{
+          return true;
+        }
+      },
 
-      /*
-      * Either decrement month by 1 if not January or decrement year by 1
-      * and set month to 11 (December)
-      */
       prevMonth() {
         if (this.disabled) return
 
-        if (this.focusedDateData.month > 0) {
-          this.focusedDateData.month -= 1
-        } else {
-          this.focusedDateData.month = 11
-          this.focusedDateData.year -= 1
+        if(this.isPrevMonthAvailable()){
+          this.focusedDateData.date.setMonth(this.focusedDateData.date.getMonth() - 1);
+          this.focusedDateData.month = this.focusedDateData.date.getMonth();
+          this.focusedDateData.year = this.focusedDateData.date.getFullYear();
         }
+
+        this.prevMonthDisabled = !this.isPrevMonthAvailable();
+        this.nextMonthDisabled = !this.isNextMonthAvailable();
       },
 
       /*
@@ -281,12 +316,14 @@
       nextMonth() {
         if (this.disabled) return
 
-        if (this.focusedDateData.month < 11) {
-          this.focusedDateData.month += 1
-        } else {
-          this.focusedDateData.month = 0
-          this.focusedDateData.year += 1
+        if(this.isNextMonthAvailable()){
+          this.focusedDateData.date.setMonth(this.focusedDateData.date.getMonth() + 1);
+          this.focusedDateData.month = this.focusedDateData.date.getMonth();
+          this.focusedDateData.year = this.focusedDateData.date.getFullYear();
         }
+
+        this.prevMonthDisabled = !this.isPrevMonthAvailable();
+        this.nextMonthDisabled = !this.isNextMonthAvailable();
       },
 
       /*

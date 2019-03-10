@@ -67,8 +67,35 @@
     >
     @break
 
-  @case('time')
   @case('date')
+    <app-datepicker
+      @isset($input['id'])
+      input_id="{{ $input['id'] }}"
+      @endisset
+      @isset($input['name'])
+      input_name="{{ $input['name'] }}"
+      @endisset
+      @isset($input['placeholder'])
+      input_placeholder="{{ $input['placeholder'] }}"
+      @endisset
+      @isset($input['min'])
+      min-date="{{ $input['min'] }}"
+      @endisset
+      @isset($input['max'])
+      max-date="{{ $input['max'] }}"
+      @endisset
+      @isset($input['aria-label'])
+      input_label="{{ $input['aria-label'] }}"
+      @endisset
+      @isset($input['class'])
+      input_class="{{ $input['class'] }}"
+      @endisset
+      value="{{ $input['old'] ?? $input['value'] ?? null }}"
+      v-bind:events="(events || [])"
+    ></app-datepicker>
+    @break
+
+  @case('time')
   @case('text')
   @case('number')
   @case('password')

@@ -14,8 +14,6 @@
     <form action="{{ route('events.create') }}" id="event_form" class="form card_section card_section-form" method="POST">
       @method('PUT')
       @csrf
-
-      <app-datepicker inline></app-datepicker>
       
       {{-- Name --}}
       @include('partials.form_inline_group', [
@@ -99,7 +97,7 @@
           'inputs' => [
             [
               'name' => 'end_date',
-              'type' => 'date',
+              'type' => 'text',
               'min' => '2019-01-01',
               'value' => \Carbon\Carbon::today()->toDateString(),
               'id' => 'end_date',
@@ -175,5 +173,6 @@
 @endsection
 
 @section('page_scripts')
-<script src="{{ asset('/js/pages/events/new.js') }}"></script>
+  @include('partials.pagedata')
+  <script src="{{ asset('/js/pages/events/new.js') }}"></script>
 @endsection
