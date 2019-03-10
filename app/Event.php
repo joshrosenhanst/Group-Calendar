@@ -26,7 +26,7 @@ class Event extends Model
     'end_date' => 'date:Y-m-d',
   ];
 
-  protected $appends = ['user_status'];
+  protected $appends = ['user_status','summary_date'];
 
   protected $hidden = ['auth_user_status'];
 

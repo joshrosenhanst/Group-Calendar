@@ -105,9 +105,11 @@ class EventController extends Controller
       edit() - Display the `events.edit` page template.
     */
     public function edit(\App\Group $group, \App\Event $event){
+      $events = Auth::user()->getEventsForDatepicker();
       JavaScript::put([
         'data' => [
           'showEndDate' => ( old('end_date',$event->end_date)?true:false ),
+          'events' => $events,
         ]
       ]);
       return view('events.edit', ['event'=>$event]);

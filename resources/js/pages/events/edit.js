@@ -2,9 +2,7 @@ const mixins = [GroupCalendar.defaultMixin];
 
 GroupCalendar.app = new Vue({
   el: '#app',
-  data: {
-    showEndDate: false
-  },
+  data: GroupCalendar.data,
   mixins: mixins,
   mounted: function(){
     console.log("events.edit page app loaded");

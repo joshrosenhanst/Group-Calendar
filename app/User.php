@@ -164,11 +164,12 @@ class User extends Authenticatable
     $colors = [];
     foreach($this->groups as $group){
       $colors[$group->id] = sprintf('#%06X', mt_rand(0, 0xCCCCCC));
-      foreach($group->events as $event){
-        $start_date = $event['start_date']->toDateTimeString();
+      $group_events = $group->events->makeHidden('user_status')->toArray();
+      foreach($group_events as $event){
+        $start_date = Carbon::parse($event['start_date'])->toDateTimeString();
         $events[$start_date][] = [
-          'summary' => $event->name.": ".$event->summary_date,
-          'color' => $colors[$event->group_id]
+          'summary' => $event['name'].": ".$event['summary_date'],
+          'color' => $colors[$event['group_id']]
         ];
       }
     }

@@ -66,7 +66,7 @@
             'name' => 'start_date',
             'type' => 'date',
             'min' => '1/1/2019',
-            'value' => \Carbon\Carbon::today()->toDateString(),
+            'value' => \Carbon\Carbon::today()->toDateTimeString(),
             'id' => 'start_date',
             'old' => old('start_date'),
             'icon' => [
@@ -85,7 +85,7 @@
             ]
           ]
         ],
-        'help' => 'You can optionally add an end date and time.',
+        'help' => 'Select a date from the calendar. The calendar shows dates with events in your groups. You can optionally add an end date and time.',
         'has_errors' => ( $errors->has('start_date') || $errors->has('start_time') ),
         'error_group' => [ $errors->get('start_date'), $errors->get('start_time') ]
       ])
@@ -99,7 +99,7 @@
               'name' => 'end_date',
               'type' => 'date',
               'min' => '1/1/2019',
-              'value' => \Carbon\Carbon::today()->toDateString(),
+              'value' => \Carbon\Carbon::today()->toDateTimeString(),
               'id' => 'end_date',
               'old' => old('end_date'),
               'icon' => [
