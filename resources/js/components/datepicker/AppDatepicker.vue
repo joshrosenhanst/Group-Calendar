@@ -166,7 +166,7 @@
         default: true
       },
       position: String,
-      events: Array
+      events: Object
     },
     data() {
       const focusedDate = this.dateParser(this.value) || this.focusedDate || this.dateCreator();

@@ -39,7 +39,7 @@
             dayNames: Array,
             monthNames: Array,
             firstDayOfWeek: Number,
-            events: Array,
+            events: Object,
             minDate: Date,
             maxDate: Date,
             focused: Object,
@@ -68,11 +68,26 @@
             * Return array of all events in the specified month
             */
             eventsInThisMonth() {
-                if (!this.events) return []
+                if (!this.events) return {}
 
-                const monthEvents = []
+                const monthEvents = {};
 
-                for (let i = 0; i < this.events.length; i++) {
+                Object.keys(this.events).forEach((date) => {
+                    let event_date = new Date(date);
+                    if(event_date.getMonth() === this.focused.month && event_date.getFullYear() === this.focused.year){
+                        monthEvents[date] = this.events[date];
+                    }
+                });
+
+                /*Object.entries(this.events).forEach((events,date) => {
+                    let event_date = new Date(date);
+                    console.log(event_date,date);
+                    if(event_date.getMonth() === this.focused.month && event_date.getFullYear() === this.focused.year){
+                        monthEvents[date] = events;
+                    }
+                });*/
+
+                /*for (let i = 0; i < this.events.length; i++) {
                     let event = this.events[i]
 
                     if (!event.hasOwnProperty('date')) {
@@ -88,7 +103,7 @@
                     ) {
                         monthEvents.push(event)
                     }
-                }
+                }*/
 
                 return monthEvents
             }
@@ -166,21 +181,29 @@
             },
 
             eventsInThisWeek(week, index) {
-                if (!this.eventsInThisMonth.length) return []
+                let monthlyDates = Object.keys(this.eventsInThisMonth);
+                if (!monthlyDates.length) return {}
 
-                const weekEvents = []
+                const weekEvents = {}
 
                 let weeksInThisMonth = []
                 weeksInThisMonth = this.weeksInThisMonth(this.focused.month, this.focused.year)
 
                 for (let d = 0; d < weeksInThisMonth[index].length; d++) {
-                    for (let e = 0; e < this.eventsInThisMonth.length; e++) {
+
+                    monthlyDates.forEach((date) => {
+                        let event_date = new Date(date);
+                        if(event_date.getTime() === weeksInThisMonth[index][d].getTime()){
+                            weekEvents[date] = this.events[date];
+                        }
+                    });
+                    /*for (let e = 0; e < this.eventsInThisMonth.length; e++) {
                         let event_date = new Date(this.eventsInThisMonth[e].date + " 00:00");
                         const eventsInThisMonth = event_date.getTime()
                         if (eventsInThisMonth === weeksInThisMonth[index][d].getTime()) {
                             weekEvents.push(this.eventsInThisMonth[e])
                         }
-                    }
+                    }*/
                 }
 
                 return weekEvents

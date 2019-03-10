@@ -153,6 +153,31 @@ class User extends Authenticatable
   }
 
   /*
+    getEventsForDatepicker() - Returns a collection of all available events via the user's group relation. Each group gets a random color and that color is added to each event from the group. Return a collection keyed by start_date->toDateTimeString().
+    Ex: ["2019-03-14 00:00:00] => [event1,event2],
+        ["2019-05-15 00:00:00] => [event3, event4]
+    Each event has a summary and a color value.
+  */
+  public function getEventsForDatepicker(){
+    $this->loadMissing('groups.events');
+    $events = [];
+    $colors = [];
+    foreach($this->groups as $group){
+      $colors[$group->id] = sprintf('#%06X', mt_rand(0, 0xCCCCCC));
+      foreach($group->events as $event){
+        $start_date = $event['start_date']->toDateTimeString();
+        $events[$start_date][] = [
+          'summary' => $event->name.": ".$event->summary_date,
+          'color' => $colors[$event->group_id]
+        ];
+      }
+    }
+    //$collection = collect($this->groups->pluck('events','id'))->collapse()->unique();
+    $collection = collect($events)->unique();
+    return $collection;
+  }
+
+  /*
     getEvents() - Returns a collection of all available events via the user's group relation. Used by the `getEventsAttribute()` accessor.
   */
   public function getEvents(){

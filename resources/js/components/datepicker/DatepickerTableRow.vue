@@ -16,7 +16,7 @@
                 <div class="events_container" v-if="eventsDateMatch(day)">
                     <div
                         class="day_event"
-                        :class="event.type"
+                        :style="{ 'background-color': event.color }"
                         v-for="(event, index) in eventsDateMatch(day)"
                         :key="index"/>
                 </div>
@@ -50,7 +50,7 @@
             disabled: Boolean,
             unselectableDates: Array,
             selectableDates: Array,
-            events: Array,
+            events: Object,
             dateCreator: Function
         },
         methods: {
@@ -109,21 +109,19 @@
             },
 
             eventsDateMatch(day) {
-                if (!this.events.length) return false
+                let weekly_dates = Object.keys(this.events);
+                if (!weekly_dates.length) return false
 
-                const dayEvents = []
+                let dayEvents = []
 
-                for (let i = 0; i < this.events.length; i++) {
-                    let event_date = new Date(this.events[i].date + " 00:00");
-                    if (event_date.getDay() === day.getDay()) {
-                        dayEvents.push(this.events[i])
+                weekly_dates.forEach((date) => {
+                    let event_date = new Date(date);
+                    if(event_date.getDay() === day.getDay()){
+                        let todays_events = Object.values(this.events[date]);
+                        dayEvents = (todays_events);
                     }
-                }
-
-                if (!dayEvents.length) {
-                    return false
-                }
-
+                });
+                
                 return dayEvents
             },
 

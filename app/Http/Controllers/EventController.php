@@ -32,15 +32,7 @@ class EventController extends Controller
       new() - Display the `events.new` page template.
     */
     public function new(Request $request, \App\Group $group = null){
-      $events = [];
-      foreach(Auth::user()->events as $event){
-        $events[] = [
-          'name' => $event->name,
-          'group_id' => $event->group_id,
-          'date' => $event->start_date->toDateString(),
-          'title' => $event->name.": ".$event->summary_date
-        ];
-      };
+      $events = Auth::user()->getEventsForDatepicker();
       JavaScript::put([
         'data' => [
           'showEndDate' => ( old('end_date')?true:false ),

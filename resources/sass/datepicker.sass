@@ -97,9 +97,13 @@
       background-color: $grey-lighter
       text-decoration: none
     &.datepicker_day-has_events
+      position: relative
       .events_container
-        position: relative
-        margin-top: 1px
+        position: absolute
+        bottom: 0
+        left: 0
+        line-height: 1
+        width: 100%
       .day_event
         display: inline-block
         height: 6px
