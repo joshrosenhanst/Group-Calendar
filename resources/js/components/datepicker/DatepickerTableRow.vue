@@ -4,22 +4,32 @@
             <a class="datepicker_day"
                 v-if="selectableDate(day) && !disabled"
                 :key="index"
-                :class="[classObject(day), {'datepicker_day-has_events':weeklyEvents[index]['events'].length}]"
+                :class="[classObject(day), {'datepicker_day-has_events':weeklyEvents[index].length}]"
                 role="button"
                 href="#"
-                :title="weeklyEvents[index]['text']"
                 :disabled="disabled"
                 @click.prevent="emitChosenDate(day)"
                 @keydown.enter.prevent="emitChosenDate(day)"
                 @keydown.space.prevent="emitChosenDate(day)">
                 {{ day.getDate() }}
 
-                <div class="events_container" v-if="weeklyEvents[index]['events'].length">
-                    <div
-                        class="day_event"
+                <div class="events_container" v-if="weeklyEvents[index].length">
+                    <div class="day_event"
                         :style="{ 'background-color': event.color }"
-                        v-for="(event, index) in weeklyEvents[index]['events']"
+                        v-for="(event, index) in weeklyEvents[index]"
                         :key="index"/>
+                </div>
+                <div class="day_event_tooltip" v-if="weeklyEvents[index].length">
+                    <header class="event_tooltip_header">{{ day.toLocaleDateString() }} Events</header>
+                    <ul>
+                        <li 
+                            v-for="(event,index) in weeklyEvents[index]"
+                            :key="index"
+                            :style="{ 'color': event.color }"
+                        >
+                            <span class="day_event_text">{{ event.summary }}</span>
+                        </li>
+                    </ul>
                 </div>
 
             </a>
@@ -118,24 +128,9 @@
                 let week_events = [];
                 week.forEach((day,index)=>{
                     let daily_events = this.eventsDateMatch(day);
-                    let daily_text = this.getEventsText(daily_events);
-                    week_events[index] = {
-                        events: daily_events,
-                        text: daily_text
-                    };
+                    week_events[index] = daily_events;
                 });
                 return week_events;
-            },
-
-            getEventsText(events){
-                if(!events.length) return "";
-
-                let event_text = "Events: \n";
-
-                events.forEach((event) => {
-                    event_text += " - " + event.summary + "\n";
-                });
-                return event_text;
             },
 
             eventsDateMatch(day) {
