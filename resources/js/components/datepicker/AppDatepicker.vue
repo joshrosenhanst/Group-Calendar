@@ -81,7 +81,6 @@
       type="date"
       :value="formatValue(dateSelected)"
       :disabled="disabled"
-      :readonly="!editable"
       :min="parsedMinDate"
       :max="parsedMaxDate"
       :name="input_name"
