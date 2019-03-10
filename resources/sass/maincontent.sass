@@ -38,12 +38,11 @@ aside#sidebars
 article#maincontent
   flex-grow: 1
   flex-shrink: 1
+  max-width: 100%
   +tablet
     margin-right: 15px
   +desktop
-    max-width: $widescreen - (2 * $gap) - $sidebar-width - 15px
-  +widescreen
-    max-width: $widescreen - (2 * $gap) - $sidebar-width - 15px
+    max-width: calc(100% - #{$sidebar-width} - 15px)
   &.no_sidebar
     margin: 0 auto
 
