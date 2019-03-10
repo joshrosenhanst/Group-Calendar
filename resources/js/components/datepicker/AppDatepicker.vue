@@ -176,7 +176,7 @@
         monthNames: ['January','February','March','April','May','June','July','August','September','October','November','December'],
         dateSelected: this.dateParser(this.value),
         focusedDateData: {
-          date: focusedDate,
+          date: new Date(focusedDate),
           month: focusedDate.getMonth(),
           year: focusedDate.getFullYear()
         },
@@ -204,7 +204,7 @@
         dateSelected(value) {
           const currentDate = !value ? this.dateCreator() : value;
           this.focusedDateData = {
-            date: currentDate,
+            date: new Date(currentDate),
             month: currentDate.getMonth(),
             year: currentDate.getFullYear()
           };
