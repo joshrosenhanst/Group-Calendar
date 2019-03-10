@@ -50,7 +50,7 @@
             'min' => '1/1/2019',
             'value' => \Carbon\Carbon::today()->toDateTimeString(),
             'id' => 'start_date',
-            'old' => old( 'start_date', ( $event->start_date->toDateTimeString() ) ),
+            'old' => \Carbon\Carbon::parse( old('start_date', $event->start_date) )->toDateTimeString(),
             'icon' => [
               'align' => 'left',
               'name' => 'calendar'
@@ -84,9 +84,7 @@
               'type' => 'date',
               'min' => '1/1/2019',
               'id' => 'end_date',
-              'old' => old('end_date', ( 
-                $event->end_date ? $event->end_date->toDateTimeString() : $event->start_date->toDateTimeString() 
-              )),
+              'old' => \Carbon\Carbon::parse( old('end_date', ( $event->end_date ?? $event->start_date)) )->toDateTimeString(),
               'icon' => [
                 'align' => 'left',
                 'name' => 'calendar'

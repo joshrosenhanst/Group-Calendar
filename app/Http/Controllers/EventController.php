@@ -51,9 +51,9 @@ class EventController extends Controller
       $validator = Validator::make($request->all(), [
         'name' => 'required',
         'group' => 'required|numeric|exists:groups,id',
-        'start_date' => 'required|date_format:n/j/Y',
+        'start_date' => 'required|date',
         'start_time' => 'nullable|date_format:H:i',
-        'end_date' => 'nullable|date_format:n/j/Y|after_or_equal:start_date',
+        'end_date' => 'nullable|date|after_or_equal:start_date',
         'end_time' => 'nullable|date_format:H:i'
       ]);
 
@@ -134,9 +134,9 @@ class EventController extends Controller
     public function update(Request $request, \App\Event $event){
       $validator = Validator::make($request->all(), [
         'name' => 'required',
-        'start_date' => 'required|date_format:n/j/Y',
+        'start_date' => 'required|date',
         'start_time' => 'nullable|date_format:H:i',
-        'end_date' => 'nullable|date_format:n/j/Y|after_or_equal:start_date',
+        'end_date' => 'nullable|date|after_or_equal:start_date',
         'end_time' => 'nullable|date_format:H:i',
       ]);
 
