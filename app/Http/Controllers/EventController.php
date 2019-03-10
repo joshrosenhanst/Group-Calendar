@@ -10,6 +10,7 @@ use App\Notifications\EventUpdated;
 use App\Notifications\EventDeleted;
 use App\Notifications\EventCommentCreated;
 use JavaScript;
+use Illuminate\Support\Carbon;
 
 class EventController extends Controller
 {
@@ -31,10 +32,19 @@ class EventController extends Controller
       new() - Display the `events.new` page template.
     */
     public function new(Request $request, \App\Group $group = null){
+      $events = [];
+      foreach(Auth::user()->events as $event){
+        $events[] = [
+          'name' => $event->name,
+          'group_id' => $event->group_id,
+          'date' => $event->start_date->toDateString(),
+          'title' => $event->name.": ".$event->summary_date
+        ];
+      };
       JavaScript::put([
         'data' => [
-          'showEndDate' => false,
-          'events' => Auth::user()->events,
+          'showEndDate' => ( old('end_date')?true:false ),
+          'events' => $events,
         ]
       ]);
       return view('events.new', ['group'=>$group]);
@@ -47,11 +57,13 @@ class EventController extends Controller
       $request->validate([
         'name' => 'required',
         'group' => 'required|numeric|exists:groups,id',
-        'start_date' => 'required|date_format:Y-m-d',
+        'start_date' => 'required|date_format:n/j/Y',
         'start_time' => 'nullable|date_format:H:i',
-        'end_date' => 'nullable|date_format:Y-m-d|after_or_equal:start_date',
+        'end_date' => 'nullable|date_format:n/j/Y|after_or_equal:start_date',
         'end_time' => 'nullable|date_format:H:i',
       ]);
+      $start_date = $request->start_date ? Carbon::parse($request->start_date)->toDateString() : null;
+      $end_date =  $request->end_date ? Carbon::parse($request->end_date)->toDateString(): null;
 
       $event = \App\Event::create([
         'name' => $request->name,
@@ -59,9 +71,9 @@ class EventController extends Controller
         'creator_id' => Auth::user()->id,
         'group_id' => $request->group,
         'description' => $request->description,
-        'start_date' => $request->start_date,
+        'start_date' => $start_date,
         'start_time' => $request->start_time,
-        'end_date' => $request->end_date,
+        'end_date' => $end_date,
         'end_time' => $request->end_time
       ]);
 
@@ -115,20 +127,22 @@ class EventController extends Controller
     public function update(Request $request, \App\Event $event){
       $request->validate([
         'name' => 'required',
-        'start_date' => 'required|date_format:Y-m-d',
+        'start_date' => 'required|date_format:n/j/Y',
         'start_time' => 'nullable|date_format:H:i',
-        'end_date' => 'nullable|date_format:Y-m-d|after_or_equal:start_date',
+        'end_date' => 'nullable|date_format:n/j/Y|after_or_equal:start_date',
         'end_time' => 'nullable|date_format:H:i',
       ]);
+      $start_date = $request->start_date ? Carbon::parse($request->start_date)->toDateString() : null;
+      $end_date =  $request->end_date ? Carbon::parse($request->end_date)->toDateString(): null;
 
       $event->update([
         'name' => $request->name,
         'header_url' => $request->header_url,
         'updater_id' => Auth::user()->id,
         'description' => $request->description,
-        'start_date' => $request->start_date,
+        'start_date' => $start_date,
         'start_time' => $request->start_time,
-        'end_date' => $request->end_date,
+        'end_date' => $end_date,
         'end_time' => $request->end_time
       ]);
 

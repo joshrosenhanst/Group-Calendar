@@ -114,7 +114,8 @@
                 const dayEvents = []
 
                 for (let i = 0; i < this.events.length; i++) {
-                    if (this.events[i].date.getDay() === day.getDay()) {
+                    let event_date = new Date(this.events[i].date + " 00:00");
+                    if (event_date.getDay() === day.getDay()) {
                         dayEvents.push(this.events[i])
                     }
                 }

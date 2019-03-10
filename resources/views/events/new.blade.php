@@ -65,7 +65,7 @@
           [
             'name' => 'start_date',
             'type' => 'date',
-            'min' => '2019-01-01',
+            'min' => '1/1/2019',
             'value' => \Carbon\Carbon::today()->toDateString(),
             'id' => 'start_date',
             'old' => old('start_date'),
@@ -97,8 +97,8 @@
           'inputs' => [
             [
               'name' => 'end_date',
-              'type' => 'text',
-              'min' => '2019-01-01',
+              'type' => 'date',
+              'min' => '1/1/2019',
               'value' => \Carbon\Carbon::today()->toDateString(),
               'id' => 'end_date',
               'old' => old('end_date'),

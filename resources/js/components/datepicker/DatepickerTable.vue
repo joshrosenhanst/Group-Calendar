@@ -81,9 +81,10 @@
                     if (!event.hasOwnProperty('type')) {
                         event.type = 'is-primary'
                     }
+                    let event_date = new Date(event.date + " 00:00");
                     if (
-                        event.date.getMonth() === this.focused.month &&
-                        event.date.getFullYear() === this.focused.year
+                        event_date.getMonth() === this.focused.month &&
+                        event_date.getFullYear() === this.focused.year
                     ) {
                         monthEvents.push(event)
                     }
@@ -174,7 +175,8 @@
 
                 for (let d = 0; d < weeksInThisMonth[index].length; d++) {
                     for (let e = 0; e < this.eventsInThisMonth.length; e++) {
-                        const eventsInThisMonth = this.eventsInThisMonth[e].date.getTime()
+                        let event_date = new Date(this.eventsInThisMonth[e].date + " 00:00");
+                        const eventsInThisMonth = event_date.getTime()
                         if (eventsInThisMonth === weeksInThisMonth[index][d].getTime()) {
                             weekEvents.push(this.eventsInThisMonth[e])
                         }
