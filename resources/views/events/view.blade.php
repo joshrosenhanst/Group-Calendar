@@ -19,7 +19,6 @@
       @endif
 
     </div>
-
     {{-- Event Details --}}
     <div class="card_section card_section-background_image" style="background-image:url({{ asset($event->header) }})"></div>
     <div class="card_section event_card_section-main">

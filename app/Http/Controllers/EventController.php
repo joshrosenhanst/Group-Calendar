@@ -11,6 +11,8 @@ use App\Notifications\EventDeleted;
 use App\Notifications\EventCommentCreated;
 use JavaScript;
 use Illuminate\Support\Carbon;
+use Validator;
+use Illuminate\Validation\Rule;
 
 class EventController extends Controller
 {
@@ -46,14 +48,25 @@ class EventController extends Controller
       create() - Validate the fields submitted on the `events.new` form. If valid, create a new event in the database.
     */
     public function create(Request $request){
-      $request->validate([
+      $validator = Validator::make($request->all(), [
         'name' => 'required',
         'group' => 'required|numeric|exists:groups,id',
         'start_date' => 'required|date_format:n/j/Y',
         'start_time' => 'nullable|date_format:H:i',
         'end_date' => 'nullable|date_format:n/j/Y|after_or_equal:start_date',
-        'end_time' => 'nullable|date_format:H:i',
+        'end_time' => 'nullable|date_format:H:i'
       ]);
+
+      $validator->after(function($validator) use ($request){
+        if($request->end_date && $request->end_time && $request->start_time && $request->start_date){
+          if(strtotime($request->end_date." ".$request->end_time) < strtotime($request->start_date." ".$request->start_time)){
+            $validator->errors()->add('end_time', 'The end time must be after start time.');
+          }
+        }
+      });
+
+      $validator->validate();
+
       $start_date = $request->start_date ? Carbon::parse($request->start_date)->toDateString() : null;
       $end_date =  $request->end_date ? Carbon::parse($request->end_date)->toDateString(): null;
 
@@ -119,13 +132,24 @@ class EventController extends Controller
       update() - Validate the fields submitted on the `events.edit` form. If valid, update the event model in the database.
     */
     public function update(Request $request, \App\Event $event){
-      $request->validate([
+      $validator = Validator::make($request->all(), [
         'name' => 'required',
         'start_date' => 'required|date_format:n/j/Y',
         'start_time' => 'nullable|date_format:H:i',
         'end_date' => 'nullable|date_format:n/j/Y|after_or_equal:start_date',
         'end_time' => 'nullable|date_format:H:i',
       ]);
+
+      $validator->after(function($validator) use ($request){
+        if($request->end_date && $request->end_time && $request->start_time && $request->start_date){
+          if(strtotime($request->end_date." ".$request->end_time) < strtotime($request->start_date." ".$request->start_time)){
+            $validator->errors()->add('end_time', 'The end time must be after start time.');
+          }
+        }
+      });
+
+      $validator->validate();
+
       $start_date = $request->start_date ? Carbon::parse($request->start_date)->toDateString() : null;
       $end_date =  $request->end_date ? Carbon::parse($request->end_date)->toDateString(): null;
 
