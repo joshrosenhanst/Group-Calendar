@@ -4,20 +4,21 @@
             <a class="datepicker_day"
                 v-if="selectableDate(day) && !disabled"
                 :key="index"
-                :class="[classObject(day), {'datepicker_day-has_events':eventsDateMatch(day)}]"
+                :class="[classObject(day), {'datepicker_day-has_events':weeklyEvents[index]['events'].length}]"
                 role="button"
                 href="#"
+                :title="weeklyEvents[index]['text']"
                 :disabled="disabled"
                 @click.prevent="emitChosenDate(day)"
                 @keydown.enter.prevent="emitChosenDate(day)"
                 @keydown.space.prevent="emitChosenDate(day)">
                 {{ day.getDate() }}
 
-                <div class="events_container" v-if="eventsDateMatch(day)">
+                <div class="events_container" v-if="weeklyEvents[index]['events'].length">
                     <div
                         class="day_event"
                         :style="{ 'background-color': event.color }"
-                        v-for="(event, index) in eventsDateMatch(day)"
+                        v-for="(event, index) in weeklyEvents[index]['events']"
                         :key="index"/>
                 </div>
 
@@ -52,6 +53,11 @@
             selectableDates: Array,
             events: Object,
             dateCreator: Function
+        },
+        computed: {
+            weeklyEvents(){
+                return this.getWeeklyEvents(this.week);
+            }
         },
         methods: {
             /*
@@ -108,6 +114,30 @@
                 }
             },
 
+            getWeeklyEvents(week){
+                let week_events = [];
+                week.forEach((day,index)=>{
+                    let daily_events = this.eventsDateMatch(day);
+                    let daily_text = this.getEventsText(daily_events);
+                    week_events[index] = {
+                        events: daily_events,
+                        text: daily_text
+                    };
+                });
+                return week_events;
+            },
+
+            getEventsText(events){
+                if(!events.length) return "";
+
+                let event_text = "Events: \n";
+
+                events.forEach((event) => {
+                    event_text += " - " + event.summary + "\n";
+                });
+                return event_text;
+            },
+
             eventsDateMatch(day) {
                 let weekly_dates = Object.keys(this.events);
                 if (!weekly_dates.length) return false
@@ -118,11 +148,11 @@
                     let event_date = new Date(date);
                     if(event_date.getDay() === day.getDay()){
                         let todays_events = Object.values(this.events[date]);
-                        dayEvents = (todays_events);
+                        dayEvents = todays_events;
                     }
                 });
                 
-                return dayEvents
+                return dayEvents;
             },
 
             /*
