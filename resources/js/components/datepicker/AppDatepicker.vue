@@ -1,11 +1,12 @@
 <template>
   <div class="datepicker"
-    :class="{ 'datepicker-inline': inline }"
+    :class="{ 'datepicker-inline': inline, 'datepicker-active': isActive }"
   >
     <app-dropdown aria-label="Datepicker dropdown"
       v-if="!isMobile || inline"
       ref="dropdown"
       :inline="inline"
+      v-on:dropdown-status="isActive = $event"
     >
       <input
         v-if="!inline"
@@ -171,6 +172,7 @@
       const focusedDate = this.dateParser(this.value) || this.focusedDate || this.dateCreator();
 
       return {
+        isActive: false,
         dayNames: ['Su','M','Tu','W','Th','F','S'],
         monthNames: ['January','February','March','April','May','June','July','August','September','October','November','December'],
         dateSelected: this.dateParser(this.value),
@@ -193,6 +195,13 @@
       },
       isMobile() {
         return this.mobileNative && isMobile.any()
+      },
+      datepicker_active(){
+        if(this.$refs.dropdown){
+          return this.$refs.dropdown.isActive;
+        }else{
+          return false;
+        }
       }
     },
     watch: {

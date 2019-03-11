@@ -38,9 +38,11 @@ export default {
           this.$nextTick(() => {
             this.isActive = !this.isActive;
             this.$emit('dropdown-active');
+            this.$emit('dropdown-status', this.isActive);
           });
         }else{
           this.isActive = !this.isActive;
+          this.$emit('dropdown-status', this.isActive);
         }
       }
     },
@@ -53,6 +55,7 @@ export default {
     },
     clickedOutside(event){
       if( !this.isInWhiteList(event.target) ) this.isActive = false;
+      this.$emit('dropdown-status', this.isActive);
     }
   },
   created(){
