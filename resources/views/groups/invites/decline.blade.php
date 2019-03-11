@@ -10,7 +10,7 @@
       {{ Breadcrumbs::render('groups.invites.decline', $group) }}
 
       <h1 class="title">
-        <span class="icon">@materialicon('account-plus')</span>
+        <span class="icon">@materialicon('account-remove')</span>
         <span>@lang('pages.groups.invites.decline.title')</span>
       </h1>
 

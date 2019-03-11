@@ -45,7 +45,7 @@ class UserDeclined extends Notification
       'text' => '<strong>'.e($this->user->name).'</strong> has declined to join <strong>'.e($this->group->name).'</strong>',
       'url' => route('groups.members', ['group'=>$this->group]),
       'creator_id' => $this->user->id,
-      'icon' => 'account-plus'
+      'icon' => 'account-remove'
     ];
   }
 }
