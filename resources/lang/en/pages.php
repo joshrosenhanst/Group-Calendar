@@ -38,6 +38,8 @@ return [
   'groups.edit.title' => 'Edit Group',
   'groups.edit.subtitle' => "Edit the details of the group. You can optionally leave a comment about your changes.",
 
+  'groups.leave.title' => 'Leave Group',
+
   /* Group Invites */
   'groups.invite.title' => 'Invite To Group',
   'groups.invite.subtitle' => 'Enter the name and email address of the new member below to send them an invite. You will be notified if the user accepts or declines the invitation.',

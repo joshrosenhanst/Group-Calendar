@@ -7,6 +7,8 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\Rule;
 use Validator;
 use JavaScript;
+use App\Notifications\MemberLeftGroupMessage;
+use App\Notifications\MemberLeft;
 
 class GroupController extends Controller{
   /*
@@ -129,5 +131,23 @@ class GroupController extends Controller{
     }
 
     return redirect()->route('groups.view', ['group'=>$group])->with('status','The group has been updated.');
+  }
+
+  /*
+    leave() - Display the `groups.leave` page template.
+  */
+  public function leave(\App\Group $group){
+    return view('groups.leave', ['group'=>$group]);
+  }
+
+  public function leaveGroup(Request $request, \App\Group $group){
+    $group->users()->detach(Auth::user()->id);
+
+    // notify the group the user has left
+    $group->notify(new MemberLeftGroupMessage(Auth::user(), $group));
+    // notify the user they left
+    Auth::user()->notify(new MemberLeft(Auth::user(), $group));
+
+    return redirect()->route('home')->with('status','You have left the group.');
   }
 }

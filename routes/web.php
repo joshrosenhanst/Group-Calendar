@@ -19,6 +19,7 @@ Route::middleware('auth')->prefix('groups')->name('groups.')->group(function(){
   Route::get('/{group}', 'GroupController@view')->name('view'); // view group
   Route::get('/{group}/edit','GroupController@edit')->name('edit'); //group admin auth
   Route::get('/{group}/members','GroupController@members')->name('members');
+  Route::get('/{group}/leave','GroupController@leave')->name('leave');
 
   Route::get('/{group}/invite','InviteController@invite')->name('invite'); //group admin auth
   Route::get('/{group}/join','InviteController@join')->name('invites.join');
@@ -26,6 +27,7 @@ Route::middleware('auth')->prefix('groups')->name('groups.')->group(function(){
 
   Route::put('/create', 'GroupController@create')->name('create');  //non-demo auth
   Route::put('/{group}/update', 'GroupController@update')->name('update'); //group admin auth
+  Route::put('/{group}/leaveGroup','GroupController@leaveGroup')->name('leaveGroup');
 
   Route::put('/{group}/createInvite', 'InviteController@createInvite')->name('invites.createInvite'); //group admin auth
   Route::put('/{group}/acceptInvite', 'InviteController@acceptInvite')->name('invites.acceptInvite');

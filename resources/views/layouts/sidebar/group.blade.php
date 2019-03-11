@@ -26,6 +26,10 @@
       <span class="icon">@materialicon('settings')</span>
       <span>Edit Group Settings</span>
     </a>
+    <a href="{{ route('groups.leave', ['group'=>$group]) }}" class="sidebar_link">
+      <span class="icon">@materialicon('account-remove')</span>
+      <span>Leave Group</span>
+    </a>
   </div>
   
 </div>

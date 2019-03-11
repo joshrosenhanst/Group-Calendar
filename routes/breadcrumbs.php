@@ -90,6 +90,12 @@ Breadcrumbs::for('groups.members', function ($trail, $group) {
   $trail->push('Members', route('groups.members', ['group'=>$group]));
 });
 
+// Home / [group->title] / Leave Group
+Breadcrumbs::for('groups.leave', function ($trail, $group) {
+  $trail->parent('groups.view', $group);
+  $trail->push('Leave Group', route('groups.leave', ['group'=>$group]));
+});
+
 /* Group Invitations */
 Breadcrumbs::for('groups.invite', function ($trail, $group) {
   $trail->parent('groups.view', $group);
