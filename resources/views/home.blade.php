@@ -33,7 +33,7 @@
     'events' => Auth::user()->upcoming_events
   ])
 
-  <div class="card">  
+  <div class="card card-has_header">  
     <div class="card_header">
       <h2>
         <span class="icon">@materialicon('account-group')</span>
