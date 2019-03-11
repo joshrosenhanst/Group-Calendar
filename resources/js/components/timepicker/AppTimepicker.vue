@@ -213,8 +213,7 @@ export default {
     getTimeFromString(text){
       let hour = text.substr(0,2);
       let minute = text.substr(3,2);
-      let ampm = parseInt(hour,10) > 12 ? "PM" : "AM";
-      //let ampm = text.substr(6,2);
+      let ampm = parseInt(hour,10) < 12 ? "AM" : "PM";
 
       return {hour,minute,ampm};
     },
