@@ -60,9 +60,7 @@
             'name' => 'start_time',
             'type' => 'time',
             'id' => 'start_time',
-            'old' => old('start_time', ( 
-              $event->start_time ? \Carbon\Carbon::parse($event->start_time)->format('H:i') : null
-            )),
+            'old' => ( old('start_time',$event->start_time) ? \Carbon\Carbon::parse(old('start_time',$event->start_time))->format('H:i') : null ),
             'icon' => [
               'align' => 'left',
               'name' => 'clock-outline'
@@ -94,9 +92,7 @@
               'name' => 'end_time',
               'type' => 'time',
               'id' => 'end_time',
-              'old' => old('end_time', (
-                $event->end_time ? \Carbon\Carbon::parse($event->end_time)->format('H:i') : null
-              )),
+              'old' => ( old('end_time',$event->end_time) ? \Carbon\Carbon::parse(old('end_time',$event->end_time))->format('H:i') : null ),
               'icon' => [
                 'align' => 'left',
                 'name' => 'clock-outline'

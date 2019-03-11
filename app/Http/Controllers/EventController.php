@@ -52,9 +52,21 @@ class EventController extends Controller
         'name' => 'required',
         'group' => 'required|numeric|exists:groups,id',
         'start_date' => 'required|date',
-        'start_time' => 'nullable|date_format:H:i',
+        'start_time' => [
+          'nullable','string', function($attribute, $value, $fail){
+            if(!strtotime($value)){
+              $fail("The start time field is invalid.");
+            }
+          }
+        ],
         'end_date' => 'nullable|date|after_or_equal:start_date',
-        'end_time' => 'nullable|date_format:H:i'
+        'end_time' => [
+          'nullable','string', function($attribute, $value, $fail){
+            if(!strtotime($value)){
+              $fail("The start time field is invalid.");
+            }
+          }
+        ]
       ]);
 
       $validator->after(function($validator) use ($request){
@@ -68,7 +80,9 @@ class EventController extends Controller
       $validator->validate();
 
       $start_date = $request->start_date ? Carbon::parse($request->start_date)->toDateString() : null;
+      $start_time = $request->start_time ? Carbon::parse($request->start_time)->toTimeString() : null;
       $end_date =  $request->end_date ? Carbon::parse($request->end_date)->toDateString(): null;
+      $end_time = $request->end_time ? Carbon::parse($request->end_time)->toTimeString() : null;
 
       $event = \App\Event::create([
         'name' => $request->name,
@@ -77,9 +91,9 @@ class EventController extends Controller
         'group_id' => $request->group,
         'description' => $request->description,
         'start_date' => $start_date,
-        'start_time' => $request->start_time,
+        'start_time' => $start_time,
         'end_date' => $end_date,
-        'end_time' => $request->end_time
+        'end_time' => $end_time
       ]);
 
       $group = \App\Group::find($request->group);
@@ -135,9 +149,21 @@ class EventController extends Controller
       $validator = Validator::make($request->all(), [
         'name' => 'required',
         'start_date' => 'required|date',
-        'start_time' => 'nullable|date_format:H:i',
+        'start_time' => [
+          'nullable','string', function($attribute, $value, $fail){
+            if(!strtotime($value)){
+              $fail("The start time field is invalid.");
+            }
+          }
+        ],
         'end_date' => 'nullable|date|after_or_equal:start_date',
-        'end_time' => 'nullable|date_format:H:i',
+        'end_time' => [
+          'nullable','string', function($attribute, $value, $fail){
+            if(!strtotime($value)){
+              $fail("The start time field is invalid.");
+            }
+          }
+        ]
       ]);
 
       $validator->after(function($validator) use ($request){
@@ -151,7 +177,9 @@ class EventController extends Controller
       $validator->validate();
 
       $start_date = $request->start_date ? Carbon::parse($request->start_date)->toDateString() : null;
+      $start_time = $request->start_time ? Carbon::parse($request->start_time)->toTimeString() : null;
       $end_date =  $request->end_date ? Carbon::parse($request->end_date)->toDateString(): null;
+      $end_time = $request->end_time ? Carbon::parse($request->end_time)->toTimeString() : null;
 
       $event->update([
         'name' => $request->name,
@@ -159,9 +187,9 @@ class EventController extends Controller
         'updater_id' => Auth::user()->id,
         'description' => $request->description,
         'start_date' => $start_date,
-        'start_time' => $request->start_time,
+        'start_time' => $start_time,
         'end_date' => $end_date,
-        'end_time' => $request->end_time
+        'end_time' => $end_time
       ]);
 
       //trigger "event updated" Event

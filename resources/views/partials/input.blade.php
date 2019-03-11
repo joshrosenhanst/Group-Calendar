@@ -96,6 +96,26 @@
     @break
 
   @case('time')
+    <app-timepicker
+      @isset($input['id'])
+      input_id="{{ $input['id'] }}"
+      @endisset
+      @isset($input['name'])
+      input_name="{{ $input['name'] }}"
+      @endisset
+      @isset($input['placeholder'])
+      input_placeholder="{{ $input['placeholder'] }}"
+      @endisset
+      @isset($input['aria-label'])
+      input_label="{{ $input['aria-label'] }}"
+      @endisset
+      @isset($input['class'])
+      input_class="{{ $input['class'] }}"
+      @endisset
+      value="{{ $input['old'] ?? $input['value'] ?? null }}"
+    ></app-timepicker>
+    @break
+
   @case('text')
   @case('number')
   @case('password')

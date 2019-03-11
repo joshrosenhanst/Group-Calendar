@@ -32,3 +32,4 @@ Vue.component('full-calendar', require('./components/FullCalendar.vue').default)
 Vue.component('navbar-menu-button', require('./components/NavbarMenuButton.vue').default);
 Vue.component('sidebar-wrapper', require('./components/SidebarWrapper.vue').default);
 Vue.component('app-datepicker', require('./components/datepicker/AppDatepicker.vue').default);
+Vue.component('app-timepicker', require('./components/timepicker/AppTimepicker.vue').default);
