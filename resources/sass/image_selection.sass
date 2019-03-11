@@ -1,10 +1,40 @@
 .gallery
   display: grid
-  grid-template-columns: 1fr 1fr 1fr 1fr
+  +until($tablet)
+    grid-template-columns: 1fr 1fr
+    gap: 10px
+  +tablet
+    grid-template-columns: 1fr 1fr 1fr 1fr
+    grid-gap: 5px
   .gallery_image
     cursor: pointer
-    border: 2px solid transparent
+    border: 4px solid transparent
+    padding: 4px
+    img
+      opacity: 0.8
     &:hover
       border-color: $text-light
+      img
+        opacity: 0.9
     &.gallery_image-selected
       border-color: $link
+      img
+        opacity: 1
+
+.images_credit
+  font-style: italic
+  font-size: $size-small
+
+.field_image_display
+  .image_display
+    border: 4px solid $primary
+    img
+      display: block
+      width: 100%
+      height: 100%
+
+.avatar_selection_display
+  .image_display
+    border-radius: 50%
+    overflow: hidden
+    max-width: 250px

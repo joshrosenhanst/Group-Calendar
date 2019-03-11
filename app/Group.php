@@ -18,7 +18,7 @@ class Group extends Model
   use Notifiable;
   
   protected $fillable = [
-    'name','avatar_url'
+    'name','avatar_url', 'header_url'
   ];
 
   /* Cast the `demo` database field (boolean integer) as a boolean true/false value */
@@ -30,7 +30,7 @@ class Group extends Model
     Append the following `avatar` accessor to JSON arrays.
   */
   protected $appends = [
-    'avatar'
+    'avatar', 'header'
   ];
 
   protected $withCount = [
@@ -43,6 +43,14 @@ class Group extends Model
   public function getAvatarAttribute(){
     if($this->avatar_url){
       return 'storage/groups/'.$this->avatar_url;
+    }else{
+      return 'img/default_group_avatar.png';
+    }
+  }
+
+  public function getHeaderAttribute(){
+    if($this->header_url){
+      return 'storage/groups/'.$this->header_url;
     }else{
       return 'img/default_group_avatar.png';
     }

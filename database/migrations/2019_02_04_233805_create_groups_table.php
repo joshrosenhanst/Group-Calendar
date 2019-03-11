@@ -18,6 +18,7 @@ class CreateGroupsTable extends Migration
             $table->increments('id');
             $table->string('name');
             $table->string('avatar_url')->nullable();
+            $table->string('header_url')->nullable();
             $table->boolean('demo')->default(false);
             $table->timestamps();
         });

@@ -11,13 +11,18 @@
     +overlay
     background-color: rgba($black, 0.8)
   .modal_card
-    max-height: calc(100vh - 40px)
-    width: 640px
+    +until($tablet)
+      max-height: calc(100vh - 10px)
+      max-width: 90%
+    +tablet
+      max-height: calc(100vh - 40px)
+      max-width: 80%
     overflow: hidden
     margin: 0 auto
     position: relative
     display: flex
     flex-direction: column
+    box-shadow: $card-box-shadow
     .modal_card_header
       display: flex
       align-items: center
@@ -60,10 +65,15 @@
       flex-shrink: 1
       overflow: auto
       padding: 15px
+      border: 1px solid $card-border-color
+      margin-bottom: -1px
     .modal_card_footer
       padding: 10px 15px
       border-bottom-left-radius: $radius
       border-bottom-right-radius: $radius
+      background-color: $white
+      border: 1px solid $card-border-color
+      margin-bottom: -1px
       .footer_buttons
         display: flex
         justify-content: center

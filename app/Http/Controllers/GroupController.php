@@ -12,6 +12,18 @@ use App\Notifications\MemberLeft;
 use Illuminate\Support\Facades\Storage;
 
 class GroupController extends Controller{
+  private function getImagesInDirectory($directory){
+    $images = collect();
+    $files = Storage::disk('public')->files($directory);
+    for($i=0;$i<count($files);$i++){
+      $images->push([
+        'src' => asset("storage/".$files[$i]),
+        'alt' => 'Preview Image '.($i+1)
+      ]);
+    }
+    return $images->toJson();
+  }
+
   /*
     index() - Display the `groups.list` page template.
   */
@@ -24,15 +36,9 @@ class GroupController extends Controller{
     new() - Display the `groups.new` page template.
   */
   public function new(){
-    $images = collect();
-    $files = Storage::files('public/img/default_headers');
-    for($i=0;$i<count($files);$i++){
-      $images->push([
-        'src' => asset($files[$i]),
-        'alt' => 'Preview Image '.($i+1)
-      ]);
-    }
-    return view('groups.new', ['images'=>$images->toJson()]);
+    $header_images = $this->getImagesInDirectory('default_headers');
+    $avatar_images = $this->getImagesInDirectory('default_avatars');
+    return view('groups.new', ['header_images'=>$header_images, 'avatar_images'=>$avatar_images]);
   }
 
   /*
@@ -101,13 +107,14 @@ class GroupController extends Controller{
   public function create(Request $request){
     $validator = Validator::make($request->all(), [
       'name' => 'required|string|max:255|unique:groups,name',
-      'avatar' => 'nullable'
+      'header_url' => 'nullable|string'
     ]);
 
     $validator->validate();
 
     $group = \App\Group::create([
       'name' => $request->name,
+      'header_url' => $request->header_url
       //avatar
     ]);
     $group->users()->attach(Auth::user()->id, [

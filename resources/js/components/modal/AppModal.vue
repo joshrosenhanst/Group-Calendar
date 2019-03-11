@@ -49,7 +49,7 @@ export default {
       this.$emit('close-modal');
     },
     keyPress(event){
-      if (this.isActive && event.keyCode === 27) this.closeModal();
+      if (this.active && event.key === "Escape") this.closeModal();
     }
   },
   created(){

@@ -42,14 +42,34 @@
           'button' => 'Select a Group Header Image'
         ],
         'input' => [
-          'name' => 'header_image',
-          'id' => 'header_image',
-          'old' => old('header_image'),
-          'value' => '/img/default_group_avatar.png'
+          'name' => 'header_url',
+          'id' => 'header_url',
+          'old' => old('header_url'),
+          'value' => '/img/default_group_avatar.png',
+          'default_image' => '/img/default_group_avatar.png'
         ],
-        'images' => $images,
-        'errors' => $errors->get('header_image')
+        'images' => $header_images,
+        'errors' => $errors->get('header_url')
       ])
+      
+      {{-- Header Image Selection --}}
+      <div class="avatar_selection_display">
+        @include('partials.form_inline_image_selection', [
+          'label' => [
+            'text' => 'Avatar Image',
+            'button' => 'Select a Group Avatar Image'
+          ],
+          'input' => [
+            'name' => 'avatar_url',
+            'id' => 'avatar_url',
+            'old' => old('avatar_url'),
+            'value' => '/img/default_group_avatar.png',
+            'default_image' => '/img/default_group_avatar.png'
+          ],
+          'images' => $avatar_images,
+          'errors' => $errors->get('avatar_url')
+        ])
+      </div>
 
       <div class="form_footer">
         <button type="submit" class="button button-link">
