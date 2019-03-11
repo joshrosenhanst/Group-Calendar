@@ -1,0 +1,10 @@
+.gallery
+  display: grid
+  grid-template-columns: 1fr 1fr 1fr 1fr
+  .gallery_image
+    cursor: pointer
+    border: 2px solid transparent
+    &:hover
+      border-color: $text-light
+    &.gallery_image-selected
+      border-color: $link

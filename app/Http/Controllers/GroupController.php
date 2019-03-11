@@ -9,6 +9,7 @@ use Validator;
 use JavaScript;
 use App\Notifications\MemberLeftGroupMessage;
 use App\Notifications\MemberLeft;
+use Illuminate\Support\Facades\Storage;
 
 class GroupController extends Controller{
   /*
@@ -23,7 +24,15 @@ class GroupController extends Controller{
     new() - Display the `groups.new` page template.
   */
   public function new(){
-    return view('groups.new');
+    $images = collect();
+    $files = Storage::files('public/img/default_headers');
+    for($i=0;$i<count($files);$i++){
+      $images->push([
+        'src' => asset($files[$i]),
+        'alt' => 'Preview Image '.($i+1)
+      ]);
+    }
+    return view('groups.new', ['images'=>$images->toJson()]);
   }
 
   /*

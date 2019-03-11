@@ -34,6 +34,22 @@
         ],
         'errors' => $errors->get('name')
       ])
+      
+      {{-- Header Image Selection --}}
+      @include('partials.form_inline_image_selection', [
+        'label' => [
+          'text' => 'Header Image',
+          'button' => 'Select a Group Header Image'
+        ],
+        'input' => [
+          'name' => 'header_image',
+          'id' => 'header_image',
+          'old' => old('header_image'),
+          'value' => '/img/default_group_avatar.png'
+        ],
+        'images' => $images,
+        'errors' => $errors->get('header_image')
+      ])
 
       <div class="form_footer">
         <button type="submit" class="button button-link">

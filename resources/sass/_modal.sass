@@ -1,0 +1,75 @@
+.modal
+  +overlay
+  display: none
+  align-items: center
+  justify-content: center
+  flex-direction: column
+  overflow: hidden
+  position: fixed
+  z-index: 1000
+  .modal_background
+    +overlay
+    background-color: rgba($black, 0.8)
+  .modal_card
+    max-height: calc(100vh - 40px)
+    width: 640px
+    overflow: hidden
+    margin: 0 auto
+    position: relative
+    display: flex
+    flex-direction: column
+    .modal_card_header
+      display: flex
+      align-items: center
+      flex-shrink: 0
+      background-color: $primary
+      padding: 10px 15px
+      border-top-left-radius: $radius
+      border-top-right-radius: $radius
+      .modal_close
+        position: absolute
+        right: 0.5rem
+        top: 0.5rem
+        .button-icon
+          color: $white
+          width: 1.5rem
+          height: 1.5rem
+          padding: 1px
+          &:hover
+            background-color: rgba($black,0.5)
+          &.button-active
+            background-color: $primary
+    .modal_card_title
+      color: $white
+      text-shadow: $card-header-text-shadow
+      font-size: $size-medium
+      h2
+        display: flex
+        flex-grow: 1
+        flex-shrink: 1
+        align-items: center
+        font-weight: 700
+        .icon
+          margin-right: 5px
+          &>svg
+            filter: drop-shadow($card-header-text-shadow)
+    .modal_card_body
+      +overflow-touch
+      background-color: $white
+      flex-grow: 1
+      flex-shrink: 1
+      overflow: auto
+      padding: 15px
+    .modal_card_footer
+      padding: 10px 15px
+      border-bottom-left-radius: $radius
+      border-bottom-right-radius: $radius
+      .footer_buttons
+        display: flex
+        justify-content: center
+        .button
+          &:not(:last-of-type)
+            margin-right: 15px
+
+.modal.modal-active
+  display: flex
