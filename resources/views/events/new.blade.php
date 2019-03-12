@@ -85,7 +85,7 @@
             ]
           ]
         ],
-        'help' => 'Select a date from the calendar. The calendar shows dates with events in your groups. You can optionally add an end date and time.',
+        'help' => 'Select a date from the calendar. The calendar shows dates with events in your groups.',
         'has_errors' => ( $errors->has('start_date') || $errors->has('start_time') ),
         'error_group' => [ $errors->get('start_date'), $errors->get('start_time') ]
       ])
@@ -134,6 +134,7 @@
               <material-icon v-bind:name="(showEndDate ? 'minus':'plus')"></material-icon>
               <span>@{{ showEndDate ? 'Remove':'Add' }} End Date</span>
             </button>
+            <div class="form_help"> You can optionally add an end date and time for the event.</div>
           </div>
         </div>
       </div>
@@ -149,6 +150,25 @@
           'old' => old('description')
         ],
         'errors' => $errors->get('description')
+      ])
+
+      {{-- Header Image Selection --}}
+      @include('partials.form_inline_image_selection', [
+        'label' => [
+          'text' => 'Header Image',
+          'button' => 'Select an Event Header Image'
+        ],
+        'input' => [
+          'name' => 'header_url',
+          'id' => 'header_url',
+          'old' => old('header_url'),
+          'value' => null,
+          'default_image' => '/img/default_event_header.png',
+          'directory' => 'default_headers'
+        ],
+        'images' => $header_images,
+        'help' => 'Select a banner image for the event.',
+        'errors' => $errors->get('header_url')
       ])
 
       <div class="form_footer">

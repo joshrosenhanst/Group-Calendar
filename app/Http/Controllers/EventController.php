@@ -35,13 +35,14 @@ class EventController extends Controller
     */
     public function new(Request $request, \App\Group $group = null){
       $events = Auth::user()->getEventsForDatepicker();
+      $header_images = $this->getImagesInDirectory('default_headers', "Preview Header");
       JavaScript::put([
         'data' => [
           'showEndDate' => ( old('end_date')?true:false ),
-          'events' => $events,
+          'events' => count($events) ? $events : (object) null, // AppDatepicker expects an object so we can't pass an empty php array
         ]
       ]);
-      return view('events.new', ['group'=>$group]);
+      return view('events.new', ['group'=>$group, 'header_images'=>$header_images]);
     }
 
     /*
@@ -66,18 +67,23 @@ class EventController extends Controller
               $fail("The start time field is invalid.");
             }
           }
-        ]
+        ],
+        'header_url' => 'nullable|string'
       ]);
 
       $validator->after(function($validator) use ($request){
         if($request->end_date && $request->end_time && $request->start_time && $request->start_date){
-          if(strtotime($request->end_date." ".$request->end_time) < strtotime($request->start_date." ".$request->start_time)){
+          if(strtotime($request->end_date." ".$request->end_time) <= strtotime($request->start_date." ".$request->start_time)){
             $validator->errors()->add('end_time', 'The end time must be after start time.');
           }
         }
       });
 
       $validator->validate();
+
+      if($request->header_url){
+        $this->copyDefaultImage($request->header_url, 'default_headers', 'events');
+      }
 
       $start_date = $request->start_date ? Carbon::parse($request->start_date)->toDateString() : null;
       $start_time = $request->start_time ? Carbon::parse($request->start_time)->toTimeString() : null;
@@ -133,13 +139,14 @@ class EventController extends Controller
     */
     public function edit(\App\Group $group, \App\Event $event){
       $events = Auth::user()->getEventsForDatepicker();
+      $header_images = $this->getImagesInDirectory('default_headers', "Preview Header");
       JavaScript::put([
         'data' => [
           'showEndDate' => ( old('end_date',$event->end_date)?true:false ),
-          'events' => $events,
+          'events' => count($events) ? $events : (object) null, // AppDatepicker expects an object so we can't pass an empty php array
         ]
       ]);
-      return view('events.edit', ['event'=>$event]);
+      return view('events.edit', ['event'=>$event,'header_images'=>$header_images]);
     }
 
     /*
@@ -163,18 +170,23 @@ class EventController extends Controller
               $fail("The start time field is invalid.");
             }
           }
-        ]
+        ],
+        'header_url' => 'nullable|string'
       ]);
 
       $validator->after(function($validator) use ($request){
         if($request->end_date && $request->end_time && $request->start_time && $request->start_date){
-          if(strtotime($request->end_date." ".$request->end_time) < strtotime($request->start_date." ".$request->start_time)){
+          if(strtotime($request->end_date." ".$request->end_time) <= strtotime($request->start_date." ".$request->start_time)){
             $validator->errors()->add('end_time', 'The end time must be after start time.');
           }
         }
       });
 
       $validator->validate();
+
+      if($request->header_url && $request->header_url !== $event->header_url){
+        $this->copyDefaultImage($request->header_url, 'default_headers', 'events');
+      }
 
       $start_date = $request->start_date ? Carbon::parse($request->start_date)->toDateString() : null;
       $start_time = $request->start_time ? Carbon::parse($request->start_time)->toTimeString() : null;

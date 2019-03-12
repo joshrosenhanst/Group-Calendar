@@ -135,7 +135,6 @@ class GroupController extends Controller{
 
     $validator->validate();
 
-    
     if($request->header_url && $request->header_url !== $group->header_url){
       $this->copyDefaultImage($request->header_url, 'default_headers', 'groups');
     }
