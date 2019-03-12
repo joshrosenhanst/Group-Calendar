@@ -52,12 +52,12 @@
 
       {{-- Confirm New Password --}}
       @include('partials.form_inline_group', [
-        'label' => ['text' => 'Confirm New Password'],
+        'label' => ['text' => 'Confirm Password'],
         'input' => [
           'name' => 'new_password_confirmation',
           'type' => 'password',
           'id' => 'new_password_confirmation',
-          'placeholder' => 'Confirm New Password',
+          'placeholder' => 'Confirm Password',
           'required' => true
         ],
         'errors' => $errors->get('new_password_confirmation')
