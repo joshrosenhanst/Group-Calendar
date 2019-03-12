@@ -6,7 +6,7 @@
         <span>{{ title || "Comments"}}</span>
       </h2>
     </div>
-    <div class="card_section comments_section card_list" v-if="comments.length">
+    <div class="card_section comments_section card_list card_list-comments" v-if="comments.length">
       <comment-display
         v-for="comment in comments"
         v-bind:key="comment.id"

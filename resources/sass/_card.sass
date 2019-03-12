@@ -140,9 +140,12 @@
   .card_list
     padding: 0
     .item_icon
-      padding: 10px
       display: flex
       align-items: center
+      +until($tablet)
+        margin-right: 5px
+      +tablet
+        padding: 10px
       .icon
         width: 2rem
         height: 2rem
@@ -161,7 +164,13 @@
           height: 48px
     .member_list_preview,.list_item
       display: flex
-      align-items: flex-start
+      align-items: center
+      +until($tablet)
+        padding: 8px
+        .preview_thumbnail
+          margin-right: 4px
+      +tablet
+        align-items: flex-start
       .item_details
         flex-grow: 1
         flex-shrink: 1
@@ -169,6 +178,13 @@
         flex-shrink: 1
         flex-grow: 0
         margin-left: auto
+        +until($tablet)
+          flex-direction: column
+          .button
+            margin: 0 0 1px 0
+            .icon
+              height: 1rem
+              width: 1rem
         .button
           font-size: 0.85rem
           padding: 6px 12px
@@ -186,6 +202,9 @@
           color: $danger
     .list_empty
       padding: 25px 20px
+  .card_list.card_list-comments
+    .list_item
+      align-items: flex-start
   .card_buttons
     margin-top: auto
     display: flex
@@ -211,9 +230,13 @@
       &:not(:last-of-type)
         border-right: 1px solid $card-border-color
   .card_buttons-top_right
-    position: absolute
-    right: 0.5rem
-    top: 0.5rem
+    +until($tablet)
+      display: flex
+      flex-direction: column
+    +tablet
+      position: absolute
+      right: 0.5rem
+      top: 0.5rem
 
 .card.card-has_tabs
   border-top: 0

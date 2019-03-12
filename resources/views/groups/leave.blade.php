@@ -16,11 +16,16 @@
 
     </div>
 
-    <form action="{{ route('groups.leaveGroup', ['group'=>$group]) }}" class="form card_section card_section-form" method="POST">
+    <form action="{{ route('groups.leaveGroup', ['group'=>$group]) }}" class="form form-small card_section card_section-form" method="POST">
       @method('PUT')
       @csrf
 
-      <div class="form_section">
+      <div class="form_section event_card">
+
+        <div class="form_sub_header">
+          <h1 class="sub_title">Group Details</h1>
+        </div>
+
         {{-- Group Name --}}
         @component('partials.form_inline_static', [
           'label' => ['text' => 'Group']

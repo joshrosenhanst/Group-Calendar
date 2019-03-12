@@ -18,8 +18,9 @@
     color: $label-color
     display: block
     font-weight: $label-weight
-    margin-bottom: 5px
     font-size: $size-normal
+    +desktop
+      margin-bottom: 5px
     &.form_checkbox,&.form_radio
       cursor: pointer
       position: relative
@@ -167,6 +168,7 @@
     .sub_title
       font-weight: 700
       color: $text-light
+      text-align: center
     h1.sub_title
       font-size: $size-medium
   .form_confirmation
@@ -202,7 +204,8 @@
     .form_input-static
       display: flex
       align-items: center
-      padding-top: 10px
+      +desktop
+        padding-top: 10px
       .preview_thumbnail
         width: 24px
         height: 24px
@@ -248,3 +251,13 @@
     +desktop
       .field_body
         flex: 3 1 0
+
+.form.form-small
+  &.card_section
+    padding: 15px
+  .form_section
+    padding-bottom: 15px
+  .form_inline_group  
+    margin-bottom: 15px
+    &:last-of-type
+      margin-bottom: 0

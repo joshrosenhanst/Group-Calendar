@@ -11,21 +11,6 @@
     </div>
     <div class="comment_body">
       <div class="comment_meta">
-        <div class="card_buttons-top_right">
-          <button class="button-icon" aria-label="Edit Comment" title="Edit Comment" 
-            v-bind:class="{ 'button-active': isOpen }"
-            v-if="showForm"
-            v-on:click="toggleCommentForm"
-          >
-            <material-icon name='pencil'></material-icon>
-          </button>
-          <button class="button-icon" aria-label="Delete Comment" title="Delete Comment" 
-            v-if="showForm"
-            v-on:click="toggleDeleteForm"
-          >
-            <material-icon name='delete'></material-icon>
-          </button>
-        </div>
         <a v-if="comment.user"
           v-bind:href="`/users/${comment.user.id}`" 
           class="comment_user_name"
@@ -55,6 +40,21 @@
           ></comment-delete-form>
         </div>
       </div>
+    </div>
+    <div class="card_buttons-top_right">
+      <button class="button-icon" aria-label="Edit Comment" title="Edit Comment" 
+        v-bind:class="{ 'button-active': isOpen }"
+        v-if="showForm"
+        v-on:click="toggleCommentForm"
+      >
+        <material-icon name='pencil'></material-icon>
+      </button>
+      <button class="button-icon" aria-label="Delete Comment" title="Delete Comment" 
+        v-if="showForm"
+        v-on:click="toggleDeleteForm"
+      >
+        <material-icon name='delete'></material-icon>
+      </button>
     </div>
   </div>
 </template>

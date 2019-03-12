@@ -10,7 +10,7 @@
       {{ Breadcrumbs::render('groups.edit', $group) }}
 
       <h1 class="title">
-        <span class="icon">@materialicon('pencil')</span>
+        <span class="icon">@materialicon('settings')</span>
         <span>@lang('pages.groups.edit.title')</span>
       </h1>
 

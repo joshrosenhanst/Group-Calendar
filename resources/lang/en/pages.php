@@ -35,7 +35,7 @@ return [
   'groups.new.title' => 'New Group',
   'groups.new.subtitle' => 'Enter the details for the new group below. You will be automatically added as an admin to the group when it is created and you will be able to invite new members.',
 
-  'groups.edit.title' => 'Edit Group',
+  'groups.edit.title' => 'Edit Group Settings',
   'groups.edit.subtitle' => "Edit the details of the group. You can optionally leave a comment about your changes.",
 
   'groups.leave.title' => 'Leave Group',

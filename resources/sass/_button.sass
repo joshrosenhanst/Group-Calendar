@@ -156,11 +156,19 @@
     background-color: rgba(0,0,0,0.4)
 
 .button_group
-  display: flex
+  +tablet
+    display: flex
   .button
-    flex: 1 1 auto
-    &:not(:last-child)
-      margin-right: -1px
+    +until($tablet)
+      display: inline-flex
+      font-size: $size-small
+      padding: $button-padding-small
+      font-weight: 400
+      margin-bottom: 5px
+    +tablet
+      flex: 1 1 auto
+      &:not(:last-child)
+        margin-right: 1px
   &.button_group-link
     .button
       @extend .button-link, .button-inverted
