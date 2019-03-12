@@ -34,6 +34,27 @@
         ],
         'errors' => $errors->get('name')
       ])
+      
+      {{-- Avatar Image Selection --}}
+      <div class="avatar_selection_display">
+        @include('partials.form_inline_image_selection', [
+          'label' => [
+            'text' => 'Avatar Image',
+            'button' => 'Select a Group Avatar Image'
+          ],
+          'input' => [
+            'name' => 'avatar_url',
+            'id' => 'avatar_url',
+            'old' => old('avatar_url', $group->avatar_url),
+            'value' => $group->avatar_url,
+            'default_image' => '/img/default_group_avatar.png',
+            'directory' => 'default_avatars'
+          ],
+          'images' => $avatar_images,
+          'help' => 'Select an avatar image for the group.',
+          'errors' => $errors->get('avatar_url')
+        ])
+      </div>
 
       {{-- Header Image Selection --}}
       @include('partials.form_inline_image_selection', [
@@ -50,28 +71,9 @@
           'directory' => 'default_headers'
         ],
         'images' => $header_images,
+        'help' => 'Select a banner image for the group.',
         'errors' => $errors->get('header_url')
       ])
-      
-      {{-- Header Image Selection --}}
-      <div class="avatar_selection_display">
-        @include('partials.form_inline_image_selection', [
-          'label' => [
-            'text' => 'Avatar Image',
-            'button' => 'Select a Group Avatar Image'
-          ],
-          'input' => [
-            'name' => 'avatar_url',
-            'id' => 'avatar_url',
-            'old' => old('avatar_url', $group->avatar_url),
-            'value' => $group->avatar_url,
-            'default_image' => '/img/default_group_avatar.png',
-            'directory' => 'default_avatars'
-          ],
-          'images' => $avatar_images,
-          'errors' => $errors->get('avatar_url')
-        ])
-      </div>
 
       {{-- Update Comment --}}
       @include('partials.form_inline_group', [

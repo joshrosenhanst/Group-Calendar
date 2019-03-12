@@ -35,25 +35,7 @@
         'errors' => $errors->get('name')
       ])
       
-      {{-- Header Image Selection --}}
-      @include('partials.form_inline_image_selection', [
-        'label' => [
-          'text' => 'Header Image',
-          'button' => 'Select a Group Header Image'
-        ],
-        'input' => [
-          'name' => 'header_url',
-          'id' => 'header_url',
-          'old' => old('header_url'),
-          'value' => null,
-          'default_image' => '/img/default_group_avatar.png',
-          'directory' => 'default_headers'
-        ],
-        'images' => $header_images,
-        'errors' => $errors->get('header_url')
-      ])
-      
-      {{-- Header Image Selection --}}
+      {{-- Avatar Image Selection --}}
       <div class="avatar_selection_display">
         @include('partials.form_inline_image_selection', [
           'label' => [
@@ -69,9 +51,29 @@
             'directory' => 'default_avatars'
           ],
           'images' => $avatar_images,
+          'help' => 'Select an avatar image for the group.',
           'errors' => $errors->get('avatar_url')
         ])
       </div>
+      
+      {{-- Header Image Selection --}}
+      @include('partials.form_inline_image_selection', [
+        'label' => [
+          'text' => 'Header Image',
+          'button' => 'Select a Group Header Image'
+        ],
+        'input' => [
+          'name' => 'header_url',
+          'id' => 'header_url',
+          'old' => old('header_url'),
+          'value' => null,
+          'default_image' => '/img/default_group_avatar.png',
+          'directory' => 'default_headers'
+        ],
+        'images' => $header_images,
+        'help' => 'Select a banner image for the group.',
+        'errors' => $errors->get('header_url')
+      ])
 
       <div class="form_footer">
         <button type="submit" class="button button-link">
