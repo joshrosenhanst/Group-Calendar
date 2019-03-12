@@ -46,7 +46,8 @@
           'id' => 'header_url',
           'old' => old('header_url'),
           'value' => '/img/default_group_avatar.png',
-          'default_image' => '/img/default_group_avatar.png'
+          'default_image' => '/img/default_group_avatar.png',
+          'directory' => 'default_headers'
         ],
         'images' => $header_images,
         'errors' => $errors->get('header_url')
@@ -64,7 +65,8 @@
             'id' => 'avatar_url',
             'old' => old('avatar_url'),
             'value' => '/img/default_group_avatar.png',
-            'default_image' => '/img/default_group_avatar.png'
+            'default_image' => '/img/default_group_avatar.png',
+            'directory' => 'default_avatars'
           ],
           'images' => $avatar_images,
           'errors' => $errors->get('avatar_url')

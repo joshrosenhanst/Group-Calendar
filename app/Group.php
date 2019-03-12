@@ -42,7 +42,7 @@ class Group extends Model
   */
   public function getAvatarAttribute(){
     if($this->avatar_url){
-      return 'storage/groups/'.$this->avatar_url;
+      return 'storage/avatars/'.$this->avatar_url;
     }else{
       return 'img/default_group_avatar.png';
     }

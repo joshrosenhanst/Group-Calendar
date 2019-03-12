@@ -24,6 +24,7 @@
         @isset($input['name'])
         input_name="{{ $input['name'] }}"
         @endisset
+        directory="{{ $input['directory'] }}"
         default_image="{{ $input['default_image'] }}"
         input_value="{{ $input['old'] ?? $input['value'] }}"
       >

@@ -1,5 +1,5 @@
 <div class="group_summary">
-  <div class="card_section card_section-background_image" style="background-image: url({{ asset($group->avatar) }})"></div>
+  <div class="card_section card_section-background_image" style="background-image: url({{ asset($group->header) }})"></div>
   <div class="card_section group_avatar_container">
     <a href="{{ route('groups.view', ['group'=>$group]) }}" class="group_avatar_image">
       <img src="{{ asset($group->avatar) }}" alt="{{ $group->name }} Avatar">
