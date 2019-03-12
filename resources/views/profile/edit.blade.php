@@ -35,7 +35,7 @@
           'required' => true,
           'old' => old('name', Auth::user()->name)
         ],
-        'help' => 'Your name as it is displayed on GroupCalendar.',
+        'help' => 'Your name as it is displayed on GroupCalendar. Anyone can see your name.',
         'errors' => $errors->get('name')
       ])
 
@@ -50,11 +50,30 @@
           'required' => true,
           'old' => old('email', Auth::user()->email)
         ],
-        'help' => 'The email address that you use to log into GroupCalendar.',
+        'help' => 'The email address that you use to log into GroupCalendar. Your email address will not be shown to other users.',
         'errors' => $errors->get('email')
       ])
 
-      {{--Avatar--}}
+      {{-- Avatar Image Selection --}}
+      <div class="avatar_selection_display">
+        @include('partials.form_inline_image_selection', [
+          'label' => [
+            'text' => 'Avatar Image',
+            'button' => 'Select a Profile Avatar Image'
+          ],
+          'input' => [
+            'name' => 'avatar_url',
+            'id' => 'avatar_url',
+            'old' => old('avatar_url', Auth::user()->avatar_url),
+            'value' => Auth::user()->avatar_url,
+            'default_image' => '/img/default_user_avatar.png',
+            'directory' => 'default_avatars'
+          ],
+          'images' => $avatar_images,
+          'help' => 'Select an avatar image that will be displayed with your name.',
+          'errors' => $errors->get('avatar_url')
+        ])
+      </div>
 
       <div class="form_footer">
         <button class="button button-link" type="submit">

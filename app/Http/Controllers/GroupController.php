@@ -11,24 +11,8 @@ use App\Notifications\MemberLeftGroupMessage;
 use App\Notifications\MemberLeft;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Http\File;
-use Illuminate\Filesystem\Filesystem;
 
 class GroupController extends Controller{
-  private function getImagesInDirectory($directory){
-    $fs = new Filesystem();
-
-    $images = collect();
-    $files = Storage::disk('public')->files($directory);
-    for($i=0;$i<count($files);$i++){
-      $images->push([
-        'src' => asset("storage/".$files[$i]),
-        'alt' => 'Preview Image '.($i+1),
-        'filename' => $fs->basename($files[$i])
-      ]);
-    }
-    return $images->toJson();
-  }
-
   /*
     index() - Display the `groups.list` page template.
   */
@@ -41,8 +25,8 @@ class GroupController extends Controller{
     new() - Display the `groups.new` page template.
   */
   public function new(){
-    $header_images = $this->getImagesInDirectory('default_headers');
-    $avatar_images = $this->getImagesInDirectory('default_avatars');
+    $header_images = $this->getImagesInDirectory('default_headers', "Preview Header");
+    $avatar_images = $this->getImagesInDirectory('default_avatars', "Preview Avatar");
     return view('groups.new', ['header_images'=>$header_images, 'avatar_images'=>$avatar_images]);
   }
 
@@ -50,8 +34,8 @@ class GroupController extends Controller{
     edit() - Display the `groups.edit` page template.
   */
   public function edit(\App\Group $group){
-    $header_images = $this->getImagesInDirectory('default_headers');
-    $avatar_images = $this->getImagesInDirectory('default_avatars');
+    $header_images = $this->getImagesInDirectory('default_headers', "Preview Header");
+    $avatar_images = $this->getImagesInDirectory('default_avatars', "Preview Avatar");
     return view('groups.edit', ['group'=>$group,'header_images'=>$header_images, 'avatar_images'=>$avatar_images]);
   }
 
@@ -121,15 +105,11 @@ class GroupController extends Controller{
     $validator->validate();
 
     if($request->header_url){
-      if(!Storage::disk('public')->exists('groups/'.$request->header_url)){
-        Storage::disk('public')->putFileAs('groups', new File('storage/default_headers/'.$request->header_url), $request->header_url);
-      }
+      $this->copyDefaultImage($request->header_url, 'default_headers', 'groups');
     }
 
     if($request->avatar_url){
-      if(!Storage::disk('public')->exists('avatars/'.$request->avatar_url)){
-        Storage::disk('public')->putFileAs('avatars', new File('storage/default_avatars/'.$request->avatar_url), $request->avatar_url);
-      }
+      $this->copyDefaultImage($request->avatar_url, 'default_avatars', 'avatars');
     }
 
     $group = \App\Group::create([
@@ -157,15 +137,14 @@ class GroupController extends Controller{
 
     
     if($request->header_url && $request->header_url !== $group->header_url){
+      $this->copyDefaultImage($request->header_url, 'default_headers', 'groups');
       if(!Storage::disk('public')->exists('groups/'.$request->header_url)){
         Storage::disk('public')->putFileAs('groups', new File('storage/default_headers/'.$request->header_url), $request->header_url);
       }
     }
 
     if($request->avatar_url && $request->avatar_url !== $group->avatar_url){
-      if(!Storage::disk('public')->exists('avatars/'.$request->avatar_url)){
-        Storage::disk('public')->putFileAs('avatars', new File('storage/default_avatars/'.$request->avatar_url), $request->avatar_url);
-      }
+      $this->copyDefaultImage($request->avatar_url, 'default_avatars', 'avatars');
     }
 
     $group->update([

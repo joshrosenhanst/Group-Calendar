@@ -14,7 +14,8 @@ class ProfileController extends Controller
     edit() - Display the `profile.edit` template.
   */
   public function edit(){
-    return view('profile.edit');
+    $avatar_images = $this->getImagesInDirectory('default_avatars', "Preview Avatar");
+    return view('profile.edit', ['avatar_images'=>$avatar_images]);
   }
 
   /*
@@ -28,24 +29,22 @@ class ProfileController extends Controller
     update() - Validate the fields on `profile.edit` template. If valid, update the user record on the database.
   */
   public function update(Request $request){
-    /*$request->validate([
-      'name' => 'required',
-      'email' => 'required|email|unique:users,email_address',
-    ]);*/
     $validator = Validator::make($request->all(), [
       'name' => 'required|max:255|string',
       'email' => [
         'required','email','max:255',Rule::unique('users')->ignore(Auth::user()->id)
-      ]
+      ],
+      'avatar_url' => 'nullable|string'
     ])->validate();
-    /*if($validator->fails()){
-      return redirect()->route('profile.edit')->withErrors($validator)->withInput();
-    }*/
+
+    if($request->avatar_url && $request->avatar_url !== Auth::user()->avatar_url){
+      $this->copyDefaultImage($request->avatar_url, 'default_avatars', 'avatars');
+    }
 
     Auth::user()->update([
       'name' => $request->name,
       'email' => $request->email,
-      //avatar url
+      'avatar_url' => $request->avatar_url
     ]);
 
     return redirect()->route('home')->with('status', 'Your profile has been updated.');
