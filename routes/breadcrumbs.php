@@ -111,26 +111,23 @@ Breadcrumbs::for('groups.invites.decline', function ($trail, $group) {
   $trail->parent('home');
   $trail->push('Decline Invitation', route('groups.invites.decline', ['group'=>$group]));
 });
+
 /* Events */
-// Events can optionally have a [group] prefix, if the group is set on the request
-// Home / Events (no group)
-// Home / [group] / Events
-Breadcrumbs::for('events.index', function ($trail, $group=null) {
-  if($group){
-    $trail->parent('groups.view', $group);
-    $trail->push('Events', route('groups.events.index', ['group'=>$group]));
-  }else{
-    $trail->parent('home');
-    $trail->push('Events', route('events.index'));
-  }
+// Home / My Events
+Breadcrumbs::for('events.index', function ($trail) {
+  $trail->parent('home');
+  $trail->push('My Events', route('events.index'));
 });
-// Events / New (no group)
+
+// Events / New can optionally have a [group] prefix, if the group is set on the request
+// Home / My Events / New
 // Home / [group] / Events / New
 Breadcrumbs::for('events.new', function ($trail, $group=null) {
-  $trail->parent('events.index', $group);
   if($group){
+    $trail->parent('groups.events.index', $group);
     $trail->push('New', route('groups.events.new', $group));
   }else{
+    $trail->parent('events.index');
     $trail->push('New', route('events.new'));
   }
 });

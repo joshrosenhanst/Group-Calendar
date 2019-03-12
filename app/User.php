@@ -91,10 +91,17 @@ class User extends Authenticatable
   }
 
   /*
-    getEventsAttribute() - Accessor method that returns upcoming events in the user's groups.
+    getUpcomingEventsAttribute() - Accessor method that returns upcoming events in the user's groups.
   */
   public function getUpcomingEventsAttribute(){
     return $this->getUpcomingEvents();
+  }
+
+  /*
+    getPastEventsAttribute() - Accessor method that returns past events in the user's groups.
+  */
+  public function getPastEventsAttribute(){
+    return $this->getPastEvents();
   }
 
   /*
@@ -188,11 +195,20 @@ class User extends Authenticatable
   }
 
   /*
-    getUpcomingEvents() - Returns a collection of all available events via the user's group relation. Used by the `getEventsAttribute()` accessor.
+    getUpcomingEvents() - Returns a collection of all available upcoming events via the user's group relation. Used by the `getUpcomingEventsAttribute()` accessor.
   */
   public function getUpcomingEvents(){
     $this->loadMissing('groups.upcoming_events');
     $collection = collect($this->groups->pluck('upcoming_events'))->collapse()->unique();
+    return $collection;
+  }
+
+  /*
+    getPastEvents() - Returns a collection of all available past events via the user's group relation. Used by the `getPastEventsAttribute()` accessor.
+  */
+  public function getPastEvents(){
+    $this->loadMissing('groups.past_events');
+    $collection = collect($this->groups->pluck('past_events'))->collapse()->unique();
     return $collection;
   }
 

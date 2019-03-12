@@ -87,11 +87,14 @@ class Event extends Model
   public function getStartTimeSubtextAttribute(){
     $subtext_string = null;
     if($this->start_time){
-      $subtext_string = Carbon::parse($this->start_time)->format('g:i A');
-      if(!$this->end_date || $this->start_date === $this->end_date){
-        if($this->end_time){
-          $subtext_string .= " - " . Carbon::parse($this->end_time)->format('h:i A');
+      $subtext_string = $this->start_date->format('D')." ".Carbon::parse($this->start_time)->format('g:i A');
+
+      if($this->end_time){
+        $subtext_string .= " - ";
+        if($this->end_date && $this->start_date->toDateString() !== $this->end_date->toDateString()){
+          $subtext_string .= $this->end_date->format('D')." ";
         }
+        $subtext_string .= Carbon::parse($this->end_time)->format('h:i A');
       }
     }
     return $subtext_string;

@@ -43,14 +43,21 @@ return [
   /* Group Invites */
   'groups.invite.title' => 'Invite To Group',
   'groups.invite.subtitle' => 'Enter the name and email address of the new member below to send them an invite. You will be notified if the user accepts or declines the invitation.',
+
   'groups.invites.join.title' => 'Join Group',
   'groups.invites.join.subtitle' => 'Once you confirm your invitation to the group you will be able to attend and create group events. You can also decline the invitation.',
+
   'groups.invites.decline.title' => 'Decline Invitation',
 
   /* Events */
+  'events.index.title' => 'My Events',
+  'events.index.subtitle' => 'The list of upcoming and past events in your groups.',
+
   'events.new.title' => 'New Event',
   'events.new.subtitle' => "Enter the details for a new group event below. The event will appear on the group calendar and only this group's members can attend or comment. You can edit the details after you've submitted the event.",
+
   'events.edit.title' => 'Edit Event',
   'events.edit.subtitle' => "Edit the details of the event. You can optionally leave a comment about your changes.",
+
   'events.view.title' => 'Event Details',
 ];

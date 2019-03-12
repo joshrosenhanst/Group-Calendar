@@ -112,11 +112,23 @@
     font-weight: 700
   .summary_location
     color: $text-light
+    margin-bottom: 10px
+  .summary_extra
+    display: flex
+    align-items: center
+  .summary_group
+    display: flex
+    align-items: center
     font-size: $size-small
+    &:not(:last-child)
+      margin-right: 10px
+    .preview_thumbnail
+      margin-right: 4px
   .summary_status
     color: $text-light
     font-size: $size-small
-    margin-top: auto
+    &:not(:last-child)
+      margin-right: 10px
     .status_display
       &.pending
         color: $text-light

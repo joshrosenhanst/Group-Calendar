@@ -20,7 +20,25 @@ class EventController extends Controller
       index() - Display the `events.index` page template.
     */
     public function index(){
-      return view('events.index');
+      /*$monthly_upcoming_events = collect();
+      $monthly_past_events = collect();
+      foreach(Auth::user()->groups as $group){
+        $monthly_upcoming_events->concat($group->getMonthlyUpcomingEvents());
+        $monthly_past_events->concat($group->getMonthlyPastEvents());
+      }*/
+      Auth::user()->loadMissing('groups.upcoming_events.auth_user_status');
+      Auth::user()->loadMissing('groups.past_events.auth_user_status');
+      $monthly_upcoming_events = Auth::user()->upcoming_events->groupBy(function($event){
+        return $event->start_date->format('F Y');
+      });
+      $monthly_past_events = Auth::user()->past_events->groupBy(function($event){
+        return $event->start_date->format('F Y');
+      });
+      
+      return view('events.index', [
+        'monthly_upcoming_events' => $monthly_upcoming_events,
+        'monthly_past_events' => $monthly_past_events
+      ]);
     }
     
     /*

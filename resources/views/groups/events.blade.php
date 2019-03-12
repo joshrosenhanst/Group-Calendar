@@ -43,54 +43,55 @@
   </tab-wrapper>
 
   <div class="tab upcoming_events_tab" v-show="activeTab === 'upcoming_events'">
+    <div class="card card-has_tabs">
+
       @if(count($monthly_upcoming_events))
         @foreach($monthly_upcoming_events as $month=>$monthly_events)
-          <div class="card {{ $loop->first?'card-has_tabs':'' }}">
-
-            <div class="card_sub_header">
-              <h1 class="sub_title">{{$month}} Events</h1>
-            </div>
-
-            @foreach($monthly_events as $event)
-            @include('blocks.events.summary', ['event'=>$event,'mini'=>false])
-            @endforeach
+          <div class="card_sub_header">
+            <h1 class="sub_title">{{$month}} Events</h1>
           </div>
+
+          @foreach($monthly_events as $event)
+            @include('blocks.events.summary', [
+              'event'=>$event,
+              'group'=>$group,
+              'showGroup'=>false
+              ])
+          @endforeach
         @endforeach
       @else
-        <div class="card card-has_tabs">
-          <div class="card_section">
-            @component('components.empty', ['icon'=>'calendar-question'])
-              No Upcoming Events
-            @endcomponent
-          </div>
+        <div class="card_section">
+          @component('components.empty', ['icon'=>'calendar-question'])
+            No Upcoming Events
+          @endcomponent
         </div>
       @endif
       
+    </div>
   </div>
 
   <div class="tab past_events_tab" v-show="activeTab === 'past_events'">
-    <div class="card_section">
+    <div class="card card-has_tabs">
       
       @if(count($monthly_past_events))
         @foreach($monthly_past_events as $month=>$monthly_events)
-          <div class="card {{ $loop->first?'card-has_tabs':'' }}">
-            
-            <div class="card_sub_header">
-              <h1 class="sub_title">{{$month}} Events</h1>
-            </div>
-
-            @foreach($monthly_events as $event)
-            @include('blocks.events.summary', ['event'=>$event,'mini'=>false])
-            @endforeach
+          <div class="card_sub_header">
+            <h1 class="sub_title">{{$month}} Events</h1>
           </div>
+
+          @foreach($monthly_events as $event)
+            @include('blocks.events.summary', [
+              'event'=>$event,
+              'group'=>$group,
+              'showGroup'=>false
+              ])
+          @endforeach
         @endforeach
       @else
-        <div class="card card-has_tabs">
-          <div class="card_section">
-            @component('components.empty', ['icon'=>'calendar-question'])
-              No Past Events
-            @endcomponent
-          </div>
+        <div class="card_section">
+          @component('components.empty', ['icon'=>'calendar-question'])
+            No Past Events
+          @endcomponent
         </div>
       @endif
 
