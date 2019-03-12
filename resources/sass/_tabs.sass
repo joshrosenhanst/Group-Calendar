@@ -14,10 +14,12 @@
     justify-content: center
     color: $white
     vertical-align: top
-    padding: 10px 18px
     border-top: 5px solid darken($primary, 2.5%)
     text-shadow: $navbar-item-text-shadow
+    +until($tablet)
+      padding: 8px
     +tablet
+      padding: 10px 18px
       font-size: $size-medium
     &>.icon
       &:not(:last-child)

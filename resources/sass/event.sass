@@ -69,7 +69,12 @@
 
 .event_summary
   display: flex
-  border: 1px solid $card-border-color
+  +until($tablet)
+    border-width: 1px 0
+    border-style: solid
+    border-color: $card-border-color
+  +tablet
+    border: 1px solid $card-border-color
   margin-bottom: -1px
   .summary_header
     display: block
@@ -114,8 +119,9 @@
     color: $text-light
     margin-bottom: 10px
   .summary_extra
-    display: flex
-    align-items: center
+    +tablet
+      display: flex
+      align-items: center
   .summary_group
     display: flex
     align-items: center
@@ -143,11 +149,13 @@
       width: 20px
       height: 20px
   .summary_links
+    display: none
     margin-left: auto
-    display: flex
     align-content: center
     flex-wrap: wrap
     padding: 10px
+    +tablet
+      display: flex
 
 .event_summary.event_summary-mini
   .summary_header
