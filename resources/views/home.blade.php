@@ -8,8 +8,7 @@
     {{-- Page Header --}}
     
     <div class="card_section card_section-title">
-      {{ Breadcrumbs::render('home') }}
-
+      
       <h1 class="title">
         <span class="icon">@materialicon('home')</span>
         <span>@lang('pages.home.title')</span>

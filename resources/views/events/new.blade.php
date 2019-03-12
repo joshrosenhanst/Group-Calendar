@@ -8,7 +8,10 @@
     
     <div class="card_section card_section-title">
       {{ Breadcrumbs::render('events.new', $group) }}
-      <h1 class="title">New Event</h1>
+      <h1 class="title">
+        <span class="icon">@materialicon('calendar-plus')</span>
+        <span>@lang('pages.events.new.title')</span>
+      </h1>
     </div>
     
     <form action="{{ route('events.create') }}" id="event_form" class="form card_section card_section-form" method="POST">

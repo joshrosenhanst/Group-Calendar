@@ -8,7 +8,10 @@
     
     <div class="card_section card_section-title">
       {{ Breadcrumbs::render('groups.events.edit', $event->group, $event) }}
-      <h1 class="title">Edit Event</h1>
+      <h1 class="title">
+        <span class="icon">@materialicon('pencil')</span>
+        <span>@lang('pages.events.edit.title')</span>
+      </h1>
     </div>
     
     <form action="{{ route('events.update', ['event'=>$event]) }}" id="event_form" class="form card_section card_section-form" method="POST">

@@ -60,4 +60,6 @@ return [
   'events.edit.subtitle' => "Edit the details of the event. You can optionally leave a comment about your changes.",
 
   'events.view.title' => 'Event Details',
+
+  'events.delete.title' => 'Delete Event',
 ];

@@ -11,7 +11,7 @@
       {{ Breadcrumbs::render('groups.events.index', $group) }}
 
       <h1 class="title">
-        <span class="icon">@materialicon('calendar-range')</span>
+        <span class="icon">@materialicon('calendar-text')</span>
         <span>@lang('pages.groups.events.title')</span>
       </h1>
 

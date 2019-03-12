@@ -8,7 +8,10 @@
     
     <div class="card_section card_section-title">
       {{ Breadcrumbs::render('groups.events.delete', $event->group, $event) }}
-      <h1 class="title">Delete Event</h1>
+      <h1 class="title">
+        <span class="icon">@materialicon('delete')</span>
+        <span>@lang('pages.events.delete.title')</span>
+      </h1>
     </div>
     
     <form action="{{ route('events.destroy', ['event'=>$event]) }}" id="event_form" class="form card_section card_section-form" method="POST">

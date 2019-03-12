@@ -41,13 +41,18 @@
       font-size: $size-medium
       margin-bottom: 25px
     .description_list_group
-      display: flex
-      column-gap: 15px
+      +tablet
+        display: flex
       dt
-        flex: 1 0
         font-weight: 700
+        +tablet
+          margin-right: 15px
+          flex: 1 1
       dd
-        flex: 5 1
+        +until($tablet)
+          margin-bottom: 5px
+        +tablet
+          flex: 5 1
     .description_timestamp
       font-size: $size-small
       color: $text-light

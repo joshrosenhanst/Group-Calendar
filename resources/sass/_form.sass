@@ -147,11 +147,16 @@
     margin: 25px -20px 25px -20px
   .form_footer
     border-top: 1px solid $card-border-color
-    margin: 0 -20px 0 -20px
-    padding: 25px 20px 0 20px
     display: flex
     justify-content: center
-    column-gap: 15px
+    margin: 0 -20px 0 -20px
+    +until($tablet)
+      padding: 15px 15px 0 15px
+    +tablet
+      padding: 25px 20px 0 20px
+    .button
+      &:not(:last-child)
+        margin-right: 15px
   .form_section
     margin: 0 -20px 0 -20px
     padding: 0 20px 25px 20px
@@ -165,9 +170,13 @@
     h1.sub_title
       font-size: $size-medium
   .form_confirmation
-    font-size: $size-large
     text-align: center
-    margin: 25px 0
+    +until($tablet)
+      font-size: $size-medium
+      margin: 15px 0
+    +tablet
+      font-size: $size-large
+      margin: 25px 0
     small
       display: block
       color: $text-light
@@ -176,12 +185,17 @@
 .form_inline_group
   margin-bottom: 25px
   .field_multiple
-    display: flex
-    max-width: 450px
-    .field_input
-      flex: 1 1 0
-      &:not(:last-of-type)
-        margin-right: 5px
+    +until($tablet)
+      .field_input
+        &:not(:last-of-type)
+          margin-bottom: 5px
+    +tablet
+      display: flex
+      max-width: 450px
+      .field_input
+        flex: 1 1 0
+        &:not(:last-of-type)
+          margin-right: 5px
   .form_input,.form_select
     max-width: 450px
   .field_body.field_body-static
