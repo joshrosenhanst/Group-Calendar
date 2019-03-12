@@ -138,9 +138,6 @@ class GroupController extends Controller{
     
     if($request->header_url && $request->header_url !== $group->header_url){
       $this->copyDefaultImage($request->header_url, 'default_headers', 'groups');
-      if(!Storage::disk('public')->exists('groups/'.$request->header_url)){
-        Storage::disk('public')->putFileAs('groups', new File('storage/default_headers/'.$request->header_url), $request->header_url);
-      }
     }
 
     if($request->avatar_url && $request->avatar_url !== $group->avatar_url){
