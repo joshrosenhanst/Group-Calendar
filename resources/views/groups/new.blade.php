@@ -45,7 +45,7 @@
           'name' => 'header_url',
           'id' => 'header_url',
           'old' => old('header_url'),
-          'value' => '/img/default_group_avatar.png',
+          'value' => null,
           'default_image' => '/img/default_group_avatar.png',
           'directory' => 'default_headers'
         ],
@@ -64,7 +64,7 @@
             'name' => 'avatar_url',
             'id' => 'avatar_url',
             'old' => old('avatar_url'),
-            'value' => '/img/default_group_avatar.png',
+            'value' => null,
             'default_image' => '/img/default_group_avatar.png',
             'directory' => 'default_avatars'
           ],
