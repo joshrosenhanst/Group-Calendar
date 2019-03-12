@@ -110,5 +110,5 @@
 @endsection
 
 @section('page_scripts')
-<script src="{{ asset('/js/pages/groups/events.js') }}"></script>
+<script src="{{ asset('/js/pages/events/index.js') }}"></script>
 @endsection
