@@ -3,7 +3,7 @@
 @section('title', 'Login')
 
 @section('content')
-<form id="login_form" class="form card" method="POST" action="{{ route('authenticate') }}">
+<form id="login_form" class="form card card-has_header" method="POST" action="{{ route('authenticate') }}">
   @csrf
 
   <header class="card_header">
