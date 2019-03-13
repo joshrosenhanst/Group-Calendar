@@ -67,6 +67,24 @@
     >
     @break
 
+  @case('location')
+    <location-picker
+      @isset($input['id'])
+      input_id="{{ $input['id'] }}"
+      @endisset
+      @isset($input['name'])
+      input_name="{{ $input['name'] }}"
+      @endisset
+      @isset($input['placeholder'])
+      input_placeholder="{{ $input['placeholder'] }}"
+      @endisset
+      @isset($input['class'])
+      input_class="{{ $input['class'] }}"
+      @endisset
+      v-bind:selected_location="selected_location"
+    ></location-picker>
+    @break
+
   @case('date')
     <app-datepicker
       @isset($input['id'])

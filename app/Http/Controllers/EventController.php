@@ -56,6 +56,7 @@ class EventController extends Controller
         'data' => [
           'showEndDate' => ( old('end_date')?true:false ),
           'events' => count($events) ? $events : (object) null, // AppDatepicker expects an object so we can't pass an empty php array
+          'selected_location' => old('location'),
         ]
       ]);
       return view('events.new', ['group'=>$group, 'header_images'=>$header_images]);
@@ -70,6 +71,7 @@ class EventController extends Controller
       $validator = Validator::make($request->all(), [
         'name' => 'required',
         'group' => 'required|numeric|exists:groups,id',
+        'location.place_id' => 'required',
         'start_date' => 'required|date',
         'start_time' => [
           'nullable','string', function($attribute, $value, $fail){

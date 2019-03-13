@@ -1,0 +1,40 @@
+.selected_location
+  background-color: $white
+  padding: 6px
+  border-radius: $radius
+  border: 1px solid $primary
+  position: relative
+  display: flex
+  color: $primary
+  align-items: flex-start
+  max-width: 450px
+  .icon
+    position: relative
+    color: inherit
+    width: 100%
+    height: 100%
+  .location_icon
+    margin-right: 5px
+    flex-grow: 0
+    flex-shrink: 0
+  .location_details
+    flex-grow: 1
+    flex-shrink: 1
+    line-height: 1.2
+    .location_name
+      font-weight: 700
+    .location_formatted_address
+      font-size: $size-small
+      color: $text-light
+    .location_map_url
+      font-size: $size-small
+  .location_remove
+    flex-grow: 0
+    flex-shrink: 0
+    margin-left: 15px
+
+.locationpicker.locationpicker-has_selection
+  & ~ .icon
+    display: none
+  .location_input
+    display: none

@@ -56,10 +56,32 @@
             'options' => Auth::user()->group_select,
             'old' => old('group', request('group'))
           ],
-          'help' => 'This is a help block',
+          'icon' => [
+            'align' => 'left',
+            'name' => 'account-multiple'
+          ],
           'errors' => $errors->get('group')
         ])
       @endif
+      
+      {{-- Location --}}
+      @include('partials.form_inline_group', [
+        'label' => ['text' => 'Event Location'],
+        'input' => [
+          'name' => 'location',
+          'type' => 'location',
+          'id' => 'location',
+          'placeholder' => 'Event Location',
+          'required' => true,
+          'old' => old('location')
+        ],
+        'icon' => [
+          'align' => 'left',
+          'name' => 'map-marker'
+        ],
+        'help' => 'Select a location for the event from the Google Maps search results.',
+        'errors' => $errors->get('location.place_id')
+      ])
 
       {{-- Start Date/Time --}}
       @include('partials.form_inline_group_multiple', [
@@ -196,6 +218,7 @@
 @endsection
 
 @section('page_scripts')
+  <script src="https://maps.googleapis.com/maps/api/js?key={{ env('GOOGLE_MAPS_API_KEY') }}&libraries=places"></script>
   @include('partials.pagedata')
   <script src="{{ asset('/js/pages/events/new.js') }}"></script>
 @endsection

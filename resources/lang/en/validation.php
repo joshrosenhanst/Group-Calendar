@@ -131,6 +131,8 @@ return [
         'attribute-name' => [
             'rule-name' => 'custom-message',
         ],
+        'group.numeric' => 'The group field is required.',
+        'location.place_id.required' => 'The location field is required.',
     ],
 
     /*

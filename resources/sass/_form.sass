@@ -39,7 +39,7 @@
         cursor: not-allowed
   .form_input_icon
     position: relative
-    .icon
+    &>.icon
       position: absolute
       top: 0
       height: $input-height
@@ -49,11 +49,18 @@
     &.form_input_icon-icon_left
       .form_input
         padding-left: $input-height
+      .form_select select
+        padding-left: $input-height
       .icon
         left: 0
     &.form_input_icon-icon_right
       .form_input
         padding-right: $input-height
+      .form_select 
+        &::after
+          right: 3.125em
+        select
+          padding-right: $input-height
       .icon
         right: 0
     
@@ -191,6 +198,8 @@
       .field_input
         &:not(:last-of-type)
           margin-bottom: 5px
+      .dropdown .dropdown_toggle
+        justify-content: flex-start
     +tablet
       display: flex
       max-width: 450px

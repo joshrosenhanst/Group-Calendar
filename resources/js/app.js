@@ -35,3 +35,4 @@ Vue.component('app-datepicker', require('./components/datepicker/AppDatepicker.v
 Vue.component('app-timepicker', require('./components/timepicker/AppTimepicker.vue').default);
 Vue.component('image-selection', require('./components/image_selection/ImageSelection.vue').default);
 Vue.component('app-modal', require('./components/modal/AppModal.vue').default);
+Vue.component('location-picker', require('./components/locationpicker/LocationPicker.vue').default);
