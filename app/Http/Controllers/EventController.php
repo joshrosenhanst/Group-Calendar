@@ -21,14 +21,9 @@ class EventController extends Controller
       index() - Display the `events.index` page template.
     */
     public function index(){
-      /*$monthly_upcoming_events = collect();
-      $monthly_past_events = collect();
-      foreach(Auth::user()->groups as $group){
-        $monthly_upcoming_events->concat($group->getMonthlyUpcomingEvents());
-        $monthly_past_events->concat($group->getMonthlyPastEvents());
-      }*/
       Auth::user()->loadMissing('groups.upcoming_events.auth_user_status');
       Auth::user()->loadMissing('groups.past_events.auth_user_status');
+      
       $monthly_upcoming_events = Auth::user()->upcoming_events->groupBy(function($event){
         return $event->start_date->format('F Y');
       });
@@ -53,8 +48,10 @@ class EventController extends Controller
       new() - Display the `events.new` page template.
     */
     public function new(Request $request, \App\Group $group = null){
+      $filehelper = new FileHelper;
+
       $events = Auth::user()->getEventsForDatepicker();
-      $header_images = $this->getImagesInDirectory('default_headers', "Preview Header");
+      $header_images = $filehelper->getImagesInDirectory('default_headers', "Preview Header");
       JavaScript::put([
         'data' => [
           'showEndDate' => ( old('end_date')?true:false ),
@@ -68,6 +65,8 @@ class EventController extends Controller
       create() - Validate the fields submitted on the `events.new` form. If valid, create a new event in the database.
     */
     public function create(Request $request){
+      $filehelper = new FileHelper;
+
       $validator = Validator::make($request->all(), [
         'name' => 'required',
         'group' => 'required|numeric|exists:groups,id',
@@ -101,7 +100,7 @@ class EventController extends Controller
       $validator->validate();
 
       if($request->header_url){
-        $this->copyDefaultImage($request->header_url, 'default_headers', 'events');
+        $filehelper->copyDefaultImage($request->header_url, 'default_headers', 'events');
       }
 
       $start_date = $request->start_date ? Carbon::parse($request->start_date)->toDateString() : null;
@@ -157,8 +156,10 @@ class EventController extends Controller
       edit() - Display the `events.edit` page template.
     */
     public function edit(\App\Group $group, \App\Event $event){
+      $filehelper = new FileHelper;
+
       $events = Auth::user()->getEventsForDatepicker();
-      $header_images = $this->getImagesInDirectory('default_headers', "Preview Header");
+      $header_images = $filehelper->getImagesInDirectory('default_headers', "Preview Header");
       JavaScript::put([
         'data' => [
           'showEndDate' => ( old('end_date',$event->end_date)?true:false ),
@@ -172,6 +173,8 @@ class EventController extends Controller
       update() - Validate the fields submitted on the `events.edit` form. If valid, update the event model in the database.
     */
     public function update(Request $request, \App\Event $event){
+      $filehelper = new FileHelper;
+
       $validator = Validator::make($request->all(), [
         'name' => 'required',
         'start_date' => 'required|date',
@@ -204,7 +207,7 @@ class EventController extends Controller
       $validator->validate();
 
       if($request->header_url && $request->header_url !== $event->header_url){
-        $this->copyDefaultImage($request->header_url, 'default_headers', 'events');
+        $filehelper->copyDefaultImage($request->header_url, 'default_headers', 'events');
       }
 
       $start_date = $request->start_date ? Carbon::parse($request->start_date)->toDateString() : null;

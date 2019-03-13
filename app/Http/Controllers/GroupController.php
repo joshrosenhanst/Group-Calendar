@@ -11,6 +11,7 @@ use App\Notifications\MemberLeftGroupMessage;
 use App\Notifications\MemberLeft;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Http\File;
+use App\FileHelper;
 
 class GroupController extends Controller{
   /*
@@ -25,8 +26,10 @@ class GroupController extends Controller{
     new() - Display the `groups.new` page template.
   */
   public function new(){
-    $header_images = $this->getImagesInDirectory('default_headers', "Preview Header");
-    $avatar_images = $this->getImagesInDirectory('default_avatars', "Preview Avatar");
+    $filehelper = new FileHelper;
+
+    $header_images = $filehelper->getImagesInDirectory('default_headers', "Preview Header");
+    $avatar_images = $filehelper->getImagesInDirectory('default_avatars', "Preview Avatar");
     return view('groups.new', ['header_images'=>$header_images, 'avatar_images'=>$avatar_images]);
   }
 
@@ -34,8 +37,10 @@ class GroupController extends Controller{
     edit() - Display the `groups.edit` page template.
   */
   public function edit(\App\Group $group){
-    $header_images = $this->getImagesInDirectory('default_headers', "Preview Header");
-    $avatar_images = $this->getImagesInDirectory('default_avatars', "Preview Avatar");
+    $filehelper = new FileHelper;
+
+    $header_images = $filehelper->getImagesInDirectory('default_headers', "Preview Header");
+    $avatar_images = $filehelper->getImagesInDirectory('default_avatars', "Preview Avatar");
     return view('groups.edit', ['group'=>$group,'header_images'=>$header_images, 'avatar_images'=>$avatar_images]);
   }
 
@@ -96,6 +101,8 @@ class GroupController extends Controller{
   }
 
   public function create(Request $request){
+    $filehelper = new FileHelper;
+
     $validator = Validator::make($request->all(), [
       'name' => 'required|string|max:255|unique:groups,name',
       'header_url' => 'nullable|string',
@@ -105,11 +112,11 @@ class GroupController extends Controller{
     $validator->validate();
 
     if($request->header_url){
-      $this->copyDefaultImage($request->header_url, 'default_headers', 'groups');
+      $filehelper->copyDefaultImage($request->header_url, 'default_headers', 'groups');
     }
 
     if($request->avatar_url){
-      $this->copyDefaultImage($request->avatar_url, 'default_avatars', 'avatars');
+      $filehelper->copyDefaultImage($request->avatar_url, 'default_avatars', 'avatars');
     }
 
     $group = \App\Group::create([
@@ -125,6 +132,8 @@ class GroupController extends Controller{
   }
 
   public function update(Request $request, \App\Group $group){
+    $filehelper = new FileHelper;
+
     $validator = Validator::make($request->all(), [
       'name' => [
         'required','string','max:255',Rule::unique('groups','name')->ignore($group->id)
@@ -136,11 +145,11 @@ class GroupController extends Controller{
     $validator->validate();
 
     if($request->header_url && $request->header_url !== $group->header_url){
-      $this->copyDefaultImage($request->header_url, 'default_headers', 'groups');
+      $filehelper->copyDefaultImage($request->header_url, 'default_headers', 'groups');
     }
 
     if($request->avatar_url && $request->avatar_url !== $group->avatar_url){
-      $this->copyDefaultImage($request->avatar_url, 'default_avatars', 'avatars');
+      $filehelper->copyDefaultImage($request->avatar_url, 'default_avatars', 'avatars');
     }
 
     $group->update([

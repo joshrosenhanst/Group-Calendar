@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Auth;
 use Validator;
 use Illuminate\Validation\Rule;
 use Illuminate\Support\Facades\Hash;
+use App\FileHelper;
 
 class ProfileController extends Controller
 {
@@ -14,7 +15,9 @@ class ProfileController extends Controller
     edit() - Display the `profile.edit` template.
   */
   public function edit(){
-    $avatar_images = $this->getImagesInDirectory('default_avatars', "Preview Avatar");
+    $filehelper = new FileHelper;
+
+    $avatar_images = $filehelper->getImagesInDirectory('default_avatars', "Preview Avatar");
     return view('profile.edit', ['avatar_images'=>$avatar_images]);
   }
 
@@ -29,6 +32,8 @@ class ProfileController extends Controller
     update() - Validate the fields on `profile.edit` template. If valid, update the user record on the database.
   */
   public function update(Request $request){
+    $filehelper = new FileHelper;
+
     $validator = Validator::make($request->all(), [
       'name' => 'required|max:255|string',
       'email' => [
@@ -38,7 +43,7 @@ class ProfileController extends Controller
     ])->validate();
 
     if($request->avatar_url && $request->avatar_url !== Auth::user()->avatar_url){
-      $this->copyDefaultImage($request->avatar_url, 'default_avatars', 'avatars');
+      $filehelper->copyDefaultImage($request->avatar_url, 'default_avatars', 'avatars');
     }
 
     Auth::user()->update([

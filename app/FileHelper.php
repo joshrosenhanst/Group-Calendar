@@ -12,7 +12,7 @@ class FileHelper {
 
     $directory - The directory to get files from. Must be a string folder name inside the storage/ directory. For example, 'default_avatars' will grab all images in the storage/default_avatars/ directory.
   */
-  protected function getImagesInDirectory($directory, $alt_prepend="Preview Image"){
+  public function getImagesInDirectory($directory, $alt_prepend="Preview Image"){
     $fs = new Filesystem();
 
     $images = collect();
@@ -57,7 +57,9 @@ class FileHelper {
     $destination_exists = Storage::disk('public')->exists($destination_directory.'/'.$filename);
 
     if($source_exists && !$destination_exists){
-      $file = new File('storage/app/public/'.$source_directory.'/'.$filename);
+      $filepath = storage_path('app/public/'.$source_directory.'/'.$filename);
+      //$file = new File('storage/app/public/'.$source_directory.'/'.$filename);
+      $file = new File($filepath);
       Storage::disk('public')->putFileAs($destination_directory, $file, $filename);
     }
   }
