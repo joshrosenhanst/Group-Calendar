@@ -13,6 +13,7 @@ use JavaScript;
 use Illuminate\Support\Carbon;
 use Validator;
 use Illuminate\Validation\Rule;
+use App\FileHelper;
 
 class EventController extends Controller
 {
