@@ -121,6 +121,13 @@ class Event extends Model
   }
 
   /*
+    getCityStateAttribute - Accessor method to print out the event's location city + state.
+  */
+  public function getCityStateAttribute(){
+    return $this->getLocationCityState();
+  }
+
+  /*
     creator() - Defines an inverse one-to-many relationship with the User model for the creator of this event.
   */
   public function creator(){
@@ -208,6 +215,14 @@ class Event extends Model
       ];
     }else{
       return (object) null;
+    }
+  }
+
+  public function getLocationCityState(){
+    if($this->location_place_id){
+      return $this->location_city.", ".$this->location_state;
+    }else{
+      return null;
     }
   }
 }

@@ -23,7 +23,7 @@
       {{-- Hidden Token --}}
       <input type="hidden" name="token" value="{{ $token }}">
 
-      <div class="form_section">
+      <div class="form_section form_section-top">
         {{-- Group Name --}}
         @component('partials.form_inline_static', [
           'label' => ['text' => 'Group']

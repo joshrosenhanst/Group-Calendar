@@ -20,7 +20,7 @@
       @method('PUT')
       @csrf
 
-      <div class="form_section">
+      <div class="form_section form_section-top">
         {{-- Group Name --}}
         @component('partials.form_inline_static', [
           'label' => ['text' => 'Group']

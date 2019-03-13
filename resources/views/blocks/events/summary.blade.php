@@ -15,9 +15,12 @@
     {{-- Event Location and Start Time --}}
     <div class="summary_location">
       @if($event->start_time_subtext)
-      <span>{{ $event->start_time_subtext }}</span> · <span>Brooklyn, NY</span>
-      @else
-      <span>Brooklyn, NY</span>
+        <span>{{ $event->start_time_subtext }}</span>
+        @if($event->city_state)
+        · <span>{{ $event->city_state }}</span>
+        @endif
+      @elseif($event->city_state)
+      <span>{{ $event->city_state }}</span>
       @endif
     </div>
 

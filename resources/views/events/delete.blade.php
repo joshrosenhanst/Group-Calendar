@@ -19,7 +19,7 @@
       @csrf
 
       {{--Event Details--}}
-      <div class="form_section event_card">
+      <div class="form_section form_section-top event_card">
 
         <div class="form_sub_header">
           <h1 class="sub_title">Event Details</h1>
@@ -36,13 +36,22 @@
           </div>
         </div>
   
+        @if($event->location_place_id)
         {{-- Event Location --}}
         <div class="event_detail">
           <div class="icon icon-full_size">@materialicon('map-marker')</div>
           <div class="detail_content">
-            1256 Franklin St<small>Brooklyn, NY 07747</small>
+            <div class="event_location_name">{{ $event->location_name }}</div>
+            <div class="event_location_address">{{ $event->location_formatted_address }}</div>
+            @if($event->location_map_url)
+            <a class="event_location_url" href="{{ $event->location_map_url }}" target="_blank">
+              <span class="icon is-small">@materialicon('google-maps')</span>
+              <span>Open Location in Google Maps</span>
+            </a>
+            @endif
           </div>
         </div>
+        @endif
   
         {{-- Event Group and Attendee count --}}
         <div class="event_detail">
@@ -58,37 +67,40 @@
           </div>
         </div>
 
-        <div class="event_card_section-description">
+      </div>
 
-          {{-- Event Description --}}
-          @isset($event->description)
-          <div class="description">
-            {{ $event->description }}
-          </div>
-          @endisset
+      <div class="form_section event_card">
+        
+          <div class="event_card_section-description">
 
-          <dl class="event_description_list">
-            {{--Created At timestamp --}}
-            <div class="description_list_group">
-              <dt>Created</dt>
-              <dd>
-                <span class="description_timestamp">{{ $event->created_at->format('m/d/Y h:i A') }}</span> by <a href="{{ route('users.view', ['user'=>$event->creator]) }}">{{ $event->creator->name }}</a>
-              </dd>
+              {{-- Event Description --}}
+              @isset($event->description)
+              <div class="description">
+                {{ $event->description }}
+              </div>
+              @endisset
+    
+              <dl class="event_description_list">
+                {{--Created At timestamp --}}
+                <div class="description_list_group">
+                  <dt>Created</dt>
+                  <dd>
+                    <span class="description_timestamp">{{ $event->created_at->format('m/d/Y h:i A') }}</span> by <a href="{{ route('users.view', ['user'=>$event->creator]) }}">{{ $event->creator->name }}</a>
+                  </dd>
+                </div>
+          
+                {{--Updated At timestamp --}}
+                @if($event->edited)
+                <div class="description_list_group">
+                  <dt>Updated</dt>
+                  <dd>
+                    <span class="description_timestamp">{{ $event->updated_at->format('m/d/Y h:i A') }}</span> by <a href="{{ route('users.view', ['user'=>$event->updater]) }}">{{ $event->updater->name }}</a>
+                  </dd>
+                </div>
+                @endif
+              </dl>
+    
             </div>
-      
-            {{--Updated At timestamp --}}
-            @if($event->edited)
-            <div class="description_list_group">
-              <dt>Updated</dt>
-              <dd>
-                <span class="description_timestamp">{{ $event->updated_at->format('m/d/Y h:i A') }}</span> by <a href="{{ route('users.view', ['user'=>$event->updater]) }}">{{ $event->updater->name }}</a>
-              </dd>
-            </div>
-            @endif
-          </dl>
-
-        </div>
-
       </div>
 
       <h2 class="form_confirmation">

@@ -33,13 +33,22 @@
         </div>
       </div>
 
+      @if($event->location_place_id)
       {{-- Event Location --}}
       <div class="event_detail">
         <div class="icon icon-full_size">@materialicon('map-marker')</div>
         <div class="detail_content">
-          <a href="#" title="View Location Map">1256 Franklin St<small>Brooklyn, NY 07747</small></a>
+          <div class="event_location_name">{{ $event->location_name }}</div>
+          <div class="event_location_address">{{ $event->location_formatted_address }}</div>
+          @if($event->location_map_url)
+          <a class="event_location_url" href="{{ $event->location_map_url }}" target="_blank">
+            <span class="icon is-small">@materialicon('google-maps')</span>
+            <span>Open Location in Google Maps</span>
+          </a>
+          @endif
         </div>
       </div>
+      @endif
 
       {{-- Event Group and Attendee count --}}
       <div class="event_detail">

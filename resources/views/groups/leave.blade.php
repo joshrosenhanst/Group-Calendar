@@ -20,7 +20,7 @@
       @method('PUT')
       @csrf
 
-      <div class="form_section event_card">
+      <div class="form_section form_section-top event_card">
 
         <div class="form_sub_header">
           <h1 class="sub_title">Group Details</h1>

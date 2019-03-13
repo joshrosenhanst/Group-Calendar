@@ -8,7 +8,7 @@
   <div class="mini_details">
     <a class="mini_name" href="{{ route('events.view', ['event'=>$event]) }}">{{ $event->name }}</a>
     <div class="mini_location">
-      Brooklyn, NY
+      {{ $event->city_state }}
     </div>
   </div>
 </div>
