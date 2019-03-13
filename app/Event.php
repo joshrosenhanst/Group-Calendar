@@ -18,7 +18,7 @@ use Illuminate\Support\Facades\Auth;
 class Event extends Model
 {
   protected $fillable = [
-    'name', 'group_id', 'creator_id', 'updater_id', 'header_url', 'description', 'start_date', 'start_time', 'end_date', 'end_time'
+    'name', 'group_id', 'creator_id', 'updater_id', 'header_url', 'description', 'start_date', 'start_time', 'end_date', 'end_time', 'location_place_id', 'location_name', 'location_formatted_address', 'location_city', 'location_state', 'location_map_url',
   ];
 
   protected $casts = [
@@ -191,5 +191,23 @@ class Event extends Model
   */
   public function scopePast($query){
     return $query->whereDate('start_date', '<', Carbon::today());
+  }
+
+  /*
+    getLocationArray() - Return an array of the location fields if they are set.
+  */
+  public function getLocationArray(){
+    if($this->location_place_id){
+      return [
+        'place_id' => $this->location_place_id,
+        'name' => $this->location_name,
+        'formatted_address' => $this->location_formatted_address,
+        'city' => $this->location_city,
+        'state' => $this->location_state,
+        'map_url' => $this->location_map_url
+      ];
+    }else{
+      return (object) null;
+    }
   }
 }

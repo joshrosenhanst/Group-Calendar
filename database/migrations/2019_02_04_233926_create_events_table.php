@@ -20,6 +20,12 @@ class CreateEventsTable extends Migration
             $table->unsignedInteger('group_id');
             $table->unsignedInteger('creator_id');
             $table->unsignedInteger('updater_id')->nullable();
+            $table->string('location_place_id')->nullable();
+            $table->string('location_name')->nullable();
+            $table->string('location_formatted_address')->nullable();
+            $table->string('location_city')->nullable();
+            $table->string('location_state')->nullable();
+            $table->string('location_map_url')->nullable();
             $table->string('header_url')->nullable();
             $table->string('description')->nullable();
             $table->date('start_date');

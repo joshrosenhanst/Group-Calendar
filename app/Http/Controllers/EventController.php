@@ -119,7 +119,13 @@ class EventController extends Controller
         'start_date' => $start_date,
         'start_time' => $start_time,
         'end_date' => $end_date,
-        'end_time' => $end_time
+        'end_time' => $end_time,
+        'location_place_id' => $request->input('location.place_id'),
+        'location_name' => $request->input('location.name'),
+        'location_formatted_address' => $request->input('location.formatted_address'),
+        'location_city' => $request->input('location.city'),
+        'location_state' => $request->input('location.state'),
+        'location_map_url' => $request->input('location.map_url'),
       ]);
 
       $group = \App\Group::find($request->group);
@@ -165,7 +171,8 @@ class EventController extends Controller
       JavaScript::put([
         'data' => [
           'showEndDate' => ( old('end_date',$event->end_date)?true:false ),
-          'events' => count($events) ? $events : (object) null, // AppDatepicker expects an object so we can't pass an empty php array
+          'events' => (count($events) ? $events : (object) null), // AppDatepicker expects an object so we can't pass an empty php array
+          'selected_location' => old('location', $event->getLocationArray()),
         ]
       ]);
       return view('events.edit', ['event'=>$event,'header_images'=>$header_images]);
@@ -179,6 +186,7 @@ class EventController extends Controller
 
       $validator = Validator::make($request->all(), [
         'name' => 'required',
+        'location.place_id' => 'required',
         'start_date' => 'required|date',
         'start_time' => [
           'nullable','string', function($attribute, $value, $fail){
@@ -225,7 +233,13 @@ class EventController extends Controller
         'start_date' => $start_date,
         'start_time' => $start_time,
         'end_date' => $end_date,
-        'end_time' => $end_time
+        'end_time' => $end_time,
+        'location_place_id' => $request->input('location.place_id'),
+        'location_name' => $request->input('location.name'),
+        'location_formatted_address' => $request->input('location.formatted_address'),
+        'location_city' => $request->input('location.city'),
+        'location_state' => $request->input('location.state'),
+        'location_map_url' => $request->input('location.map_url'),
       ]);
 
       //trigger "event updated" Event

@@ -68,18 +68,17 @@
       @include('partials.form_inline_group', [
         'label' => ['text' => 'Event Location'],
         'input' => [
-          'name' => 'location',
+          'name' => 'locationpicker',
           'type' => 'location',
-          'id' => 'location',
+          'id' => 'locationpicker',
           'placeholder' => 'Event Location',
-          'required' => true,
-          'old' => old('location')
+          'required' => true
         ],
         'icon' => [
           'align' => 'left',
           'name' => 'map-marker'
         ],
-        'help' => 'Select a location for the event from the Google Maps search results.',
+        'help' => 'Search for the event location by name or address.',
         'errors' => $errors->get('location.place_id')
       ])
 

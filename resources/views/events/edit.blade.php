@@ -42,6 +42,24 @@
         </span>
         <strong>{{ $event->group->name }}</strong>
       @endcomponent
+      
+      {{-- Location --}}
+      @include('partials.form_inline_group', [
+        'label' => ['text' => 'Event Location'],
+        'input' => [
+          'name' => 'locationpicker',
+          'type' => 'location',
+          'id' => 'locationpicker',
+          'placeholder' => 'Event Location',
+          'required' => true
+        ],
+        'icon' => [
+          'align' => 'left',
+          'name' => 'map-marker'
+        ],
+        'help' => 'Search for the event location by name or address.',
+        'errors' => $errors->get('location.place_id')
+      ])
 
       {{-- Start Date/Time --}}
       @include('partials.form_inline_group_multiple', [
@@ -197,6 +215,7 @@
 
 {{-- Include the page data variables injected by the controller and the page script which will create the Vue instance. --}}
 @section('page_scripts')
+  <script src="https://maps.googleapis.com/maps/api/js?key={{ env('GOOGLE_MAPS_API_KEY') }}&libraries=places"></script>
   @include('partials.pagedata')
   <script src="{{ asset('/js/pages/events/edit.js') }}"></script>
 @endsection
