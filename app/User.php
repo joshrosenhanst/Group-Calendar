@@ -175,7 +175,8 @@ class User extends Authenticatable
       foreach($group_events as $event){
         $start_date = Carbon::parse($event['start_date'])->toDateTimeString();
         $events[$start_date][] = [
-          'summary' => $event['name'].": ".$event['summary_date'],
+          'name' => $event['name'],
+          'summary' => $event['start_time_subtext'],
           'color' => $colors[$event['group_id']]
         ];
       }

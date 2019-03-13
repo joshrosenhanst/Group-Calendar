@@ -126,14 +126,26 @@
           padding-left: 1rem
           text-align: left
           li
-            .day_event_text
-              color: $text
+            display: flex
+            line-height: 1.1
+            &:not(:last-of-type)
+              margin-bottom: 4px
+            .day_event_info
+              flex-grow: 1
+              flex-shrink: 1
+              .day_event_name
+                color: $primary
+                font-weight: 700
+              .day_event_text
+                color: $text-light
+                font-size: 0.85rem
             &:before
               content: "•"
               color: inherit
-              display: inline-block
-              width: 1em
+              padding-right: 5px
               margin-left: -1em
+              flex-grow: 0
+              flex-shrink: 1
         .event_tooltip_header
           font-weight: 700
       .events_container

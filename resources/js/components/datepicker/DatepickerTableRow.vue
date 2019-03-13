@@ -27,7 +27,10 @@
                             :key="index"
                             :style="{ 'color': event.color }"
                         >
-                            <span class="day_event_text">{{ event.summary }}</span>
+                            <div class="day_event_info">
+                                <div class="day_event_name">{{ event.name }}</div>
+                                <div class="day_event_text">{{ event.summary }}</div>
+                            </div>
                         </li>
                     </ul>
                 </div>
