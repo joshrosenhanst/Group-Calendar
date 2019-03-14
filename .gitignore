@@ -4,6 +4,9 @@
 /public/css
 /public/js
 /storage/*.key
+/storage/app/public/avatars
+/storage/app/public/groups
+/storage/app/public/events
 /vendor
 /log
 .env
