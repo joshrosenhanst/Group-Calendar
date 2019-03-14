@@ -41,6 +41,7 @@ article#maincontent
   max-width: 100%
   +tablet
     margin-right: 15px
+    max-width: calc(100% - #{$sidebar-tablet-width} - 15px)
   +desktop
     max-width: calc(100% - #{$sidebar-width} - 15px)
   &.no_sidebar
