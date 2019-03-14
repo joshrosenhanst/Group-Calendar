@@ -46,18 +46,29 @@
       @endcan
     </div>
     {{-- List of Groups --}}
-    @foreach(Auth::user()->groups as $group)
-      @component('components.group.summary', ['group'=>$group])
-        @slot('links')
-        <div class="group_links">
-          <a href="{{ route('groups.view', ['group'=>$group]) }}" class="button button-link button-inverted">
-            <span class="icon">@materialicon('account-group')</span>
-            <span>Group Home Page</span>
-          </a>
-        </div>
-        @endslot
-      @endcomponent
-    @endforeach
+    @if(Auth::user()->groups->count())
+
+      @foreach(Auth::user()->groups as $group)
+        @component('components.group.summary', ['group'=>$group])
+          @slot('links')
+          <div class="group_links">
+            <a href="{{ route('groups.view', ['group'=>$group]) }}" class="button button-link button-inverted">
+              <span class="icon">@materialicon('account-group')</span>
+              <span>Group Home Page</span>
+            </a>
+          </div>
+          @endslot
+        @endcomponent
+      @endforeach
+
+    @else
+      <div class="card_section">
+        @component('components.empty', ['icon'=>'account-question'])
+          <div>No Groups</div>
+          <div class="sub_text">You do not belong to any groups. Groups are invite only.</div>
+        @endcomponent
+      </div>
+    @endif
 
   </div>
   

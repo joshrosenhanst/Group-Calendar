@@ -16,6 +16,8 @@
     </div>
 
       {{-- List of Groups --}}
+    @if(count($groups))
+
       @foreach($groups as $group)
       <div class="card_section">
         @component('components.group.summary', ['group'=>$group])
@@ -30,6 +32,15 @@
         @endcomponent
       </div>
       @endforeach
+
+    @else
+      <div class="card_section">
+        @component('components.empty', ['icon'=>'account-question'])
+          <div>No Groups</div>
+          <div class="sub_text">You do not belong to any groups. Groups are invite only.</div>
+        @endcomponent
+      </div>
+    @endif
 
   </div>
 
