@@ -77,10 +77,10 @@ Route::middleware('auth')->prefix('users')->name('users.')->group(function(){
 Route::middleware('auth')->prefix('profile')->name('profile.')->group(function(){
   Route::redirect('/','/home');
   Route::get('/edit','ProfileController@edit')->name('edit');
-  Route::get('/password','ProfileController@password')->name('password');
+  Route::get('/password','ProfileController@password')->middleware('check-demo')->name('password');
   
   Route::put('/update', 'ProfileController@update')->name('update');
-  Route::put('/updatePassword', 'ProfileController@updatePassword')->name('updatePassword');
+  Route::put('/updatePassword', 'ProfileController@updatePassword')->middleware('check-demo')->name('updatePassword');
 });
 
 /* Notifications */

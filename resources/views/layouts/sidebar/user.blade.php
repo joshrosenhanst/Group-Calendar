@@ -38,10 +38,12 @@
       <span class="icon">@materialicon('account-box')</span>
       <span>Edit Profile</span>
     </a>
+    @can('check-demo', Auth::user())
     <a href="{{ route('profile.password') }}" class="sidebar_link">
       <span class="icon">@materialicon('lock')</span>
       <span>Change Password</span>
     </a>
+    @endcan
     <a href="{{ route('logout') }}" class="sidebar_link">
       <span class="icon">@materialicon('logout')</span>
       <span>Log Out</span>

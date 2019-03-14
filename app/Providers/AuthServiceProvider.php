@@ -26,6 +26,8 @@ class AuthServiceProvider extends ServiceProvider
     {
         $this->registerPolicies();
 
-        //
+        Gate::define('check-demo', function($user){
+            return !$user->demo;
+        });
     }
 }
