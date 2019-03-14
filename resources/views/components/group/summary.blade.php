@@ -8,7 +8,14 @@
       <a href="{{ route('groups.view', ['group'=>$group]) }}" class="group_name">
         {{ $group->name }}
       </a>
+
       <div class="group_subtext"><strong>{{ trans_choice('messages.member_count',$group->users_count) }}</strong> · Created {{ $group->create_date }}</div>
+
+      <div class="group_subtext"><strong>{{ trans_choice('messages.upcoming_event_count',$group->upcoming_events->count()) }}</strong></div>
+
+      @isset($subtext)
+      {{ $subtext }}
+      @endisset
     </div>
     @isset($links)
     {{ $links }}

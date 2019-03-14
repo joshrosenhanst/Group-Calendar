@@ -11,6 +11,9 @@ Route::get('/logout', 'LoginController@logout')->name('logout');
 Route::get('/register', 'InviteController@register')->name('register')->middleware('guest');
 Route::put('/submitRegistration', 'InviteController@submitRegistration')->name('submitRegistration')->middleware('guest');
 
+/* Group Invitations List */
+Route::get('/invitations', 'InviteController@index')->name('invitations')->middleware('auth');
+
 /* 
   Groups:
   Group routes use policy middleware to check the Auth::user's privileges.

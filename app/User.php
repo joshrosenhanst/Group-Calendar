@@ -220,6 +220,13 @@ class User extends Authenticatable
     return $this->belongsToMany('App\Group')->withPivot(['role','created_at'])->withTimestamps();
   }
 
+  /* 
+    group_invites() - Defines a many-to-many relationship with Group model using the `group_invites` table.
+  */
+  public function group_invites(){
+    return $this->belongsToMany('App\Group','group_invites')->withPivot(['creator_id','created_at']);
+  }
+
   /*
     created_events() - Defines a one-to-many relationship with the Event model.
   */

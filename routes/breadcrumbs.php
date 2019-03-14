@@ -98,6 +98,13 @@ Breadcrumbs::for('groups.leave', function ($trail, $group) {
 });
 
 /* Group Invitations */
+
+// My Group Invitations
+Breadcrumbs::for('invitations', function ($trail) {
+  $trail->parent('home');
+  $trail->push('My Group invitations', route('invitations'));
+});
+
 Breadcrumbs::for('groups.invite', function ($trail, $group) {
   $trail->parent('groups.view', $group);
   $trail->push('Invite To Group', route('groups.invite', ['group'=>$group]));

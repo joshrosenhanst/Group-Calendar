@@ -17,6 +17,13 @@ use App\Notifications\UserDeclined;
 class InviteController extends Controller
 {
   /*
+    index() - Display the list of group invitations via view `invitations`.
+  */
+  public function index(){
+    return view('invitations', ['groups'=>Auth::user()->group_invites]);
+  }
+
+  /*
     invite() - Display the `groups.invite` view.
   */
   public function invite(\App\Group $group){
