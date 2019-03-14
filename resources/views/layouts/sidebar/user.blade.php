@@ -14,6 +14,12 @@
       <span class="icon">@materialicon('home')</span>
       <span>Dashboard</span>
     </a>
+    {{--Group Invites - check for number of invites--}}
+    <a href="{{ route('home') }}" class="sidebar_link">
+      <span class="icon">@materialicon('account-alert')</span>
+      <span>Invites</span>
+      <span class="badge">1</span>
+    </a>
     <a href="{{ route('events.index') }}" class="sidebar_link">
       <span class="icon">@materialicon('calendar-text')</span>
       <span>My Events</span>

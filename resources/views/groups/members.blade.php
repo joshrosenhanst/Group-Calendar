@@ -13,8 +13,12 @@
         <span class="icon">@materialicon('account-multiple')</span>
         <span>@lang('pages.groups.members.title')</span>
       </h1>
-      {{-- Note: replace with conditional guard check to show pages.groups.members.subtitle.admin text--}}
-      <div class="subtitle">@lang('pages.groups.members.subtitle')</div>
+      {{-- Page subtitle is based on Auth::user() priveleges --}}
+      @can('updateMember', $group)
+        <div class="subtitle">@lang('pages.groups.members.subtitle.admin')</div>
+      @elsecan('members', $group)
+        <div class="subtitle">@lang('pages.groups.members.subtitle')</div>
+      @endcan
 
       @if(session('status'))
         <status-alert class="alert-info" icon="alert-circle"

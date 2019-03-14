@@ -38,10 +38,12 @@
         <span class="icon">@materialicon('account-group')</span>
         <span>My Groups</span>
       </h2>
+      @can('new',App\Group::class)
       <a href="{{ route('groups.new') }}" class="button">
         <span class="icon">@materialicon('plus-circle')</span>
         <span>Create New Group</span>
       </a>
+      @endcan
     </div>
     {{-- List of Groups --}}
     @foreach(Auth::user()->groups as $group)

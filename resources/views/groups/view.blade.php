@@ -39,6 +39,7 @@
         v-bind:comments="comments"
         v-bind:user="user"
         title="Group Comments"
+        v-bind:user_admin="@json(Auth::user()->can('manageComments', $group))"
 
         v-on:create-comment="createComment"
         v-on:update-comment="updateComment"

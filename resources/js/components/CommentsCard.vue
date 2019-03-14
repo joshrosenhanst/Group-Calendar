@@ -10,7 +10,7 @@
       <comment-display
         v-for="comment in comments"
         v-bind:key="comment.id"
-        v-bind:show-form="(comment.user && user.id === comment.user.id)"
+        v-bind:show-form="(comment.user && user.id === comment.user.id) || user_admin"
         v-bind:is-open="(openCommentForm === comment.id)"
         v-bind:is-delete-open="(openDeleteForm === comment.id)"
         v-bind:comment="comment"
@@ -59,7 +59,12 @@ export default {
   components: {
     CommentDisplay, CommentForm
   },
-  props: ['comments','user','title'],
+  props: {
+    comments: Array,
+    user: Object,
+    title: String,
+    user_admin: Boolean
+  },
   methods: {
     createComment: function(event) {
       this.$emit('create-comment',event.text);

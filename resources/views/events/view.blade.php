@@ -120,6 +120,7 @@
       <comments-card
         v-bind:comments="comments"
         v-bind:user="user"
+        v-bind:user_admin="@json(Auth::user()->can('manageComments', $event->group))"
 
         v-on:create-comment="createComment"
         v-on:update-comment="updateComment"

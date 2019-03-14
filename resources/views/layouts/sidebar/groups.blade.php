@@ -1,3 +1,4 @@
+@can('new',App\Group::class)
 <div class="sidebar">
   
   <div class="sidebar_title">
@@ -15,3 +16,4 @@
   </div>
   
 </div>
+@endcan

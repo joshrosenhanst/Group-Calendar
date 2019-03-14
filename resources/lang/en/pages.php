@@ -26,8 +26,8 @@ return [
   'groups.view.title' => 'Group Details',
 
   'groups.members.title' => 'Group Members',
-  'groups.members.subtitle' => 'The list of active members for this group. You can invite new members to join the group.',
-  'groups.members.subtitle.admin' => "The list of active members for this group. You can invite new members to join the group. Admins can also change a member's status or remove a member.",
+  'groups.members.subtitle' => 'The list of active members for this group. Group admins invite new members to join the group.',
+  'groups.members.subtitle.admin' => "The list of active members for this group. You can invite new members to join the group. You can also change a member's status or remove a member.",
 
   'groups.events.title' => 'Group Events',
   'groups.events.subtitle' => 'The list of upcoming and past events in this group.',
