@@ -13,22 +13,23 @@
         <span class="icon">@materialicon('account-group')</span>
         <span>@lang('pages.groups.index.title')</span>
       </h1>
-      <div class="subtitle">@lang('pages.groups.index.subtitle')</div>
     </div>
 
-    {{-- List of Groups --}}
-    @foreach($groups as $group)
-      @component('components.group.summary', ['group'=>$group])
-        @slot('links')
-        <div class="group_links">
-          <a href="{{ route('groups.view', ['group'=>$group]) }}" class="button button-link button-inverted">
-            <span class="icon">@materialicon('account-group')</span>
-            <span>View</span>
-          </a>
-        </div>
-        @endslot
-      @endcomponent
-    @endforeach
+      {{-- List of Groups --}}
+      @foreach($groups as $group)
+      <div class="card_section">
+        @component('components.group.summary', ['group'=>$group])
+          @slot('links')
+          <div class="group_links">
+            <a href="{{ route('groups.view', ['group'=>$group]) }}" class="button button-link button-inverted">
+              <span class="icon">@materialicon('account-group')</span>
+              <span>Group Home Page</span>
+            </a>
+          </div>
+          @endslot
+        @endcomponent
+      </div>
+      @endforeach
 
   </div>
 

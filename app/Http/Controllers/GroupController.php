@@ -18,8 +18,7 @@ class GroupController extends Controller{
     index() - Display the `groups.list` page template.
   */
   public function index() {
-    $groups = Auth::user()->groups()->get();
-    return view('groups.index', ['groups'=>$groups]);
+    return view('groups.index', ['groups'=>Auth::user()->groups]);
   }
 
   /*

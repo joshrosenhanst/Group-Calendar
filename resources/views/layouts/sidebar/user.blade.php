@@ -17,8 +17,12 @@
     {{--Group Invites - check for number of invites--}}
     <a href="{{ route('home') }}" class="sidebar_link">
       <span class="icon">@materialicon('account-alert')</span>
-      <span>Invites</span>
+      <span>Group Invites</span>
       <span class="badge">1</span>
+    </a>
+    <a href="{{ route('groups.index') }}" class="sidebar_link">
+      <span class="icon">@materialicon('account-group')</span>
+      <span>My Groups</span>
     </a>
     <a href="{{ route('events.index') }}" class="sidebar_link">
       <span class="icon">@materialicon('calendar-text')</span>

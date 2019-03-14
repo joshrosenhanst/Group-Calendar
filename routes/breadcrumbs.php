@@ -32,9 +32,10 @@ Breadcrumbs::for('users.view', function ($trail, $user) {
 
 /* GROUPS */
 // My Groups
-/*Breadcrumbs::for('groups.index', function ($trail) {
+Breadcrumbs::for('groups.index', function ($trail) {
+  $trail->parent('home');
   $trail->push('My Groups', route('groups.index'));
-});*/
+});
 
 // Home / New Group
 Breadcrumbs::for('groups.new', function ($trail) {
