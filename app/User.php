@@ -224,7 +224,7 @@ class User extends Authenticatable
     group_invites() - Defines a many-to-many relationship with Group model using the `group_invites` table.
   */
   public function group_invites(){
-    return $this->belongsToMany('App\Group','group_invites')->withPivot(['creator_id','created_at']);
+    return $this->belongsToMany('App\Group','group_invites')->withPivot(['creator_id','created_at'])->using('App\GroupInvites');
   }
 
   /*

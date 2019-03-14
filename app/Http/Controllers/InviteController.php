@@ -20,6 +20,7 @@ class InviteController extends Controller
     index() - Display the list of group invitations via view `invitations`.
   */
   public function index(){
+    Auth::user()->loadMissing('group_invites.pivot.inviter');
     return view('invitations', ['groups'=>Auth::user()->group_invites]);
   }
 

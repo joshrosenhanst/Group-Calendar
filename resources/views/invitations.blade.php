@@ -26,7 +26,12 @@
 
           @if($group->pivot->created_at)
             @slot('subtext')
-      <div class="group_subtext">Invited {{ $group->pivot->created_at->diffForHumans() }} by Inviter</div>
+              <div class="group_subtext">
+                Invited {{ $group->pivot->join_date }} 
+                @if($group->pivot->inviter)
+                by <a href="{{ route('users.view', ['user'=>$group->pivot->inviter]) }}">{{ $group->pivot->inviter->name }}</a>
+                @endif
+              </div>
             @endslot
           @endif
 
@@ -35,6 +40,10 @@
             <a href="{{ route('groups.invites.join', ['group'=>$group]) }}" class="button button-link button-inverted">
               <span class="icon">@materialicon('account-group')</span>
               <span>Join Group</span>
+            </a>
+            <a href="{{ route('groups.invites.decline', ['group'=>$group]) }}" class="button button-danger button-inverted">
+              <span class="icon">@materialicon('account-remove')</span>
+              <span>Decline</span>
             </a>
           </div>
           @endslot

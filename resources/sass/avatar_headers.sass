@@ -67,11 +67,12 @@
     .group_links
       display: flex
       flex-wrap: wrap
+      justify-content: flex-end
       +tablet
         margin-left: auto
       .button
-        &:not(:first-of-type)
-          margin-left: -1px
+        flex: 1 1 0
+        margin: 1px
     .group_avatar_image
       width: 150px
       height: 150px
