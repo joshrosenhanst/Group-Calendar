@@ -7,7 +7,7 @@
   @csrf
 
   <header class="card_header">
-    <h1>Group Calendar Login</h1>
+    <h1>GroupCalendar Login</h1>
   </header>
   <section class="card_section">
     @include('partials.form_group', [
