@@ -1,12 +1,20 @@
-#login_form
+#login_form.card
   margin: 40px auto
   max-width: 500px
   width: 100%
-  .card_header h1
-    justify-content: center
+  border-bottom-left-radius: $radius
+  border-bottom-right-radius: $radius
+  .card_header 
+    border-top-left-radius: $radius
+    border-top-right-radius: $radius
+    h1
+      justify-content: center
   .card_body
     padding: 0 20px
+  .card_section
+    border: 1px solid $card-border-color
   .button_group
+    display: flex
     flex-direction: column
     justify-content: center
     align-items: center
