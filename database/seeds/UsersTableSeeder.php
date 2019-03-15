@@ -48,10 +48,13 @@ class UsersTableSeeder extends Seeder
 			$movie_group->users()->save($user);
 			$concert_group->users()->save($user);
 
+			$groups = [$movie_group->id, $concert_group->id];
+			$random_group_comment = $groups[array_rand($groups)];
+
 			//create a comment on the group's page
 			$comment = factory(App\Comment::class)->create([
 				'user_id' => $user->id,
-				'commentable_id' => array_rand([$movie_group->id, $concert_group->id]),
+				'commentable_id' => $random_group_comment,
 				'commentable_type' => App\Group::class
 			]);
 		});
