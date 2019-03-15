@@ -6,8 +6,13 @@
     text-align: center
     flex-direction: column
     padding: 10px
-    border: 1px solid $card-border-color
     margin-bottom: -1px
+    +until($tablet)
+      border-width: 1px 0
+      border-style: solid
+      border-color: $card-border-color
+    +tablet
+      border: 1px solid $card-border-color
     .sidebar_avatar_image, .card_avatar_image
       border-radius: 50%
       overflow: hidden
