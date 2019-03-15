@@ -5,11 +5,12 @@
 @section('content')
 
 <main id="landing_hero">
-  <div id="stripes">
-    <div class="stripe_1 stripe"></div>
-    <div class="stripe_2 stripe"></div>
-    <div class="stripe_3 stripe"></div>
-    <div class="stripe_4 stripe"></div>
+  <div id="bg_tiles">
+    <div class="tile"></div>
+    <div class="tile"></div>
+    <div class="tile"></div>
+    <div class="tile"></div>
+    <div class="tile"></div>
   </div>
   @include("layouts.header_external")
 
@@ -20,6 +21,11 @@
       <div class="hero_subtitle">GroupCalendar helps you organize your friends, colleagues, movie lovers, concert goers, and everyone in between into private groups so that you can plan upcoming events together.</div>
 
       <a href="/demo" class="button button-large button-link">Try a Demo</a>
+    </div>
+    <div class="hero_image screen_sample">
+      <div class="tablet_wrapper">
+        <img src="{{ asset('img/event_sample2.jpg') }}" alt="GroupCalendar sample on tablet">
+      </div>
     </div>
   </section>
 </main>
