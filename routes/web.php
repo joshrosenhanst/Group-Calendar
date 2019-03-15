@@ -61,7 +61,7 @@ Route::middleware('auth')->prefix('events/')->name('events.')->group(function(){
   Route::get('/new','EventController@new')->middleware('can:new,App\Event')->name('new');
   Route::get('/{event}','EventController@event_redirect')->name('view');
 
-  Route::put('/create', 'EventController@create')->middleware('can:new,App\Group')->name('create');
+  Route::put('/create', 'EventController@create')->middleware('can:new,App\Event')->name('create');
   Route::put('/{event}/attend','EventController@attend')->name('attend');
   Route::put('/{event}/update', 'EventController@update')->middleware('can:update,event')->name('update');
   Route::delete('/{event}/delete', 'EventController@destroy')->middleware('can:destroy,event')->name('destroy');
