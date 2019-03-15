@@ -58,9 +58,10 @@ class FileHelper {
 
     if($source_exists && !$destination_exists){
       $filepath = storage_path('app/public/'.$source_directory.'/'.$filename);
-      //$file = new File('storage/app/public/'.$source_directory.'/'.$filename);
       $file = new File($filepath);
       Storage::disk('public')->putFileAs($destination_directory, $file, $filename);
     }
+
+    return $filename;
   }
 }
