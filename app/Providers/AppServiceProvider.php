@@ -5,6 +5,7 @@ namespace App\Providers;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\Blade;
 use Mdi\Mdi;
+use Illuminate\Support\Facades\Auth;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -26,6 +27,13 @@ class AppServiceProvider extends ServiceProvider
         Mdi::withIconsPath(base_path('node_modules/@mdi/svg/svg/'));
         Blade::directive('materialicon', function($expression){
             return "<?php echo(Mdi\Mdi::mdi($expression)); ?>";
+        });
+
+        /*
+            @demo - check if the authenticated user is a demo account.
+        */
+        Blade::if('demo', function(){
+            return Auth::user()->demo;
         });
     }
 

@@ -26,6 +26,13 @@
 
     </div>
   </div>
+
+  @demo
+  <status-alert class="alert-info" icon="alert-circle">
+    <strong>Demo Mode: </strong> Demo user accounts can create and attend events but they can't join or leave groups. Email notifications are also disabled in Demo Mode.
+  </status-alert>
+  @enddemo
+
   @include('blocks.upcoming_events', [
     'title' => 'My Upcoming Events',
     'events_route' => route('events.index'),
