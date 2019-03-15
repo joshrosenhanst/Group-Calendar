@@ -56,7 +56,7 @@
     @if(Auth::user()->groups->count())
 
       @foreach(Auth::user()->groups as $group)
-        @component('components.group.summary', ['group'=>$group])
+        @component('components.group.summary', ['group'=>$group, 'mini'=>true])
           @slot('links')
           <div class="group_links">
             <a href="{{ route('groups.view', ['group'=>$group]) }}" class="button button-link button-inverted">
