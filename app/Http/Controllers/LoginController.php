@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Foundation\Auth\ThrottlesLogins;
+use Validator;
 
 class LoginController extends Controller{
   use ThrottlesLogins;
@@ -19,16 +20,26 @@ class LoginController extends Controller{
   /*
     authenticate() - Login form submission via POST request.
     Validate the login input fields and check the ThrottlesLogin trait login attempts.
+    Check if the user account exists and is not a demo account.
     Attempt the login credentials, if successful redirect to the intended route (fallback to /home). If the login fails, redirect to the login page with a login failed error and the old input.
   */
   public function authenticate(Request $request){
     $credentials = $request->only('email', 'password');
     $remember = $request->only('remember');
 
-    $validate = $request->validate([
+    $validator = Validator::make($request->all(), [
       'email' => 'required|string|email',
       'password' => 'required|string',
     ]);
+
+    $validator->after(function($validator) use ($request){
+      $user_account = \App\User::where('email',$request->email)->first();
+      if($user_account && $user_account->demo){
+        $validator->errors()->add('email', 'Unable to log into demo account. Use the Try a Demo link instead.');
+      }
+    });
+
+    $validator->validate();
 
     if($this->hasTooManyLoginAttempts($request)) {
       $this->fireLockoutEvent($request);
