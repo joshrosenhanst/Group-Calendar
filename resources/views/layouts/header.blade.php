@@ -1,4 +1,4 @@
-<header id="site_header">
+<header id="site_header" @guest class="mobile_header" @endif>
   <nav class="navbar" role="navigation" aria-label="main navigation">
     <div class="navbar_left">
       <a href="/" class="navbar_logo navbar_item" title="GroupCalendar">
@@ -33,8 +33,8 @@
     </div>
     @else
     <div class="navbar_right">
-      <a href="{{ route('login') }}" class="navbar_item">Login</a>
-      <a href="{{ route('demo') }}" class="navbar_item">Try a Demo</a>
+      <a href="{{ route('login') }}" class="navbar_item navbar_item-show_mobile">Login</a>
+      <a href="{{ route('demo') }}" class="navbar_item navbar_item-show_mobile">Try a Demo</a>
     </div>
     @endif
   </nav>

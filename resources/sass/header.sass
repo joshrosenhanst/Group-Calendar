@@ -18,7 +18,7 @@
     display: flex
     flex: 1 1 auto
     justify-content: flex-end
-    .navbar_item
+    .navbar_item:not(.navbar_item-show_mobile)
       display: none
       +tablet
         display: flex
@@ -78,3 +78,17 @@
       width: 32px
       height: 32px
       fill: $danger
+
+.mobile_header
+  +until($mobile)
+    .navbar
+      flex-wrap: wrap
+      .navbar_left
+        justify-content: center
+      .navbar_right
+        border-top: 1px solid $navbar-border
+        .navbar_item
+          flex-grow: 1
+          flex-basis: 50%
+          justify-content: center
+          
