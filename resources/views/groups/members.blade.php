@@ -54,7 +54,9 @@
       {{-- List of Members --}}
       <member-list
         v-bind:members="members"
+        @can('updateMember',$group)
         v-bind:show_controls="true"
+        @endcan
         v-on:update-member="updateMember"
         v-on:remove-member="removeMember"
         type="members"
@@ -78,7 +80,6 @@
       {{-- List of Invited Users --}}
       <member-list
         v-bind:members="invited"
-        v-bind:show_controls="false"
         type="invited"
       ></member-list>
 
