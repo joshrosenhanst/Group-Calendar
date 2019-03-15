@@ -139,6 +139,13 @@
     padding: 0
   .card_list
     padding: 0
+    &.card_list-mini
+      +tablet
+        display: grid
+        grid-template-columns: 1fr 1fr
+        .list_item
+          border-right: 1px solid $card-border-color
+          margin-right: -1px
     .item_icon
       display: flex
       align-items: center

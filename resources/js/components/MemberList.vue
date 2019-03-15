@@ -1,5 +1,8 @@
 <template>
-<div class="card_section card_list" v-if="members.length">
+<div class="card_section card_list"
+  :class="{ 'card_list-mini': !show_controls }"
+  v-if="members.length"
+>
 
   <div class="list_item list_item-large_thumbnails"
     v-for="member in members"
