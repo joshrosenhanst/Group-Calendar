@@ -29,19 +29,32 @@
     </div>
 
     {{-- List of Groups --}}
-    @foreach($user->groups as $group)
-      @component('components.group.summary', ['group'=>$group])
-        @slot('links')
-        {{-- Check if auth::user has view access on group --}}
-        <div class="group_links">
-          <a href="{{ route('groups.view', ['group'=>$group]) }}" class="button button-link button-inverted">
-            <span class="icon">@materialicon('account-group')</span>
-            <span>Group Home Page</span>
-          </a>
-        </div>
-        @endslot
-      @endcomponent
-    @endforeach
+    @if($user->groups->count())
+
+      @foreach($user->groups as $group)
+        @component('components.group.summary', ['group'=>$group])
+          @slot('links')
+          {{-- Check if auth::user has view access on group --}}
+          <div class="group_links">
+            <a href="{{ route('groups.view', ['group'=>$group]) }}" class="button button-link button-inverted">
+              <span class="icon">@materialicon('account-group')</span>
+              <span>Group Home Page</span>
+            </a>
+          </div>
+          @endslot
+        @endcomponent
+      @endforeach
+
+    @else
+
+      <div class="card_section">
+        @component('components.empty', ['icon'=>'account-question'])
+          <div>No Groups</div>
+          <div class="sub_text">The user doesn't belong to any groups.</div>
+        @endcomponent
+      </div>
+
+    @endif
 
   </div>
 </article>
