@@ -19,7 +19,6 @@
 </head>
 <body>
 
-  {{-- remove vue js #app and script --}}
   <div id="app">
     @include('layouts.header')
     <main id="app-body">
