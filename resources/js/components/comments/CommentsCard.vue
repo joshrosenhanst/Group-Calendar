@@ -47,8 +47,8 @@
 </template>
 
 <script>
-import CommentDisplay from './comments/CommentDisplay.vue';
-import CommentForm from './comments/CommentForm.vue';
+import CommentDisplay from './CommentDisplay.vue';
+import CommentForm from './CommentForm.vue';
 export default {
   data: function(){
     return {

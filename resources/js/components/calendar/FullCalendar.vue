@@ -23,8 +23,8 @@
 </template>
 
 <script>
-import CalendarMixin from './calendar/CalendarMixin.js';
-import CalendarMonth from './calendar/CalendarMonth.vue';
+import CalendarMixin from './CalendarMixin.js';
+import CalendarMonth from './CalendarMonth.vue';
 export default {
   data: function(){
     return {

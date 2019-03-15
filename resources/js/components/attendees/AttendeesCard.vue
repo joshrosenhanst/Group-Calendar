@@ -31,7 +31,7 @@
 </template>
 
 <script>
-import { status_text } from '../lang/status.js';
+import { status_text } from '../../lang/status.js';
 export default {
   data: function(){
     return {

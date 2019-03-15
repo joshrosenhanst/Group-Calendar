@@ -40,7 +40,7 @@
 </template>
 
 <script>
-import { status_icons,status_text } from '../lang/status.js';
+import { status_icons,status_text } from '../../lang/status.js';
 export default {
   mounted(){
     console.log('AttendeeStatus mounted.');

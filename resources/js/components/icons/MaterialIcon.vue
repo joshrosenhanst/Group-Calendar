@@ -13,7 +13,7 @@
 </template>
 
 <script>
-import Icons from '../icons.js';
+import Icons from '../../icons.js';
 export default {
   data: function() {
     return {

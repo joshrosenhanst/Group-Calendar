@@ -65,8 +65,8 @@
 </template>
 
 <script>
-import MemberForm from './members/MemberForm.vue';
-import MemberRemoveForm from './members/MemberRemoveForm.vue';
+import MemberForm from './MemberForm.vue';
+import MemberRemoveForm from './MemberRemoveForm.vue';
 export default {
   data: function(){
     return {
