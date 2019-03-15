@@ -50,7 +50,7 @@
 
       {{-- Recent Members --}}
       @include('blocks.groups.recent_members', [
-        'members'=>$group->users
+        'members'=>$group->users->take(6)
       ])
     </aside>
   </div>

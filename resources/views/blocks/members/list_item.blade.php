@@ -4,6 +4,6 @@
   </a>
   <div class="preview_name">
     <a href="{{ route('users.view', ['user'=>$user]) }}">{{ $user->name }}</a>
-    <small class="subtext">{{ $user->join_date }}</small>
+    <small class="subtext">Joined {{ $user->join_date }}</small>
   </div>
 </div>
