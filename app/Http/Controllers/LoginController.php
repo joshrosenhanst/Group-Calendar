@@ -67,12 +67,6 @@ class LoginController extends Controller{
     home() - Redirect the user to the `groups.view` route if they have 1 group, or the `groups.list` otherwise.
   */
   public function home(){
-    /*$groups = Auth::user()->groups()->with(['events.comments'])->get();
-    if($groups->count() === 1){
-      return redirect()->route('groups.view', ['group'=>$groups->first()]);
-    }else{
-      return redirect()->route('groups.index');
-    }*/
     return view('home');
   }
 
@@ -83,8 +77,17 @@ class LoginController extends Controller{
     return view('landing');
   }
 
+  /*
+    demo() - Put a logged out user into demo mode by grabbing a random demo account and logging them in.
+  */
   public function demo(){
     //enable demo mode
+    $user = \App\User::where("demo","1")->inRandomOrder()->first();
+
+    // log them in as the random user
+    Auth::login($user);
+
+    return redirect()->route('home')->with('status','You have been logged in to a random demo account.');
   }
 
   /*
