@@ -51,6 +51,7 @@ Route::middleware('auth')->prefix('groups/{group}/events')->name('groups.events.
   Route::get('/new','EventController@new')->middleware('can:newEvent,group')->name('new');
 
   Route::get('/{event}','EventController@view')->middleware('can:viewEvent,group')->name('view');
+  Route::get('/{event}/flyer','EventController@flyer')->name('flyer');
   Route::get('/{event}/edit','EventController@edit')->middleware('can:edit,event')->name('edit');
   Route::get('/{event}/delete','EventController@delete')->middleware('can:delete,event')->name('delete');
 });

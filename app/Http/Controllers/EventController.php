@@ -34,6 +34,10 @@ class EventController extends Controller
     }
   }
 
+  public function flyer(\App\Group $group, \App\Event $event){
+    return view('events.flyer', ['event'=>$event]);
+  }
+
   /*
     index() - Display the `events.index` page template.
   */

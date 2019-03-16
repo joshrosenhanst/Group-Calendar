@@ -24,6 +24,7 @@ a
     text-decoration: underline
 
 img
+  display: block
   height: auto
   max-width: 100%
 
@@ -39,34 +40,34 @@ strong
   padding: 15px 0
   border-top-left-radius: $card-border-radius
   border-top-right-radius: $card-border-radius
-  .header_logo
-    font-size: $size-large
-    font-weight: 400
-    color: $white
-    text-decoration: none
-    svg
-      width: 32px
-      height: 32px
-      fill: $danger
-      color: $danger
+
+#pdf_footer
+  background-color: $navbar-background
+  border-bottom-left-radius: $card-border-radius
+  border-bottom-right-radius: $card-border-radius
+  height: 6px
+  
+.header_logo
+  color: $white
+  display: block
+  img
+    margin: 0 auto
 
 #pdf_main
   max-width: 800px
   background-color: $card-background
-  box-shadow: $card-box-shadow
-
-.card_border
-  padding: 5px
-  background-color: $primary
-  &.card_border-top
+  margin: 15px auto
 
 #header_image
   height: 320px
   background-size: cover
   background-position: center
+  border-left: 1px solid $card-border-color
+  border-right: 1px solid $card-border-color
 
 #event_details
   padding: 15px
+  border: 1px solid $card-border-color
 
 #event_title
   font-size: $size-large
@@ -74,24 +75,26 @@ strong
   color: $primary
   margin-bottom: 15px
 
+.event_icon
+  float: left
+  width: 32px
+  height: 32px
+  margin-top: 2px
+
+.detail_content
+  float: left
+  width: 90%
+  font-size: $size-medium
+  margin-left: 10px
+  small
+    font-size: $size-normal
+    color: $text-light
+    display: block
+
 .event_detail
   margin-bottom: 15px
   line-height: 24px
-  &>.icon
-    width: 32px
-    height: 32px
-    color: $text-light
-    margin-right: 10px
-    margin-top: 2px
-    float: left
-  .detail_content
-    font-size: $size-medium
-    text-align: left
-    float: left
-    small
-      font-size: $size-normal
-      color: $text-light
-      display: block
+  overflow: hidden
   .event_location_address
     color: $text-light
     font-size: $size-normal
