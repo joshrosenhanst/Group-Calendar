@@ -62,7 +62,7 @@
               <option
                 v-for="minute in minutes"
                 :key="minute.label"
-                :value="minute.label"
+                :value="minute.value"
               >
                 {{ minute.label }}
               </option>
@@ -159,9 +159,10 @@ export default {
     },
     minutes(){
       const minutes = [];
-      for(let i=0; i<60; i+=this.incrementMinutes){
+      for(let i=1; i<61; i+=this.incrementMinutes){
         minutes.push({
-          label: this.formatNumber(i)
+          label: this.formatNumber(i),
+          value: i
         });
       }
       return minutes;
