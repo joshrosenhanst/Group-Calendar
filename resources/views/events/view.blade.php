@@ -53,7 +53,9 @@
       {{-- Event Group and Attendee count --}}
       <div class="event_detail">
         <div class="icon icon-full_size">@materialicon('account-group')</div>
-        <div class="detail_content">
+        <div class="detail_content"
+          v-bind:class="{ 'detail_content-mid': !(event.going_attendees_count || event.interested_attendees_count) }"
+        >
           <a href="{{ route('groups.view', ['group'=>$event->group]) }}">{{ $event->group->name }}</a>
           <small>
             <a href="#attendees" class="seperated_count" title="View Event Attendees">
@@ -63,6 +65,16 @@
           </small>
         </div>
       </div>
+
+      @if($event->flyer)
+      {{-- Event Flyer Link --}}
+      <div class="event_detail">
+        <div class="icon icon-full_size">@materialicon('file-download')</div>
+        <div class="detail_content detail_content-mid">
+          <a href="{{ asset($event->flyer) }}" download="GroupCalendar Event Flyer.pdf">Download Event Flyer PDF</a>
+        </div>
+      </div>
+      @endif
 
       {{-- User Attendee Status --}}
       <attendee-status 

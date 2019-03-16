@@ -26,10 +26,11 @@ class EventController extends Controller
       $pdf = PDF::loadView('events.flyer', [
         'event' => $event
       ]);
-      $filepath = $pdf->save(storage_path('app/public/flyers/event_'.$event->id.'.pdf'));
+      $filename = 'event_flyer_'.$event->id.'.pdf';
+      $pdf->save(storage_path('app/public/flyers/'.$filename));
     
       $event->update([
-        'flyer_url' => $filepath
+        'flyer_url' => $filename
       ]);
     }
   }
