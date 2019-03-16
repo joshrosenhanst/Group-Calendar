@@ -22,12 +22,12 @@ class CreateEventsTable extends Migration
             $table->unsignedInteger('updater_id')->nullable();
             $table->string('location_place_id')->nullable();
             $table->string('location_name')->nullable();
-            $table->string('location_formatted_address')->nullable();
+            $table->text('location_formatted_address')->nullable();
             $table->string('location_city')->nullable();
             $table->string('location_state')->nullable();
             $table->string('location_map_url')->nullable();
             $table->string('header_url')->nullable();
-            $table->string('description')->nullable();
+            $table->text('description')->nullable();
             $table->date('start_date');
             $table->time('start_time')->nullable();
             $table->date('end_date')->nullable();
