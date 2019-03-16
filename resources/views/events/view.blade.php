@@ -70,14 +70,20 @@
         v-on:update="updateStatus"
       ></attendee-status>
     </div>
-    <div class="card_section event_card_section-description">
 
-      {{-- Event Description --}}
-      @isset($event->description)
-      <div class="description">
-        {{ $event->description }}
-      </div>
-      @endisset
+    <div class="card_section event_card_section-description">
+        {{-- Event Description --}}
+        @if($event->description)
+        <div class="event_detail">
+          <div class="icon icon-full_size">@materialicon('text')</div>
+          <div class="detail_content">
+            {!! nl2br(e($event->description)) !!}
+          </div>
+        </div>
+        @endif
+    </div>
+
+    <div class="card_section event_card_section-description">
 
       {{-- Event Creator / Link --}}
       <dl class="event_description_list">

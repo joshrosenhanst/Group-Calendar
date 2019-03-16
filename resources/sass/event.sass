@@ -14,8 +14,9 @@
     margin-bottom: 15px
   .event_detail
     display: flex
-    margin-bottom: 15px
     line-height: 24px
+    &:not(:last-of-type)
+      margin-bottom: 15px
     .seperated_count
       color: $text-light
       span:not(:only-of-type):not(:last-of-type)::after
