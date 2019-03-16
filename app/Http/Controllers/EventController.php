@@ -15,6 +15,7 @@ use Validator;
 use Illuminate\Validation\Rule;
 use App\FileHelper;
 use PDF;
+use Illuminate\Support\Str;
 
 class EventController extends Controller
 {
@@ -26,12 +27,11 @@ class EventController extends Controller
       $pdf = PDF::loadView('events.flyer', [
         'event' => $event
       ]);
-      $filename = 'event_flyer_'.$event->id.'.pdf';
+      $token = (string) Str::uuid();
+      $filename = $token.'.pdf';
       $pdf->save(storage_path('app/public/flyers/'.$filename));
     
-      $event->update([
-        'flyer_url' => $filename
-      ]);
+      return $filename;
     }
   }
 
@@ -132,7 +132,7 @@ class EventController extends Controller
     $end_date =  $request->end_date ? Carbon::parse($request->end_date)->toDateString(): null;
     $end_time = $request->end_time ? Carbon::parse($request->end_time)->toTimeString() : null;
 
-    $event = \App\Event::create([
+    $event = new \App\Event([
       'name' => $request->name,
       'header_url' => $request->header_url,
       'creator_id' => Auth::user()->id,
@@ -150,7 +150,9 @@ class EventController extends Controller
       'location_map_url' => $request->input('location.map_url'),
     ]);
 
-    $this->generate_flyer_pdf($event);
+    $event->flyer_url = $this->generate_flyer_pdf($event);
+
+    $event->save();
 
     $group = \App\Group::find($request->group);
 
@@ -182,7 +184,10 @@ class EventController extends Controller
     ]);
 
     if(!$event->flyer){
-      $this->generate_flyer_pdf($event);
+      $event->timestamps = false;
+      $event->flyer_url = $this->generate_flyer_pdf($event);
+      $event->save();
+      $event->timestamps = true;
     }
 
     return view('events.view', ['event'=>$event]);
@@ -252,8 +257,8 @@ class EventController extends Controller
     $start_time = $request->start_time ? Carbon::parse($request->start_time)->toTimeString() : null;
     $end_date =  $request->end_date ? Carbon::parse($request->end_date)->toDateString(): null;
     $end_time = $request->end_time ? Carbon::parse($request->end_time)->toTimeString() : null;
-
-    $event->update([
+    
+    $event->fill([
       'name' => $request->name,
       'header_url' => $request->header_url,
       'updater_id' => Auth::user()->id,
@@ -269,8 +274,9 @@ class EventController extends Controller
       'location_state' => $request->input('location.state'),
       'location_map_url' => $request->input('location.map_url'),
     ]);
+    $event->flyer_url = $this->generate_flyer_pdf($event);
 
-    $this->generate_flyer_pdf($event);
+    $event->save();
 
     //trigger "event updated" Event
     // notify the group that an event was updated

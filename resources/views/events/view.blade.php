@@ -83,17 +83,17 @@
       ></attendee-status>
     </div>
 
+    @if($event->description)
     <div class="card_section event_card_section-description">
         {{-- Event Description --}}
-        @if($event->description)
         <div class="event_detail">
           <div class="icon icon-full_size">@materialicon('text')</div>
           <div class="detail_content">
             {!! nl2br(e($event->description)) !!}
           </div>
         </div>
-        @endif
     </div>
+    @endif
 
     <div class="card_section event_card_section-description">
 
@@ -117,7 +117,7 @@
         </div>
 
         {{--Updated At timestamp --}}
-        @if($event->edited)
+        @if($event->edited && $event->updater)
         <div class="description_list_group">
           <dt>Updated</dt>
           <dd>

@@ -16,7 +16,7 @@
       </a>
     </header>
 
-    <section id="header_image" style="background-image: url({{ asset($event->header) }})">
+    <section id="header_image" style="background-image: url({{ $event->header_url ? asset('storage/events/'.$event->header_url) : asset('img/default_event_header.png') }})">
     </section>
 
     <section id="event_details">
@@ -40,6 +40,15 @@
         <div class="detail_content">
           <div class="event_location_name">{{ $event->location_name }}</div>
           <div class="event_location_address">{{ $event->location_formatted_address }}</div>
+
+          @if($event->location_map_url)
+          <a href="{{ $event->location_map_url }}" id="map_preview_link">
+            <img id="map_preview_image" src="https://maps.googleapis.com/maps/api/staticmap?maptype=roadmap&size=640x256&center={{ urlencode($event->location_formatted_address) }}&key={{ env('GOOGLE_MAPS_API_KEY') }}" alt="Event Location Google Map preview">
+          </a>
+          @else
+          <img id="map_preview_image" src="https://maps.googleapis.com/maps/api/staticmap?maptype=roadmap&size=640x256&center={{ urlencode($event->location_formatted_address) }}&key={{ env('GOOGLE_MAPS_API_KEY') }}" alt="Event Location Google Map preview">
+          @endif
+          
         </div>
       </div>
       @endif
@@ -57,19 +66,6 @@
       @endisset
 
     </section>
-
-    @if($event->location_place_id)
-    <section id="map_preview">
-      @if($event->location_map_url)
-      <a href="{{ $event->location_map_url }}" id="map_preview_link">
-        <img id="map_preview_image" src="https://maps.googleapis.com/maps/api/staticmap?maptype=roadmap&size=640x256&center={{ urlencode($event->location_formatted_address) }}&key={{ env('GOOGLE_MAPS_API_KEY') }}" alt="Event Location Google Map preview">
-      </a>
-      @else
-      <img id="map_preview_image" src="https://maps.googleapis.com/maps/api/staticmap?maptype=roadmap&size=640x256&center={{ urlencode($event->location_formatted_address) }}&key={{ env('GOOGLE_MAPS_API_KEY') }}" alt="Event Location Google Map preview">
-      @endif
-    </section>
-    @endif
-
     <footer id="pdf_footer"></footer>
   </main>
 </body>
