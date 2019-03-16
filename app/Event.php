@@ -18,7 +18,7 @@ use Illuminate\Support\Facades\Auth;
 class Event extends Model
 {
   protected $fillable = [
-    'name', 'group_id', 'creator_id', 'updater_id', 'header_url', 'description', 'start_date', 'start_time', 'end_date', 'end_time', 'location_place_id', 'location_name', 'location_formatted_address', 'location_city', 'location_state', 'location_map_url',
+    'name', 'group_id', 'creator_id', 'updater_id', 'header_url', 'description', 'start_date', 'start_time', 'end_date', 'end_time', 'location_place_id', 'location_name', 'location_formatted_address', 'location_city', 'location_state', 'location_map_url', 'flyer_url'
   ];
 
   protected $casts = [
@@ -51,11 +51,25 @@ class Event extends Model
     return ($this->end_date && $this->start_date->toDateString() !== $this->end_date->toDateString());
   }
 
+  /*
+    getHeaderAttribute() - Accessor method to retun the full url of the event's header or a default image.
+  */
   public function getHeaderAttribute(){
     if($this->header_url){
       return 'storage/events/'.$this->header_url;
     }else{
       return 'img/default_event_header.png';
+    }
+  }
+
+  /*
+    getFlyerAttribute() - Accessor method to retun the full url of the event's flyer, if it is set.
+  */
+  public function getFlyerAttribute(){
+    if($this->flyer_url){
+      return 'storage/flyers/'.$this->flyer_url;
+    }else{
+      return null;
     }
   }
 

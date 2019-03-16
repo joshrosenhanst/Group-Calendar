@@ -32,6 +32,7 @@ class CreateEventsTable extends Migration
             $table->time('start_time')->nullable();
             $table->date('end_date')->nullable();
             $table->time('end_time')->nullable();
+            $table->string('flyer_url')->nullable();
             $table->timestamps();
         });
     }
@@ -45,6 +46,7 @@ class CreateEventsTable extends Migration
     {
         $fs = new Filesystem();
         $fs->cleanDirectory('storage/app/public/events');
+        $fs->cleanDirectory('storage/app/public/flyers');
         Schema::dropIfExists('events');
     }
 }

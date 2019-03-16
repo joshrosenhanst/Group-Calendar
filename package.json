@@ -22,7 +22,6 @@
         "vue-template-compiler": "^2.6.1"
     },
     "dependencies": {
-        "@mdi/svg": "^3.4.93",
-        "buefy": "^0.7.3"
+        "@mdi/svg": "^3.4.93"
     }
 }

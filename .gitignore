@@ -7,6 +7,8 @@
 /storage/app/public/avatars
 /storage/app/public/groups
 /storage/app/public/events
+/storage/app/public/flyers
+/storage/app/temp
 /vendor
 /log
 .env
