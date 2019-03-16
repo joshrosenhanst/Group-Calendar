@@ -58,9 +58,17 @@
 
     </section>
 
-    <section id="map_image">
-      Map goes here
+    @if($event->location_place_id)
+    <section id="map_preview">
+      @if($event->location_map_url)
+      <a href="{{ $event->location_map_url }}" id="map_preview_link">
+        <img id="map_preview_image" src="https://maps.googleapis.com/maps/api/staticmap?maptype=roadmap&size=640x256&center={{ urlencode($event->location_formatted_address) }}&key={{ env('GOOGLE_MAPS_API_KEY') }}" alt="Event Location Google Map preview">
+      </a>
+      @else
+      <img id="map_preview_image" src="https://maps.googleapis.com/maps/api/staticmap?maptype=roadmap&size=640x256&center={{ urlencode($event->location_formatted_address) }}&key={{ env('GOOGLE_MAPS_API_KEY') }}" alt="Event Location Google Map preview">
+      @endif
     </section>
+    @endif
 
     <footer id="pdf_footer"></footer>
   </main>
