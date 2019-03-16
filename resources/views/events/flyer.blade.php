@@ -50,8 +50,8 @@
         <div class="event_icon">
           <img src="{{ asset('img/flyer/text.png') }}" alt="Text Icon">
         </div>
-        <div class="detail_content description" style="margin-bottom:0px;">
-          {{ $event->description }}
+        <div class="detail_content" style="margin-bottom:0px;">
+          {!! nl2br(e($event->description)) !!}
         </div>
       </div>
       @endisset
