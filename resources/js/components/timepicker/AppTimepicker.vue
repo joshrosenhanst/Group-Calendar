@@ -220,7 +220,7 @@ export default {
     getTimeFromDate(date){
       let hour = date.getHours();
       let minute = date.getMinutes();
-      let ampm = hour > 12 ? "PM" : "AM";
+      let ampm = hour < 12 ? "AM" : "PM";
 
       return {hour,minute,ampm};
     },
