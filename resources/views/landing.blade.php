@@ -10,7 +10,6 @@
     <div class="tile"></div>
     <div class="tile"></div>
     <div class="tile"></div>
-    <div class="tile"></div>
   </div>
   @include("layouts.header_external")
 

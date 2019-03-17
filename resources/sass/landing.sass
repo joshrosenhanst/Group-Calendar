@@ -2,6 +2,9 @@
 $gradient-top-left: darken(saturate(adjust-hue($primary, -10deg), 2.5%), 2.5%)
 $gradient-bottom-right: lighten(saturate(adjust-hue($primary, 10deg), 2.5%), 2.5%)
 
+$button-gradient-top-left: darken(saturate(adjust-hue($link, -10deg), 2.5%), 2.5%)
+$button-gradient-bottom-right: lighten(saturate(adjust-hue($link, 10deg), 2.5%), 2.5%)
+
 #bg_tiles
   width: 100%
   height: 100%
@@ -13,50 +16,38 @@ $gradient-bottom-right: lighten(saturate(adjust-hue($primary, 10deg), 2.5%), 2.5
   z-index: 10
   .tile
     position: absolute
-    height: 100%
-    &:first-child
+    height: 200%
+    bottom: 0
+    &:nth-child(1)
       left: 0
-      bottom: 0
+      width: 100%
       background-color: $primary
-      width: 75%
       +tablet
-        bottom: -40px
+        background-color: $gradient-top-left
         width: 25%
     &:nth-child(2)
-      left: 75%
-      bottom: 0
-      background-color: $primary
+      display: none
       width: 25%
+      left: 25%
+      bottom: -40px
+      background-color: lighten($primary, 5%)
       +tablet
-        background-color: lighten($primary, 1%)
-        left: 25%
-        width: 25%
+        display: block
     &:nth-child(3)
       display: none
+      width: 25%
+      left: 50%
+      background-color: $primary
+      +tablet
+        display: block
+    &:nth-child(4)
+      display: none
+      width: 25%
+      left: 75%
+      bottom: -40px
       background-color: $gradient-bottom-right
       +tablet
         display: block
-        width: 25%
-        height: 300px
-        bottom: -40px
-        left: 50%
-    &:nth-child(4)
-      display: none
-      background-color: $primary
-      +tablet
-        display: block
-        width: 25%
-        left: 50%
-        bottom: 210px
-        height: 350px
-    &:nth-child(5)
-      background-color: $gradient-top-left
-      display: none
-      +tablet
-        display: block
-        width: 25%
-        left: 75%
-        bottom: 25%
 
 .screen_sample
   transform: rotate(-4deg)
@@ -75,7 +66,6 @@ $gradient-bottom-right: lighten(saturate(adjust-hue($primary, 10deg), 2.5%), 2.5
   
 #landing_hero
   background-color: $primary
-  //background-image: linear-gradient(141deg, $gradient-top-left 0%, $primary 12%, $gradient-bottom-right 100%)
   position: relative
   #site_header
     border-bottom: 0
@@ -120,17 +110,22 @@ $gradient-bottom-right: lighten(saturate(adjust-hue($primary, 10deg), 2.5%), 2.5
       text-shadow: 1px 1px 2px rgba(10, 10, 10, 0.75)
     .button
       display: inline-flex
-      font-size: $size-large
+      font-size: $size-medium
       text-shadow: none
       padding: 15px 30px
       margin-top: 15px
       border: 2px solid darken($link, 2.5%)
+      background-image: linear-gradient($button-gradient-top-left 0%, $link 71%, $button-gradient-bottom-right 100%)
+      &:hover
+        background-image: none
     +tablet
       .hero_body
         padding: 4rem 15px
       .hero_title
         font-size: 3.5rem
       .hero_subtitle
+        font-size: $size-large
+      .button
         font-size: $size-large
 
 
