@@ -29,4 +29,24 @@
   </section>
 </main>
 
+<section id="promos">
+  
+  <div class="promo_item">
+    <div class="promo_image">
+      <img src="{{ asset('img/event_sample2.jpg') }}" alt="Promotional Image">
+    </div>
+    <div class="promo_content">
+      <h2 class="promo_title">Plan</h2>
+      <div class="promo_info">
+        GroupCalendar makes it easy to plan upcoming events with the calendar date selection tool that shows conflicting events in your other groups. 
+      </div>
+      <blockquote class="promo_quote">
+        <p class="quote_text">"We can be heroes."</p>
+        <footer class="quote_source">&mdash; David Bowie, on planning a costume party</footer>
+      </blockquote>
+    </div>
+  </div>
+
+</section>
+
 @endsection

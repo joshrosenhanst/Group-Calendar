@@ -67,6 +67,7 @@ $button-gradient-bottom-right: lighten(saturate(adjust-hue($link, 10deg), 2.5%),
 #landing_hero
   background-color: $primary
   position: relative
+  margin-bottom: 200px
   #site_header
     border-bottom: 0
     padding: 15px 0
@@ -128,4 +129,51 @@ $button-gradient-bottom-right: lighten(saturate(adjust-hue($link, 10deg), 2.5%),
       .button
         font-size: $size-large
 
+#promos
+  +container
+  .promo_item
+    padding: 60px 15px
+    +tablet
+      display: flex
+    .promo_image
+      margin-bottom: 15px
+      +tablet
+        flex: 3 1 0
+        margin-bottom: 0
+      img
+        display: block
+        margin: 0 auto
+        box-shadow: 1px 1px 4px rgba($black, 0.25)
+    .promo_content
+      font-size: $size-medium
+      +tablet
+        font-size: 2rem
+        flex: 2 1 0
+        margin-left: 25px
+      .promo_title
+        font-weight: 700
+        border-bottom: 4px solid $primary
+        color: $primary
+        font-size: 2.5rem
+        +tablet
+          font-size: 3rem
+      .promo_info
+        padding: 15px 0
+        +tablet
+          padding: 30px 0
+      .promo_quote
+        border-top: 1px solid $text-light
+        border-bottom: 1px solid $text-light
+        padding: 20px 0
+        .quote_text
+          color: $grey
+          font-family: Georgia, 'Times New Roman', Times, serif
+          +tablet
+            font-size: 2rem
+        .quote_source
+          color: $text-light
+          font-style: italic
+          font-size: $size-normal
+          +tablet
+            font-size: $size-medium
 
