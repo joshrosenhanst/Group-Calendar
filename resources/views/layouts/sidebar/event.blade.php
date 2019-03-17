@@ -1,3 +1,4 @@
+@can('edit', $event)
 <div class="sidebar">
   
   <div class="sidebar_title">
@@ -16,3 +17,4 @@
   </div>
   
 </div>
+@endcan
