@@ -30,10 +30,10 @@
 </main>
 
 <section id="promos">
-  
+
   <div class="promo_item">
     <div class="promo_image">
-      <img src="{{ asset('img/event_sample2.jpg') }}" alt="Promotional Image">
+      <img src="{{ asset('img/datepicker_sample2.jpg') }}" alt="Promotional Image">
     </div>
     <div class="promo_content">
       <h2 class="promo_title">Plan</h2>
