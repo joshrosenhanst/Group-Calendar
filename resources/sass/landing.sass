@@ -14,6 +14,8 @@ $button-gradient-bottom-right: lighten(saturate(adjust-hue($link, 10deg), 2.5%),
   position: absolute
   top: 0
   z-index: 10
+  +tablet
+    top: -30px
   .tile
     position: absolute
     height: 200%
@@ -69,7 +71,7 @@ $button-gradient-bottom-right: lighten(saturate(adjust-hue($link, 10deg), 2.5%),
   position: relative
   margin-bottom: 45px
   +tablet
-    margin-bottom: 200px
+    margin-bottom: 120px
   #site_header
     border-bottom: 0
     padding: 15px 0
@@ -146,7 +148,7 @@ $button-gradient-bottom-right: lighten(saturate(adjust-hue($link, 10deg), 2.5%),
         .promo_content
           margin-right: 25px
     .promo_image
-      margin-bottom: 15px
+      margin-bottom: 25px
       +tablet
         flex: 3 1 0
         margin-bottom: 0
@@ -154,6 +156,7 @@ $button-gradient-bottom-right: lighten(saturate(adjust-hue($link, 10deg), 2.5%),
         display: block
         margin: 0 auto
         box-shadow: 1px 1px 4px rgba($black, 0.25)
+        border-radius: 6px
     .promo_content
       font-size: $size-medium
       +tablet
@@ -176,7 +179,7 @@ $button-gradient-bottom-right: lighten(saturate(adjust-hue($link, 10deg), 2.5%),
         padding: 20px 0
         .quote_text
           color: $grey
-          font-family: Georgia, 'Times New Roman', Times, serif
+          font-family: 'Merriweather', 'Georgia', 'Times New Roman', Times, serif
           +tablet
             font-size: 2rem
         .quote_source
@@ -193,11 +196,20 @@ $button-gradient-bottom-right: lighten(saturate(adjust-hue($link, 10deg), 2.5%),
     padding: 30px 15px
     +tablet
       padding: 60px 30px
+  .logo_icon
+    color: $danger
+    margin-right: 4px
+    +tablet
+      height: 4rem
+      width: 4rem
   h2
     color: $primary
     border-bottom: 4px solid $primary
     font-weight: 700
     font-size: $size-large
+    display: flex
+    justify-content: center
+    align-items: center
     +tablet
       font-size: 3rem
   p
