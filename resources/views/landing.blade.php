@@ -33,7 +33,7 @@
 
   <div class="promo_item">
     <div class="promo_image">
-      <img src="{{ asset('img/datepicker_sample2.jpg') }}" alt="Promotional Image">
+      <img src="{{ asset('img/datepicker_sample2.jpg') }}" alt="Promotional Image - Datepicker">
     </div>
     <div class="promo_content">
       <h2 class="promo_title">Plan</h2>
@@ -47,6 +47,49 @@
     </div>
   </div>
 
+  <div class="promo_item">
+    <div class="promo_image">
+      <img src="{{ asset('img/datepicker_sample2.jpg') }}" alt="Promotional Image - Commetns">
+    </div>
+    <div class="promo_content">
+      <h2 class="promo_title">Collaborate</h2>
+      <div class="promo_info">
+        All group members can leave comments and set their attendance status on events. GroupCalendar also features robust notifications, so you can get quick feedback on your events.
+      </div>
+      <blockquote class="promo_quote">
+        <p class="quote_text">"Stop, collaborate and listen."</p>
+        <footer class="quote_source">&mdash; Vanilla Ice, on working together to create great events</footer>
+      </blockquote>
+    </div>
+  </div>
+
+  <div class="promo_item">
+    <div class="promo_image">
+      <img src="{{ asset('img/datepicker_sample2.jpg') }}" alt="Promotional Image - Commetns">
+    </div>
+    <div class="promo_content">
+      <h2 class="promo_title">Customize</h2>
+      <div class="promo_info">
+        Make your event stand out with customizable header images and beautifully designed PDF flyers available for each event.
+      </div>
+      <blockquote class="promo_quote">
+        <p class="quote_text">"Hey, Good Lookin'"</p>
+        <footer class="quote_source">&mdash; Hank Williams, on finding the perfect look for an event</footer>
+      </blockquote>
+    </div>
+  </div>
+
 </section>
 
+<section id="call_to_action">
+  <div class="action_item">
+    <h2>Try GroupCalendar Today</h2>
+    <p>The Demo mode of GroupCalendar will log you into a random test account so that you can try out the app today. Demo accounts can create events, set their attendance status, and comment on events in their demo groups. Some functionality including email notifications are disabled for the demo.</p>
+    <a href="{{ route('demo') }}" class="button button-link">Try a Demo</a>
+  </div>
+</section>
+
+<footer id="landing_footer">
+
+</footer>
 @endsection
