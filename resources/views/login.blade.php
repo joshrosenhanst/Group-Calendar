@@ -51,7 +51,6 @@
     ])
     <div class="button_group">
       <button type="submit" class="button button-link">Login</button>
-      <a href="#">Forgot Your Password?</a>
     </div>
   </section>
 </form>
