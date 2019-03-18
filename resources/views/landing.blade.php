@@ -23,7 +23,7 @@
     </div>
     <div class="hero_image screen_sample">
       <div class="tablet_wrapper">
-        <img src="{{ asset('img/event_sample2.jpg') }}" alt="GroupCalendar sample on tablet">
+        <img src="{{ asset('img/event_sample3.jpg') }}" alt="GroupCalendar sample on tablet">
       </div>
     </div>
   </section>
