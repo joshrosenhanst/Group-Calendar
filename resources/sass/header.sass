@@ -80,7 +80,14 @@
       fill: $danger
 
 .mobile_header
-  +until($mobile)
+  +until($tablet)
+    .navbar
+      .navbar_item
+        line-height: 1.2
+        padding: 10px
+      .navbar_image
+        display: none
+  +until(500px)
     .navbar
       flex-wrap: wrap
       .navbar_left
