@@ -28,7 +28,7 @@
       {{-- Event Date --}}
       <div class="event_date event_detail">
         <span class="icon icon-full_size">@materialicon('calendar')</span>
-        <div class="detail_content">
+        <div class="detail_content detail_content-mid">
           {{ $event->summary_date }}
         </div>
       </div>
