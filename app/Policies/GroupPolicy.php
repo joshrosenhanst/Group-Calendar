@@ -57,8 +57,6 @@ class GroupPolicy
     Used for the following routes:
       - groups.view
       - groups.members
-      - groups.leave
-      - groups.leaveGroup
       - groups.events
       - groups.events.new
       - ajax.groups.createComment
@@ -83,16 +81,23 @@ class GroupPolicy
     return $this->isInGroup($user,$group);
   }
 
-  public function leave(User $user, Group $group){
+  public function createComment(User $user, Group $group){
     return $this->isInGroup($user,$group);
+  }
+
+  /* 
+    Leave Group: only non-demo, group members can leave the group.
+    Used for:
+      - groups.leave
+      - groups.leaveGroup
+  */
+
+  public function leave(User $user, Group $group){
+    return $this->isInGroup($user,$group) && !$user->demo;
   }
 
   public function leaveGroup(User $user, Group $group){
-    return $this->isInGroup($user,$group);
-  }
-
-  public function createComment(User $user, Group $group){
-    return $this->isInGroup($user,$group);
+    return $this->isInGroup($user,$group) && !$user->demo;
   }
 
   /*
