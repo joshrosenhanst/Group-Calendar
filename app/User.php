@@ -47,7 +47,7 @@ class User extends Authenticatable
     if($this->avatar_url){
       return 'storage/avatars/'.$this->avatar_url;
     }else{
-      return 'img/default_user_avatar.png';
+      return 'img/default_user_avatar.jpg';
     }
   }
   

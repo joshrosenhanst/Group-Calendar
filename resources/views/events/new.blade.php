@@ -187,7 +187,7 @@
           'id' => 'header_url',
           'old' => old('header_url'),
           'value' => null,
-          'default_image' => '/img/default_event_header.png',
+          'default_image' => '/img/default_event_header.jpg',
           'directory' => 'default_headers'
         ],
         'images' => $header_images,

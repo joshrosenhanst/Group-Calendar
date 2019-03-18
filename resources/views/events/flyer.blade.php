@@ -16,7 +16,7 @@
       </a>
     </header>
 
-    <section id="header_image" style="background-image: url({{ $event->header_url ? asset('storage/events/'.$event->header_url) : asset('img/default_event_header.png') }})">
+    <section id="header_image" style="background-image: url({{ $event->header_url ? asset('storage/events/'.$event->header_url) : asset('img/default_event_header.jpg') }})">
     </section>
 
     <section id="event_details">

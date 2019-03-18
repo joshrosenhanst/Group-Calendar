@@ -44,7 +44,7 @@ class Group extends Model
     if($this->avatar_url){
       return 'storage/avatars/'.$this->avatar_url;
     }else{
-      return 'img/default_user_avatar.png';
+      return 'img/default_user_avatar.jpg';
     }
   }
 
@@ -52,7 +52,7 @@ class Group extends Model
     if($this->header_url){
       return 'storage/groups/'.$this->header_url;
     }else{
-      return 'img/default_group_avatar.png';
+      return 'img/default_group_avatar.jpg';
     }
   }
 

@@ -6,7 +6,7 @@
         <img v-bind:src="`/${comment.user.avatar}`" v-bind:alt="`${comment.user.name} Avatar`">
       </a>
       <span v-else class="preview_thumbnail">
-        <img src="/img/default_user_avatar.png" alt="Default User Avatar">
+        <img src="/img/default_user_avatar.jpg" alt="Default User Avatar">
       </span>
     </div>
     <div class="comment_body">
