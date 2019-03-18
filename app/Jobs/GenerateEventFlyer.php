@@ -48,8 +48,12 @@ class GenerateEventFlyer implements ShouldQueue
       $pdf = PDF::loadView('events.flyer', [
         'event' => $event
       ]);
-      $token = (string) Str::uuid();
-      $filename = $token.'.pdf';
+      if($event->flyer_url){
+        $filename = $event->flyer_url;
+      }else{
+        $token = (string) Str::uuid();
+        $filename = $token.'.pdf';
+      }
       $pdf->save(storage_path('app/public/flyers/'.$filename));
     
       return $filename;
