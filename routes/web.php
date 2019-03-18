@@ -33,7 +33,7 @@ Route::middleware('auth')->prefix('groups')->name('groups.')->group(function(){
   Route::get('/{group}/invite','InviteController@invite')->middleware('can:invite,group')->name('invite');
 
   Route::put('/create', 'GroupController@create')->middleware('can:create,App\Group')->name('create');
-  Route::put('/{group}/update', 'GroupController@update')->middleware('can:update,App\Group')->name('update');
+  Route::put('/{group}/update', 'GroupController@update')->middleware('can:update,group')->name('update');
   Route::put('/{group}/leaveGroup','GroupController@leaveGroup')->middleware('can:leaveGroup,group')->name('leaveGroup');
 
   Route::put('/{group}/createInvite', 'InviteController@createInvite')->middleware('can:createInvite,group')->name('invites.createInvite');
