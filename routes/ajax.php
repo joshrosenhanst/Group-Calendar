@@ -15,6 +15,8 @@ Route::middleware('auth')->prefix('notifications/')->name('notifications.')->gro
 
 /* EVENTS */
 Route::middleware('auth')->prefix('events/')->name('events.')->group(function(){
+  Route::get('/{event}','EventController@getEvent')->middleware('can:view,event')->name('getEvent');
+
   /* Attendees */
   Route::put('/{event}/attend','EventController@attend')->middleware('can:attend,event')->name('attend');
 

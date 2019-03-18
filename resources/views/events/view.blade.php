@@ -66,12 +66,24 @@
         </div>
       </div>
 
-      @if($event->flyer)
+      @if($event->flyer_url || $event->flyer_processing)
       {{-- Event Flyer Link --}}
       <div class="event_detail">
         <div class="icon icon-full_size">@materialicon('file-download')</div>
         <div class="detail_content detail_content-mid">
-          <a href="{{ asset($event->flyer) }}" download="GroupCalendar Event Flyer.pdf">Download Event Flyer PDF</a>
+
+          <div class="loading_text"
+            v-if="event.flyer_processing"
+          >
+            <span class="icon is-loading"></span> Loading Event Flyer PDF...
+          </div>
+          <template v-else>
+            <a download="GroupCalendar Event Flyer.pdf" 
+              v-if="event.flyer_url"
+              :href="'/storage/flyers/' + event.flyer_url"
+            >Download Event Flyer PDF</a>
+          </template>
+
         </div>
       </div>
       @endif

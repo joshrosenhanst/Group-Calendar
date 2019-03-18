@@ -75,6 +75,14 @@ class EventPolicy
   }
 
   /*
+    view($user,$event) - Users can view event details if they are a member of the group.
+  */
+  public function view(User $user, Event $event){
+    $event->loadMissing('group');
+    return ($event->group && $user->can('viewEvent', $event->group));
+  }
+
+  /*
     createComment($user,$event) - Users can only comment on events if they are in the event's group.
   */
   public function createComment(User $user, Event $event){

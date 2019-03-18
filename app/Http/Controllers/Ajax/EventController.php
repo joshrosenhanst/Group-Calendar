@@ -9,6 +9,17 @@ use Illuminate\Support\Facades\Auth;
 class EventController extends Controller
 {
   /*
+    getEvent() - Return an array with the event model details and comments.
+  */
+  public function getEvent(Request $request, \App\Event $event){
+    $event->loadMissing(['comments.user','attendees']);
+    return response()->json([
+      'event' => $event->makeHidden('comments')->toArray(),
+      'comments' => $event->comments
+    ]);
+  }
+
+  /*
     attend() - Set or update a user's attendance status for an event. Return an array of attendance information:
     - user_status: the user's attendance status
     - going_attendees_count: number of attendees marked as `going`,

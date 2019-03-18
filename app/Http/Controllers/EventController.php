@@ -134,6 +134,7 @@ class EventController extends Controller
       'location_state' => $request->input('location.state'),
       'location_map_url' => $request->input('location.map_url'),
       'location_coordinates' => $request->input('location.coordinates'),
+      'flyer_processing' => true
     ]);
 
     // create the event flyer via queue job
@@ -252,6 +253,7 @@ class EventController extends Controller
       'location_state' => $request->input('location.state'),
       'location_map_url' => $request->input('location.map_url'),
       'location_coordinates' => $request->input('location.coordinates'),
+      'flyer_processing' => true
     ]);
     
     // update the event flyer via queue job

@@ -18,12 +18,13 @@ use Illuminate\Support\Facades\Auth;
 class Event extends Model
 {
   protected $fillable = [
-    'name', 'group_id', 'creator_id', 'updater_id', 'header_url', 'description', 'start_date', 'start_time', 'end_date', 'end_time', 'location_place_id', 'location_name', 'location_formatted_address', 'location_city', 'location_state', 'location_map_url', 'location_coordinates', 'flyer_url'
+    'name', 'group_id', 'creator_id', 'updater_id', 'header_url', 'description', 'start_date', 'start_time', 'end_date', 'end_time', 'location_place_id', 'location_name', 'location_formatted_address', 'location_city', 'location_state', 'location_map_url', 'location_coordinates', 'flyer_url', 'flyer_processing'
   ];
 
   protected $casts = [
     'start_date' => 'date:Y-m-d',
     'end_date' => 'date:Y-m-d',
+    'flyer_processing' => 'boolean'
   ];
 
   protected $appends = ['user_status','summary_date','start_time_subtext'];

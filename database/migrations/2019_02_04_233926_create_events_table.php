@@ -34,6 +34,7 @@ class CreateEventsTable extends Migration
             $table->date('end_date')->nullable();
             $table->time('end_time')->nullable();
             $table->string('flyer_url')->nullable();
+            $table->boolean('flyer_processing')->default(false);
             $table->timestamps();
         });
     }

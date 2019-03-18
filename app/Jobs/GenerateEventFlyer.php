@@ -39,6 +39,7 @@ class GenerateEventFlyer implements ShouldQueue
     if($pdf_filename && Storage::disk('public')->exists('flyers/'.$pdf_filename)){
       $this->event->timestamps = false;
       $this->event->flyer_url = $pdf_filename;
+      $this->event->flyer_processing = false;
       $this->event->save();
     }
   }

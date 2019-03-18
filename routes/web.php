@@ -60,7 +60,7 @@ Route::middleware('auth')->prefix('groups/{group}/events')->name('groups.events.
 Route::middleware('auth')->prefix('events/')->name('events.')->group(function(){
   Route::get('/','EventController@index')->name('index');
   Route::get('/new','EventController@new')->middleware('can:new,App\Event')->name('new');
-  Route::get('/{event}','EventController@event_redirect')->name('view');
+  Route::get('/{event}','EventController@event_redirect')->middleware('can:view,event')->name('view');
 
   Route::put('/create', 'EventController@create')->middleware('can:new,App\Event')->name('create');
   Route::put('/{event}/attend','EventController@attend')->name('attend');
