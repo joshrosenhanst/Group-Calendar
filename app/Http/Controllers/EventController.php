@@ -16,25 +16,10 @@ use Illuminate\Validation\Rule;
 use App\FileHelper;
 use PDF;
 use Illuminate\Support\Str;
+use App\Jobs\GenerateEventFlyer;
 
 class EventController extends Controller
 {
-  /*  
-    generate_flyer_pdf($event) - Generate a PDF with the details of the event and update the event's `flyer_url`. This will overwrite the existing PDF file if it already exists.
-  */
-  private function generate_flyer_pdf($event){
-    if($event){
-      $pdf = PDF::loadView('events.flyer', [
-        'event' => $event
-      ]);
-      $token = (string) Str::uuid();
-      $filename = $token.'.pdf';
-      $pdf->save(storage_path('app/public/flyers/'.$filename));
-    
-      return $filename;
-    }
-  }
-
   public function flyer(\App\Group $group, \App\Event $event){
     return view('events.flyer', ['event'=>$event]);
   }
@@ -132,7 +117,7 @@ class EventController extends Controller
     $end_date =  $request->end_date ? Carbon::parse($request->end_date)->toDateString(): null;
     $end_time = $request->end_time ? Carbon::parse($request->end_time)->toTimeString() : null;
 
-    $event = new \App\Event([
+    $event = \App\Event::create([
       'name' => $request->name,
       'header_url' => $request->header_url,
       'creator_id' => Auth::user()->id,
@@ -148,11 +133,11 @@ class EventController extends Controller
       'location_city' => $request->input('location.city'),
       'location_state' => $request->input('location.state'),
       'location_map_url' => $request->input('location.map_url'),
+      'location_coordinates' => $request->input('location.coordinates'),
     ]);
 
-    $event->flyer_url = $this->generate_flyer_pdf($event);
-
-    $event->save();
+    // create the event flyer via queue job
+    GenerateEventFlyer::dispatch($event);
 
     $group = \App\Group::find($request->group);
 
@@ -182,13 +167,6 @@ class EventController extends Controller
         'comments' => $event->comments
       ]
     ]);
-
-    if(!$event->flyer){
-      $event->timestamps = false;
-      $event->flyer_url = $this->generate_flyer_pdf($event);
-      $event->save();
-      $event->timestamps = true;
-    }
 
     return view('events.view', ['event'=>$event]);
   }
@@ -258,7 +236,7 @@ class EventController extends Controller
     $end_date =  $request->end_date ? Carbon::parse($request->end_date)->toDateString(): null;
     $end_time = $request->end_time ? Carbon::parse($request->end_time)->toTimeString() : null;
     
-    $event->fill([
+    $event->update([
       'name' => $request->name,
       'header_url' => $request->header_url,
       'updater_id' => Auth::user()->id,
@@ -273,10 +251,11 @@ class EventController extends Controller
       'location_city' => $request->input('location.city'),
       'location_state' => $request->input('location.state'),
       'location_map_url' => $request->input('location.map_url'),
+      'location_coordinates' => $request->input('location.coordinates'),
     ]);
-    $event->flyer_url = $this->generate_flyer_pdf($event);
-
-    $event->save();
+    
+    // update the event flyer via queue job
+    GenerateEventFlyer::dispatch($event);
 
     //trigger "event updated" Event
     // notify the group that an event was updated

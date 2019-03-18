@@ -26,6 +26,7 @@ class CreateEventsTable extends Migration
             $table->string('location_city')->nullable();
             $table->string('location_state')->nullable();
             $table->string('location_map_url')->nullable();
+            $table->string('location_coordinates')->nullable();
             $table->string('header_url')->nullable();
             $table->text('description')->nullable();
             $table->date('start_date');

@@ -26,7 +26,7 @@
         <div class="event_icon">
           <img src="{{ asset('img/flyer/calendar.png') }}" alt="Calendar Icon">
         </div>
-        <div class="detail_content">
+        <div class="detail_content detail_content-mid">
           {{ $event->summary_date }}
         </div>
       </div>
@@ -43,15 +43,24 @@
 
           @if($event->location_map_url)
           <a href="{{ $event->location_map_url }}" id="map_preview_link">
-            <img id="map_preview_image" src="https://maps.googleapis.com/maps/api/staticmap?maptype=roadmap&size=640x256&center={{ urlencode($event->location_formatted_address) }}&key={{ env('GOOGLE_MAPS_API_KEY') }}" alt="Event Location Google Map preview">
+            <img id="map_preview_image" src="https://maps.googleapis.com/maps/api/staticmap?maptype=roadmap&size=640x256&center={{ $event->location_coordinates }}&markers={{ $event->location_coordinates }}&key={{ env('GOOGLE_MAPS_API_KEY') }}" alt="Event Location Google Map preview">
           </a>
           @else
-          <img id="map_preview_image" src="https://maps.googleapis.com/maps/api/staticmap?maptype=roadmap&size=640x256&center={{ urlencode($event->location_formatted_address) }}&key={{ env('GOOGLE_MAPS_API_KEY') }}" alt="Event Location Google Map preview">
+          <img id="map_preview_image" src="https://maps.googleapis.com/maps/api/staticmap?maptype=roadmap&size=640x256&center={{ $event->location_coordinates }}&markers={{ $event->location_coordinates }}&key={{ env('GOOGLE_MAPS_API_KEY') }}" alt="Event Location Google Map preview">
           @endif
           
         </div>
       </div>
       @endif
+
+      <div class="event_detail">
+        <div class="event_icon">
+          <img src="{{ asset('img/flyer/account-group.png') }}" alt="Group Icon">
+        </div>
+        <div class="detail_content detail_content-mid">
+          <a href="{{ route('events.view', ['event'=>$event]) }}">View Event Attendees</a>
+        </div>
+      </div>
 
       {{-- Event Description --}}
       @isset($event->description)

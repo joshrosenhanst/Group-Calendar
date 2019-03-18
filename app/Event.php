@@ -18,7 +18,7 @@ use Illuminate\Support\Facades\Auth;
 class Event extends Model
 {
   protected $fillable = [
-    'name', 'group_id', 'creator_id', 'updater_id', 'header_url', 'description', 'start_date', 'start_time', 'end_date', 'end_time', 'location_place_id', 'location_name', 'location_formatted_address', 'location_city', 'location_state', 'location_map_url', 'flyer_url'
+    'name', 'group_id', 'creator_id', 'updater_id', 'header_url', 'description', 'start_date', 'start_time', 'end_date', 'end_time', 'location_place_id', 'location_name', 'location_formatted_address', 'location_city', 'location_state', 'location_map_url', 'location_coordinates', 'flyer_url'
   ];
 
   protected $casts = [
@@ -225,7 +225,8 @@ class Event extends Model
         'formatted_address' => $this->location_formatted_address,
         'city' => $this->location_city,
         'state' => $this->location_state,
-        'map_url' => $this->location_map_url
+        'map_url' => $this->location_map_url,
+        'coordinates' => $this->location_coordinates
       ];
     }else{
       return (object) null;
