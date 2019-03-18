@@ -34,6 +34,7 @@
     <input type="hidden" name="location[city]" :value="city"> 
     <input type="hidden" name="location[state]" :value="state">
     <input type="hidden" name="location[map_url]" :value="map_url">
+    <input type="hidden" name="location[coordinates]" :value="coordinates">
 
   </div>
 </template>
@@ -62,7 +63,8 @@ export default {
       state: (this.selected_location ? this.selected_location.state : null),
       zip: (this.selected_location ? this.selected_location.zip : null),
       country: (this.selected_location ? this.selected_location.country : null),
-      map_url: (this.selected_location ? this.selected_location.map_url : null)
+      map_url: (this.selected_location ? this.selected_location.map_url : null),
+      coordinates: (this.selected_location ? this.selected_location.coordinates : null)
     };
   },
   props: {
@@ -112,6 +114,7 @@ export default {
       this.formatted_address = place.formatted_address;
       this.place_id = place.place_id;
       this.map_url = place.url;
+      this.coordinates = place.geometry.location.lat() + "," + place.geometry.location.lng();
 
       let placeData = {};
       place.address_components.forEach((item) => {
@@ -139,6 +142,7 @@ export default {
       this.zip = null;
       this.country = null;
       this.map_url = null;
+      this.coordinates = null;
     }
   },
   mounted(){
