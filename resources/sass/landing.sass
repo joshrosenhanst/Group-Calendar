@@ -54,14 +54,17 @@ $button-gradient-bottom-right: lighten(saturate(adjust-hue($link, 10deg), 2.5%),
 
 #error_hero
   position: relative
+  background-color: $primary
+  background-image: linear-gradient(50deg, $gradient-top-left 0%, $primary 65%, $gradient-bottom-right 100%)
+  border-bottom: 100px solid $gradient-top-left
   .error_page_content
     color: $white
     z-index: 11
     display: flex
     flex-direction: column
     align-items: center
-    min-height: 80vh
     position: relative
+    padding: 15px
     .error_logo
       font-size: 1.5rem
       text-shadow: 2px 2px 0px rgba(10, 10, 10, 0.5)
@@ -69,7 +72,6 @@ $button-gradient-bottom-right: lighten(saturate(adjust-hue($link, 10deg), 2.5%),
       display: inline-flex
       align-items: center
       justify-content: center
-      margin-bottom: 15px
       padding: 10px
       &:hover
         background-color: $navbar-hover
@@ -99,10 +101,10 @@ $button-gradient-bottom-right: lighten(saturate(adjust-hue($link, 10deg), 2.5%),
       line-height: 1.2
       padding: 25px 0
       text-shadow: 1px 1px 2px rgba(10, 10, 10, 0.75)
-      margin-top: 25px
       +tablet
         font-size: $size-large
     .error_button
+      margin-bottom: 25px
       +tablet
         font-size: $size-medium
 
@@ -162,6 +164,14 @@ $button-gradient-bottom-right: lighten(saturate(adjust-hue($link, 10deg), 2.5%),
     .button
       font-size: $size-large
 
+.icon
+  align-items: center
+  display: inline-flex
+  justify-content: center
+  height: 1.5rem
+  width: 1.5rem
+  svg
+    fill: currentColor
 
 .logo_icon
   color: $danger
@@ -174,7 +184,6 @@ $button-gradient-bottom-right: lighten(saturate(adjust-hue($link, 10deg), 2.5%),
   &>svg
     width: 100%
     height: 100%
-    fill: currentColor
   +tablet
     height: 4rem
     width: 4rem

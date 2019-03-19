@@ -4,10 +4,6 @@
 
 @section('content')
 <main id="error_hero">
-  <div id="header_background">
-    <span class="tile">&nbsp;</span>
-  </div>
-
   <section class="error_page_content">
       <a href="{{ route('landing') }}" class="error_logo" title="GroupCalendar">
         <span class="icon logo_icon">@materialicon('calendar-heart')</span>
