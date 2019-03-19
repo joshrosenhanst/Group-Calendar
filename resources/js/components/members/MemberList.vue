@@ -15,6 +15,21 @@
       >
     </a>
 
+    <div class="item_controls button_group-controls"  v-if="show_controls">
+      <button class="button button-text_info" aria-label="Update Member Role" title="Update Member Role"
+        v-bind:class="{ 'button-active': (openMemberForm === member.id) }"
+        v-on:click="toggleMemberForm(member.id)"
+      >
+        <material-icon name='pencil'></material-icon>
+      </button>
+      <button class="button button-text_danger" aria-label="Remove Member" title="Remove Member"
+        v-bind:class="{ 'button-active': (openRemoveForm === member.id) }"
+        v-on:click="toggleRemoveForm(member.id)"
+      >
+        <material-icon name='delete'></material-icon>
+      </button>
+    </div>
+
     <div class="item_details">
       <a v-bind:href="`/users/${member.id}`" class="preview_name">{{ member.name }}</a>
 
@@ -43,21 +58,6 @@
           v-on:cancel-remove="cancelUpdate"
         ></member-remove-form>
       </div>
-    </div>
-
-    <div class="item_controls button_group-controls"  v-if="show_controls">
-      <button class="button button-text_info" aria-label="Update Member Role" title="Update Member Role"
-        v-bind:class="{ 'button-active': (openMemberForm === member.id) }"
-        v-on:click="toggleMemberForm(member.id)"
-      >
-        <material-icon name='pencil'></material-icon>
-      </button>
-      <button class="button button-text_danger" aria-label="Remove Member" title="Remove Member"
-        v-bind:class="{ 'button-active': (openRemoveForm === member.id) }"
-        v-on:click="toggleRemoveForm(member.id)"
-      >
-        <material-icon name='delete'></material-icon>
-      </button>
     </div>
 
   </div>
