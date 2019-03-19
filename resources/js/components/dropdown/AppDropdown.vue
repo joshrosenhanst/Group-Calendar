@@ -5,8 +5,7 @@
     role="button"
   >
     <div class="dropdown_toggle" ref="trigger"
-      @click="clickEvent"
-      @focus="focusEvent"
+      @click.prevent="toggleDropdown"
     >
       <slot name="trigger"></slot>
     </div>
@@ -61,27 +60,6 @@ export default {
     closeDropdown(){
       this.isActive = false;
       this.$emit('dropdown-toggle', this.isActive);
-    },
-    clickEvent(event){
-      console.log("click",event);
-    },
-    focusEvent(event){
-      console.log("click",event);
-    }
-  },
-  computed: {
-    inputListeners() {
-      return Object.assign({}, this.$listeners, {
-        input: (event) => {
-          console.log("input");
-        },
-        click: (event) => {
-          console.log("click");
-        },
-        focus: (event) => {
-          console.log("focus");
-        }
-      });
     }
   },
   created(){
