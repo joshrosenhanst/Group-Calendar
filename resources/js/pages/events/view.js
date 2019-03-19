@@ -10,7 +10,6 @@ GroupCalendar.app = new Vue({
   mixins: mixins,
   methods: {
     getEvent() {
-      console.log("get event");
       axios.get(`/ajax/events/${this.event.id}`).then((response) => {
         this.event = response.data.event;
         this.comments = response.data.comments;
