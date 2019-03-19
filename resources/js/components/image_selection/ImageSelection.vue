@@ -14,7 +14,7 @@
         <img :src="selected_image_src" alt="Selected Image">
       </div>
       <button class="button button-info button-inverted"
-        v-on:click.prevent="modal_active = true"
+        v-on:click.prevent="openModal"
       >
         <material-icon name="image"></material-icon>
         <slot name="button_text">Select an Image</slot>
@@ -31,21 +31,28 @@
         <span>Select an Image</span>
       </h2>
 
-      <template slot="body">
-        <div class="gallery" slot="body">
+      <section class="modal_card_body" slot="body" ref="modal_body">
+        <div class="gallery">
 
           <div class="gallery_image"
+            tabindex="0"
+            ref="default_option"
             :class=" { 'gallery_image-selected': (gallery_selection === null) }"
             @click="defaultSelection"
+            @keydown.enter.prevent="defaultSelection"
+            @keydown.space.prevent="defaultSelection"
           >
             <img :src="default_image" alt="Default Image">
           </div>
 
           <div class="gallery_image"
+            tabindex="0"
             v-for="(image, index) in available_images"
             :key="index"
             :class=" { 'gallery_image-selected': (gallery_selection === image.filename) }"
             @click="gallerySelection(image.filename)"
+            @keydown.enter.prevent="gallerySelection(image.filename)"
+            @keydown.space.prevent="gallerySelection(image.filename)"
           >
             <img :src="image.src" :alt="image.alt">
           </div>
@@ -56,7 +63,7 @@
             Photos provided by <a href="https://www.pexels.com">Pexels</a>
           </slot>
         </div>
-      </template>
+      </section>
 
       <div class="footer_buttons" slot="footer">
 
@@ -114,6 +121,13 @@ export default {
     },
     defaultSelection(){
       this.gallery_selection = null;
+    },
+    openModal(){
+      this.modal_active = true;
+      this.$nextTick(() => {
+        this.$refs.modal_body.scrollTop = 0;
+        this.$refs.default_option.focus();
+      });
     }
   },
   computed: {

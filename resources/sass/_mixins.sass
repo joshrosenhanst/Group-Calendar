@@ -5,6 +5,7 @@
   &:hover
     background-color: darken($color, 2.5%)
   &:focus
+    background-color: darken($color, 2.5%)
     &:not(:active)
       box-shadow: $button-focus-box-shadow-size rgba($color, 0.25)
   &:active,&.button-active
@@ -16,7 +17,7 @@
     background-color: $white
     color: $color
     border-color: $color
-    &:hover
+    &:hover,&:focus,&:active
       background-color: $color
       color: $white
     &[disabled],fieldset[disabled] &

@@ -20,9 +20,7 @@
         </div>
       </header>
 
-      <section class="modal_card_body">
-        <slot name="body"></slot>
-      </section>
+      <slot name="body"></slot>
 
       <footer class="modal_card_footer"
         v-if="$slots.footer"
