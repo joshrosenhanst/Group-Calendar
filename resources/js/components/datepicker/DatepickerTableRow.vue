@@ -9,6 +9,7 @@
                 href="#"
                 :disabled="disabled"
                 @click.prevent="emitChosenDate(day)"
+                tabindex="-1"
                 @keydown.enter.prevent="emitChosenDate(day)"
                 @keydown.space.prevent="emitChosenDate(day)">
                 {{ day.getDate() }}

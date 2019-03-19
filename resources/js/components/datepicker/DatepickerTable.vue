@@ -79,32 +79,6 @@
                     }
                 });
 
-                /*Object.entries(this.events).forEach((events,date) => {
-                    let event_date = new Date(date);
-                    console.log(event_date,date);
-                    if(event_date.getMonth() === this.focused.month && event_date.getFullYear() === this.focused.year){
-                        monthEvents[date] = events;
-                    }
-                });*/
-
-                /*for (let i = 0; i < this.events.length; i++) {
-                    let event = this.events[i]
-
-                    if (!event.hasOwnProperty('date')) {
-                        event = { date: event }
-                    }
-                    if (!event.hasOwnProperty('type')) {
-                        event.type = 'is-primary'
-                    }
-                    let event_date = new Date(event.date + " 00:00");
-                    if (
-                        event_date.getMonth() === this.focused.month &&
-                        event_date.getFullYear() === this.focused.year
-                    ) {
-                        monthEvents.push(event)
-                    }
-                }*/
-
                 return monthEvents
             }
         },

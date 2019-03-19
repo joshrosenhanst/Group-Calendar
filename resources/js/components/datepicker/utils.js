@@ -1,4 +1,4 @@
-export const isMobile = {
+export const checkMobile = {
   Android: function () {
       return (
           typeof window !== 'undefined' &&
@@ -30,12 +30,12 @@ export const isMobile = {
       )
   },
   any: function () {
-      return (
-          isMobile.Android() ||
-          isMobile.BlackBerry() ||
-          isMobile.iOS() ||
-          isMobile.Opera() ||
-          isMobile.Windows()
-      )
+    return (
+        checkMobile.Android() ||
+        checkMobile.BlackBerry() ||
+        checkMobile.iOS() ||
+        checkMobile.Opera() ||
+        checkMobile.Windows()
+    )
   }
 }

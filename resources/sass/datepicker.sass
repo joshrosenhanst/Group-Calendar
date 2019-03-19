@@ -1,6 +1,16 @@
 .datepicker
   font-size: $size-small
   position: relative
+
+  .calendar_container
+    width: 100%
+    margin-top: 2px
+    min-width: 300px
+    position: absolute
+    left: 0
+    top: 100%
+    z-index: 20
+    box-shadow:0 6px 12px rgba(10,10,10,0.1)
   
   .dropdown_items
     border: 0
@@ -95,6 +105,9 @@
     &:hover
       background-color: $grey-lighter
       text-decoration: none
+    &.is-selected
+      background-color: $link
+      color: $white
     &.datepicker_day-has_events
       position: relative
       .day_event_tooltip
@@ -114,10 +127,10 @@
           top: calc(100% + 5px)
           right: auto
           bottom: auto
-          left: 50%
+          left: 0
           transform: translateX(-50%)
         +tablet
-          top: 50%
+          top: 0
           right: auto
           bottom: auto
           left: calc(100% + 5px)

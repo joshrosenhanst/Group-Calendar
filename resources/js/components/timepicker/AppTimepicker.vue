@@ -6,7 +6,7 @@
       v-if="!isMobile || inline"
       ref="dropdown"
       :inline="inline"
-      v-on:dropdown-status="isActive = $event"
+      v-on:dropdown-toggle="isActive = $event"
     >
       <input
         v-if="!inline"
@@ -105,7 +105,7 @@
 </template>
 
 <script>
-import { isMobile } from '../datepicker/utils.js';
+import { checkMobile } from '../datepicker/utils.js';
 export default {
   data: function(){
     return {
@@ -168,7 +168,7 @@ export default {
       return minutes;
     },
     isMobile(){
-      return isMobile.any();
+      return checkMobile.any();
     }
   },
   methods: {

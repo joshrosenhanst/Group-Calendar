@@ -5,7 +5,8 @@
     role="button"
   >
     <div class="dropdown_toggle" ref="trigger"
-      v-on:click.prevent="toggleDropdown"
+      @click="clickEvent"
+      @focus="focusEvent"
     >
       <slot name="trigger"></slot>
     </div>
@@ -38,11 +39,11 @@ export default {
           this.$nextTick(() => {
             this.isActive = !this.isActive;
             this.$emit('dropdown-active');
-            this.$emit('dropdown-status', this.isActive);
+            this.$emit('dropdown-toggle', this.isActive);
           });
         }else{
           this.isActive = !this.isActive;
-          this.$emit('dropdown-status', this.isActive);
+          this.$emit('dropdown-toggle', this.isActive);
         }
       }
     },
@@ -55,7 +56,32 @@ export default {
     },
     clickedOutside(event){
       if( !this.isInWhiteList(event.target) ) this.isActive = false;
-      this.$emit('dropdown-status', this.isActive);
+      this.$emit('dropdown-toggle', this.isActive);
+    },
+    closeDropdown(){
+      this.isActive = false;
+      this.$emit('dropdown-toggle', this.isActive);
+    },
+    clickEvent(event){
+      console.log("click",event);
+    },
+    focusEvent(event){
+      console.log("click",event);
+    }
+  },
+  computed: {
+    inputListeners() {
+      return Object.assign({}, this.$listeners, {
+        input: (event) => {
+          console.log("input");
+        },
+        click: (event) => {
+          console.log("click");
+        },
+        focus: (event) => {
+          console.log("focus");
+        }
+      });
     }
   },
   created(){
