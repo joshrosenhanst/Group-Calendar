@@ -2,16 +2,10 @@
   <div class="timepicker"
     :class="{ 'timepicker-inline': inline, 'timepicker-active': isActive }"
   >
-    <app-dropdown
-      v-if="!isMobile || inline"
-      ref="dropdown"
-      :inline="inline"
-      v-on:dropdown-toggle="isActive = $event"
-    >
+    <template v-if="!isMobile || inline">
       <input
         v-if="!inline"
         ref="input"
-        slot="trigger"
         autocomplete="off"
         class="form_input"
         type="text"
@@ -23,18 +17,22 @@
         :placeholder="input_placeholder"
         :aria-label="input_label"
         :class="input_class"
-        @change="onChange($event.target.value)"
-        @focus="$emit('focus', $event)"
-        @blur="$emit('blur', $event)"
+        @click.prevent="openTimepicker"
+        @focus="openTimepicker"
+        @blur.prevent="onBlur"
+        @keydown.enter.prevent="toggleTimepicker"
+        @keydown.space.prevent="toggleTimepicker"
       >
-
-      <template slot="dropdown_items" :disabled="disabled">
+      <div class="timepicker_container" v-show="isActive" ref="timepicker_container">
         <div class="timepicker_fields">
 
           <div class="form_select">
             <select
               v-model="hoursSelected"
               @change="onHoursChange($event.target.value)"
+              @blur.prevent="onBlur"
+              @keydown.enter.prevent="toggleTimepicker"
+              @keydown.space.prevent="toggleTimepicker"
               :disabled="disabled"
               placholder="Hour"
             >
@@ -55,6 +53,9 @@
             <select class="form_select"
               v-model="minutesSelected"
               @change="onMinutesChange($event.target.value)"
+              @blur.prevent="onBlur"
+              @keydown.enter.prevent="toggleTimepicker"
+              @keydown.space.prevent="toggleTimepicker"
               :disabled="disabled"
               placholder="Min"
             >
@@ -73,34 +74,34 @@
             <select
               v-model="ampm"
               @change="onAMPMChange($event.target.value)"
+              @blur.prevent="onBlur"
+              @keydown.enter.prevent="toggleTimepicker"
+              @keydown.space.prevent="toggleTimepicker"
               :disabled="disabled"
             >
               <option value="AM">AM</option>
               <option value="PM">PM</option>
             </select>
           </div>
+
         </div>
-      </template>
-    </app-dropdown>
-
-    <input
-      v-else
-      ref="input"
-      slot="trigger"
-      autocomplete="off"
-      class="form_input"
-      type="time"
-      :value="formatHHMMSS(dateSelected)"
-      :disabled="disabled"
-      :name="input_name"
-      :id="input_id"
-      :placeholder="input_placeholder"
-      :aria-label="input_label"
-      :class="input_class"
-      @focus="$emit('focus', $event)"
-      @blur="$emit('blur', $event)"
-    >
-
+      </div>
+    </template>
+    <template v-else>
+      <input
+        ref="input"
+        autocomplete="off"
+        class="form_input"
+        type="time"
+        :value="formatHHMMSS(dateSelected)"
+        :disabled="disabled"
+        :name="input_name"
+        :id="input_id"
+        :placeholder="input_placeholder"
+        :aria-label="input_label"
+        :class="input_class"
+      >
+    </template>
   </div>
 </template>
 
@@ -172,6 +173,29 @@ export default {
     }
   },
   methods: {
+    openTimepicker(){
+      this.isActive = true;
+    },
+    toggleTimepicker(){
+      this.isActive = !this.isActive;
+    },
+    closeTimepicker(){
+      this.isActive = false;
+    },
+    /*
+      checkWhitelist() - Return whether the event.target is the input field or a child of the calendar.
+    */
+    checkWhitelist(target){
+      return (target === this.$refs.input || this.$refs.input.contains(target) || target === this.$refs.timepicker_container || this.$refs.timepicker_container.contains(target));
+    },
+    /*
+      onBlur() - On input blur, check if the event.relatedTarget is either the input field or a child of the calendar. If not we can close the timepicker, else keep the input field focused.
+    */
+    onBlur(event){
+      if( !this.checkWhitelist(event.relatedTarget) ) {
+        this.closeTimepicker();
+      }
+    },
     formatNumber(num){
       return ( num < 10 ? '0' : '' ) + num;
     },

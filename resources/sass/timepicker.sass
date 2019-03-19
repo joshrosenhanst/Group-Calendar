@@ -1,21 +1,25 @@
 .timepicker
   position: relative
 
-  .dropdown_items
-    border: 0
+  .timepicker_container
+    width: 100%
     margin-top: 2px
+    position: absolute
     left: 0
-    right: auto
+    top: 100%
+    z-index: 20
+    box-shadow:0 6px 12px rgba(10,10,10,0.1)
+    background-color: $white
 
-    .timepicker_fields
-      border-width: 3px 1px
-      border-style: solid
-      border-color: $primary $card-border-color
-      box-shadow: $card-box-shadow
-      padding: 10px
-      display: flex
-      justify-content: space-between
-      align-items: center
+  .timepicker_fields
+    border-width: 3px 1px
+    border-style: solid
+    border-color: $primary $card-border-color
+    box-shadow: $card-box-shadow
+    padding: 10px
+    display: flex
+    justify-content: space-between
+    align-items: center
 
   .form_select
     flex-grow: 1
