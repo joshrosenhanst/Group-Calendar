@@ -22,6 +22,7 @@
   <div id="app">
     @include('layouts.header')
     <main id="app-body">
+      @yield('sidebars')
       @yield('content')
     </main>
   </div>

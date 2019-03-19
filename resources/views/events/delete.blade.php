@@ -122,6 +122,9 @@
   </div>
 </article>
 
+@endsection
+
+@section('sidebars')
 {{-- Sidebars --}}
 <sidebar-wrapper v-bind:active="navbarMenuActive">
   {{-- Event Sidebar --}}
