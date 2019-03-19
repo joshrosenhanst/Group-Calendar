@@ -154,7 +154,6 @@ export default {
     }
   },
   mounted(){
-    console.log(this.$refs.autocomplete, document.activeElement);
     this.autocomplete = new google.maps.places.Autocomplete(
       this.$refs.autocomplete, {types:[]}
     );
