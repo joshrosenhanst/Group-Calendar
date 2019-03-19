@@ -36,7 +36,7 @@ Route::middleware('auth')->prefix('groups/')->name('groups.')->group(function(){
     Member routes use policy middleware to check the Auth::user's privileges.
   */
   Route::put('/{group}/member/update','GroupController@updateMember')->middleware('can:updateMember,group')->name('updateMember');
-  Route::delete('/{group}/member/remove','GroupController@removeMember')->middleware('can:removeMember,group')->name('deleteMember');
+  Route::delete('/{group}/member/remove','GroupController@removeMember')->middleware('can:deleteMember,group')->name('deleteMember');
 
   
   /* 

@@ -70,8 +70,8 @@ class GroupController extends Controller
       ]);
       //trigger "member role updated" Event
       return response()->json([
-        'members' => $group->users,
-        'invited' => $group->group_invites
+        'members' => $group->users()->get(),
+        'invited' => $group->group_invites()->get()
       ]);
     }else{
       return response()->json([
@@ -94,8 +94,8 @@ class GroupController extends Controller
 
     //trigger "member removed" Event
     return response()->json([
-      'members' => $group->users,
-      'invited' => $group->group_invites
+      'members' => $group->users()->get(),
+      'invited' => $group->group_invites()->get()
     ]);
   }
 }
