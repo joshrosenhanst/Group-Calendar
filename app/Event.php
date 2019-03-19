@@ -236,7 +236,12 @@ class Event extends Model
 
   public function getLocationCityState(){
     if($this->location_place_id){
-      return $this->location_city.", ".$this->location_state;
+      if($this->location_city && $this->location_state){
+        return $this->location_city.", ".$this->location_state;
+      }else{
+        if($this->location_city) return $this->location_city;
+        if($this->location_state) return $this->location_state;
+      }
     }else{
       return null;
     }
