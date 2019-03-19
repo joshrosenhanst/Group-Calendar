@@ -52,7 +52,60 @@ $button-gradient-bottom-right: lighten(saturate(adjust-hue($link, 10deg), 2.5%),
     img
       border: 1px solid $card-border-color
 
-  
+#error_hero
+  position: relative
+  .error_page_content
+    color: $white
+    z-index: 11
+    display: flex
+    flex-direction: column
+    align-items: center
+    min-height: 80vh
+    position: relative
+    .error_logo
+      font-size: 1.5rem
+      text-shadow: 2px 2px 0px rgba(10, 10, 10, 0.5)
+      color: $white
+      display: inline-flex
+      align-items: center
+      justify-content: center
+      margin-bottom: 15px
+      padding: 10px
+      &:hover
+        background-color: $navbar-hover
+        text-decoration: none
+      .logo_icon
+        width: 2rem
+        height: 2rem
+    .error_title
+      font-size: 2.5rem
+      line-height: 1.1
+      text-shadow: 2px 2px 0px rgba(10, 10, 10, 0.5)
+      +tablet
+        font-size: 4rem
+    .error_icon
+      margin-top: 25px
+      color: $danger
+      &>svg
+        width: 100px
+        height: 100px
+        +tablet
+          width: 200px
+          height: 200px
+        filter: drop-shadow(2px 2px 0px rgba(10, 10, 10, 0.5))
+        fill: currentColor
+    .error_message
+      font-size: $size-medium
+      line-height: 1.2
+      padding: 25px 0
+      text-shadow: 1px 1px 2px rgba(10, 10, 10, 0.75)
+      margin-top: 25px
+      +tablet
+        font-size: $size-large
+    .error_button
+      +tablet
+        font-size: $size-medium
+
 #landing_hero
   position: relative
   margin-bottom: 45px
@@ -67,48 +120,64 @@ $button-gradient-bottom-right: lighten(saturate(adjust-hue($link, 10deg), 2.5%),
         z-index: 11
         border: 0
 
-  .hero
+.hero
+  z-index: 11
+  +container
+  +tablet
+    display: flex
+    flex-direction: row-reverse
+  .hero_body
     z-index: 11
-    +container
+    max-width: $tablet
+    color: $white
+    padding: 1rem 15px
     +tablet
-      display: flex
-      flex-direction: row-reverse
+      flex-grow: 4
+      flex-shrink: 1
+      margin: 0 30px
+      padding: 1rem 0
+  .hero_image
+    z-index: 11
+    display: none
+    +tablet
+      display: block
+      flex-grow: 1
+      flex-shrink: 1
+  .hero_title
+    font-size: 2.5rem
+    line-height: 1.1
+    text-shadow: 2px 2px 0px rgba(10, 10, 10, 0.5)
+  .hero_subtitle
+    font-size: $size-medium
+    line-height: 1.2
+    padding: 25px 0
+    text-shadow: 1px 1px 2px rgba(10, 10, 10, 0.75)
+  +tablet
     .hero_body
-      z-index: 11
-      max-width: $tablet
-      color: $white
-      padding: 1rem 15px
-      +tablet
-        flex-grow: 4
-        flex-shrink: 1
-        margin: 0 30px
-        padding: 1rem 0
-    .hero_image
-      z-index: 11
-      display: none
-      +tablet
-        display: block
-        flex-grow: 1
-        flex-shrink: 1
+      padding: 4rem 15px
     .hero_title
-      font-size: 2.5rem
-      line-height: 1.1
-      text-shadow: 2px 2px 0px rgba(10, 10, 10, 0.5)
+      font-size: 3.5rem
     .hero_subtitle
-      font-size: $size-medium
-      line-height: 1.2
-      padding: 25px 0
-      text-shadow: 1px 1px 2px rgba(10, 10, 10, 0.75)
-    +tablet
-      .hero_body
-        padding: 4rem 15px
-      .hero_title
-        font-size: 3.5rem
-      .hero_subtitle
-        font-size: $size-large
-      .button
-        font-size: $size-large
+      font-size: $size-large
+    .button
+      font-size: $size-large
 
+
+.logo_icon
+  color: $danger
+  margin-right: 4px
+  display: flex
+  align-items: center
+  justify-content: center
+  height: 2.5rem
+  width: 2.5rem
+  &>svg
+    width: 100%
+    height: 100%
+    fill: currentColor
+  +tablet
+    height: 4rem
+    width: 4rem
 
 .button
   display: inline-flex
@@ -123,6 +192,7 @@ $button-gradient-bottom-right: lighten(saturate(adjust-hue($link, 10deg), 2.5%),
   background-image: linear-gradient($button-gradient-top-left 0%, $link 71%, $button-gradient-bottom-right 100%)
   &:hover
     background-image: none
+    text-decoration: none
   +tablet
     font-size: 2rem
 
@@ -189,21 +259,6 @@ $button-gradient-bottom-right: lighten(saturate(adjust-hue($link, 10deg), 2.5%),
     padding: 30px 15px
     +tablet
       padding: 60px 30px
-  .logo_icon
-    color: $danger
-    margin-right: 4px
-    display: flex
-    align-items: center
-    justify-content: center
-    height: 2.5rem
-    width: 2.5rem
-    &>svg
-      width: 100%
-      height: 100%
-      fill: currentColor
-    +tablet
-      height: 4rem
-      width: 4rem
   h2
     color: $primary
     border-bottom: 4px solid $primary
