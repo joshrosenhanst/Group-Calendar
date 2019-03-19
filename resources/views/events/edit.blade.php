@@ -151,6 +151,10 @@
           'placeholder' => 'Description',
           'old' => old('description', $event->description)
         ],
+        'icon' => [
+          'align' => 'left',
+          'name' => 'text'
+        ],
         'errors' => $errors->get('description')
       ])
 

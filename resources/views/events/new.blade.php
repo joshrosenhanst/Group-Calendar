@@ -173,6 +173,10 @@
           'placeholder' => 'Description',
           'old' => old('description')
         ],
+        'icon' => [
+          'align' => 'left',
+          'name' => 'text'
+        ],
         'errors' => $errors->get('description')
       ])
 
