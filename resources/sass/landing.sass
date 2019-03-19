@@ -52,11 +52,12 @@ $button-gradient-bottom-right: lighten(saturate(adjust-hue($link, 10deg), 2.5%),
     img
       border: 1px solid $card-border-color
 
-#error_hero
+.error_hero
   position: relative
   background-color: $primary
   background-image: linear-gradient(50deg, $gradient-top-left 0%, $primary 65%, $gradient-bottom-right 100%)
   border-bottom: 100px solid $gradient-top-left
+  height: 100vh
   .error_page_content
     color: $white
     z-index: 11
@@ -108,7 +109,7 @@ $button-gradient-bottom-right: lighten(saturate(adjust-hue($link, 10deg), 2.5%),
       +tablet
         font-size: $size-medium
 
-#landing_hero
+.landing_hero
   position: relative
   margin-bottom: 45px
   #site_header

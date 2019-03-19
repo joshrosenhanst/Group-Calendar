@@ -4,7 +4,7 @@
 
 @section('content')
 
-<main id="landing_hero">
+<main id="maincontent" class="landing_hero">
   <div id="header_background">
     <span class="tile">&nbsp;</span>
   </div>

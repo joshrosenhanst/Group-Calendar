@@ -3,7 +3,7 @@
 @section('title', 'Not Authorized')
 
 @section('content')
-<main id="error_hero">
+<main id="maincontent" class="error_hero">
   <section class="error_page_content">
       <a href="{{ route('landing') }}" class="error_logo" title="GroupCalendar">
         <span class="icon logo_icon">@materialicon('calendar-heart')</span>
