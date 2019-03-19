@@ -2,6 +2,7 @@
     "/js/app.js": "/js/app.js",
     "/css/app.css": "/css/app.css",
     "/css/event_flyer.css": "/css/event_flyer.css",
+    "/css/landing.css": "/css/landing.css",
     "/js/pages/events/edit.js": "/js/pages/events/edit.js",
     "/js/pages/events/index.js": "/js/pages/events/index.js",
     "/js/pages/events/new.js": "/js/pages/events/new.js",

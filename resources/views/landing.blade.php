@@ -5,11 +5,8 @@
 @section('content')
 
 <main id="landing_hero">
-  <div id="bg_tiles">
-    <div class="tile"></div>
-    <div class="tile"></div>
-    <div class="tile"></div>
-    <div class="tile"></div>
+  <div id="header_background">
+    <span class="tile">&nbsp;</span>
   </div>
   @include("layouts.header_external")
 
@@ -84,7 +81,7 @@
 <section id="call_to_action">
   <div class="action_item">
     <h2>
-      <span class="icon icon-full_size logo_icon">@materialicon('calendar-heart')</span>
+      <span class="icon logo_icon">@materialicon('calendar-heart')</span>
       <span>Try GroupCalendar Today</span>
     </h2>
     <p>The Demo mode of GroupCalendar will log you into a random test account so that you can try out the app today. Demo accounts can create events, set their attendance status, and comment on events in their demo groups. Some functionality including email notifications are disabled for the demo.</p>
@@ -93,6 +90,5 @@
 </section>
 
 <footer id="landing_footer">
-
 </footer>
 @endsection
