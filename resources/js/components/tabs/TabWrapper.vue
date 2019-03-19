@@ -6,7 +6,10 @@
         v-bind:key="tabItem"
         v-bind:class="{ 'tab_active':(activeTab === index) }"
       >
-        <a v-on:click="selectTab(index)"
+        <a tabindex="0"
+          @click="selectTab(index)"
+          @keydown.enter.prevent="selectTab(index)"
+          @keydown.space.prevent="selectTab(index)"
         >
           <slot v-bind:name="tabItem"></slot>
         </a>
