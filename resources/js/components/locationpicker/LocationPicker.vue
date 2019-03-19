@@ -1,6 +1,6 @@
 <template>
   <div class="locationpicker"
-    :class="{ 'locationpicker-has_selection': place_id  }"
+    :class="{ 'locationpicker-has_selection': place_id, 'locationpicker-focused': isFocused  }"
   >
     <input type="text" ref="autocomplete" class="location_input form_input"
       :id="input_id"
@@ -9,6 +9,8 @@
       :class="input_class"
       :placeholder="input_placeholder"
       :disabled="place_id"
+      @focus="isFocused = true"
+      @blur="isFocused = false"
     >
     <div class="selected_location" v-show="place_id">
       <div class="location_icon">
@@ -55,6 +57,7 @@ const ADDRESS_COMPONENTS = {
 export default {
   data: function(){
     return {
+      isFocused: false,
       name: (this.selected_location ? this.selected_location.name : null),
       place_id: (this.selected_location ? this.selected_location.place_id : null),
       formatted_address: (this.selected_location ? this.selected_location.formatted_address : null),
@@ -108,6 +111,9 @@ export default {
     removeSelectedLocation(){
       this.$refs.autocomplete.value = "";
       this.clearLocationComponents();
+      this.$nextTick(()=>{
+        this.$refs.autocomplete.focus();
+      });
     },
     setLocationComponents(place){
       this.name = place.name;
@@ -131,6 +137,8 @@ export default {
         this.zip = placeData['postal_code'];
         this.country = placeData['country'];
       }
+
+      this.isFocused = false;
     },
     clearLocationComponents(){
       this.formatted_address = null;
@@ -146,6 +154,7 @@ export default {
     }
   },
   mounted(){
+    console.log(this.$refs.autocomplete, document.activeElement);
     this.autocomplete = new google.maps.places.Autocomplete(
       this.$refs.autocomplete, {types:[]}
     );
