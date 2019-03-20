@@ -27,6 +27,7 @@
         directory="{{ $input['directory'] }}"
         default_image="{{ $input['default_image'] }}"
         input_value="{{ $input['old'] ?? $input['value'] }}"
+        v-bind:asset_url="asset_url"
       >
         @isset($label['button'])
         <span slot="button_text">{{ $label['button'] }}</span>
