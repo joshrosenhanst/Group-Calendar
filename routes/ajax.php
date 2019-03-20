@@ -25,8 +25,8 @@ Route::middleware('auth')->prefix('events/')->name('events.')->group(function(){
     Comment routes use policy middleware to check the Auth::user's privileges.
   */
   Route::put('/{event}/comment/create','EventController@createComment')->middleware('can:createComment,event')->name('createComment');
-  Route::put('/{event}/comment/{comment}/update','EventController@updateComment')->middleware('can:updateComment,event')->name('updateComment');
-  Route::delete('/{event}/comment/{comment}/delete','EventController@destroyComment')->middleware('can:destroyComment,event')->name('destroyComment');
+  Route::put('/{event}/comment/{comment}/update','EventController@updateComment')->middleware('can:updateComment,event,comment')->name('updateComment');
+  Route::delete('/{event}/comment/{comment}/delete','EventController@destroyComment')->middleware('can:destroyComment,event,comment')->name('destroyComment');
 });
 
 /* GROUPS */

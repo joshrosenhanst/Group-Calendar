@@ -95,11 +95,11 @@ class EventPolicy
   */
   public function updateComment(User $user, Event $event, Comment $comment){
     $event->loadMissing('group');
-    return $this->isCommentCreator($user,$event) || ($event->group && $user->can('manageComments', $event->group));
+    return $this->isCommentCreator($user,$comment) || ($event->group && $user->can('manageComments', $event->group));
   }
   
   public function destroyComment(User $user, Event $event, Comment $comment){
     $event->loadMissing('group');
-    return $this->isCommentCreator($user,$event) || ($event->group && $user->can('manageComments', $event->group));
+    return $this->isCommentCreator($user,$comment) || ($event->group && $user->can('manageComments', $event->group));
   }
 }
