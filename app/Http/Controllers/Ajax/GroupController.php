@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Ajax;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Notifications\GroupCommentCreated;
 
 class GroupController extends Controller
 {
@@ -20,7 +21,11 @@ class GroupController extends Controller
       'text' => $request->text,
       'user_id' => $request->user_id
     ]);
-    //trigger "comment created" Event
+
+    $user = \App\User::find($request->user_id);
+
+    // notify the group that a comment has been posted
+    $group->notify(new GroupCommentCreated($user, $group, $request->text));
     $group->loadMissing('comments.user');
     return response()->json($group->comments);
   }
