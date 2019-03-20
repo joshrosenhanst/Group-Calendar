@@ -181,7 +181,7 @@ class InviteController extends Controller
 
       // notify the group
       $group->notify(new UserDeclined(Auth::user(),$group));
-      return redirect()->route('groups.view', ['group'=>$group])->with('status', 'You have declined the invitation from the group.');
+      return redirect()->route('home')->with('status', 'You have declined the invitation from the group.');
 
     }else{
 
