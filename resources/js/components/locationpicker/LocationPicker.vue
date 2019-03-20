@@ -37,7 +37,7 @@
     <input type="hidden" name="location[state]" :value="state">
     <input type="hidden" name="location[map_url]" :value="map_url">
     <input type="hidden" name="location[coordinates]" :value="coordinates">
-
+    <div class="form_help">Search for the event location by name or address.</div>
   </div>
 </template>
 

@@ -216,22 +216,29 @@ class Event extends Model
   }
 
   /*
-    getLocationArray() - Return an array of the location fields if they are set.
+    getLocationJsonArray() - Return the getLocationArray() or a null object for JSON.
   */
-  public function getLocationArray(){
+  public function getLocationJsonArray(){
     if($this->location_place_id){
-      return [
-        'place_id' => $this->location_place_id,
-        'name' => $this->location_name,
-        'formatted_address' => $this->location_formatted_address,
-        'city' => $this->location_city,
-        'state' => $this->location_state,
-        'map_url' => $this->location_map_url,
-        'coordinates' => $this->location_coordinates
-      ];
+      return $this->getLocationArray();
     }else{
       return (object) null;
     }
+  }
+
+  /*
+    getLocationArray() - Return an array of location fields if they are set.
+  */
+  public function getLocationArray(){
+    return [
+      'place_id' => $this->location_place_id,
+      'name' => $this->location_name,
+      'formatted_address' => $this->location_formatted_address,
+      'city' => $this->location_city,
+      'state' => $this->location_state,
+      'map_url' => $this->location_map_url,
+      'coordinates' => $this->location_coordinates
+    ];
   }
 
   public function getLocationCityState(){

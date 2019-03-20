@@ -78,7 +78,6 @@ class EventController extends Controller
     $validator = Validator::make($request->all(), [
       'name' => 'required',
       'group' => 'required|numeric|exists:groups,id',
-      'location.place_id' => 'required',
       'start_date' => 'required|date',
       'start_time' => [
         'nullable','string', function($attribute, $value, $fail){
@@ -97,6 +96,15 @@ class EventController extends Controller
       ],
       'header_url' => 'nullable|string'
     ]);
+
+    // Check for location fields. Valid if place_id is present, or name+address+city+state are present. Else return a single error.
+    $validator->after(function($validator) use ($request){
+      if(!$request->input('location.place_id')){
+        if( !($request->input('location.name') && $request->input('location.formatted_address') && $request->input('location.city') && $request->input('location.state')) ){
+          $validator->errors()->add('location.place_id', 'The event location is required.');
+        }
+      }
+    });
 
     $validator->after(function($validator) use ($request){
       if($request->end_date && $request->end_time && $request->start_time && $request->start_date){
@@ -184,7 +192,7 @@ class EventController extends Controller
       'data' => [
         'showEndDate' => ( old('end_date',$event->end_date)?true:false ),
         'events' => (count($events) ? $events : (object) null), // AppDatepicker expects an object so we can't pass an empty php array
-        'selected_location' => old('location', $event->getLocationArray()),
+        'selected_location' => old('location', $event->getLocationJsonArray()),
       ]
     ]);
     return view('events.edit', ['event'=>$event,'header_images'=>$header_images]);

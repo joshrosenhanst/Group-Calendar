@@ -236,6 +236,14 @@
 
 .form_inline_group
   margin-bottom: 25px
+  .internal_form_group
+    margin: 15px 0
+    &.no_icon
+      .form_input
+        padding-bottom: $control-padding-vertical
+        padding-left: $control-padding-horizontal
+        padding-right: $control-padding-horizontal
+        padding-top: $control-padding-vertical
   .field_multiple
     +until($tablet)
       .field_input
@@ -247,7 +255,7 @@
       display: flex
       max-width: 450px
       .field_input
-        flex: 1 1 0
+        flex: 1 1 0px
         &:not(:last-of-type)
           margin-right: 5px
   .form_input,.form_select
@@ -271,7 +279,7 @@
     .field
       display: flex
       .field_label
-        flex: 1 0 0
+        flex: 1 0 0px
         text-align: right
         justify-content: flex-end
         margin-right: 15px
@@ -279,7 +287,7 @@
         .form_label
           margin-bottom: 0
       .field_body
-        flex: 4 1 0
+        flex: 4 1 0px
 
 .form.embedded_form
   padding: 10px 0
@@ -299,10 +307,10 @@
       //max-width: 300px
   .field
     .field_label
-      flex: 1 1 0
+      flex: 1 1 0px
     +desktop
       .field_body
-        flex: 3 1 0
+        flex: 3 1 0px
 
 .form.form-small
   &.card_section

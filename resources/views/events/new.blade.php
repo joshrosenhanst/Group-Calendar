@@ -65,21 +65,21 @@
       @endif
       
       {{-- Location --}}
-      @include('partials.form_inline_group', [
+      @include('partials.form_inline_location', [
         'label' => ['text' => 'Event Location'],
         'input' => [
           'name' => 'locationpicker',
           'type' => 'location',
           'id' => 'locationpicker',
           'placeholder' => 'Event Location',
-          'required' => true
+          'required' => true,
+          'location' => old('location')
         ],
         'icon' => [
           'align' => 'left',
           'name' => 'map-marker'
         ],
-        'help' => 'Search for the event location by name or address.',
-        'errors' => $errors->get('location.place_id')
+        'errors' => $errors->get('location.*')
       ])
 
       {{-- Start Date/Time --}}

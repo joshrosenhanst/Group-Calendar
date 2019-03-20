@@ -82,7 +82,24 @@
       input_class="{{ $input['class'] }}"
       @endisset
       v-bind:selected_location="selected_location"
-    ></location-picker>
+    >
+      {{-- Noscript: fallback to multiple fields --}}
+      <input type="text" class="form_input" name="location[name]" value="{{ $input['location']['name'] ?? null }}" placeholder="Location Name">
+
+      <div class="internal_form_group field_multiple no_icon">
+        <div class="field_input">
+          <input type="text" class="form_input" name="location[formatted_address]" value="{{ $input['location']['formatted_address'] ?? null }}" placeholder="Address">
+        </div>
+        <div class="field_input">
+          <input type="text" class="form_input" name="location[city]" value="{{ $input['location']['city'] ?? null }}" placeholder="City">
+        </div>
+        <div class="field_input">
+          <input type="text" class="form_input" name="location[state]" value="{{ $input['location']['state'] ?? null }}" placeholder="State">
+        </div>
+      </div>
+
+      <div class="form_help">Enter the details of the event location. All fields are required.</div>
+    </location-picker>
     @break
 
   @case('date')
