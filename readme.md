@@ -28,22 +28,22 @@ A collaborative event planner and calendar website built with Laravel.
     1. Install [Supervisor](https://github.com/Supervisor/supervisor) to manage queue workers: `sudo apt-get install supervisor`
     2. Create `groupcalendar-worker.conf` file in the Supervisor config directory, usually found at `/etc/supervisor/conf.d` (replace the directory below with your dev directory): 
       ```
-        [program:groupcalendar-worker]
-        process_name=%(program_name)s_%(process_num)02d
-        command=php /var/www/groupcalendar/artisan queue:work --sleep=3 --tries=5
-        autostart=true
-        autorestart=true
-        user=www-data
-        numprocs=8
-        redirect_stderr=true
-        stdout_logfile=/var/www/groupcalendar/log/worker.log
+      [program:groupcalendar-worker]
+      process_name=%(program_name)s_%(process_num)02d
+      command=php /var/www/groupcalendar/artisan queue:work --sleep=3 --tries=5
+      autostart=true
+      autorestart=true
+      user=www-data
+      numprocs=8
+      redirect_stderr=true
+      stdout_logfile=/var/www/groupcalendar/log/worker.log
       ```
     3. Start the GroupCalendar queue processes:
       ```
-        sudo supervisorctl reread
-        sudo supervisorctl update
-        sudo supervisorctl start laravel-worker:*
-    ```
+      sudo supervisorctl reread
+      sudo supervisorctl update
+      sudo supervisorctl start laravel-worker:*
+      ```
 10. If you are using the `database` driver, but not using Supervisor, you will need to run artisan queue commands:
     - `php artisan queue:work --tries=5` - Start working queue jobs, allow 5 attempts per job and then the job will be marked as failed.
     - `php artisan queue:restart` - Restart the queue worker, required after any change to the code as queue workers will not pick up any code changes without a restart.
