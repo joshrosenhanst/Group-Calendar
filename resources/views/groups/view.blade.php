@@ -36,10 +36,11 @@
     <div class="maincontent_mid_section">
       {{-- Group Comments --}}
       <comments-card
+        title="Group Comments"
         v-bind:comments="comments"
         v-bind:user="user"
-        title="Group Comments"
         v-bind:user_admin="@json(Auth::user()->can('manageComments', $group))"
+        v-bind:asset_url="asset_url"
 
         v-on:create-comment="createComment"
         v-on:update-comment="updateComment"

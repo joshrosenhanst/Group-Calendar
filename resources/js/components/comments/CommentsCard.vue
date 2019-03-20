@@ -31,9 +31,9 @@
     </div>
     <div class="card_section card_section-form card_section-new_comment">
       <div class="comment_avatar">
-        <a v-bind:href="`/users/${user.id}`" class="preview_thumbnail">
-          <img v-bind:src="`/${user.avatar}`" v-bind:alt="`${user.name} Avatar`">
-        </a>
+        <span class="preview_thumbnail">
+          <img v-bind:src="getAssetURL('/'+user.avatar)" v-bind:alt="`${user.name} Avatar`">
+        </span>
       </div>
       <div class="comment_body">
         <comment-form
@@ -49,15 +49,17 @@
 <script>
 import CommentDisplay from './CommentDisplay.vue';
 import CommentForm from './CommentForm.vue';
+import asset_url from '../../mixins/asset_url.js';
 export default {
+  mixins: [asset_url],
+  components: {
+    CommentDisplay, CommentForm
+  },
   data: function(){
     return {
       openCommentForm: null,
       openDeleteForm: null
     }
-  },
-  components: {
-    CommentDisplay, CommentForm
   },
   props: {
     comments: Array,
