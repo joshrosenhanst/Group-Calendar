@@ -56,7 +56,7 @@
           <span>
             {{ $group->name }}
             @if(count($group->users))
-             - @{{ member_count }}
+            <small>@{{ member_count }}</small>
             @endif
           </span>
         </h1>
@@ -93,7 +93,7 @@
           <span>
             {{ $group->name }}
             @if(count($group->group_invites))
-            - @{{ invited_count }}
+            <small>@{{ invited_count }}</small>
             @endif
           </span>
         </h1>
