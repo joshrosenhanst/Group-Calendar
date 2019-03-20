@@ -14,6 +14,9 @@
         v-bind:notifications="notifications"
         v-bind:asset_url="asset_url"
       >
+        <a href="{{ route('notifications.index') }}" class="navbar_item" title="Notifications Page">
+          <span class="icon">@materialicon('bell')</span>
+        </a>
       </notification-display>
 
       <a href="{{ route('home') }}" class="navbar_item" title="Go to Home Page">
