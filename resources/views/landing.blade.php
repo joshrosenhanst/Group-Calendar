@@ -5,7 +5,7 @@
 @section('content')
 
 <main id="maincontent" class="landing_hero">
-  <div id="header_background">
+  <div id="header_background" aria-hidden="true">
     <span class="tile">&nbsp;</span>
   </div>
   @include("layouts.header_external")
