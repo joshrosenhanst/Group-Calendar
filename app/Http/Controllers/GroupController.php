@@ -9,6 +9,7 @@ use Validator;
 use JavaScript;
 use App\Notifications\MemberLeftGroupMessage;
 use App\Notifications\MemberLeft;
+use App\Notifications\GroupCommentCreated;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Http\File;
 use App\FileHelper;
@@ -162,6 +163,8 @@ class GroupController extends Controller{
         'text' => $request->update_comment,
         'user_id' => Auth::user()->id
       ]);
+      // notify the group that a comment has been posted
+      $group->notify(new GroupCommentCreated(Auth::user(), $group, $request->update_comment));
     }
 
     return redirect()->route('groups.view', ['group'=>$group])->with('status','The group has been updated.');
