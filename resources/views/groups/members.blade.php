@@ -49,7 +49,17 @@
   <div class="tab members_tab" v-show="activeTab === 'members'">
     <div class="card card-has_tabs">
       <div class="card_sub_header">
-        <h1 class="sub_title">{{ $group->name }} - @{{ member_count }}</h1>
+        <h1 class="sub_title">
+          <span class="preview_thumbnail">
+            <img src="{{ asset($group->avatar) }}" alt="{{ $group->name }} Avatar">
+          </span>
+          <span>
+            {{ $group->name }}
+            @if(count($group->users))
+             - @{{ member_count }}
+            @endif
+          </span>
+        </h1>
       </div>
       {{-- List of Members --}}
       <member-list
@@ -76,7 +86,17 @@
   <div class="tab invited_tab" v-show="activeTab === 'invited'">
     <div class="card card-has_tabs">
       <div class="card_sub_header">
-        <h1 class="sub_title">{{ $group->name }} - @{{ invited_count }}</h1>
+        <h1 class="sub_title">
+          <span class="preview_thumbnail">
+            <img src="{{ asset($group->avatar) }}" alt="{{ $group->name }} Avatar">
+          </span>
+          <span>
+            {{ $group->name }}
+            @if(count($group->group_invites))
+            - @{{ invited_count }}
+            @endif
+          </span>
+        </h1>
       </div>
       {{-- List of Invited Users --}}
       <member-list
@@ -88,7 +108,7 @@
       <div class="card_section card_list">
         <div class="empty list_empty" v-if="invited.length == 0">
           <span class="icon">@materialicon('account-question-outline')</span>
-          <h2>No Invited Users</h2>
+          <h2>No Pending Invitations</h2>
         </div>
       </div>
 
