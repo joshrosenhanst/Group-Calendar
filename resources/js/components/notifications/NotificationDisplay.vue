@@ -8,7 +8,7 @@
     :title="title"
   >
     <div class="dropdown_toggle" ref="trigger">
-      <a href="/notifications" class="navbar_item navbar_item-icon has_badge"
+      <a :href="getAssetURL('/notifications')" class="navbar_item navbar_item-icon has_badge"
         @click.prevent="openDropdown"
         @focus="openDropdown"
         @blur.prevent="onBlur"
@@ -41,7 +41,7 @@
         </div>
 
         <div class="dropdown_footer">
-          <a href="/notifications" class="button">View All Notifications</a>
+          <a :href="getAssetURL('/notifications')" class="button">View All Notifications</a>
         </div>
 
       </ul>
@@ -63,7 +63,11 @@ export default {
   },
   props: {
     user_id: Number,
-    notifications: Object
+    notifications: Object,
+    asset_url: {
+      type: String,
+      default: ''
+    }
   },
   methods: {
     markUserNotifcationsAsRead(){
@@ -97,6 +101,9 @@ export default {
         this.closeDropdown();
       }
     },
+    getAssetURL(path){
+      return this.asset_url+path;
+    }
   },
   computed: {
     title() {

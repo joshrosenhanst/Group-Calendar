@@ -12,6 +12,7 @@
       <notification-display
         v-bind:user_id="currentUser.id"
         v-bind:notifications="notifications"
+        v-bind:asset_url="asset_url"
       >
       </notification-display>
 
