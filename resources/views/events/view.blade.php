@@ -80,7 +80,7 @@
           <template v-else>
             <a download="GroupCalendar Event Flyer.pdf" 
               v-if="event.flyer_url"
-              :href="'/storage/flyers/' + event.flyer_url"
+              :href="asset_url + '/storage/flyers/' + event.flyer_url"
             >Download Event Flyer PDF</a>
           </template>
 

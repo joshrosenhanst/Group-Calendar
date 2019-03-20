@@ -169,7 +169,7 @@
           'id' => 'header_url',
           'old' => old('header_url', $event->header_url),
           'value' => $event->header_url,
-          'default_image' => '/img/default_event_header.jpg',
+          'default_image' => asset('/img/default_event_header.jpg'),
           'directory' => 'default_headers'
         ],
         'images' => $header_images,

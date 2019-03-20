@@ -66,7 +66,7 @@
             'id' => 'avatar_url',
             'old' => old('avatar_url', Auth::user()->avatar_url),
             'value' => Auth::user()->avatar_url,
-            'default_image' => '/img/default_user_avatar.jpg',
+            'default_image' => asset('/img/default_user_avatar.jpg'),
             'directory' => 'default_avatars'
           ],
           'images' => $avatar_images,

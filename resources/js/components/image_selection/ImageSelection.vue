@@ -86,7 +86,9 @@
 </template>
 
 <script>
+import asset_url from '../../mixins/asset_url.js';
 export default {
+  mixins: [asset_url],
   data: function(){
     return {
       selected_image_filename: this.input_value || null,
@@ -133,7 +135,7 @@ export default {
   computed: {
     selected_image_src(){
       if(this.gallery_selection){
-        return "/storage/"+this.directory+"/"+this.selected_image_filename;
+        return this.getAssetURL("/storage/"+this.directory+"/"+this.selected_image_filename);
       }else{
         return this.default_image;
       }
