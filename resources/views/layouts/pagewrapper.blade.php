@@ -37,7 +37,7 @@
       data: function(){
         return {
           currentUser: @json(Auth::user()),
-          notifications: @json(Auth::user()->all_unread_notifications),
+          notifications: @json(count(Auth::user()->all_unread_notifications) ? Auth::user()->all_unread_notifications : (object) null ),
           navbarMenuActive: false,
           asset_url: @json(env('APP_URL'))
         };

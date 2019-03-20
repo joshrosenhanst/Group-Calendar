@@ -51,7 +51,9 @@
 
 <script>
 import NotificationItem from './NotificationItem.vue';
+import asset_url from '../../mixins/asset_url.js';
 export default {
+  mixins: [asset_url],
   components: {
     NotificationItem
   },
@@ -63,11 +65,7 @@ export default {
   },
   props: {
     user_id: Number,
-    notifications: Object,
-    asset_url: {
-      type: String,
-      default: ''
-    }
+    notifications: Object
   },
   methods: {
     markUserNotifcationsAsRead(){
@@ -100,9 +98,6 @@ export default {
       if( !this.checkWhitelist(event.relatedTarget) ) {
         this.closeDropdown();
       }
-    },
-    getAssetURL(path){
-      return this.asset_url+path;
     }
   },
   computed: {
