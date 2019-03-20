@@ -1,7 +1,8 @@
 export default {
   methods: {
     updateMember: function(role,id){
-      axios.put(`/ajax/groups/${this.group.id}/member/update`,{
+      let url = this.asset_url+'/ajax/groups/'+this.group.id+'/member/update';
+      axios.put(url,{
         'role': role,
         'user_id': id
       }).then((response) => {
@@ -12,7 +13,8 @@ export default {
       });
     },
     removeMember: function(id){
-      axios.delete(`/ajax/groups/${this.group.id}/member/remove`,{
+      let url = this.asset_url+'/ajax/groups/'+this.group.id+'/member/remove';
+      axios.delete(url,{
         data:{
           'user_id': id
         }
