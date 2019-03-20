@@ -86,9 +86,13 @@
 </template>
 
 <script>
+import AppModal from '../modal/AppModal.vue';
 import asset_url from '../../mixins/asset_url.js';
 export default {
   mixins: [asset_url],
+  components: {
+    AppModal
+  },
   data: function(){
     return {
       selected_image_filename: this.input_value || null,

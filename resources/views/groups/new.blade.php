@@ -98,3 +98,7 @@
   @include('layouts.sidebar.user')
 </sidebar-wrapper>
 @endsection
+
+@section('page_scripts')
+  <script src="{{ asset(mix('/js/pages/groups/new.js')) }}"></script>
+@endsection

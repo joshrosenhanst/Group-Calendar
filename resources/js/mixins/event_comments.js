@@ -1,4 +1,8 @@
+import CommentsCard from '../components/comments/CommentsCard.vue';
 export default {
+  components: {
+    CommentsCard
+  },
   methods: {
     createComment: function(text){
       let url = this.asset_url+'/ajax/events/'+this.event.id+'/comment/create';

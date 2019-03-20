@@ -1,4 +1,8 @@
+import MemberList from '../components/members/MemberList.vue';
 export default {
+  components: {
+    MemberList
+  },
   methods: {
     updateMember: function(role,id){
       let url = this.asset_url+'/ajax/groups/'+this.group.id+'/member/update';

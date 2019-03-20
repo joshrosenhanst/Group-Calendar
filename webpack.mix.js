@@ -9,10 +9,13 @@ mix.js('resources/js/app.js', 'public/js')
 mix.js('resources/js/pages/groups/view.js', 'public/js/pages/groups')
    .js('resources/js/pages/groups/events.js', 'public/js/pages/groups')
    .js('resources/js/pages/groups/members.js', 'public/js/pages/groups')
+   .js('resources/js/pages/groups/edit.js', 'public/js/pages/groups')
+   .js('resources/js/pages/groups/new.js', 'public/js/pages/groups')
    .js('resources/js/pages/events/index.js', 'public/js/pages/events')
    .js('resources/js/pages/events/new.js', 'public/js/pages/events')
    .js('resources/js/pages/events/edit.js', 'public/js/pages/events')
    .js('resources/js/pages/events/view.js', 'public/js/pages/events')
+   .js('resources/js/pages/profile/edit.js', 'public/js/pages/profile')
 ;
 
 if (mix.inProduction()) {

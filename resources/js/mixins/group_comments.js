@@ -1,4 +1,8 @@
+import CommentsCard from '../components/comments/CommentsCard.vue';
 export default {
+  components: {
+    CommentsCard
+  },
   methods: {
     /* COMMENTS */
     createComment: function(text){

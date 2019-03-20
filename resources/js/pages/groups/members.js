@@ -20,10 +20,10 @@ GroupCalendar.app = new Vue({
       return this.members.length + " Members";
     },
     invited_count(){
-      if(this.invited.length == 0) return "No Invited Users";
-      if(this.invited.length == 1) return "1 Invited User";
+      if(this.invited.length == 0) return "No Pending Invitations";
+      if(this.invited.length == 1) return "1 Pending Invitation";
 
-      return this.invited.length + " Invited Users";
+      return this.invited.length + " Pending Invitations";
     }
   }
 });
