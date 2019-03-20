@@ -21,7 +21,7 @@
   {{-- Skip to Main Content link for screenreaders --}}
   <a href="#maincontent" class="is-sr-only is-sr-only-focusable">Skip to main content</a>
 
-  <noscript>GroupCalendar works best with Javascript enabled.</noscript>
+  <noscript class="noscript">GroupCalendar works best with Javascript enabled.</noscript>
 
   <div id="app">
     @include('layouts.header')

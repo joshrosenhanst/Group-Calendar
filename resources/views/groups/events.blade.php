@@ -18,10 +18,12 @@
       <div class="subtitle">@lang('pages.groups.events.subtitle')</div>
     
       @if(session('status'))
-        <status-alert class="alert-info" icon="alert-circle"
+        <status-alert class="alert alert-info" icon="alert-circle"
           v-bind:close-button="true"
         >
-          <strong>Note: </strong> {{ session('status') }}
+          <div class="alert_text">
+            <strong>Note: </strong> {{ session('status') }}
+          </div>
         </status-alert>
       @endif
 

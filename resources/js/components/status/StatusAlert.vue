@@ -1,5 +1,5 @@
 <template>
-  <div class="alert" v-if="statusVisible">
+  <div v-if="statusVisible">
 
     <div class="alert_buttons" v-if="closeButton">
       <button class="button-icon" aria-label="Hide Alert" 

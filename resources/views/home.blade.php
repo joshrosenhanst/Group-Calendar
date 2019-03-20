@@ -17,10 +17,12 @@
       <div class="subtitle">@lang('pages.home.subtitle')</div>
 
       @if(session('status'))
-        <status-alert class="alert-info" icon="alert-circle"
+        <status-alert class="alert alert-info" icon="alert-circle"
           v-bind:close-button="true"
         >
-          <strong>Note: </strong> {{ session('status') }}
+          <div class="alert_text">
+            <strong>Note: </strong> {{ session('status') }}
+          </div>
         </status-alert>
       @endif
 
@@ -28,8 +30,10 @@
   </div>
 
   @demo
-  <status-alert class="alert-info" icon="alert-circle">
-    <strong>Demo Mode: </strong> Demo user accounts can create and attend events but they can't join or leave groups. Email notifications are also disabled in Demo Mode.
+  <status-alert class="alert alert-info" icon="alert-circle">
+    <div class="alert_text">
+      <strong>Demo Mode: </strong> Demo user accounts can create and attend events but they can't join or leave groups. Email notifications are also disabled in Demo Mode.
+    </div>
   </status-alert>
   @enddemo
 
