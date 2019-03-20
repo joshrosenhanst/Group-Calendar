@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Ajax;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
+use App\Notifications\EventCommentCreated;
 
 class EventController extends Controller
 {
@@ -50,10 +51,6 @@ class EventController extends Controller
     $event->loadMissing(['comments.user','attendees']);
     //trigger "event attendee updated" Event
     return response()->json([
-      /*'user_status' => $new_status,
-      'going_attendees_count' => $event->going_attendees_count,
-      'interested_attendees_count' => $event->interested_attendees_count,
-      'attendees' => $event->attendees*/
       'event' => $event->makeHidden('comments')->toArray(),
       'comments' => $event->comments
     ]);
@@ -72,7 +69,12 @@ class EventController extends Controller
       'text' => $request->text,
       'user_id' => $request->user_id
     ]);
-    //trigger "comment created" Event
+
+    $user = \App\User::find($request->user_id);
+
+    // notify the group that a comment has been posted
+    $event->group->notify(new EventCommentCreated($user, $event, $request->text));
+    
     $event->loadMissing('comments.user');
     return response()->json($event->comments);
   }
