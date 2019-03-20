@@ -42,7 +42,7 @@ A collaborative event planner and calendar website built with Laravel.
       ```
       sudo supervisorctl reread
       sudo supervisorctl update
-      sudo supervisorctl start laravel-worker:*
+      sudo supervisorctl start groupcalendar-worker:*
       ```
 10. If you are using the `database` driver, but not using Supervisor, you will need to run artisan queue commands:
     - `php artisan queue:work --tries=5` - Start working queue jobs, allow 5 attempts per job and then the job will be marked as failed.
