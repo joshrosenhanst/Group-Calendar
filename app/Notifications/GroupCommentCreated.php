@@ -44,7 +44,7 @@ class GroupCommentCreated extends Notification
   public function toArray($notifiable)
   {
     return [
-      'text' => "<strong>".e($this->creator->name)."</strong> commented on  <strong>".e($this->group->name)."</strong>:<br><span class='notification_comment'>".e($this->text)."</span>",
+      'text' => "<strong>".e($this->creator->name)."</strong> commented on  <strong>".e($this->group->name)."</strong>:<br><span class='notification_comment'>\"".e($this->text)."\"</span>",
       'creator_id' => $this->creator->id,
       'url' => route('groups.view', ['group'=>$this->group->id]),
       'icon' => 'comment-plus'

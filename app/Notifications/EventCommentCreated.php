@@ -44,7 +44,7 @@ class EventCommentCreated extends Notification
   public function toArray($notifiable)
   {
     return [
-      'text' => "<strong>".e($this->creator->name)."</strong> commented on  <strong>".e($this->event->name)."</strong>:<br><span class='notification_comment'>".e($this->text)."</span>",
+      'text' => "<strong>".e($this->creator->name)."</strong> commented on  <strong>".e($this->event->name)."</strong>:<br><span class='notification_comment'>\"".e($this->text)."\"</span>",
       'creator_id' => $this->creator->id,
       'url' => route('events.view', ['event'=>$this->event->id]),
       'icon' => 'comment-plus'
