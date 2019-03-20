@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>GroupCalendar | {{ $event->name }}</title>
-  <link rel="stylesheet" type="text/css" href="{{ mix('css/event_flyer.css') }}" />
+  <link rel="stylesheet" type="text/css" href="{{ asset(mix('css/event_flyer.css')) }}" />
 </head>
 <body>
   <main id="pdf_main">

@@ -6,7 +6,7 @@
     <title>GroupCalendar | @yield('title')</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <link rel="stylesheet" type="text/css" href="{{ mix('css/app.css') }}" />
+    <link rel="stylesheet" type="text/css" href="{{ asset(mix('css/app.css')) }}" />
     <link rel="apple-touch-icon" sizes="180x180" href="{{ asset('apple-touch-icon.png') }}">
     <link rel="icon" type="image/png" sizes="32x32" href="{{ asset('favicon-32x32.png') }}">
     <link rel="icon" type="image/png" sizes="16x16" href="{{ asset('favicon-16x16.png') }}">
@@ -29,7 +29,7 @@
     </main>
   </div>
 
-  <script src="{{ mix('js/app.js') }}"></script>
+  <script src="{{ asset(mix('js/app.js')) }}"></script>
   <script>
     window.GroupCalendar = window.GroupCalendar || {};
     @auth

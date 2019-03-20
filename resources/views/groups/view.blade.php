@@ -71,5 +71,5 @@
 {{-- Include the page data variables injected by the controller and the page script which will create the Vue instance. --}}
 @section('page_scripts')
   @include('partials.pagedata')
-  <script src="{{ mix('/js/pages/groups/view.js') }}"></script>
+  <script src="{{ asset(mix('/js/pages/groups/view.js')) }}"></script>
 @endsection

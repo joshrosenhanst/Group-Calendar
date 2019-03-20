@@ -226,5 +226,5 @@
 @section('page_scripts')
   <script src="https://maps.googleapis.com/maps/api/js?key={{ env('GOOGLE_MAPS_API_KEY') }}&libraries=places"></script>
   @include('partials.pagedata')
-  <script src="{{ mix('/js/pages/events/new.js') }}"></script>
+  <script src="{{ asset(mix('/js/pages/events/new.js')) }}"></script>
 @endsection

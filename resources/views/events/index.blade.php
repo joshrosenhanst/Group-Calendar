@@ -113,5 +113,5 @@
 @endsection
 
 @section('page_scripts')
-<script src="{{ mix('/js/pages/events/index.js') }}"></script>
+<script src="{{ asset(mix('/js/pages/events/index.js')) }}"></script>
 @endsection
