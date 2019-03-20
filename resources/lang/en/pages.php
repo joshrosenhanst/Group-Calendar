@@ -17,7 +17,7 @@ return [
   'notifications.index.title' => 'Notifications',
 
   /* Users */
-  'users.view.subtitle' => "On the user's account page you can view the groups that the user belongs to.",
+  'users.view.subtitle' => "On the user's account page you can view the groups that they belong to.",
 
   /* Group Invitations */
   'invitations.title' => 'My Group Invitations',
