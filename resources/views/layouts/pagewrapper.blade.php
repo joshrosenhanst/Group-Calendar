@@ -36,8 +36,8 @@
     GroupCalendar.defaultMixin = {
       data: function(){
         return {
-          currentUser: @json(Auth::user()->append('all_notifications')->toArray()),
-          currentUnreadCount: @json(Auth::user()->all_unread_notifications->count()),
+          currentUser: @json(Auth::user()),
+          notifications: @json(Auth::user()->all_unread_notifications),
           navbarMenuActive: false
         };
       },

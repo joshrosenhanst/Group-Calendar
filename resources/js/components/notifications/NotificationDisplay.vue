@@ -26,22 +26,44 @@
       v-bind:aria-hidden="!isActive"
       @blur.capture="onBlur"
     >
-      <slot></slot>
+      <ul class="dropdown_notifications">
+
+        <template v-if="notifications.length">
+          <notification-item 
+            v-for="notification in notifications"
+            :key="notification.id"
+            :notification="notification"
+          ></notification-item>
+        </template>
+        <div class="empty list_empty" v-else>
+          <material-icon name="bell-outline"></material-icon>
+          <h2>No Unread Notifications</h2>
+        </div>
+
+        <div class="dropdown_footer">
+          <a href="/notifications" class="button">View All Notifications</a>
+        </div>
+
+      </ul>
     </div>
   </div>
 </template>
 
 <script>
+import NotificationItem from './NotificationItem.vue';
 export default {
+  components: {
+    NotificationItem
+  },
   data(){
     return {
       isActive: false,
-      unread_notifications: (this.count || 0)
+      unread_notifications: (this.notifications.length || 0)
     }
   },
   props: {
     user_id: Number,
-    count: Number
+    notifications: Object
   },
   methods: {
     markUserNotifcationsAsRead(){

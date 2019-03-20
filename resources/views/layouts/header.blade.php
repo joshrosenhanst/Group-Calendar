@@ -11,11 +11,8 @@
       
       <notification-display
         v-bind:user_id="currentUser.id"
-        v-bind:count="currentUnreadCount"
+        v-bind:notifications="notifications"
       >
-        @include('partials.notifications', [
-          'notifications'=>Auth::user()->all_unread_notifications
-        ])
       </notification-display>
 
       <a href="{{ route('home') }}" class="navbar_item" title="Go to Home Page">
