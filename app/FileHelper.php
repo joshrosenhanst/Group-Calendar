@@ -24,7 +24,7 @@ class FileHelper {
         'filename' => $fs->basename($files[$i])
       ]);
     }
-    return $images->toJson();
+    return $images;
   }
 
   /*
