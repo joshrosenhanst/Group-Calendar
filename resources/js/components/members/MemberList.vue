@@ -8,9 +8,9 @@
     v-for="member in members"
     v-bind:key="member.id"
   >
-    <a v-bind:href="`/users/${member.id}`" class="preview_thumbnail">
+    <a v-bind:href="getAssetURL('/users/'+member.id)" class="preview_thumbnail">
       <img 
-        v-bind:src="`/${member.avatar}`" 
+        v-bind:src="getAssetURL('/'+member.avatar)" 
         v-bind:alt="`${member.name} Avatar`"
       >
     </a>
@@ -31,7 +31,7 @@
     </div>
 
     <div class="item_details">
-      <a v-bind:href="`/users/${member.id}`" class="preview_name">{{ member.name }}</a>
+      <a v-bind:href="getAssetURL('/users/'+member.id)" class="preview_name">{{ member.name }}</a>
 
       <div class="subtext" v-if="(type === 'members')">
         <strong class="capitalize">{{ member.pivot.role }}</strong> · <span >Joined {{ member.join_date }}</span>
@@ -67,15 +67,17 @@
 <script>
 import MemberForm from './MemberForm.vue';
 import MemberRemoveForm from './MemberRemoveForm.vue';
+import asset_url from '../../mixins/asset_url.js';
 export default {
+  mixins: [asset_url],
+  components: {
+    MemberForm, MemberRemoveForm
+  },
   data: function(){
     return {
       openMemberForm: null,
       openRemoveForm: null
     };
-  },
-  components: {
-    MemberForm, MemberRemoveForm
   },
   props: {
     members: Array,

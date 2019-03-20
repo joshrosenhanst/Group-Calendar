@@ -163,6 +163,7 @@
       {{-- Event Attendees --}}
       <attendees-card
         v-bind:attendees="event.attendees"
+        v-bind:asset_url="asset_url"
       ></attendees-card>
     </aside>
   </div>

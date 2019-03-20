@@ -59,6 +59,7 @@
         @endcan
         v-on:update-member="updateMember"
         v-on:remove-member="removeMember"
+        v-bind:asset_url="asset_url"
         type="members"
       ></member-list>
 
@@ -80,6 +81,7 @@
       {{-- List of Invited Users --}}
       <member-list
         v-bind:members="invited"
+        v-bind:asset_url="asset_url"
         type="invited"
       ></member-list>
 

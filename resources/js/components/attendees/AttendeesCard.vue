@@ -12,11 +12,11 @@
         v-bind:key="attendee.id"
         v-bind:attendee="attendee"
       >
-        <a v-bind:href="`/users/${attendee.id}`" class="preview_thumbnail">
-          <img v-bind:src="`/${attendee.avatar}`" v-bind:alt="`${attendee.name} Avatar`">
+        <a v-bind:href="getAssetURL('/users/'+attendee.id)" class="preview_thumbnail">
+          <img v-bind:src="getAssetURL('/'+attendee.avatar)" v-bind:alt="`${attendee.name} Avatar`">
         </a>
         <div class="preview_name">
-          <a v-bind:href="`/users/${attendee.id}`">{{ attendee.name }}</a>
+          <a v-bind:href="getAssetURL('/users/'+attendee.id)">{{ attendee.name }}</a>
           <small class="status" v-bind:class="attendee.pivot.status">{{ status_text[attendee.pivot.status] }}</small>
         </div>
       </div>
@@ -32,7 +32,9 @@
 
 <script>
 import { status_text } from '../../lang/status.js';
+import asset_url from '../../mixins/asset_url.js';
 export default {
+  mixins: [asset_url],
   data: function(){
     return {
       status_text: status_text
