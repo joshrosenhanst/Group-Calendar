@@ -1,7 +1,7 @@
 <header id="site_header" @guest class="mobile_header" @endif>
   <nav class="navbar" role="navigation" aria-label="main navigation">
     <div class="navbar_left">
-      <a href="/" class="navbar_logo navbar_item" title="GroupCalendar">
+      <a href="{{ route('landing') }}" class="navbar_logo navbar_item" title="GroupCalendar">
         @materialicon('calendar-heart')
         <span>GroupCalendar</span>
       </a>

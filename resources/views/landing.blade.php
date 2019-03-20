@@ -16,7 +16,7 @@
 
       <div class="hero_subtitle">GroupCalendar helps you organize your friends, colleagues, movie lovers, concert goers, and everyone in between into private groups so that you can plan upcoming events together.</div>
 
-      <a href="/demo" class="button button-large button-link">Try a Demo</a>
+      <a href="{{ route('demo') }}" class="button button-large button-link">Try a Demo</a>
     </div>
     <div class="hero_image screen_sample">
       <div class="tablet_wrapper">
