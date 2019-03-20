@@ -14,7 +14,8 @@ GroupCalendar.app = new Vue({
   },
   methods: {
     getEvent() {
-      axios.get(`/ajax/events/${this.event.id}`).then((response) => {
+      let url = this.asset_url + '/ajax/events/' + this.event.id;
+      axios.get(url).then((response) => {
         this.event = response.data.event;
         this.comments = response.data.comments;
 

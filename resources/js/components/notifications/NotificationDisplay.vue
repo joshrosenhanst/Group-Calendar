@@ -70,7 +70,8 @@ export default {
   methods: {
     markUserNotifcationsAsRead(){
       if(this.user_id){
-        axios.put(`/ajax/notifications/${this.user_id}/readAll`)
+        let url = this.getAssetURL('/ajax/notifications/'+this.user_id+'/readAll');
+        axios.put(url)
         .then((response) => {
           this.unread_notifications = 0;
         }).catch((error) => {
