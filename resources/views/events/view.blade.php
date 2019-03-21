@@ -228,7 +228,11 @@
       <attendees-card
         v-bind:attendees="event.attendees"
         v-bind:asset_url="asset_url"
-      ></attendees-card>
+      >
+        @include('blocks.attendees.list', [
+          'attendees' => $event->attendees
+        ])
+      </attendees-card>
     </aside>
   </div>
 </article>
