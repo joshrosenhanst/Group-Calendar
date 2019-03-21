@@ -91,7 +91,7 @@
 
 @section('sidebars')
 {{-- Sidebars --}}
-<sidebar-wrapper v-bind:active="navbarMenuActive">
+<sidebar-wrapper id="sidebars" v-bind:active="navbarMenuActive">
   {{-- Groups Sidebar --}}
   @include('layouts.sidebar.groups')
   {{-- User Sidebar --}}

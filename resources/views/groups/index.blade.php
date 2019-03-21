@@ -50,7 +50,7 @@
 
 @section('sidebars')
 {{-- Sidebars --}}
-<sidebar-wrapper v-bind:active="navbarMenuActive">
+<sidebar-wrapper id="sidebars" v-bind:active="navbarMenuActive">
   {{-- Group Index Sidebar --}}
   @include('layouts.sidebar.groups')
   {{-- User Sidebar --}}

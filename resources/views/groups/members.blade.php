@@ -123,7 +123,7 @@
 
 @section('sidebars')
 {{-- Sidebars --}}
-<sidebar-wrapper v-bind:active="navbarMenuActive">
+<sidebar-wrapper id="sidebars" v-bind:active="navbarMenuActive">
   {{-- Group Members Sidebar --}}
   @include('layouts.sidebar.members', ['group'=>$group])
   {{-- Group Sidebar --}}

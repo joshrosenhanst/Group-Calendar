@@ -106,7 +106,7 @@
 
 @section('sidebars')
 {{-- Sidebars --}}
-<sidebar-wrapper v-bind:active="navbarMenuActive">
+<sidebar-wrapper id="sidebars" v-bind:active="navbarMenuActive">
   {{-- Home Sidebar --}}
   @include('layouts.sidebar.home')
   {{-- User Sidebar --}}

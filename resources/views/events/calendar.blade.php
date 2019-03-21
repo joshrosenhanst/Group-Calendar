@@ -22,7 +22,7 @@
 
 @section('sidebars')
 {{-- Sidebars --}}
-<sidebar-wrapper v-bind:active="navbarMenuActive">
+<sidebar-wrapper id="sidebars" v-bind:active="navbarMenuActive">
   {{-- User Sidebar --}}
   @include('layouts.sidebar.user')
 </sidebar-wrapper>

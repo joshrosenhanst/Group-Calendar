@@ -210,7 +210,7 @@
 
 @section('sidebars')
 {{-- Sidebars --}}
-<sidebar-wrapper v-bind:active="navbarMenuActive">
+<sidebar-wrapper id="sidebars" v-bind:active="navbarMenuActive">
   {{-- Event Sidebar --}}
   @include('layouts.sidebar.event', ['event'=>$event])
   {{-- Group Sidebar --}}
