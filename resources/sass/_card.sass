@@ -151,7 +151,14 @@
   .card_list
     padding: 0
     &.card_list-mini
-      +tablet
+      +from($large_mobile)
+        display: grid
+        grid-template-columns: 1fr 1fr
+        .list_item:not(:last-of-type)
+          border-right: 1px solid $card-border-color
+          margin-right: -1px
+    &.card_list-med
+      @media screen and (min-width: $large_mobile) and (max-width: $desktop - 1px)
         display: grid
         grid-template-columns: 1fr 1fr
         .list_item:not(:last-of-type)

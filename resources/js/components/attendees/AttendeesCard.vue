@@ -6,7 +6,7 @@
         <span>Attendees</span>
       </h2>
     </div>
-    <div class="card_section card_list" v-if="attendees.length">
+    <div class="card_section card_list card_list-med" v-if="attendees.length">
       <div class="list_item attendee_list_preview" 
         v-for="attendee in attendees"
         v-bind:key="attendee.id"

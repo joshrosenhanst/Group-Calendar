@@ -7,7 +7,7 @@
     </h2>
   </div>
 
-  <div class="card_section card_list">
+  <div class="card_section card_list card_list-med">
     @if(count($attendees))
       @foreach($attendees as $attendee)
 
