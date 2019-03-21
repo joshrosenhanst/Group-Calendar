@@ -31,22 +31,28 @@
         </div>
       </div>
 
-      @if($event->location_place_id)
+      @if($event->location_place_id || $event->location_name || $event->location_formatted_address || $event->location_city || $event->location_state)
       {{-- Event Location --}}
       <div class="event_detail">
         <div class="event_icon">
           <img src="{{ asset('img/flyer/map-marker.png') }}" alt="Map Marker Icon">
         </div>
         <div class="detail_content">
+            @if($event->location_name)
           <div class="event_location_name">{{ $event->location_name }}</div>
+          @endif
+          @if($event->location_formatted_address)
           <div class="event_location_address">{{ $event->location_formatted_address }}</div>
+          @endif
 
-          @if($event->location_map_url)
-          <a href="{{ $event->location_map_url }}" id="map_preview_link">
+          @if($event->location_coordinates)
+            @if($event->location_map_url)
+            <a href="{{ $event->location_map_url }}" id="map_preview_link">
+              <img id="map_preview_image" src="https://maps.googleapis.com/maps/api/staticmap?maptype=roadmap&size=640x256&center={{ $event->location_coordinates }}&markers={{ $event->location_coordinates }}&key={{ env('GOOGLE_MAPS_API_KEY') }}" alt="Event Location Google Map preview">
+            </a>
+            @else
             <img id="map_preview_image" src="https://maps.googleapis.com/maps/api/staticmap?maptype=roadmap&size=640x256&center={{ $event->location_coordinates }}&markers={{ $event->location_coordinates }}&key={{ env('GOOGLE_MAPS_API_KEY') }}" alt="Event Location Google Map preview">
-          </a>
-          @else
-          <img id="map_preview_image" src="https://maps.googleapis.com/maps/api/staticmap?maptype=roadmap&size=640x256&center={{ $event->location_coordinates }}&markers={{ $event->location_coordinates }}&key={{ env('GOOGLE_MAPS_API_KEY') }}" alt="Event Location Google Map preview">
+            @endif
           @endif
           
         </div>

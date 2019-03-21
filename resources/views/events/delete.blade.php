@@ -36,13 +36,17 @@
           </div>
         </div>
   
-        @if($event->location_place_id)
+        @if($event->location_place_id || $event->location_name || $event->location_formatted_address || $event->location_city || $event->location_state)
         {{-- Event Location --}}
         <div class="event_detail">
           <div class="icon icon-full_size">@materialicon('map-marker')</div>
           <div class="detail_content">
+            @if($event->location_name)
             <div class="event_location_name">{{ $event->location_name }}</div>
+            @endif
+            @if($event->location_formatted_address)
             <div class="event_location_address">{{ $event->location_formatted_address }}</div>
+            @endif
             @if($event->location_map_url)
             <a class="event_location_url" href="{{ $event->location_map_url }}" target="_blank">
               <span class="icon is-small">@materialicon('google-maps')</span>
