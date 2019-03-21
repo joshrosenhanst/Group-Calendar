@@ -39,6 +39,8 @@ Route::middleware('auth')->prefix('groups')->name('groups.')->group(function(){
   Route::put('/{group}/createInvite', 'InviteController@createInvite')->middleware('can:createInvite,group')->name('invites.createInvite');
   Route::put('/{group}/acceptInvite', 'InviteController@acceptInvite')->name('invites.acceptInvite');
   Route::put('/{group}/declineInvite', 'InviteController@declineInvite')->name('invites.declineInvite');
+
+  Route::put('/{group}/createComment', 'GroupController@createComment')->middleware('can:createComment,group')->name('createComment');
 });
 
 /* 
@@ -65,6 +67,8 @@ Route::middleware('auth')->prefix('events/')->name('events.')->group(function(){
   Route::put('/{event}/attend','EventController@attend')->middleware('can:attend,event')->name('attend');
   Route::put('/{event}/update', 'EventController@update')->middleware('can:update,event')->name('update');
   Route::delete('/{event}/delete', 'EventController@destroy')->middleware('can:destroy,event')->name('destroy');
+
+  Route::put('/{event}/createComment', 'EventController@createComment')->middleware('can:createComment,event')->name('createComment');
 
 });
 

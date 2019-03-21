@@ -47,7 +47,15 @@
         v-on:create-comment="createComment"
         v-on:update-comment="updateComment"
         v-on:delete-comment="deleteComment"
-      ></comments-card>
+      >
+        {{--Noscript: fallback to display the simple list of comments and comment form --}}
+        @include('blocks.comments.list', [
+          'comments' => $group->comments,
+          'title' => 'Group Comments',
+          'form_url' => route('groups.createComment', ['group'=>$group]),
+          'errors' => $errors->all()
+        ])
+      </comments-card>
     </div>
     <aside class="maincontent_aside">
 

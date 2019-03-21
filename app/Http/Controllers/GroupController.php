@@ -187,4 +187,21 @@ class GroupController extends Controller{
 
     return redirect()->route('home')->with('status','You have left the group.');
   }
+
+  /*
+    createComment() - Add a group comment submitted by the new comment form on the groups.view page.
+  */
+  public function createComment(Request $request, \App\Group $group){
+    $request->validate([
+      'comment_text'=>'required'
+    ]);
+
+    $comment = $group->comments()->create([
+      'text' => $request->comment_text,
+      'user_id' => Auth::user()->id
+    ]);
+
+    $group->notify(new GroupCommentCreated(Auth::user(), $group, $request->comment_text));
+    return redirect()->route('groups.view', ['group'=>$group])->with('status', 'Your comment has been posted.');
+  }
 }

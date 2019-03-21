@@ -337,4 +337,21 @@ class EventController extends Controller
 
     return redirect()->route('groups.events.index', ['group'=>$group])->with('status', 'The event has been deleted.');
   }
+
+  /*
+    createComment() - Add an event comment submitted by the new comment form on the events.view page.
+  */
+  public function createComment(Request $request, \App\Event $event){
+    $request->validate([
+      'comment_text'=>'required'
+    ]);
+
+    $comment = $event->comments()->create([
+      'text' => $request->comment_text,
+      'user_id' => Auth::user()->id
+    ]);
+
+    $event->group->notify(new EventCommentCreated(Auth::user(), $event, $request->comment_text));
+    return redirect()->route('groups.events.view', ['event'=>$event, 'group'=>$event->group])->with('status', 'Your comment has been posted.');
+  }
 }
