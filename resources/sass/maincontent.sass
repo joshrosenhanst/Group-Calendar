@@ -37,8 +37,7 @@ main#app-body
     flex-basis: $sidebar-tablet-width
 
 article#maincontent
-  flex-grow: 1
-  flex-shrink: 1
+  flex: 1 1 0px
   max-width: 100%
   +tablet
     margin-right: 15px
@@ -52,12 +51,12 @@ article#maincontent
   +desktop
     display: flex
     .maincontent_mid_section
-      flex: 2 0
+      flex: 2 0 0px
       &:not(:last-child)
         margin-right: 15px
     .maincontent_aside
-      flex: 1 0
+      flex: 1 0 0px
     .maincontent_calendar_section
-      flex: 3 0
+      flex: 3 0 0px
     .maincontent_events_section
-      flex: 2 0
+      flex: 2 0 0px
