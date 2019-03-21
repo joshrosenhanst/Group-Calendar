@@ -34,21 +34,59 @@
 
   </div>
 
-  <tab-wrapper
+  {{-- Tab navigation --}}
+  <nav class="tabs" is="tab-wrapper"    
     v-bind:tab-items="tabs"
     v-on:select-tab="selectTab"
   >
-    <template slot="members">
+    {{--Noscript: graceful fallback by manually rendering the tabs--}}
+    <ul slot="noscript">
+      <li
+      @if(request('tab') === NULL || request('tab') === 'members')
+        class="tab_active"
+      @endif
+      >
+        <a href="{{ route('groups.members', ['group'=>$group, 'tab'=>'members']) }}">
+          <span class="icon">@materialicon('account-multiple')</span>
+          <span>Members</span>
+        </a>
+      </li>
+      <li
+      @if(request('tab') === 'invited')
+        class="tab_active"
+      @endif
+      >
+        <a href="{{ route('groups.members', ['group'=>$group, 'tab'=>'invited']) }}">
+          <span class="icon">@materialicon('account-plus')</span>
+          <span>Invited</span>  
+        </a>
+      </li>
+    </ul>
+
+    {{-- TabWrapper tabs (only visible if JS is running) --}}
+    <template slot="members" style="display:none;">
       <span class="icon">@materialicon('account-multiple')</span>
       <span>Members</span>
     </template>
-    <template slot="invited">
+    <template slot="invited" style="display:none;">
       <span class="icon">@materialicon('account-plus')</span>
       <span>Invited</span>  
     </template>
-  </tab-wrapper>
+  </nav>
 
-  <div class="tab members_tab" v-show="activeTab === 'members'">
+  {{--Tab 1: Members Tab--}}
+  <div 
+    v-show="(activeTab === 'members')"
+    v-bind:class="{ 'active_tab': (activeTab === 'members') }"
+
+    @if(request('tab') === 'members')
+    class="tab members_tab active_tab"
+    @elseif(request('tab') === 'invited')
+    class="tab members_tab"
+    @elseif(request('tab') === NULL)
+    class="tab members_tab default_tab"
+    @endif
+  >
     <div class="card card-has_tabs">
       <div class="card_sub_header">
         <h1 class="sub_title">
@@ -85,7 +123,17 @@
     </div>
   </div>
 
-  <div class="tab invited_tab" v-show="activeTab === 'invited'">
+  {{--Tab 2: Invited Tab--}}
+  <div 
+    v-show="(activeTab === 'invited')"
+    v-bind:class="{ 'active_tab': (activeTab === 'invited') }"
+    
+    @if(request('tab') === 'invited')
+    class="tab invited_tab active_tab"
+    @else
+    class="tab invited_tab"
+    @endif
+  >
     <div class="card card-has_tabs">
       <div class="card_sub_header">
         <h1 class="sub_title">

@@ -1,3 +1,4 @@
+/* Tabs: the navigation elements */
 .tabs
   +overflow-touch
   +unselectable
@@ -53,3 +54,10 @@
           svg
             filter: drop-shadow($navbar-item-text-shadow)
 
+/* Tab: the actual tab content being displayed when the tabs nav is used */
+.tab
+  display: none
+  &.default_tab
+    display: block
+  &.active_tab
+    display: block

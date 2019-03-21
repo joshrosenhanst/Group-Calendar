@@ -30,21 +30,58 @@
     </div>
   </div>
 
-  <tab-wrapper
+  <nav class="tabs" is="tab-wrapper"    
     v-bind:tab-items="tabs"
     v-on:select-tab="selectTab"
   >
-    <template slot="upcoming_events">
+    {{--Noscript: graceful fallback by manually rendering the tabs--}}
+    <ul slot="noscript">
+      <li
+      @if(request('tab') === NULL || request('tab') === 'upcoming_events')
+        class="tab_active"
+      @endif
+      >
+        <a href="{{ route('groups.events.index', ['group'=>$group, 'tab'=>'upcoming_events']) }}">
+          <span class="icon">@materialicon('calendar-text')</span>
+          <span>Upcoming Events</span>
+        </a>
+      </li>
+      <li
+      @if(request('tab') === 'past_events')
+        class="tab_active"
+      @endif
+      >
+        <a href="{{ route('groups.events.index', ['group'=>$group, 'tab'=>'past_events']) }}">
+          <span class="icon">@materialicon('calendar-clock')</span>
+          <span>Past Events</span>  
+        </a>
+      </li>
+    </ul>
+    
+    {{-- TabWrapper tabs (only visible if JS is running) --}}
+    <template slot="upcoming_events" style="display:none;">
       <span class="icon">@materialicon('calendar-text')</span>
       <span>Upcoming Events</span>
     </template>
-    <template slot="past_events">
+    <template slot="past_events" style="display:none;">
       <span class="icon">@materialicon('calendar-clock')</span>
       <span>Past Events</span>  
     </template>
-  </tab-wrapper>
+  </nav>
 
-  <div class="tab upcoming_events_tab" v-show="activeTab === 'upcoming_events'">
+  {{--Tab 1: Upcoming Events Tab--}}
+  <div 
+    v-show="(activeTab === 'upcoming_events')"
+    v-bind:class="{ 'active_tab': (activeTab === 'upcoming_events') }"
+
+    @if(request('tab') === 'upcoming_events')
+    class="tab upcoming_events_tab active_tab"
+    @elseif(request('tab') === 'past_events')
+    class="tab upcoming_events_tab"
+    @elseif(request('tab') === NULL)
+    class="tab upcoming_events_tab default_tab"
+    @endif
+  >
     <div class="card card-has_tabs">
 
       @if(count($monthly_upcoming_events))
@@ -72,7 +109,17 @@
     </div>
   </div>
 
-  <div class="tab past_events_tab" v-show="activeTab === 'past_events'">
+  {{--Tab 2: Past Events Tab--}}
+  <div
+    v-show="(activeTab === 'past_events')"
+    v-bind:class="{ 'active_tab': (activeTab === 'past_events') }"
+
+    @if(request('tab') === 'past_events')
+    class="tab past_events_tab active_tab"
+    @else
+    class="tab past_events_tab"
+    @endif
+  >
     <div class="card card-has_tabs">
       
       @if(count($monthly_past_events))
