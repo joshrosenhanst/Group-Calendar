@@ -8,7 +8,15 @@
   <div class="card_section card_list">
     @if(count($members))
       @foreach($members as $member)
-        @include('blocks.members.list_item', ['user'=>$member])
+        <div class="member_list_preview list_item">
+          <a class="preview_thumbnail" href="{{ route('users.view', ['user'=>$member]) }}">
+            <img src="{{ asset($member->avatar) }}" alt="{{ $member->name }} Avatar">
+          </a>
+          <div class="preview_name">
+            <a href="{{ route('users.view', ['user'=>$member]) }}">{{ $member->name }}</a>
+            <small class="subtext">Joined {{ $member->join_date }}</small>
+          </div>
+        </div>
       @endforeach
     @else
       @component('components.empty', ['icon'=>'account-question-outline','class'=>'list_empty'])
