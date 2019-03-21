@@ -77,18 +77,23 @@
       <div class="event_detail">
         <div class="icon icon-full_size">@materialicon('file-download')</div>
         <div class="detail_content detail_content-mid">
-
-          <div class="loading_text"
-            v-if="event.flyer_processing"
-          >
-            <span class="icon is-loading"></span> Loading Event Flyer PDF...
-          </div>
-          <template v-else>
-            <a download="GroupCalendar Event Flyer.pdf" 
-              v-if="event.flyer_url"
-              :href="asset_url + '/storage/flyers/' + event.flyer_url"
-            >Download Event Flyer PDF</a>
-          </template>
+          {{-- Noscript: show download link if its available, otherwise show 'flyer being processed' text that is overridden by v-text when JS is on. --}}
+          @if($event->flyer_processing)
+            <div class="loading_text"
+              v-if="event.flyer_processing"
+            >
+              <span class="icon is-loading"></span>
+              <span v-text="'Loading Event Flyer PDF...'">The Event Flyer PDF is being processed. You can refresh the page to check if is available.</span>
+            </div>
+            <template v-else style="display: none;">
+              <a download="GroupCalendar Event Flyer.pdf" 
+                v-if="event.flyer_url"
+                :href="asset_url + '/storage/flyers/' + event.flyer_url"
+              >Download Event Flyer PDF</a>
+            </template>
+          @else
+          <a download="GroupCalendar Event Flyer.pdf" href="{{ asset($event->flyer) }}">Download Event Flyer PDF</a>
+          @endif
 
         </div>
       </div>
