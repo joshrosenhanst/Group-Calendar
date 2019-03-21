@@ -127,7 +127,33 @@
       @endisset
       value="{{ $input['old'] ?? $input['value'] ?? null }}"
       v-bind:events="(events || [])"
-    ></app-datepicker>
+    >
+      {{-- Noscript: fallback to date field --}}
+      <input
+        slot="noscript"
+        @isset($input['id'])
+        id="{{ $input['id'] }}"
+        @endisset
+        @isset($input['name'])
+        name="{{ $input['name'] }}"
+        @endisset
+        @isset($input['placeholder'])
+        placeholder="{{ $input['placeholder'] }}"
+        @endisset
+        @isset($input['min'])
+        min="{{ $input['min'] }}"
+        @endisset
+        @isset($input['max'])
+        max="{{ $input['max'] }}"
+        @endisset
+        @isset($input['aria-label'])
+        aria-label="{{ $input['aria-label'] }}"
+        @endisset
+        class="{{ $input['class'] ?? 'form_input' }}"
+        type="date"
+        value="{{ $input['old'] ?? $input['value'] ?? null }}"
+      >
+    </app-datepicker>
     @break
 
   @case('time')
@@ -148,7 +174,33 @@
       input_class="{{ $input['class'] }}"
       @endisset
       value="{{ $input['old'] ?? $input['value'] ?? null }}"
-    ></app-timepicker>
+    >
+      {{-- Noscript: fallback to time field --}}
+      <input
+        slot="noscript"
+        @isset($input['id'])
+        id="{{ $input['id'] }}"
+        @endisset
+        @isset($input['name'])
+        name="{{ $input['name'] }}"
+        @endisset
+        @isset($input['placeholder'])
+        placeholder="{{ $input['placeholder'] }}"
+        @endisset
+        @isset($input['min'])
+        min="{{ $input['min'] }}"
+        @endisset
+        @isset($input['max'])
+        max="{{ $input['max'] }}"
+        @endisset
+        @isset($input['aria-label'])
+        aria-label="{{ $input['aria-label'] }}"
+        @endisset
+        class="{{ $input['class'] ?? 'form_input' }}"
+        type="time"
+        value="{{ $input['old'] ?? $input['value'] ?? null }}"
+      >
+    </app-timepicker>
     @break
 
   @case('text')
