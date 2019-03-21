@@ -111,14 +111,15 @@
         v-on:remove-member="removeMember"
         v-bind:asset_url="asset_url"
         type="members"
-      ></member-list>
-
-      <div class="card_section card_list">
-        <div class="empty list_empty" v-if="members.length == 0">
-          <span class="icon">@materialicon('account-question-outline')</span>
-          <h2>No Members</h2>
-        </div>
-      </div>
+        empty_text="No Members"
+      >
+        {{-- Noscript: fall back to rendering a basic list via blocks.members.list --}}
+        @include('blocks.members.list', [
+          'members' => $group->users,
+          'type' => 'members',
+          'empty_text' => 'No Members'
+        ])
+      </member-list>
 
     </div>
   </div>
@@ -127,7 +128,7 @@
   <div 
     v-show="(activeTab === 'invited')"
     v-bind:class="{ 'active_tab': (activeTab === 'invited') }"
-    
+
     @if(request('tab') === 'invited')
     class="tab invited_tab active_tab"
     @else
@@ -148,19 +149,21 @@
           </span>
         </h1>
       </div>
+
       {{-- List of Invited Users --}}
       <member-list
         v-bind:members="invited"
         v-bind:asset_url="asset_url"
         type="invited"
-      ></member-list>
-
-      <div class="card_section card_list">
-        <div class="empty list_empty" v-if="invited.length == 0">
-          <span class="icon">@materialicon('account-question-outline')</span>
-          <h2>No Pending Invitations</h2>
-        </div>
-      </div>
+        empty_text="No Pending Invitations"
+      >
+        {{-- Noscript: fall back to rendering a basic list via blocks.members.list --}}
+        @include('blocks.members.list', [
+          'members' => $group->group_invites,
+          'type' => 'invited',
+          'empty_text' => 'No Pending Invitations'
+        ])
+      </member-list>
 
     </div>
   </div>
