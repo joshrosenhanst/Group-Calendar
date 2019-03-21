@@ -82,7 +82,7 @@ class EventController extends Controller
       'start_time' => [
         'nullable','string', function($attribute, $value, $fail){
           if(!strtotime($value)){
-            $fail("The start time field is invalid.");
+            $fail("The start time is not a valid time.");
           }
         }
       ],
@@ -90,7 +90,7 @@ class EventController extends Controller
       'end_time' => [
         'nullable','string', function($attribute, $value, $fail){
           if(!strtotime($value)){
-            $fail("The start time field is invalid.");
+            $fail("The end time is not a valid time.");
           }
         }
       ],
@@ -210,7 +210,7 @@ class EventController extends Controller
       'start_time' => [
         'nullable','string', function($attribute, $value, $fail){
           if(!strtotime($value)){
-            $fail("The start time field is invalid.");
+            $fail("The start time is not a valid time.");
           }
         }
       ],
@@ -218,7 +218,7 @@ class EventController extends Controller
       'end_time' => [
         'nullable','string', function($attribute, $value, $fail){
           if(!strtotime($value)){
-            $fail("The start time field is invalid.");
+            $fail("The end time is not a valid time.");
           }
         }
       ],

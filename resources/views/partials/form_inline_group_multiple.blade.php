@@ -33,6 +33,9 @@
         </div>
         @endforeach
         
+        @isset($slot)
+        {{ $slot }}
+        @endisset
       </div>
 
       {{-- FORM HELP --}}

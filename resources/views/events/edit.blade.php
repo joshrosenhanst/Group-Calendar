@@ -71,7 +71,7 @@
             'min' => '1/1/2019',
             'value' => \Carbon\Carbon::today()->toDateTimeString(),
             'id' => 'start_date',
-            'old' => \Carbon\Carbon::parse( old('start_date', $event->start_date) )->toDateTimeString(),
+            'old' => strtotime(old('start_date', $event->start_date)) ? \Carbon\Carbon::parse( old('start_date', $event->start_date) )->toDateTimeString() : null,
             'icon' => [
               'align' => 'left',
               'name' => 'calendar'
@@ -81,7 +81,7 @@
             'name' => 'start_time',
             'type' => 'time',
             'id' => 'start_time',
-            'old' => ( old('start_time',$event->start_time) ? \Carbon\Carbon::parse(old('start_time',$event->start_time))->format('H:i') : null ),
+            'old' => ( strtotime(old('start_time',$event->start_time)) ? \Carbon\Carbon::parse(old('start_time',$event->start_time))->format('H:i') : null ),
             'icon' => [
               'align' => 'left',
               'name' => 'clock-outline'
@@ -93,9 +93,29 @@
         'error_group' => [ $errors->get('start_date'), $errors->get('start_time') ]
       ])
 
-      {{-- End Date/Time --}}
+      {{--Button prompt to show/hide the End Date fields. Hidden for noscript. --}}
+      <template v-if="!showEndDate" style="display:none;">
+      <div class="form_inline_group">
+        <div class="field">
+          <div class="field_label"></div>
+          <div class="field_body">
+            <button class="button button-small button-info"
+              v-on:click.prevent="showEndDate = true"
+              v-on:keyup.event.prevent="showEndDate = true"
+              v-on:keyup.space.prevent="showEndDate = true"
+            >
+              <material-icon name="plus"></material-icon>
+              <span>Add End Date</span>
+            </button>
+            <div class="form_help"> You can optionally add an end date and time for the event.</div>
+          </div>
+        </div>
+      </div>
+      </template>
+
+      {{-- End Date/Time - Includes a button to remove the end date/time fields, which is hidden for noscript. --}}
       <div class="form_group_wrapper" v-if="showEndDate">
-        @include('partials.form_inline_group_multiple', [
+        @component('partials.form_inline_group_multiple', [
           'label' => ['text' => 'End Date','label_for'=>'end_date'],
           'inputs' => [
             [
@@ -103,7 +123,7 @@
               'type' => 'date',
               'min' => '1/1/2019',
               'id' => 'end_date',
-              'old' => \Carbon\Carbon::parse( old('end_date', ( $event->end_date ?? $event->start_date)) )->toDateTimeString(),
+              'old' => strtotime(old('end_date', ( $event->end_date ?? $event->start_date))) ? \Carbon\Carbon::parse( old('end_date', ( $event->end_date ?? $event->start_date)) )->toDateTimeString() : null,
               'icon' => [
                 'align' => 'left',
                 'name' => 'calendar'
@@ -113,7 +133,7 @@
               'name' => 'end_time',
               'type' => 'time',
               'id' => 'end_time',
-              'old' => ( old('end_time',$event->end_time) ? \Carbon\Carbon::parse(old('end_time',$event->end_time))->format('H:i') : null ),
+              'old' => ( strtotime(old('end_time',$event->end_time)) ? \Carbon\Carbon::parse(old('end_time',$event->end_time))->format('H:i') : null ),
               'icon' => [
                 'align' => 'left',
                 'name' => 'clock-outline'
@@ -123,22 +143,16 @@
           'has_errors' => ( $errors->has('end_date') || $errors->has('end_time') ),
           'error_group' => [ $errors->get('end_date'), $errors->get('end_time') ]
         ])
-      </div>
-
-      {{--Button prompt to show/hide the End Date fields --}}
-      <div class="form_inline_group">
-        <div class="field">
-          <div class="field_label"></div>
-          <div class="field_body">
-            <button class="button button-small button-info"
-              v-on:click.prevent="showEndDate = !showEndDate"
+          <template v-if="showEndDate" style="display:none;">
+            <button class="action_icon action_icon-danger" aria-label="Remove End Date" title="Remove End Date"
+              v-on:click.prevent="showEndDate = false"
+              v-on:keyup.enter.prevent="showEndDate = false"
+              v-on:keyup.space.prevent="showEndDate = false"
             >
-              <material-icon v-bind:name="(showEndDate ? 'minus':'plus')"></material-icon>
-              <span>@{{ showEndDate ? 'Remove':'Add' }} End Date</span>
+              <span class="icon">@materialicon('close')</span>
             </button>
-            <div class="form_help"> You can optionally add an end date and time for the event.</div>
-          </div>
-        </div>
+          </template>
+        @endcomponent
       </div>
 
       {{-- Description --}}
