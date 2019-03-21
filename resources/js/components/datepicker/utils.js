@@ -13,8 +13,10 @@ export const checkMobile = {
   },
   iOS: function () {
       return (
+          /*typeof window !== 'undefined' &&
+          window.navigator.userAgent.match(/iPhone|iPad|iPod/i)*/
           typeof window !== 'undefined' &&
-          window.navigator.userAgent.match(/iPhone|iPad|iPod/i)
+          window.navigator.userAgent.match(/iPhone|iPod/i)
       )
   },
   Opera: function () {
