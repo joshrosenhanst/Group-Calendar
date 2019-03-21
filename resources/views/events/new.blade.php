@@ -65,7 +65,7 @@
       @endif
       
       {{-- Location --}}
-      @include('partials.form_inline_location', [
+      @include('partials.form_inline_group', [
         'label' => ['text' => 'Event Location'],
         'input' => [
           'name' => 'locationpicker',
@@ -79,7 +79,7 @@
           'align' => 'left',
           'name' => 'map-marker'
         ],
-        'errors' => $errors->get('location.*')
+        'errors' => $errors->get('location')
       ])
 
       {{-- Start Date/Time --}}
@@ -102,7 +102,7 @@
             'name' => 'start_time',
             'type' => 'time',
             'id' => 'start_time',
-            'old' => ( old('start_time') ? \Carbon\Carbon::parse(old('start_time'))->format('H:i') : null ),
+            'old' => ( strtotime(old('start_time')) ? \Carbon\Carbon::parse(old('start_time'))->format('H:i') : null ),
             'icon' => [
               'align' => 'left',
               'name' => 'clock-outline'
@@ -135,7 +135,7 @@
               'name' => 'end_time',
               'type' => 'time',
               'id' => 'end_time',
-              'old' => ( old('start_time') ? \Carbon\Carbon::parse(old('start_time'))->format('H:i') : null ),
+              'old' => ( strtotime(old('start_time')) ? \Carbon\Carbon::parse(old('start_time'))->format('H:i') : null ),
               'icon' => [
                 'align' => 'left',
                 'name' => 'clock-outline'

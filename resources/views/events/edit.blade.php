@@ -44,7 +44,7 @@
       @endcomponent
       
       {{-- Location --}}
-      @include('partials.form_inline_location', [
+      @include('partials.form_inline_group', [
         'label' => ['text' => 'Event Location'],
         'input' => [
           'name' => 'locationpicker',
@@ -58,7 +58,7 @@
           'align' => 'left',
           'name' => 'map-marker'
         ],
-        'errors' => $errors->get('location.place_id')
+        'errors' => $errors->get('location')
       ])
 
       {{-- Start Date/Time --}}

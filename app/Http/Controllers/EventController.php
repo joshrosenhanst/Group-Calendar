@@ -101,7 +101,7 @@ class EventController extends Controller
     $validator->after(function($validator) use ($request){
       if(!$request->input('location.place_id')){
         if( !($request->input('location.name') && $request->input('location.formatted_address') && $request->input('location.city') && $request->input('location.state')) ){
-          $validator->errors()->add('location.place_id', 'The event location is required.');
+          $validator->errors()->add('location', 'The event location is required.');
         }
       }
     });
@@ -229,7 +229,7 @@ class EventController extends Controller
     $validator->after(function($validator) use ($request){
       if(!$request->input('location.place_id')){
         if( !($request->input('location.name') && $request->input('location.formatted_address') && $request->input('location.city') && $request->input('location.state')) ){
-          $validator->errors()->add('location.place_id', 'The event location is required.');
+          $validator->errors()->add('location', 'The event location is required.');
         }
       }
     });
