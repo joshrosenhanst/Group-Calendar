@@ -8,13 +8,13 @@
         <div class="item_details">
           
             <a href="{{ route('users.view', ['user'=>$member]) }}"  class="preview_name">{{ $member->name }}</a>
-            @if($type === "members")
             <div class="subtext">
-              <strong class="capitalize">{{ $member->pivot->role }}</strong> · <span >Joined {{ $member->join_date }}</span>
+              @if($type === "members")
+                <strong class="capitalize">{{ $member->pivot->role }}</strong> · <span >Joined {{ $member->join_date }}</span>
+              @else
+                <span>Invited {{ $member->join_date }}</span>
+              @endif
             </div>
-            @else
-              <span>Invited {{ $member->join_date }}</span>
-            @endif
         </div>
       </div>
     @endforeach
