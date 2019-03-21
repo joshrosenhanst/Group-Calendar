@@ -48,6 +48,16 @@ article#maincontent
     margin: 0 auto
 
 .maincontent_container
+  +until($tablet)
+    .maincontent_mid_section, .maincontent_aside
+      padding: 0 10px
+      .card.card-has_header
+        .card_header
+          border-top-left-radius: $radius
+          border-top-right-radius: $radius
+        .card_section,.card_buttons
+          border-width: 1px
+
   +desktop
     display: flex
     .maincontent_mid_section
