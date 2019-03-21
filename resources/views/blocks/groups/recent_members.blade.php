@@ -5,7 +5,7 @@
       <span>Recent Members</span>
     </h2>
   </div>
-  <div class="card_section card_list">
+  <div class="card_section card_list card_list-med">
     @if(count($members))
       @foreach($members as $member)
         <div class="member_list_preview list_item">
