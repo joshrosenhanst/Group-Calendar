@@ -9,8 +9,9 @@
   >
     <div class="dropdown_toggle" ref="trigger">
       <a :href="getAssetURL('/notifications')" class="navbar_item navbar_item-icon has_badge"
-        @click.prevent="openDropdown"
-        @focus="openDropdown"
+        @click.prevent="toggleDropdown"
+        @keydown.enter.prevent="toggleDropdown"
+        @keydown.space.prevent="toggleDropdown"
         @blur.prevent="onBlur"
       >
         <span class="badge" v-show="unread_notifications">
@@ -85,6 +86,12 @@ export default {
     },
     closeDropdown(){
       this.isActive = false;
+    },
+    toggleDropdown(){
+      this.isActive = !this.isActive;
+      if(this.isActive){
+        this.markUserNotifcationsAsRead();
+      }
     },
     /*
       checkWhitelist() - Return whether the event.target is the $refs.trigger field or a child of the $refs.dropdown_items.
