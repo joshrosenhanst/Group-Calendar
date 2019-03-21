@@ -65,8 +65,9 @@
           <a href="{{ route('groups.view', ['group'=>$event->group]) }}">{{ $event->group->name }}</a>
           <small>
             <a href="#attendees" class="seperated_count" title="View Event Attendees">
-              <span v-if="event.going_attendees_count" v-html="(event.going_attendees_count + ' Going')">{{ $event->going_attendees_count }} Going</span>
-              <span v-if="event.interested_attendees_count" v-html="(event.interested_attendees_count + ' Interested')">{{ $event->interested_attendees_count }} Interested</span>
+              {{-- Noscript: the attendees counts are replaced via v-text with live counts if JS is on. --}}
+              <span v-if="event.going_attendees_count" v-text="(event.going_attendees_count + ' Going')">{{ $event->going_attendees_count }} Going</span>
+              <span v-if="event.interested_attendees_count" v-text="(event.interested_attendees_count + ' Interested')">{{ $event->interested_attendees_count }} Interested</span>
             </a>
           </small>
         </div>
