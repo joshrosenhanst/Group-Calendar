@@ -101,10 +101,54 @@
       @endif
 
       {{-- User Attendee Status --}}
-      <attendee-status 
+      <div is="attendee-status"
         v-bind:status="event.user_status"
         v-on:update="updateStatus"
-      ></attendee-status>
+      >
+
+        {{-- Noscript: fallback when JS is unavailable - Show the user status (if set) and show a change status form if not set or `change_status` is set on the request. --}}
+        <div id="attendee_controls">
+          @if($event->user_status)
+            <div class="event_detail {{ $event->user_status }}">
+              <span class="icon icon-full_size" aria-label="My Attendee Status">@materialicon(trans('status.attendee.icon.'.$event->user_status))</span>
+              <div class="detail_content">
+                {{ trans('status.attendee.'.$event->user_status) }}
+                <small>
+                  <a class="button button-text button-inline" href="{{ route('groups.events.view', ['event'=>$event,'group'=>$event->group,'change_status'=>true]) }}">Change My Status</a>
+                </small>
+              </div>
+            </div>
+          @endif
+          @if(request('change_status') || !$event->user_status)
+            <form action="{{ route('events.attend', ['event'=>$event]) }}" method="POST">
+              @method('PUT')
+              @csrf
+
+              <div class="attend_buttons button_group" aria-label="Change My Status">
+                
+                <button type="submit" class="button button-success button-inverted" name="status" value="going">
+                  <span class="icon">@materialicon('account-check')</span>
+                  <span>Going</span>
+                </button>
+
+                <button type="submit" class="button button-info button-inverted" name="status" value="interested">
+                  <span class="icon">@materialicon('star')</span>
+                  <span>Interested</span>
+                </button>
+
+                <button type="submit" class="button button-danger button-inverted" name="status" value="unavailable">
+                  <span class="icon">@materialicon('account-remove')</span>
+                  <span>Unavailable</span>
+                </button>
+              </div>
+            </form>
+          @else
+
+          @endif
+        </div>
+
+      </div>
+
     </div>
 
     @if($event->description)

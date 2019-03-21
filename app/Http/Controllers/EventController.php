@@ -295,14 +295,20 @@ class EventController extends Controller
     attend() - Add the Auth::user as an attendee for the event, set their pivot status to the $request->status.
   */
   public function attend(Request $request, \App\Event $event){
+    $request->validate([
+      'status'=>'required|in:pending,interested,going,unavailable'
+    ]);
+
+    $new_status = $request->input('status', 'pending');
+
     $attendee = $event->attendees()->where('user_id',Auth::user()->id)->first();
     if($attendee){
       $event->attendees()->updateExistingPivot(Auth::user()->id,[
-        'status' => $request->input('status', 'pending')
+        'status' => $new_status
       ]);
     }else{
       $event->attendees()->attach(Auth::user()->id, [
-        'status' => $request->input('status', 'pending')
+        'status' => $new_status
       ]);
     }
 
