@@ -42,24 +42,10 @@
       </div>
     </div>
     <div class="card_dropdown" v-if="showForm">
-      <app-dropdown>
-
-        <button slot="trigger" class="action_icon action_icon-link" aria-label="Edit or Delete Comment" title="Edit or Delete Comment">
-          <material-icon name="chevron-down"></material-icon>
-        </button>
-
-        <template slot="dropdown_items">
-          <a href="#" class="dropdown_item" aria-label="Edit Comment" title="Edit Comment" v-on:click.prevent="toggleCommentForm">
-            <material-icon name="pencil"></material-icon>
-            <span>Edit Comment</span>
-          </a>
-          <a href="#" class="dropdown_item" aria-label="Delete Comment" title="Delete Comment" v-on:click.prevent="toggleDeleteForm">
-            <material-icon name="delete"></material-icon>
-            <span>Delete Comment</span>
-          </a>
-        </template>
-
-      </app-dropdown>
+      <comment-dropdown
+        v-on:toggle-comment-form="toggleCommentForm"
+        v-on:toggle-delete-form="toggleDeleteForm"
+      ></comment-dropdown>
     </div>
   </div>
 </template>
@@ -67,7 +53,7 @@
 <script>
 import CommentForm from './CommentForm.vue';
 import CommentDeleteForm from './CommentDeleteForm.vue';
-import AppDropdown from '../dropdown/AppDropdown.vue';
+import CommentDropdown from './CommentDropdown.vue';
 export default {
   props: {
     showForm: Boolean,
@@ -76,7 +62,7 @@ export default {
     comment: Object
   },
   components: {
-    CommentForm, CommentDeleteForm, AppDropdown
+    CommentForm, CommentDeleteForm, CommentDropdown
   },
   methods: {
     toggleCommentForm: function() {
