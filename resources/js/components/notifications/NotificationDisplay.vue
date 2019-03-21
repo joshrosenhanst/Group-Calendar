@@ -65,7 +65,7 @@ export default {
   },
   props: {
     user_id: Number,
-    notifications: Object
+    notifications: Array
   },
   methods: {
     markUserNotifcationsAsRead(){
