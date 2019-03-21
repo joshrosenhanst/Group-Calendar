@@ -151,7 +151,7 @@
         @endisset
         class="{{ $input['class'] ?? 'form_input' }}"
         type="date"
-        value="{{ $input['old'] ?? $input['value'] ?? null }}"
+        value="{{ ($input['old'] ?? $input['value']) ? \Carbon\Carbon::parse( ($input['old'] ?? $input['value']) )->toDateString() : null }}"
       >
     </app-datepicker>
     @break
