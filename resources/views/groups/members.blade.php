@@ -96,7 +96,7 @@
           <span>
             {{ $group->name }}
             @if(count($group->users))
-            <small>@{{ member_count }}</small>
+            <small v-html="member_count">{{ trans_choice('messages.member_count', count($group->users)) }}</small>
             @endif
           </span>
         </h1>
@@ -144,7 +144,7 @@
           <span>
             {{ $group->name }}
             @if(count($group->group_invites))
-            <small>@{{ invited_count }}</small>
+            <small v-html="invited_count">{{ trans_choice('messages.invited_count', count($group->group_invites)) }}</small>
             @endif
           </span>
         </h1>
