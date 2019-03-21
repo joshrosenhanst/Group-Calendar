@@ -258,13 +258,16 @@
       &:not(:last-of-type)
         border-right: 1px solid $card-border-color
   .card_buttons-top_right
-    +until($tablet)
+    +until($large_mobile)
       display: flex
-      flex-direction: column
-    +tablet
+    +from($large_mobile)
       position: absolute
       right: 0.5rem
       top: 0.5rem
+  .card_dropdown
+    .action_icon
+      padding: 10px
+      margin: 0
 
 .card.card-has_tabs
   border-top: 0
