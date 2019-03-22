@@ -208,7 +208,6 @@ export default {
       onBlur() - On input blur, check if the event.relatedTarget is either the input field or a child of the calendar. If not we can close the calendar, else keep the input field focused.
     */
     onBlur(event){
-      console.log(event.relatedTarget);
       if( !this.checkWhitelist(event.relatedTarget) ) {
         this.closeCalendar();
       }else{
