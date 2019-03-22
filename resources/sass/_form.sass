@@ -164,11 +164,12 @@
     border-top: 1px solid $card-border-color
     display: flex
     justify-content: center
-    margin: 0 -20px 0 -20px
     +until($tablet)
       padding: 15px 15px 0 15px
+      margin: 0 -15px 0 -15px
     +tablet
       padding: 25px 20px 0 20px
+      margin: 0 -20px 0 -20px
     .button
       &:not(:last-child)
         margin-right: 15px
