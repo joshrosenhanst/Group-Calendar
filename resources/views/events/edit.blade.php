@@ -69,9 +69,9 @@
             'name' => 'start_date',
             'type' => 'date',
             'min' => '1/1/2019',
-            'value' => \Carbon\Carbon::today()->toDateTimeString(),
+            'value' => \Carbon\Carbon::today()->toIso8601String(),
             'id' => 'start_date',
-            'old' => strtotime(old('start_date', $event->start_date)) ? \Carbon\Carbon::parse( old('start_date', $event->start_date) )->toDateTimeString() : null,
+            'old' => strtotime(old('start_date', $event->start_date)) ? \Carbon\Carbon::parse( old('start_date', $event->start_date) )->toIso8601String() : null,
             'icon' => [
               'align' => 'left',
               'name' => 'calendar'
@@ -123,7 +123,7 @@
               'type' => 'date',
               'min' => '1/1/2019',
               'id' => 'end_date',
-              'old' => strtotime(old('end_date', ( $event->end_date ?? $event->start_date))) ? \Carbon\Carbon::parse( old('end_date', ( $event->end_date ?? $event->start_date)) )->toDateTimeString() : null,
+              'old' => strtotime(old('end_date', ( $event->end_date ?? $event->start_date))) ? \Carbon\Carbon::parse( old('end_date', ( $event->end_date ?? $event->start_date)) )->toIso8601String() : null,
               'icon' => [
                 'align' => 'left',
                 'name' => 'calendar'
