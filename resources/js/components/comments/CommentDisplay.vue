@@ -17,6 +17,14 @@
         >{{ comment.user.name }}</a>
         <span class="comment_user_name comment_user_default" v-else>Deleted User</span>
         <span class="comment_date" v-bind:title="comment.created_at"> · {{ comment.created_text }}</span>
+        <div class="comment_controls">
+          <a href="#" class="control_link" aria-label="Edit Comment" title="Edit Comment" v-on:click.prevent="toggleCommentForm">
+            Edit
+          </a>
+          <a href="#" class="control_link" aria-label="Delete Comment" title="Delete Comment" v-on:click.prevent="toggleDeleteForm">
+            Delete
+          </a>
+        </div>
       </div>
       <div class="comment_text">
         <div>{{ comment.text }}</div>
@@ -41,19 +49,12 @@
         </div>
       </div>
     </div>
-    <div class="card_dropdown" v-if="showForm">
-      <comment-dropdown
-        v-on:toggle-comment-form="toggleCommentForm"
-        v-on:toggle-delete-form="toggleDeleteForm"
-      ></comment-dropdown>
-    </div>
   </div>
 </template>
 
 <script>
 import CommentForm from './CommentForm.vue';
 import CommentDeleteForm from './CommentDeleteForm.vue';
-import CommentDropdown from './CommentDropdown.vue';
 export default {
   props: {
     showForm: Boolean,
@@ -62,7 +63,7 @@ export default {
     comment: Object
   },
   components: {
-    CommentForm, CommentDeleteForm, CommentDropdown
+    CommentForm, CommentDeleteForm
   },
   methods: {
     toggleCommentForm: function() {

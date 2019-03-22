@@ -1,30 +1,21 @@
 <template>
-  <div class="dropdown" v-bind:class="{ 'dropdown-active': isActive }"
-    aria-haspopup="true"
-    v-bind:aria-expanded="isActive"
-    role="button"
-  >
-    <div class="dropdown_toggle" ref="trigger">
-      <button class="action_icon action_icon-link" aria-label="Edit or Delete Comment" title="Edit or Delete Comment"        
+  <div class="comment_slide_drawer" :class="{ 'drawer-active': isActive }">
+    <div class="drawer_items">
+      <a href="#" class="drawer_item action_icon action_icon-link" aria-label="Edit Comment" title="Edit Comment" v-on:click.prevent="toggleCommentForm">
+        <material-icon name="pencil"></material-icon>
+      </a>
+      <a href="#" class="drawer_item action_icon action_icon-link" aria-label="Delete Comment" title="Delete Comment" v-on:click.prevent="toggleDeleteForm">
+        <material-icon name="delete"></material-icon>
+      </a>
+    </div>
+    <div class="drawer_toggle">
+      <a class="action_icon action_icon-link" aria-label="Edit or Delete Comment" title="Edit or Delete Comment"        
         @click.prevent="toggleDropdown"
         @keydown.enter.prevent="toggleDropdown"
         @keydown.space.prevent="toggleDropdown"
         @blur.prevent="onBlur"
       >
-        <material-icon name="chevron-down"></material-icon>
-      </button>
-    </div>
-    <div class="dropdown_items" aria-role="menu"
-      ref="dropdown_items"
-      v-bind:aria-hidden="!isActive"
-    >
-      <a href="#" class="dropdown_item" aria-label="Edit Comment" title="Edit Comment" v-on:click.prevent="toggleCommentForm">
-        <material-icon name="pencil"></material-icon>
-        <span>Edit Comment</span>
-      </a>
-      <a href="#" class="dropdown_item" aria-label="Delete Comment" title="Delete Comment" v-on:click.prevent="toggleDeleteForm">
-        <material-icon name="delete"></material-icon>
-        <span>Delete Comment</span>
+        <material-icon :name="icon"></material-icon>
       </a>
     </div>
   </div>
@@ -65,6 +56,11 @@ export default {
       if( !this.checkWhitelist(event.relatedTarget) ) {
         this.closeDropdown();
       }
+    }
+  },
+  computed: {
+    icon(){
+      return this.isActive ? 'chevron-left' : 'chevron-down';
     }
   }
 }

@@ -2,10 +2,23 @@
   align-items: flex-start
   .comment_meta
     font-size: $size-small
+    display: flex
+    flex-wrap: wrap
+    .comment_user_name
+      margin-right: 4px
+      font-weight: 700
     .comment_user_name.comment_user_default
       font-style: italic
     .comment_date
       color: $text-light
+    .comment_controls
+      width: 100%
+      +from($mobile)
+        width: auto
+        margin-left: auto
+      .control_link
+        &:not(:last-of-type)
+          margin-right: 4px
   .comment_text
   .comment_edited
     color: $text-light
