@@ -33,7 +33,7 @@
 
       <div class="calendar_container" v-show="isActive" ref="calendar_container">
         <header class="datepicker_header">
-          <button class="datepicker_chevron" aria-label="Previous Month"
+          <a class="datepicker_chevron" aria-label="Previous Month"
             v-bind:class="{ 'is-disabled': prevMonthDisabled }"
             v-on:click.prevent="prevMonth"
             v-on:@keydown.enter.prevent="prevMonth"
@@ -41,11 +41,11 @@
             tabindex="-1"
           >
             <material-icon name="chevron-left" class="icon-full_size"></material-icon>
-          </button>
+          </a>
 
           <span class="header_current_month">{{monthDisplay}}</span>
 
-          <button class="datepicker_chevron" aria-label="Next Month"
+          <a class="datepicker_chevron" aria-label="Next Month"
             v-bind:class="{ 'is-disabled': nextMonthDisabled }"
             v-on:click.prevent="nextMonth"
             v-on:keydown.enter.prevent="nextMonth"
@@ -53,7 +53,7 @@
             tabindex="-1"
           >
             <material-icon name="chevron-right" class="icon-full_size"></material-icon>
-          </button>
+          </a>
         </header>
 
         <datepicker-table
@@ -208,6 +208,7 @@ export default {
       onBlur() - On input blur, check if the event.relatedTarget is either the input field or a child of the calendar. If not we can close the calendar, else keep the input field focused.
     */
     onBlur(event){
+      console.log(event.relatedTarget);
       if( !this.checkWhitelist(event.relatedTarget) ) {
         this.closeCalendar();
       }else{
