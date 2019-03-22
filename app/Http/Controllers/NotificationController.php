@@ -7,8 +7,10 @@ use Illuminate\Support\Facades\Auth;
 
 class NotificationController extends Controller
 {
-  public function index(){
+  public function index(Request $request){
     Auth::user()->markNotificationsAsRead();
-    return view('notifications.index');
+    $page = $request->page ?? 0;
+    $notifications = Auth::user()->all_notifications->paginate(25, $page);
+    return view('notifications.index', ['notifications'=>$notifications]);
   }
 }

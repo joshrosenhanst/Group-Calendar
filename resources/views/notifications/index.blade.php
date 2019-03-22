@@ -18,8 +18,8 @@
     </div>
 
     <div class="card_section card_list">
-      @if(Auth::user()->all_notifications->count())
-        @foreach(Auth::user()->all_notifications as $notification)
+      @if($notifications->count())
+        @foreach($notifications as $notification)
           <div class="list_item">
 
             {{-- Notification Icon: defaults to `bell-alert` --}}
@@ -55,6 +55,14 @@
         </div>
       @endif
     </div>
+    
+    {{-- Pagination links --}}
+    @if($notifications->count())
+    <div class="card_section">
+      {{ $notifications->onEachSide(2)->links() }}
+    </div>
+    @endif
+
   </div>
 </article>
 
