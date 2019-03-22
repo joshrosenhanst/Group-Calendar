@@ -23,5 +23,10 @@
     },
     "dependencies": {
         "@mdi/svg": "^3.4.93"
-    }
+    },
+    "browserslist": [
+        "> 1%",
+        "last 2 versions",
+        "not ie <= 8"
+    ]
 }
