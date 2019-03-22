@@ -41,7 +41,6 @@ $button-gradient-bottom-right: lighten(saturate(adjust-hue($link, 10deg), 2.5%),
 .screen_sample
   transform: rotate(-4deg)
   .tablet_wrapper
-    width: 380px
     border-radius: 38px
     background-color: $white
     box-shadow: inset 0 4px 7px 1px #fff, inset 0 -5px 20px rgba(173,186,204,0.25), 0 2px 6px rgba(10,10,10,0.15), 0 10px 20px rgba(10,10,10,0.25)
@@ -49,66 +48,14 @@ $button-gradient-bottom-right: lighten(saturate(adjust-hue($link, 10deg), 2.5%),
     align-items: center
     justify-content: center
     padding: 40px 12px
+    width: 280px
+    +tablet
+      width: 320px
+    +desktop
+      width: 380px
     img
       border: 1px solid $card-border-color
       width: 100%
-
-.error_hero
-  position: relative
-  background-color: $primary
-  background-image: linear-gradient(50deg, $gradient-top-left 0%, $primary 65%, $gradient-bottom-right 100%)
-  border-bottom: 100px solid $gradient-top-left
-  height: 100vh
-  .error_page_content
-    color: $white
-    z-index: 11
-    display: flex
-    flex-direction: column
-    align-items: center
-    position: relative
-    padding: 15px
-    .error_logo
-      font-size: 1.5rem
-      text-shadow: 2px 2px 0px rgba(10, 10, 10, 0.5)
-      color: $white
-      display: inline-flex
-      align-items: center
-      justify-content: center
-      padding: 10px
-      &:hover
-        background-color: $navbar-hover
-        text-decoration: none
-      .logo_icon
-        width: 2rem
-        height: 2rem
-    .error_title
-      font-size: 2.5rem
-      line-height: 1.1
-      text-shadow: 2px 2px 0px rgba(10, 10, 10, 0.5)
-      +tablet
-        font-size: 4rem
-    .error_icon
-      margin-top: 25px
-      color: $danger
-      &>svg
-        width: 100px
-        height: 100px
-        +tablet
-          width: 200px
-          height: 200px
-        filter: drop-shadow(2px 2px 0px rgba(10, 10, 10, 0.5))
-        fill: currentColor
-    .error_message
-      font-size: $size-medium
-      line-height: 1.2
-      padding: 25px 0
-      text-shadow: 1px 1px 2px rgba(10, 10, 10, 0.75)
-      +tablet
-        font-size: $size-large
-    .error_button
-      margin-bottom: 25px
-      +tablet
-        font-size: $size-medium
 
 .landing_hero
   position: relative
@@ -128,7 +75,7 @@ $button-gradient-bottom-right: lighten(saturate(adjust-hue($link, 10deg), 2.5%),
 .hero
   z-index: 11
   +container
-  +tablet
+  +from(600px)
     display: flex
     flex-direction: row-reverse
   .hero_body
@@ -136,15 +83,19 @@ $button-gradient-bottom-right: lighten(saturate(adjust-hue($link, 10deg), 2.5%),
     max-width: $tablet
     color: $white
     padding: 1rem 15px
+    +from(600px)
+      margin: 0 15px
     +tablet
       flex-grow: 4
       flex-shrink: 1
       margin: 0 30px
-      padding: 1rem 0
+      padding: 1rem 15px
+    +desktop
+      padding: 4rem 15px
   .hero_image
     z-index: 11
     display: none
-    +tablet
+    +from(600px)
       display: block
       flex-grow: 1
       flex-shrink: 1
@@ -152,18 +103,18 @@ $button-gradient-bottom-right: lighten(saturate(adjust-hue($link, 10deg), 2.5%),
     font-size: 2.5rem
     line-height: 1.1
     text-shadow: 2px 2px 0px rgba(10, 10, 10, 0.5)
+    +tablet
+      font-size: 2.5rem
+    +desktop
+      font-size: 3.5rem
   .hero_subtitle
     font-size: $size-medium
     line-height: 1.2
     padding: 25px 0
     text-shadow: 1px 1px 2px rgba(10, 10, 10, 0.75)
-  +tablet
-    .hero_body
-      padding: 4rem 15px
-    .hero_title
-      font-size: 3.5rem
-    .hero_subtitle
+    +tablet
       font-size: $size-large
+  +tablet
     .button
       font-size: $size-large
 
@@ -295,3 +246,61 @@ $button-gradient-bottom-right: lighten(saturate(adjust-hue($link, 10deg), 2.5%),
   height: 40px
   position: relative
   background-color: $primary
+
+  
+.error_hero
+  position: relative
+  background-color: $primary
+  background-image: linear-gradient(50deg, $gradient-top-left 0%, $primary 65%, $gradient-bottom-right 100%)
+  border-bottom: 100px solid $gradient-top-left
+  height: 100vh
+  .error_page_content
+    color: $white
+    z-index: 11
+    display: flex
+    flex-direction: column
+    align-items: center
+    position: relative
+    padding: 15px
+    .error_logo
+      font-size: 1.5rem
+      text-shadow: 2px 2px 0px rgba(10, 10, 10, 0.5)
+      color: $white
+      display: inline-flex
+      align-items: center
+      justify-content: center
+      padding: 10px
+      &:hover
+        background-color: $navbar-hover
+        text-decoration: none
+      .logo_icon
+        width: 2rem
+        height: 2rem
+    .error_title
+      font-size: 2.5rem
+      line-height: 1.1
+      text-shadow: 2px 2px 0px rgba(10, 10, 10, 0.5)
+      +tablet
+        font-size: 4rem
+    .error_icon
+      margin-top: 25px
+      color: $danger
+      &>svg
+        width: 100px
+        height: 100px
+        +tablet
+          width: 200px
+          height: 200px
+        filter: drop-shadow(2px 2px 0px rgba(10, 10, 10, 0.5))
+        fill: currentColor
+    .error_message
+      font-size: $size-medium
+      line-height: 1.2
+      padding: 25px 0
+      text-shadow: 1px 1px 2px rgba(10, 10, 10, 0.75)
+      +tablet
+        font-size: $size-large
+    .error_button
+      margin-bottom: 25px
+      +tablet
+        font-size: $size-medium
