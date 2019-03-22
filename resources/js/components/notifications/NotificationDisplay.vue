@@ -64,10 +64,7 @@ export default {
       unread_notifications: (this.notifications.length || 0)
     }
   },
-  props: {
-    user_id: Number,
-    notifications: Array
-  },
+  props: ['user_id','notifications'],
   methods: {
     markUserNotifcationsAsRead(){
       if(this.user_id){
