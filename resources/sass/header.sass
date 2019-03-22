@@ -32,13 +32,14 @@
     flex: 0 1 auto
     padding: 0 10px
     font-size: $size-medium
-    margin-right: -1px
     color: $navbar-item-color
     text-shadow: $navbar-item-text-shadow
     line-height: 45px
     border-top: 0
     border-bottom: 0
     height: 100%
+    &:not(:last-of-type)
+      margin-right: -1px
     &.navbar_menu_button
       background-color: transparent
       cursor: pointer
@@ -94,7 +95,6 @@
       .navbar_left
         justify-content: center
       .navbar_right
-        border-top: 1px solid $navbar-border
         .navbar_item
           flex-grow: 1
           justify-content: center
