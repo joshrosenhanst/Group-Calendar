@@ -291,13 +291,14 @@ export default {
       }else{
         var {hour,minute,ampm} = this.getTimeFromDate(new Date());
       }
+      
       const date = this.timeParser(hour,minute,ampm);
       this.dateSelected = date;
       
       hour = parseInt(hour, 10);
       if(hour === 0 || hour === 24) hour = 12;
       this.hoursSelected = (hour > 12 ? (hour-12) : hour);
-      this.minutesSelected = minute;
+      this.minutesSelected = parseInt(minute, 10);
       this.ampm = ampm;
     }
   },
