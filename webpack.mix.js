@@ -3,7 +3,8 @@ const mix = require('laravel-mix');
 mix.js('resources/js/app.js', 'public/js')
    .sass('resources/sass/app.sass', 'public/css')
    .sass('resources/sass/event_flyer.sass', 'public/css')
-   .sass('resources/sass/landing.sass', 'public/css');
+   .sass('resources/sass/landing.sass', 'public/css')
+   .sass('resources/sass/noscript_styles.sass', 'public/css');
 
 /* Page modules */
 mix.js('resources/js/pages/groups/view.js', 'public/js/pages/groups')

@@ -16,6 +16,9 @@
     <meta name="theme-color" content="#ffffff">
 
     @stack('css')
+    <noscript>
+      <link rel="stylesheet" type="text/css" href="{{ asset(mix('css/noscript_styles.css')) }}" />
+    </noscript>
 </head>
 <body>
   {{-- Skip to Main Content link for screenreaders --}}

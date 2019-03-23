@@ -30,7 +30,7 @@
         v-bind:asset_url="asset_url"
       >
         {{-- Noscript: fallback to a radio selection --}}
-        <div class="form_radio_image_group" slot="noscript">
+        <div class="form_radio_image_group" v-cloak slot="noscript">
           <label class="form_radio">
             <img src="{{ $input['default_image'] }}" alt="Default Image">
             <div class="radio_selection">
