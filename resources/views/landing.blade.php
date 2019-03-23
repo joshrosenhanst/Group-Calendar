@@ -20,7 +20,7 @@
     </div>
     <div class="hero_image screen_sample">
       <div class="tablet_wrapper">
-        <img src="{{ asset('img/event_sample3.jpg') }}" alt="GroupCalendar sample on tablet">
+        <img src="{{ asset('img/event_sample.jpg') }}" alt="GroupCalendar sample on tablet">
       </div>
     </div>
   </section>
@@ -30,7 +30,7 @@
 
   <div class="promo_item">
     <div class="promo_image">
-      <img src="{{ asset('img/datepicker_sample2.jpg') }}" alt="Promotional Image - Datepicker">
+      <img src="{{ asset('img/datepicker_sample.png') }}" alt="Promotional Image - Datepicker">
     </div>
     <div class="promo_content">
       <h2 class="promo_title">Plan</h2>
@@ -46,7 +46,7 @@
 
   <div class="promo_item">
     <div class="promo_image">
-      <img src="{{ asset('img/comments_sample.jpg') }}" alt="Promotional Image - Comments">
+      <img src="{{ asset('img/comments_sample.png') }}" alt="Promotional Image - Comments">
     </div>
     <div class="promo_content">
       <h2 class="promo_title">Collaborate</h2>
