@@ -172,7 +172,7 @@
         <div class="description_list_group">
           <dt>Event Link</dt>
           <dd>
-            <a href="{{ route('events.view', ['event'=>$event]) }}">{{ route('events.view', ['event'=>$event]) }}</a>
+            <a class="event_link" href="{{ route('events.view', ['event'=>$event]) }}">{{ route('events.view', ['event'=>$event]) }}</a>
           </dd>
         </div>
 

@@ -166,12 +166,13 @@
           'error_group' => [ $errors->get('end_date'), $errors->get('end_time') ]
         ])
           <template v-if="showEndDate" style="display:none;">
-            <button class="action_icon action_icon-danger" aria-label="Remove End Date" title="Remove End Date"
+            <button class="action_icon action_icon-danger action_icon-mobile" aria-label="Remove End Date" title="Remove End Date"
               v-on:click.prevent="showEndDate = false"
               v-on:keyup.enter.prevent="showEndDate = false"
               v-on:keyup.space.prevent="showEndDate = false"
             >
               <span class="icon">@materialicon('close')</span>
+              <span class="mobile_text">Remove End Date</span>
             </button>
           </template>
         @endcomponent

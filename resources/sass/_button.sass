@@ -167,8 +167,16 @@
   display: flex
   justify-content: center
   align-items: center
-  padding: 0 10px
-  margin: 0 5px
+  padding: 0 8px
+  margin: 0 2px
+  +tablet
+    padding: 0 10px
+    margin: 0 5px
+
+  .mobile_text
+    display: block
+    +from($mobile)
+      display: none
   &:hover, &:focus
     text-shadow: 1px 1px 0 rgba($black, 0.3)
     background-color: rgba($grey, 0.05)
@@ -178,7 +186,23 @@
     color: $link
   &.action_icon-danger
     color: $danger
-
+  &.action_icon-mobile
+    +until($mobile)
+      border: 1px solid $button-border-color
+      padding: 8px 12px
+      border-radius: $radius
+      margin: 5px 0
+      font-size: 0.9rem
+      &.action_icon-link
+        border-color: $link
+        &:hover, &:focus
+          background-color: darken($danger, 2.5%)
+          color: $white
+      &.action_icon-danger  
+        border-color: $danger
+        &:hover, &:focus
+          background-color: darken($danger, 2.5%)
+          color: $white
 
 .button_group
   +tablet
