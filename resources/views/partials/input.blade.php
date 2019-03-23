@@ -84,10 +84,10 @@
       v-bind:selected_location="selected_location"
     >
       {{-- Noscript: fallback to multiple fields --}}
-      <div slot="noscript" v-cloak>
+      <div slot="noscript">
         <input type="text" class="form_input" name="location[name]" value="{{ $input['location']['name'] ?? null }}" placeholder="Location Name">
 
-        <div class="internal_form_group field_multiple no_icon">
+        <div class="internal_form_group field_multiple no_icon" v-cloak>
           <div class="field_input">
             <input type="text" class="form_input" name="location[formatted_address]" value="{{ $input['location']['formatted_address'] ?? null }}" placeholder="Address">
           </div>
