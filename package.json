@@ -8,14 +8,14 @@
         "hot": "cross-env NODE_ENV=development node_modules/webpack-dev-server/bin/webpack-dev-server.js --inline --hot --config=node_modules/laravel-mix/setup/webpack.config.js",
         "prod": "npm run production",
         "production": "cross-env NODE_ENV=production node_modules/webpack/bin/webpack.js --no-progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js",
-        "test": "jest"
+        "test": "cross-env NODE_ENV=test jest"
     },
     "devDependencies": {
+        "@babel/core": "^7.4.0",
+        "@babel/preset-env": "^7.4.2",
         "@vue/test-utils": "^1.0.0-beta.29",
         "axios": "^0.18",
-        "babel-core": "^6.26.3",
-        "babel-jest": "^23.6.0",
-        "babel-preset-env": "^1.7.0",
+        "babel-jest": "^24.5.0",
         "bulma": "^0.7.2",
         "cross-env": "^5.1",
         "jest": "^24.5.0",
@@ -26,7 +26,7 @@
         "sass": "^1.15.2",
         "sass-loader": "^7.1.0",
         "vue": "^2.5.17",
-        "vue-jest": "^3.0.4",
+        "vue-jest": "^4.0.0-beta.1",
         "vue-template-compiler": "^2.6.1"
     },
     "dependencies": {
@@ -60,7 +60,7 @@
     "babel": {
         "presets": [
             [
-                "env",
+                "@babel/preset-env",
                 {
                     "modules": false
                 }
@@ -70,7 +70,7 @@
             "test": {
                 "presets": [
                     [
-                        "env",
+                        "@babel/preset-env",
                         {
                             "targets": {
                                 "node": "current"
