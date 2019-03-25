@@ -15,7 +15,7 @@
     <meta name="msapplication-TileColor" content="#00aba9">
     <meta name="theme-color" content="#ffffff">
 
-    @stack('css')
+    @stack('head')
     <noscript>
       <link rel="stylesheet" type="text/css" href="{{ asset(mix('css/noscript_styles.css')) }}" />
     </noscript>

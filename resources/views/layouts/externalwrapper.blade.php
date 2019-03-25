@@ -14,8 +14,10 @@
     <link rel="mask-icon" href="{{ asset('safari-pinned-tab.svg') }}" color="#5bbad5">
     <meta name="msapplication-TileColor" content="#00aba9">
     <meta name="theme-color" content="#ffffff">
+    <meta name="author" content="Josh RosenHanst">
+    <meta name="description" content="GroupCalendar - Plan and collaborate on events with your group.">
 
-    @stack('css')
+    @stack('head')
 </head>
 <body id="landing">
   {{-- Skip to Main Content link for screenreaders --}}
