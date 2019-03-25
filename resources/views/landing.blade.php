@@ -92,3 +92,18 @@
 <footer id="landing_footer">
 </footer>
 @endsection
+
+@push('head')
+  {{-- SEO meta links --}}
+  <meta property="og:title" content="GroupCalendar">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://joshrosenhanst.com/groupcalendar/">
+  <meta property="og:description" content="GroupCalendar - Plan and collaborate on events with your group">
+  <meta property="og:image" content="https://joshrosenhanst.com/img/groupcalendar/banner.png">
+  <meta property="og:image:type" content="image/png">
+  <meta property="og:image:width" content="1036">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="GroupCalendar - Plan and collaborate on events with your group.">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:site" content="@joshrosenhanst">
+@endpush
