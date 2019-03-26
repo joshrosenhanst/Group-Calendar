@@ -10,31 +10,46 @@
         class="icon-full_size"
         ></material-icon>
       <div class="detail_content">
-        {{ status_text[status] }}
+        <span class="status_content">{{ status_text[status] }}</span>
         <small>
-          <button 
+          <a href="#change_attendee_status" id="change_attendee_status"
             class="button button-text button-inline" 
-            v-on:click="changeStatus"
+            title="Change My Attendee Status"
+            v-on:click.prevent="changeStatus"
+            v-on:keydown.enter.prevent="changeStatus"
+            v-on:keydown.space.prevent="changeStatus"
             v-bind:class="{ 'button-active': showStatusChange }"
           >
             Change My Status
-          </button>
+          </a>
         </small>
       </div>
     </div>
     <div class="attend_buttons button_group" aria-label="Change My Status" v-show="showStatusChange">
-      <button class="button button-success button-inverted" v-on:click="update('going')">
+      <a href="#going" class="button button-success button-inverted" title="Set My Status to Going" aria-label="Set My Status to Going" 
+        v-on:click.prevent="update('going')"
+        v-on:keydown.enter.prevent="update('going')"
+        v-on:keydown.space.prevent="update('going')"
+      >
         <material-icon name='account-check'></material-icon>
         <span>Going</span>
-      </button>
-      <button class="button button-info button-inverted" v-on:click="update('interested')">
+      </a>
+      <a href="#interested" class="button button-info button-inverted" title="Set My Status to Interested" aria-label="Set My Status to Interested" 
+        v-on:click.prevent="update('interested')"
+        v-on:keydown.enter.prevent="update('interested')"
+        v-on:keydown.space.prevent="update('interested')"
+      >
         <material-icon name='star'></material-icon>
         <span>Interested</span>
-      </button>
-      <button class="button button-danger button-inverted" v-on:click="update('unavailable')">
+      </a>
+      <a href="#unavailable" class="button button-danger button-inverted" title="Set My Status to Unavailable" aria-label="Set My Status to Unavailable"
+        v-on:click.prevent="update('unavailable')"
+        v-on:keydown.enter.prevent="update('unavailable')"
+        v-on:keydown.space.prevent="update('unavailable')"
+      >
         <material-icon name='account-remove'></material-icon>
         <span>Unavailable</span>
-      </button>
+      </a>
     </div>
   </div>
 </template>
@@ -42,9 +57,6 @@
 <script>
 import { status_icons,status_text } from '../../lang/status.js';
 export default {
-  mounted(){
-    console.log('AttendeeStatus mounted.');
-  },
   data: function(){
     return {
       status_icons: status_icons,
@@ -61,8 +73,6 @@ export default {
       this.$emit('update',status);
       this.showStatusChange = false;
     }
-  },
-  computed: {
   }
 }
 </script>
