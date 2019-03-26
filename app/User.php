@@ -159,9 +159,9 @@ class User extends Authenticatable
   }
 
   /*
-    getEventsForDatepicker() - Returns a collection of all available events via the user's group relation. Each group gets a random color and that color is added to each event from the group. Return a collection keyed by start_date->toDateTimeString().
-    Ex: ["2019-03-14 00:00:00] => [event1,event2],
-        ["2019-05-15 00:00:00] => [event3, event4]
+    getEventsForDatepicker() - Returns a collection of all available events via the user's group relation. Each group gets a random color and that color is added to each event from the group. Return a collection keyed by start_date->toIso8601String().
+    Ex: ["2019-03-15T00:00:00-04:00"] => [event1,event2],
+        ["2019-03-22T00:00:00-04:00"] => [event3, event4]
     Each event has a summary and a color value.
   */
   public function getEventsForDatepicker(){
@@ -172,7 +172,7 @@ class User extends Authenticatable
       $colors[$group->id] = sprintf('#%06X', mt_rand(0, 0xCCCCCC));
       $group_events = $group->events->makeHidden('user_status')->toArray();
       foreach($group_events as $event){
-        $start_date = Carbon::parse($event['start_date'])->toDateTimeString();
+        $start_date = Carbon::parse($event['start_date'])->toIso8601String();
         $events[$start_date][] = [
           'name' => $event['name'],
           'summary' => $event['start_time_subtext'],
