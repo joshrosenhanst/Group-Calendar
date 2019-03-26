@@ -17,11 +17,19 @@
         >{{ comment.user.name }}</a>
         <span class="comment_user_name comment_user_default" v-else>Deleted User</span>
         <span class="comment_date" v-bind:title="comment.created_at"> · {{ comment.created_text }}</span>
-        <div class="comment_controls">
-          <a href="#" class="control_link" aria-label="Edit Comment" title="Edit Comment" v-on:click.prevent="toggleCommentForm">
+        <div class="comment_controls" v-if="showForm">
+          <a href="#edit_comment" class="control_link" aria-label="Edit Comment" title="Edit Comment"
+            v-on:click.prevent="toggleCommentForm"
+            v-on:keydown.enter.prevent="toggleCommentForm"
+            v-on:keydown.space.prevent="toggleCommentForm"
+          >
             Edit
           </a>
-          <a href="#" class="control_link" aria-label="Delete Comment" title="Delete Comment" v-on:click.prevent="toggleDeleteForm">
+          <a href="#delete_comment" class="control_link" aria-label="Delete Comment" title="Delete Comment" 
+            v-on:click.prevent="toggleDeleteForm"
+            v-on:keydown.enter.prevent="toggleDeleteForm"
+            v-on:keydown.space.prevent="toggleDeleteForm"
+          >
             Delete
           </a>
         </div>
