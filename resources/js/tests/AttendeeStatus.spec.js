@@ -7,7 +7,7 @@ const stubs = {
   'material-icon': MaterialIcon
 };
 
-describe('AttendeesCard.vue', () => {
+describe('AttendeeStatus.vue', () => {
   // check if the component instance is created properly
   it('is a Vue instance', () => {
     const wrapper = shallowMount(AttendeeStatus, {
