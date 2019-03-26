@@ -12,6 +12,16 @@ const attendees = [
 ];
 
 describe('AttendeesCard.vue', () => {
+  it('is a Vue instance', () => {
+    const wrapper = shallowMount(AttendeesCard, {
+      propsData: { 'attendees': [] },
+      stubs: {
+        'material-icon': MaterialIcon
+      }
+    });
+    expect(wrapper.isVueInstance()).toBeTruthy();
+  });
+
   it('renders list_items for each attendee in props.attendees', () => {
 
     const wrapper = shallowMount(AttendeesCard, {
