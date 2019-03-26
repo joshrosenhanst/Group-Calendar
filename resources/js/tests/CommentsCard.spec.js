@@ -1,5 +1,8 @@
 import { shallowMount, mount } from '@vue/test-utils';
 import CommentsCard from '../components/comments/CommentsCard.vue';
+import CommentDisplay from '../components/comments/CommentDisplay.vue';
+import CommentForm from '../components/comments/CommentForm.vue';
+import CommentDeleteForm from '../components/comments/CommentDeleteForm.vue';
 import MaterialIcon from '../components/icons/MaterialIcon.vue';
 
 /* 
@@ -123,5 +126,84 @@ describe('CommentsCard.vue', () => {
     
     expect(wrapper.findAll('[href="#edit_comment"]')).toHaveLength(own_comments.length);
     expect(wrapper.findAll('[href="#delete_comment"]')).toHaveLength(own_comments.length);
+  });
+
+  // sets is-open prop on CommentDisplay when component emits toggle-comment-form
+  it('sets is-open prop on CommentDisplay when component emits toggle-comment-form', () => {
+    const wrapper = shallowMount(CommentsCard, {
+      propsData: defaults_with_comments_admin,
+      stubs: stubs
+    });
+    const comment_id = comments[0].id;
+    wrapper.find(CommentDisplay).vm.$emit('toggle-comment-form', comment_id);
+    expect(wrapper.find(CommentDisplay).props('isOpen')).toBe(true);
+  });
+
+  // sets is-delete-open prop on CommentDisplay when component emits toggle-delete-form
+  it('sets is-delete-open prop on CommentDisplay when component emits toggle-delete-form', () => {
+    const wrapper = shallowMount(CommentsCard, {
+      propsData: defaults_with_comments_admin,
+      stubs: stubs
+    });
+    const comment_id = comments[0].id;
+    wrapper.find(CommentDisplay).vm.$emit('toggle-delete-form', comment_id);
+    expect(wrapper.find(CommentDisplay).props('isDeleteOpen')).toBe(true);
+  });
+
+  // new comment form is the only rendered CommentForm by default
+  it('new comment form is the only rendered CommentForm by default', () => {
+    const wrapper = shallowMount(CommentsCard, {
+      propsData: defaults_with_comments_admin,
+      stubs: stubs
+    });
+    expect(wrapper.findAll(CommentForm)).toHaveLength(1);
+  });
+
+  // clicking edit and delete links will toggle CommentForm and CommentDeleteForm
+  it('clicking edit and delete links will toggle CommentForm and CommentDeleteForm', () => {
+    const wrapper = mount(CommentsCard, {
+      propsData: defaults_with_comments_admin,
+      stubs: stubs
+    });
+    const first_comment = wrapper.find(CommentDisplay);
+    const edit_button = first_comment.find('[href="#edit_comment"]');
+    const delete_button = first_comment.find('[href="#delete_comment"]')
+    edit_button.trigger("click");
+    expect(first_comment.find(CommentForm).isVisible()).toBe(true);
+    expect(first_comment.find(CommentDeleteForm).isVisible()).toBe(false);
+    delete_button.trigger("click");
+    expect(first_comment.find(CommentForm).isVisible()).toBe(false);
+    expect(first_comment.find(CommentDeleteForm).isVisible()).toBe(true);
+  });
+
+  // submit-comment on new comment CommentForm will emit create-comment
+  it('submit-comment on new comment CommentForm will emit create-comment', () => {
+    const wrapper = shallowMount(CommentsCard, {
+      propsData: defaults_with_comments_admin,
+      stubs: stubs
+    });
+    const comment_id = comments[0].id;
+    wrapper.find(".card_section-new_comment").find(CommentForm).vm.$emit('submit-comment', {
+      text:"Test comment", id: comment_id
+    });
+    expect(wrapper.emitted('create-comment')).toBeTruthy();
+  });
+
+  // submit-comment on first comment CommentForm will emit update-comment and hide forms
+  it('submit-comment on first comment CommentForm will emit update-comment and hide forms', () => {
+    const wrapper = mount(CommentsCard, {
+      propsData: defaults_with_comments_admin,
+      stubs: stubs
+    });
+    const comment_id = comments[0].id;
+    const first_comment = wrapper.find(CommentDisplay);
+    const edit_button = first_comment.find('[href="#edit_comment"]');
+    edit_button.trigger("click");
+    first_comment.find(CommentForm).vm.$emit('submit-comment', {
+      text: 'Updated Comment', id: comment_id
+    });
+    expect(wrapper.emitted('update-comment')).toBeTruthy();
+    expect(first_comment.find(CommentForm).isVisible()).toBe(false);
+    expect(first_comment.find(CommentDeleteForm).isVisible()).toBe(false);
   });
 });
