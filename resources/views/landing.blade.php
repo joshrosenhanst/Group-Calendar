@@ -20,7 +20,7 @@
     </div>
     <div class="hero_image screen_sample">
       <div class="tablet_wrapper">
-        <img src="{{ asset('img/event_sample.jpg') }}" alt="GroupCalendar sample on tablet">
+        <img src="{{ asset('img/event_sample.jpg') }}" alt="GroupCalendar sample screenshot">
       </div>
     </div>
   </section>
@@ -30,7 +30,7 @@
 
   <div class="promo_item">
     <div class="promo_image">
-      <img src="{{ asset('img/datepicker_sample.png') }}" alt="Promotional Image - Datepicker">
+      <img src="{{ asset('img/datepicker_sample.png') }}" alt="Promotional Image - Screenshot of GroupCalendar New Event page with some fields filled out and Start Date field Datepicker widget open">
     </div>
     <div class="promo_content">
       <h2 class="promo_title">Plan</h2>
@@ -46,7 +46,7 @@
 
   <div class="promo_item">
     <div class="promo_image">
-      <img src="{{ asset('img/comments_sample.png') }}" alt="Promotional Image - Comments">
+      <img src="{{ asset('img/comments_sample.png') }}" alt="Promotional Image - Screenshot of GroupCalendar View Event page showing the Comments and Attendees sections">
     </div>
     <div class="promo_content">
       <h2 class="promo_title">Collaborate</h2>
@@ -62,7 +62,7 @@
 
   <div class="promo_item">
     <div class="promo_image">
-      <img src="{{ asset('img/header_selection_sample.jpg') }}" alt="Promotional Image - Commetns">
+      <img src="{{ asset('img/header_selection_sample.jpg') }}" alt="Promotional Image - Screenshot of 'Select an Image' popup modal used on New Event page. The popup includes a grid of images that can be selected">
     </div>
     <div class="promo_content">
       <h2 class="promo_title">Customize</h2>
