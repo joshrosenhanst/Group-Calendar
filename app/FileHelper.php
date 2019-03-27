@@ -8,7 +8,7 @@ use Illuminate\Http\File;
 
 class FileHelper {
   /*
-    getImagesInDirectory($directory) - Return a JSON array of image files in a directory including their full path, filename (no path), and alt text.
+    getImagesInDirectory($directory) - Return a collection of image files in a directory including their full path, filename (no path), and alt text.
 
     $directory - The directory to get files from. Must be a string folder name inside the storage/ directory. For example, 'default_avatars' will grab all images in the storage/default_avatars/ directory.
   */
@@ -28,21 +28,26 @@ class FileHelper {
   }
 
   /*
-    getRandomImageFromDirectory($source_directory, $destination_directory) - Grab a random file from the source_directory, copy it to the destintation_directory, and return the filename.
+    getRandomImageFromDirectory($source_directory, $destination_directory) - Grab a random file from the source_directory, copy it to the destintation_directory, and return the filename. Returns null if source directory or the destination directory doesnt exist.
 
     $source_directory - The directory that the original file is in, inside the storage/app/public/ folder. Example: 'default_avatars' will look under `storage/default_avatars`.
     $destination_directory - The directory that the copied file will be placed in, using the `public` disk (i.e storage/). Example: 'avatars' will place the file under `storage/avatars/`.
   */
   public function getRandomImageFromDirectory($source_directory, $destination_directory){
     $fs = new Filesystem();
+    
+    if(Storage::disk('public')->exists($source_directory) && Storage::disk('public')->exists($destination_directory)){
 
-    $files = Storage::disk('public')->files($source_directory);
-    $file = array_rand($files);
-    $filename = $fs->basename($files[$file]);
-
-    $this->copyDefaultImage($filename, $source_directory, $destination_directory);
-
-    return $filename;
+      $files = Storage::disk('public')->files($source_directory);
+      $file = array_rand($files);
+      $filename = $fs->basename($files[$file]);
+  
+      $this->copyDefaultImage($filename, $source_directory, $destination_directory);
+  
+      return $filename;
+    }else{
+      return null;
+    }
   }
 
    /*
