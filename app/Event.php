@@ -114,14 +114,6 @@ class Event extends Model
     }
     return $subtext_string;
   }
-  
-  public function getEndTimeSubtextAttribute(){
-    $subtext_string = null;
-    if($this->end_time){
-      $subtext_string = $this->end_time->format('h:i A');
-    }
-    return $subtext_string;
-  }
 
   /*
     getUserStatusAttribute() - Accessor method to print out the current Auth::user() attendee status on this event. If the status is not set or the user doesn't exist we fall back to the default value `pending`.
