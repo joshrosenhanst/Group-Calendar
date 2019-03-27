@@ -166,11 +166,12 @@ class Event extends Model
   /*
     auth_user_status() - Access the attendee status for the Auth::user() by creating a filtered relationship. 
     Status field can be accessed via auth_user_status->first()->status or through the accessor `user_status` using `getUserStatusAttribute()`
+    If there is no authorized user (i.e API/tests), should return an empty array.
   */
   public function auth_user_status(){
-    if(!Auth::user()) return null;
+    $user_id = Auth::user() ? Auth::user()->id : null;
 
-    return $this->belongsToMany('App\User')->withPivot('status')->wherePivot('user_id',Auth::user()->id)->select('status');
+    return $this->belongsToMany('App\User')->withPivot('status')->wherePivot('user_id',$user_id)->select('status');
   }
 
   /*
