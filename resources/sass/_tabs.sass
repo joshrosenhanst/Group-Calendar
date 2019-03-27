@@ -9,13 +9,21 @@
   +tablet
     border-top-left-radius: $card-border-radius
     border-top-right-radius: $card-border-radius
-  a
+  .tablist
+    display: flex
+    align-items: center
+    justify-content: center
+    flex-grow: 1
+    flex-shrink: 0
+  .tab
     display: flex
     align-items: center
     justify-content: center
     color: $white
     vertical-align: top
-    border-top: 5px solid darken($primary, 2.5%)
+    border-top: 5px solid $navbar-border
+    border-left: 1px solid $navbar-border
+    border-right: 1px solid $navbar-border
     text-shadow: $navbar-item-text-shadow
     +until($tablet)
       padding: 8px
@@ -30,29 +38,16 @@
     &:hover,&:focus
       color: $white
       text-decoration: none
-      background-color: darken($primary, 2.5%)
-      border-color: darken($primary, 5%)
-  ul
-    display: flex
-    align-items: center
-    justify-content: center
-    flex-grow: 1
-    flex-shrink: 0
-  li
-    border-left: 1px solid $navbar-border
-    border-right: 1px solid $navbar-border
-    &:last-of-type
-      border-left: 0
-    &.tab_active
+      background-color: $navbar-hover
+    &:focus
+    &.tab-active
       border-color: darken($primary, 10%)
-      a
-        border-color: darken($primary, 10%)
+      color: $white
+      background-color: darken($primary, 5%)
+      &>.icon
         color: $white
-        background-color: darken($primary, 5%)
-        &>.icon
-          color: $white
-          svg
-            filter: drop-shadow($navbar-item-text-shadow)
+        svg
+          filter: drop-shadow($navbar-item-text-shadow)
 
 /* Tab: the actual tab content being displayed when the tabs nav is used */
 .tab

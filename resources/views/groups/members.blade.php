@@ -40,28 +40,32 @@
     v-on:select-tab="selectTab"
   >
     {{--Noscript: graceful fallback by manually rendering the tabs--}}
-    <ul slot="noscript">
-      <li
-      @if(request('tab') === NULL || request('tab') === 'members')
-        class="tab_active"
-      @endif
-      >
-        <a href="{{ route('groups.members', ['group'=>$group, 'tab'=>'members']) }}">
+    <div class="tabs" slot="noscript">
+      <div class="tablist" role="tablist">
+
+        <a href="{{ route('groups.members', ['group'=>$group, 'tab'=>'members']) }}" role="tab" tabindex="0"
+          @if(request('tab') === NULL || request('tab') === 'members')
+            class="tab tab-active"
+          @else
+            class="tab"
+          @endif
+        >
           <span class="icon">@materialicon('account-multiple')</span>
           <span>Members</span>
         </a>
-      </li>
-      <li
-      @if(request('tab') === 'invited')
-        class="tab_active"
-      @endif
-      >
-        <a href="{{ route('groups.members', ['group'=>$group, 'tab'=>'invited']) }}">
+
+        <a href="{{ route('groups.members', ['group'=>$group, 'tab'=>'invited']) }}" role="tab" tabindex="0"
+          @if(request('tab') === 'invited')
+            class="tab tab-active"
+          @else
+            class="tab"
+          @endif
+        >
           <span class="icon">@materialicon('account-plus')</span>
-          <span>Invited</span>  
+          <span>Invited</span>   
         </a>
-      </li>
-    </ul>
+      </div>
+    </div>
 
     {{-- TabWrapper tabs (only visible if JS is running) --}}
     <template slot="members" style="display:none;">

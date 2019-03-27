@@ -26,7 +26,7 @@ describe('TabWrapper.vue', () => {
       propsData,
       slots
     });
-    const tabs = wrapper.findAll("li a");
+    const tabs = wrapper.findAll(".tab");
     expect(tabs).toHaveLength(tabItems.length);
 
     for(let i=0;i<tabs.length;i++){
@@ -41,9 +41,9 @@ describe('TabWrapper.vue', () => {
     });
 
     // click second tab
-    wrapper.findAll("li").at(1).find("a").trigger("click");
+    wrapper.findAll(".tab").at(1).trigger("click");
     expect(wrapper.emitted('select-tab')).toBeTruthy();
 
-    expect(wrapper.find(".tab_active").html()).toContain(slots["second_tab"]);
+    expect(wrapper.find(".tab-active").html()).toContain(slots["second_tab"]);
   });
 });

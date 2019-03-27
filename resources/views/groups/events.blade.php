@@ -35,28 +35,32 @@
     v-on:select-tab="selectTab"
   >
     {{--Noscript: graceful fallback by manually rendering the tabs--}}
-    <ul slot="noscript">
-      <li
-      @if(request('tab') === NULL || request('tab') === 'upcoming_events')
-        class="tab_active"
-      @endif
-      >
-        <a href="{{ route('groups.events.index', ['group'=>$group, 'tab'=>'upcoming_events']) }}">
+    <div class="tabs" slot="noscript">
+      <div class="tablist" role="tablist">
+
+        <a href="{{ route('groups.events.index', ['group'=>$group, 'tab'=>'upcoming_events']) }}" role="tab" tabindex="0"
+          @if(request('tab') === NULL || request('tab') === 'upcoming_events')
+            class="tab tab-active"
+          @else
+            class="tab"
+          @endif
+        >
           <span class="icon">@materialicon('calendar-text')</span>
           <span>Upcoming Events</span>
         </a>
-      </li>
-      <li
-      @if(request('tab') === 'past_events')
-        class="tab_active"
-      @endif
-      >
-        <a href="{{ route('groups.events.index', ['group'=>$group, 'tab'=>'past_events']) }}">
+
+        <a href="{{ route('groups.events.index', ['group'=>$group, 'tab'=>'past_events']) }}" role="tab" tabindex="0"
+          @if(request('tab') === 'past_events')
+            class="tab tab-active"
+          @else
+            class="tab"
+          @endif
+        >
           <span class="icon">@materialicon('calendar-clock')</span>
           <span>Past Events</span>  
         </a>
-      </li>
-    </ul>
+      </div>
+    </div>
     
     {{-- TabWrapper tabs (only visible if JS is running) --}}
     <template slot="upcoming_events" style="display:none;">
