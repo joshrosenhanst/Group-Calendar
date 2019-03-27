@@ -7,6 +7,7 @@ use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
+use App\FileHelper;
 
 class GroupTest extends TestCase
 {
@@ -190,5 +191,29 @@ class GroupTest extends TestCase
 
         $this->assertIsObject($group->comments);
         $this->assertCount(10, $group->comments);
+    }
+
+    /*
+        testUpdateGroup - Test that the application can update a group model and database record.
+        Check that the model properties are properly updated.
+    */
+    public function testUpdateGroup(){
+        $filehelper = new FileHelper;
+        $group = factory(\App\Group::class)->create();
+
+        $new_header_url = $filehelper->getRandomImageFromDirectory('default_headers','groups');
+        $new_avatar_url = $filehelper->getRandomImageFromDirectory('default_avatars','avatars');
+        $updated_group = [
+            'name' => 'Updated Group Name',
+            'header_url' => $new_header_url,
+            'avatar_url' => $new_avatar_url
+        ];
+
+        $group->update($updated_group);
+        $this->assertEquals($updated_group['name'], $group->name);
+        $this->assertEquals($updated_group['header_url'], $group->header_url);
+        $this->assertEquals($updated_group['avatar_url'], $group->avatar_url);
+        Storage::disk('public')->assertExists('groups/'.$group->header_url);
+        Storage::disk('public')->assertExists('avatars/'.$group->avatar_url);
     }
 }
