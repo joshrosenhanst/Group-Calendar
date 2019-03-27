@@ -183,6 +183,7 @@ class GroupTest extends TestCase
             $this->assertDatabaseHas('comments', [
                 'id' => $comment->id,
                 'commentable_id' => $group->id,
+                'commentable_type' => \App\Group::class,
                 'user_id' => $member->id
             ]);
         });
