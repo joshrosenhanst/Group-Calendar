@@ -6,6 +6,7 @@ use Tests\TestCase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Str;
 
 class GroupTest extends TestCase
 {
@@ -49,6 +50,7 @@ class GroupTest extends TestCase
             'id' => $group->id
         ]);
 
+        // create 10 group members
         factory(\App\User::class, 10)->create()->each(function ($user) use ($group){
             $this->assertDatabaseHas('users', [
                 'id' => $user->id
@@ -61,6 +63,7 @@ class GroupTest extends TestCase
             ]);
         });
 
+        // create 3 group admins
         factory(\App\User::class, 3)->create()->each(function ($admin_user) use ($group){
             $this->assertDatabaseHas('users', [
                 'id' => $admin_user->id
@@ -81,5 +84,110 @@ class GroupTest extends TestCase
         // count is not automatically updated, needs manual refresh
         $group->refresh();
         $this->assertEquals(13,$group->users_count);
+    }
+
+    /*
+        testCreateGroupWithInvites() - Test that the application can create a group, an admin user, and attach a set of group_invites.
+        Check that the invited users, and pivot records exist in the database as we create them.
+        The group->group_invites should exist and their count should match the number we created.
+    */
+    public function testCreateGroupWithInvites(){
+        $group = factory(\App\Group::class)->create();
+
+        $admin_user = factory(\App\User::class)->create();
+
+        $group->users()->attach($admin_user->id, [
+            'role' => 'admin'
+        ]);
+
+        factory(\App\User::class, 6)->create()->each(function($invited_user) use ($group, $admin_user){
+            $this->assertDatabaseHas('users', [
+                'id' => $invited_user->id
+            ]);
+
+            $token = (string) Str::uuid();
+            $group->group_invites()->attach($invited_user->id, [
+                'creator_id' => $admin_user->id,
+                'token' => $token
+            ]);
+
+            $this->assertDatabaseHas('group_invites', [
+                'group_id' => $group->id,
+                'user_id' => $invited_user->id,
+                'creator_id' => $admin_user->id,
+                'token' => $token
+            ]);
+        });
+
+        $this->assertIsObject($group->group_invites);
+        $this->assertCount(6, $group->group_invites);
+    }
+
+    /*
+        testCreateGroupWithEvents() - Test that the application can create a group, a member, 2 upcoming events, and 3 past events.
+        Check that the events exist as we create them. The group->events, group->upcoming_events, and group->past_events should exist and their count should match the number of events we create.
+    */
+    public function testCreateGroupWithEvents(){
+        $group = factory(\App\Group::class)->create();
+        $member = factory(\App\User::class)->create();
+        $group->users()->attach($member->id);
+
+        // upcoming events
+        factory(\App\Event::class, 2)->states('upcoming')->create([
+            'group_id' => $group->id,
+            'creator_id' => $member->id
+        ])->each(function($event) use ($group,$member){
+            $this->assertDatabaseHas('events', [
+                'id' => $event->id,
+                'group_id' => $group->id,
+                'creator_id' => $member->id
+            ]);
+        });
+
+        // past events
+        factory(\App\Event::class, 3)->states('past')->create([
+            'group_id' => $group->id,
+            'creator_id' => $member->id
+        ])->each(function($event) use ($group,$member){
+            $this->assertDatabaseHas('events', [
+                'id' => $event->id,
+                'group_id' => $group->id,
+                'creator_id' => $member->id
+            ]);
+        });
+
+        $this->assertIsObject($group->events);
+        $this->assertCount(5, $group->events);
+
+        $this->assertIsObject($group->upcoming_events);
+        $this->assertCount(2, $group->upcoming_events);
+
+        $this->assertIsObject($group->past_events);
+        $this->assertCount(3, $group->past_events);
+    }
+
+    /*
+        testCreateGroupWithComments - Test that the application can create a group, a member, and 10 comments.
+        Check that the comments exist as we create them. The group->comments should exist and their count should match the number of comments we create.
+    */
+    public function testCreateGroupWithComments() {
+        $group = factory(\App\Group::class)->create();
+        $member = factory(\App\User::class)->create();
+        $group->users()->attach($member->id);
+
+        factory(\App\Comment::class, 10)->create([
+            'user_id' => $member->id,
+            'commentable_id' => $group->id,
+            'commentable_type' => \App\Group::class
+        ])->each(function($comment) use ($group,$member){
+            $this->assertDatabaseHas('comments', [
+                'id' => $comment->id,
+                'commentable_id' => $group->id,
+                'user_id' => $member->id
+            ]);
+        });
+
+        $this->assertIsObject($group->comments);
+        $this->assertCount(10, $group->comments);
     }
 }
