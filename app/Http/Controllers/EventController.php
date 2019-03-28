@@ -33,9 +33,13 @@ class EventController extends Controller
     
     $monthly_upcoming_events = Auth::user()->upcoming_events->groupBy(function($event){
       return $event->start_date->format('F Y');
+    })->sortBy(function($month,$month_name){
+      return strtotime($month_name);
     });
     $monthly_past_events = Auth::user()->past_events->groupBy(function($event){
       return $event->start_date->format('F Y');
+    })->sortBy(function($month,$month_name){
+      return strtotime($month_name);
     });
     
     return view('events.index', [

@@ -140,6 +140,8 @@ class Group extends Model
     $this->loadMissing('upcoming_events.auth_user_status');
     $upcoming = $this->upcoming_events->groupBy(function($item){
       return $item->start_date->format('F Y');
+    })->sortBy(function($month,$month_name){
+      return strtotime($month_name);
     });
 
     return $upcoming;
@@ -155,6 +157,8 @@ class Group extends Model
     $this->loadMissing('past_events.auth_user_status');
     $past = $this->past_events->groupBy(function($item){
       return $item->start_date->format('F Y');
+    })->sortBy(function($month,$month_name){
+      return strtotime($month_name);
     });
 
     return $past;
