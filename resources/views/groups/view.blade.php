@@ -61,7 +61,7 @@
 
       {{-- Recent Members --}}
       @include('blocks.groups.recent_members', [
-        'members'=>$group->users->take(6)
+        'members'=>$group->users->sortByDesc('pivot.created_at')->take(6)
       ])
     </aside>
   </div>
