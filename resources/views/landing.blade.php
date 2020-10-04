@@ -99,7 +99,7 @@
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://joshrosenhanst.com/groupcalendar/">
   <meta property="og:description" content="GroupCalendar - Plan and collaborate on events with your group">
-  <meta property="og:image" content="https://joshrosenhanst.com/img/groupcalendar/banner.png">
+  <meta property="og:image" content="https://joshrosenhanst.com/assets/img/groupcalendar/banner.png">
   <meta property="og:image:type" content="image/png">
   <meta property="og:image:width" content="1036">
   <meta property="og:image:height" content="630">
