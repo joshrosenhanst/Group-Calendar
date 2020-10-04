@@ -1,6 +1,8 @@
 # Group Calendar
 A collaborative event planner and calendar website built with Laravel.
 
+<p align="center"><a href="https://joshrosenhanst.com/groupcalendar/"><img src="https://joshrosenhanst.com/assets/img/groupcalendar/banner.png" width="400" alt="GroupCalendar Preview"></a></p>
+
 ## Requirements
 - Laravel 5.7+ https://laravel.com/docs/5.7#server-requirements
 - Composer
