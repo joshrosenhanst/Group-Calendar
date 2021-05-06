@@ -12,7 +12,7 @@
         "davejamesmiller/laravel-breadcrumbs": "5.x",
         "fideloper/proxy": "^4.0",
         "laracasts/utilities": "^3.0",
-        "laravel/framework": "5.7.*",
+        "laravel/framework": "6.18.*",
         "laravel/tinker": "^1.0",
         "mesavolt/mdi-php": "^1.1",
         "niklasravnsborg/laravel-pdf": "^3.1",
