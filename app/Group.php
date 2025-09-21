@@ -11,10 +11,11 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Carbon;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Group extends Model
 {
-  use Notifiable;
+  use HasFactory, Notifiable;
   
   protected $fillable = [
     'name','avatar_url', 'header_url'

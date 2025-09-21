@@ -1,6 +1,7 @@
 const mix = require('laravel-mix');
 
 mix.js('resources/js/app.js', 'public/js')
+   .vue()
    .sass('resources/sass/app.sass', 'public/css')
    .sass('resources/sass/event_flyer.sass', 'public/css')
    .sass('resources/sass/landing.sass', 'public/css')
@@ -17,11 +18,11 @@ mix.js('resources/js/pages/groups/view.js', 'public/js/pages/groups')
    .js('resources/js/pages/events/edit.js', 'public/js/pages/events')
    .js('resources/js/pages/events/view.js', 'public/js/pages/events')
    .js('resources/js/pages/profile/edit.js', 'public/js/pages/profile')
-;
+   .vue();
 
 if (mix.inProduction()) {
    mix.version();
-}else{
+} else {
    mix.sourceMaps();
    mix.webpackConfig({
       devtool: "inline-source-map"

@@ -1,12 +1,26 @@
 <?php
 
-use Faker\Generator as Faker;
+namespace Database\Factories;
 
-$factory->define(App\Comment::class, function (Faker $faker) {
+use Illuminate\Database\Eloquent\Factories\Factory;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Comment;
+use App\User;
+use App\Group;
+
+class CommentFactory extends Factory
+{
+  use HasFactory;
+
+  protected $model = Comment::class;
+
+  public function definition()
+  {
     return [
-        'text' => $faker->realText(150),
-        'user_id' => App\User::first(),
-        'commentable_id' => App\Group::first(),
-        'commentable_type' => App\Group::class
+        'text' => $this->faker->realText(150),
+        'user_id' => User::first(),
+        'commentable_id' => Group::first(),
+        'commentable_type' => Group::class
     ];
-});
+  }
+}

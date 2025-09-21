@@ -5,6 +5,10 @@ namespace Tests\Unit;
 use Tests\TestCase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use App\Group;
+use App\User;
+use App\Event;
+use App\Comment;
 
 class CommentTest extends TestCase
 {
@@ -16,13 +20,13 @@ class CommentTest extends TestCase
         Check that the comment values are set properly and that the model accessor attributes are initialized.
     */
     public function testCreateGroupComments(){
-        $group = factory(\App\Group::class)->create();
-        $member = factory(\App\User::class)->create();
+        $group = Group::factory()->create();
+        $member = User::factory()->create();
         $group->users()->attach($member->id);
 
         $comment_text = $this->faker->realText(150);
 
-        $comment = factory(\App\Comment::class)->create([
+        $comment = Comment::factory()->create([
             'text' => $comment_text,
             'user_id' => $member->id,
             'commentable_id' => $group->id,
@@ -59,17 +63,17 @@ class CommentTest extends TestCase
         Check that the comment values are set properly and that the model accessor attributes are initialized.
     */
     public function testCreateEventComments(){
-        $group = factory(\App\Group::class)->create();
-        $member = factory(\App\User::class)->create();
+        $group = Group::factory()->create();
+        $member = User::factory()->create();
         $group->users()->attach($member->id);
-        $event = factory(\App\Event::class)->create([
+        $event = Event::factory()->create([
             'group_id' => $group->id,
             'creator_id' => $member->id
         ]);
 
         $comment_text = $this->faker->realText(150);
 
-        $comment = factory(\App\Comment::class)->create([
+        $comment = Comment::factory()->create([
             'text' => $comment_text,
             'user_id' => $member->id,
             'commentable_id' => $event->id,
@@ -106,15 +110,15 @@ class CommentTest extends TestCase
         Check that the model properties and accessor attributes were updated properly.
     */
     public function testUpdateComment(){
-        $group = factory(\App\Group::class)->create();
-        $member = factory(\App\User::class)->create();
+        $group = Group::factory()->create();
+        $member = User::factory()->create();
         $group->users()->attach($member->id);
 
-        $comment = factory(\App\Comment::class)->create([
+        $comment = Comment::factory()->create([
             'text' => "Initial Comment",
             'user_id' => $member->id,
             'commentable_id' => $group->id,
-            'commentable_type' => \App\Group::class
+            'commentable_type' => Group::class
         ]);
 
         $updated_text = $this->faker->realText(150);
@@ -127,7 +131,7 @@ class CommentTest extends TestCase
         $this->assertDatabaseHas('comments', [
             'id' => $comment->id,
             'commentable_id' => $group->id,
-            'commentable_type' => \App\Group::class,
+            'commentable_type' => Group::class,
             'user_id' => $member->id
         ]);
         $this->assertEquals($updated_text, $comment->text);

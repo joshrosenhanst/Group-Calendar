@@ -4,10 +4,10 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Validator;
 use Illuminate\Validation\Rule;
 use Illuminate\Support\Facades\Hash;
-use App\FileHelper;
+use App\Facades\FileHelper;
+use Illuminate\Support\Facades\Validator;
 
 class ProfileController extends Controller
 {
@@ -15,9 +15,7 @@ class ProfileController extends Controller
     edit() - Display the `profile.edit` template.
   */
   public function edit(){
-    $filehelper = new FileHelper;
-
-    $avatar_images = $filehelper->getImagesInDirectory('default_avatars', "Preview Avatar");
+    $avatar_images = FileHelper::getImagesInDirectory('default_avatars', "Preview Avatar");
     return view('profile.edit', ['avatar_images'=>$avatar_images]);
   }
 
@@ -32,8 +30,6 @@ class ProfileController extends Controller
     update() - Validate the fields on `profile.edit` template. If valid, update the user record on the database.
   */
   public function update(Request $request){
-    $filehelper = new FileHelper;
-
     $validator = Validator::make($request->all(), [
       'name' => 'required|max:255|string',
       'email' => [
@@ -43,7 +39,7 @@ class ProfileController extends Controller
     ])->validate();
 
     if($request->avatar_url && $request->avatar_url !== Auth::user()->avatar_url){
-      $filehelper->copyDefaultImage($request->avatar_url, 'default_avatars', 'avatars');
+      FileHelper::copyDefaultImage($request->avatar_url, 'default_avatars', 'avatars');
     }
 
     Auth::user()->update([

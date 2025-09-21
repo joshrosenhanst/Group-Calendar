@@ -65,11 +65,8 @@ return [
     | Subclass the default classes for more advanced customisations.
     |
     */
+    'manager-class' => Diglactic\Breadcrumbs\Manager::class,
 
-    // Manager
-    'manager-class' => DaveJamesMiller\Breadcrumbs\BreadcrumbsManager::class,
-
-    // Generator
-    'generator-class' => DaveJamesMiller\Breadcrumbs\BreadcrumbsGenerator::class,
+    'generator-class' => Diglactic\Breadcrumbs\Generator::class,
 
 ];

@@ -4,23 +4,22 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Notification;
 use App\Notifications\EventCreated;
 use App\Notifications\EventUpdated;
 use App\Notifications\EventDeleted;
 use App\Notifications\EventCommentCreated;
-use JavaScript;
 use Illuminate\Support\Carbon;
-use Validator;
-use Illuminate\Validation\Rule;
-use App\FileHelper;
+use App\Facades\FileHelper;
+use JavaScript;
 use PDF;
-use Illuminate\Support\Str;
 use App\Jobs\GenerateEventFlyer;
+use App\Group;
+use App\Event;
+use Illuminate\Support\Facades\Validator;
 
 class EventController extends Controller
 {
-  public function flyer(\App\Group $group, \App\Event $event){
+  public function flyer(Group $group, Event $event){
     return view('events.flyer', ['event'=>$event]);
   }
 
@@ -58,11 +57,11 @@ class EventController extends Controller
   /*
     new() - Display the `events.new` page template.
   */
-  public function new(Request $request, \App\Group $group = null){
-    $filehelper = new FileHelper;
-
+  public function new(Request $request, ?Group $group = null)
+  {
     $events = Auth::user()->getEventsForDatepicker();
-    $header_images = $filehelper->getImagesInDirectory('default_headers', "Preview Header");
+    $header_images = FileHelper::getImagesInDirectory('default_headers', "Preview Header");
+
     JavaScript::put([
       'data' => [
         'showEndDate' => ( old('end_date')?true:false ),
@@ -70,15 +69,17 @@ class EventController extends Controller
         'selected_location' => old('location'),
       ]
     ]);
-    return view('events.new', ['group'=>$group, 'header_images'=>$header_images]);
+
+    return view('events.new', [
+      'group'=>$group,
+      'header_images'=>$header_images
+    ]);
   }
 
   /*
     create() - Validate the fields submitted on the `events.new` form. If valid, create a new event in the database.
   */
   public function create(Request $request){
-    $filehelper = new FileHelper;
-
     $validator = Validator::make($request->all(), [
       'name' => 'required',
       'group' => 'required|numeric|exists:groups,id',
@@ -121,7 +122,7 @@ class EventController extends Controller
     $validator->validate();
 
     if($request->header_url){
-      $filehelper->copyDefaultImage($request->header_url, 'default_headers', 'events');
+      FileHelper::copyDefaultImage($request->header_url, 'default_headers', 'events');
     }
 
     $start_date = $request->start_date ? Carbon::parse($request->start_date)->toDateString() : null;
@@ -129,7 +130,7 @@ class EventController extends Controller
     $end_date =  $request->end_date ? Carbon::parse($request->end_date)->toDateString(): null;
     $end_time = $request->end_time ? Carbon::parse($request->end_time)->toTimeString() : null;
 
-    $event = \App\Event::create([
+    $event = Event::create([
       'name' => $request->name,
       'header_url' => $request->header_url,
       'creator_id' => Auth::user()->id,
@@ -152,27 +153,34 @@ class EventController extends Controller
     // create the event flyer via queue job
     GenerateEventFlyer::dispatch($event);
 
-    $group = \App\Group::find($request->group);
+    $group = Group::find($request->group);
 
     //trigger "event created" Event
     // notify the group that an event was created
     $group->notify(new EventCreated(Auth::user(), $event, $group));
 
-    return redirect()->route('groups.events.view', ['event'=>$event, 'group'=>$group])->with('status', 'Your event has been created.');
+    return redirect()->route('groups.events.view', [
+      'event'=>$event, 
+      'group'=>$group
+    ])->with('status', 'Your event has been created.');
   }
 
   /*
     event_redirect() - Redirect the user to the full groups.events.view path.
   */
-  public function event_redirect(\App\Event $event){
-    return redirect()->route('groups.events.view', ['event'=>$event,'group'=>$event->group]);
+  public function event_redirect(Event $event){
+    return redirect()->route('groups.events.view', [
+      'event'=>$event,
+      'group'=>$event->group
+    ]);
   }
 
   /*
     view() - Display the `events.view` page template.
   */
-  public function view(\App\Group $group, \App\Event $event){
+  public function view(Group $group, Event $event){
     $event->loadMissing(['comments.user','attendees']);
+
     JavaScript::put([
       'data' => [
         'user' => Auth::user(),
@@ -181,17 +189,18 @@ class EventController extends Controller
       ]
     ]);
 
-    return view('events.view', ['event'=>$event]);
+    return view('events.view', [
+      'event'=>$event
+    ]);
   }
 
   /*
     edit() - Display the `events.edit` page template.
   */
-  public function edit(\App\Group $group, \App\Event $event){
-    $filehelper = new FileHelper;
-
+  public function edit(Group $group, Event $event){
     $events = Auth::user()->getEventsForDatepicker();
-    $header_images = $filehelper->getImagesInDirectory('default_headers', "Preview Header");
+    $header_images = FileHelper::getImagesInDirectory('default_headers', "Preview Header");
+
     JavaScript::put([
       'data' => [
         'showEndDate' => ( old('end_date',$event->end_date)?true:false ),
@@ -199,15 +208,17 @@ class EventController extends Controller
         'selected_location' => old('location', $event->getLocationJsonArray()),
       ]
     ]);
-    return view('events.edit', ['event'=>$event,'header_images'=>$header_images]);
+
+    return view('events.edit', [
+      'event'=>$event,
+      'header_images'=>$header_images
+    ]);
   }
 
   /*
     update() - Validate the fields submitted on the `events.edit` form. If valid, update the event model in the database.
   */
-  public function update(Request $request, \App\Event $event){
-    $filehelper = new FileHelper;
-
+  public function update(Request $request, Event $event){
     $validator = Validator::make($request->all(), [
       'name' => 'required',
       'start_date' => 'required|date',
@@ -249,7 +260,7 @@ class EventController extends Controller
     $validator->validate();
 
     if($request->header_url && $request->header_url !== $event->header_url){
-      $filehelper->copyDefaultImage($request->header_url, 'default_headers', 'events');
+      FileHelper::copyDefaultImage($request->header_url, 'default_headers', 'events');
     }
 
     $start_date = $request->start_date ? Carbon::parse($request->start_date)->toDateString() : null;
@@ -292,13 +303,16 @@ class EventController extends Controller
       $event->group->notify(new EventCommentCreated(Auth::user(), $event, $request->update_comment));
     }
 
-    return redirect()->route('groups.events.view', ['event'=>$event, 'group'=>$event->group])->with('status', 'The event has been updated.');
+    return redirect()->route('groups.events.view', [
+      'event'=>$event, 
+      'group'=>$event->group
+    ])->with('status', 'The event has been updated.');
   }
 
   /*
     attend() - Add the Auth::user as an attendee for the event, set their pivot status to the $request->status.
   */
-  public function attend(Request $request, \App\Event $event){
+  public function attend(Request $request, Event $event){
     $request->validate([
       'status'=>'required|in:pending,interested,going,unavailable'
     ]);
@@ -318,20 +332,25 @@ class EventController extends Controller
 
     //trigger "event attendee updated" Event
 
-    return redirect()->route('groups.events.view', ['event'=>$event, 'group'=>$event->group])->with('status', 'Your attendee status has been updated.');
+    return redirect()->route('groups.events.view', [
+      'event'=>$event, 
+      'group'=>$event->group
+    ])->with('status', 'Your attendee status has been updated.');
   }
 
   /*
     delete() - Display the `events.delete` page template.
   */
-  public function delete(\App\Group $group, \App\Event $event){
-    return view('events.delete', ['event'=>$event]);
+  public function delete(Group $group, Event $event){
+    return view('events.delete', [
+      'event'=>$event
+    ]);
   }
 
   /*
     destroy() - Delete the event model from the database.
   */
-  public function destroy(Request $request, \App\Event $event){
+  public function destroy(Request $request, Event $event){
     $group = $event->group;
     $event_copy = $event;
     $event->delete();
@@ -339,13 +358,15 @@ class EventController extends Controller
     //trigger "event deleted" Event
     $group->notify(new EventDeleted(Auth::user(), $event_copy));
 
-    return redirect()->route('groups.events.index', ['group'=>$group])->with('status', 'The event has been deleted.');
+    return redirect()->route('groups.events.index', [
+      'group'=>$group
+    ])->with('status', 'The event has been deleted.');
   }
 
   /*
     createComment() - Add an event comment submitted by the new comment form on the events.view page.
   */
-  public function createComment(Request $request, \App\Event $event){
+  public function createComment(Request $request, Event $event){
     $request->validate([
       'comment_text'=>'required'
     ]);
@@ -356,6 +377,9 @@ class EventController extends Controller
     ]);
 
     $event->group->notify(new EventCommentCreated(Auth::user(), $event, $request->comment_text));
-    return redirect()->route('groups.events.view', ['event'=>$event, 'group'=>$event->group])->with('status', 'Your comment has been posted.');
+    return redirect()->route('groups.events.view', [
+      'event'=>$event, 
+      'group'=>$event->group
+    ])->with('status', 'Your comment has been posted.');
   }
 }

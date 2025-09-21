@@ -2,12 +2,12 @@
     "private": true,
     "scripts": {
         "dev": "npm run development",
-        "development": "cross-env NODE_ENV=development node_modules/webpack/bin/webpack.js --progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js",
-        "watch": "npm run development -- --watch",
-        "watch-poll": "npm run watch -- --watch-poll",
-        "hot": "cross-env NODE_ENV=development node_modules/webpack-dev-server/bin/webpack-dev-server.js --inline --hot --config=node_modules/laravel-mix/setup/webpack.config.js",
+        "development": "mix",
+        "watch": "mix watch",
+        "watch-poll": "mix watch -- --watch-options-poll=1000",
+        "hot": "mix watch --hot",
         "prod": "npm run production",
-        "production": "cross-env NODE_ENV=production node_modules/webpack/bin/webpack.js --no-progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js",
+        "production": "mix --production",
         "test": "cross-env NODE_ENV=test jest",
         "phpunit": "vendor/bin/phpunit --verbose"
     },
@@ -21,14 +21,16 @@
         "cross-env": "^5.1",
         "jest": "^24.5.0",
         "jest-serializer-vue": "^2.0.2",
-        "laravel-mix": "^4.0.7",
+        "laravel-mix": "^6.0.49",
         "lodash": "^4.17.5",
         "resolve-url-loader": "^2.3.1",
-        "sass": "^1.15.2",
-        "sass-loader": "^7.1.0",
+        "sass": "^1.91.0",
+        "sass-loader": "^16.0.5",
         "vue": "^2.5.17",
         "vue-jest": "^4.0.0-beta.1",
-        "vue-template-compiler": "^2.6.1"
+        "vue-loader": "^15.9.8",
+        "vue-template-compiler": "^2.6.1",
+        "webpack": "^5.101.3"
     },
     "dependencies": {
         "@mdi/svg": "^3.4.93"

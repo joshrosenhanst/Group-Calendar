@@ -1,36 +1,55 @@
 <?php
 
-use Faker\Generator as Faker;
-use App\FileHelper;
-use Illuminate\Support\Carbon;
+namespace Database\Factories;
 
-$factory->define(App\Event::class, function (Faker $faker) {
-    $filehelper = new FileHelper;
-    $group = \App\Group::first();
+use Illuminate\Database\Eloquent\Factories\Factory;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Support\Carbon;
+use App\Group;
+use App\Event;
+use App\Facades\FileHelper;
+
+class EventFactory extends Factory
+{
+  use HasFactory;
+
+  protected $model = Event::class;
+
+  public function definition()
+  {
+    $group = Group::first();
     $user = $group ? $group->users()->first() : null;
+
     return [
-        'name' => $faker->name,
+        'name' => $this->faker->name,
         'group_id' => $group ? $group->id : 1,
         'creator_id' => $user ? $user->id : 1,
-        'location_name' => $faker->company,
-        'location_formatted_address' => $faker->address,
-        'location_city' => $faker->city,
-        'location_state' => $faker->stateAbbr,
-        'header_url' => $filehelper->getRandomImageFromDirectory('default_headers','events'),
-        'description' => $faker->realText(150),
-        'start_date' => $faker->date('Y-m-d'),
-        'start_time' => $faker->time('H:i')
+        'location_name' => $this->faker->company,
+        'location_formatted_address' => $this->faker->address,
+        'location_city' => $this->faker->city,
+        'location_state' => $this->faker->stateAbbr,
+        'header_url' => FileHelper::getRandomImageFromDirectory('default_headers','events'),
+        'description' => $this->faker->realText(150),
+        'start_date' => $this->faker->date('Y-m-d'),
+        'start_time' => $this->faker->time('H:i')
     ];
-});
+  }
 
-$factory->state(App\Event::class, 'upcoming', function($faker){
-    return [
-        'start_date' => Carbon::today()->addDays("26")->format("Y-m-d")
-    ];
-});
+  public function upcoming()
+  {
+    return $this->state(function(){
+        return [
+            'start_date' => Carbon::today()->addDays("26")->format("Y-m-d")
+        ];
+    });
+}
 
-$factory->state(App\Event::class, 'past', function($faker){
-    return [
-        'start_date' => Carbon::today()->subWeeks("4")->format("Y-m-d")
-    ];
-});
+  public function past()
+  {
+    return $this->state(function(){
+        return [
+            'start_date' => Carbon::today()->subWeeks("4")->format("Y-m-d")
+        ];
+    });
+  }
+}

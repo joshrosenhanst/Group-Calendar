@@ -7,7 +7,11 @@ use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Carbon;
-use App\FileHelper;
+use App\Facades\FileHelper;
+use App\Group;
+use App\User;
+use App\Event;
+use App\Comment;
 
 class EventTest extends TestCase
 {
@@ -18,11 +22,11 @@ class EventTest extends TestCase
         Check that the model properties are set properly and that the model accessor attributes are initialized.
     */
     public function testCreateEvent(){
-        $group = factory(\App\Group::class)->create();
-        $member = factory(\App\User::class)->create();
+        $group = Group::factory()->create();
+        $member = User::factory()->create();
         $group->users()->attach($member->id);
 
-        $event = factory(\App\Event::class)->create([
+        $event = Event::factory()->create([
             'group_id' => $group->id,
             'creator_id' => $member->id,
             'end_date' => Carbon::today()->addWeeks(3)->format("Y-m-d"),
@@ -65,17 +69,17 @@ class EventTest extends TestCase
         The event->attendees, event->going_attendees, event->interested_attendees should exist and match the number of created attendees.
     */
     public function testCreateEventWithAttendees(){
-        $group = factory(\App\Group::class)->create();
-        $member = factory(\App\User::class)->create();
+        $group = Group::factory()->create();
+        $member = User::factory()->create();
         $group->users()->attach($member->id);
 
-        $event = factory(\App\Event::class)->create([
+        $event = Event::factory()->create([
             'group_id' => $group->id,
             'creator_id' => $member->id
         ]);
 
         // create 4 group members and set their attendee status to going
-        factory(\App\User::class, 4)->create()->each(function ($user) use ($group,$event){
+        User::factory()->count(4)->create()->each(function ($user) use ($group,$event){
             $group->users()->save($user);
             $event->attendees()->attach($user->id, [
                 'status' => 'going'
@@ -88,7 +92,7 @@ class EventTest extends TestCase
         });
 
         // create 3 group members and set their attendee status to unavailable
-        factory(\App\User::class, 3)->create()->each(function ($user) use ($group,$event){
+        User::factory()->count(3)->create()->each(function ($user) use ($group,$event){
             $group->users()->save($user);
             $event->attendees()->attach($user->id, [
                 'status' => 'unavailable'
@@ -101,7 +105,7 @@ class EventTest extends TestCase
         });
 
         // create 5 group members and set their attendee status to interested
-        factory(\App\User::class, 5)->create()->each(function ($user) use ($group,$event){
+        User::factory()->count(5)->create()->each(function ($user) use ($group,$event){
             $group->users()->save($user);
             $event->attendees()->attach($user->id, [
                 'status' => 'interested'
@@ -128,24 +132,24 @@ class EventTest extends TestCase
         Check that the comments exist as we create them. The event->comments should exist and their count should match the number of comments we create.
     */
     public function testCreateEventWithComments(){
-        $group = factory(\App\Group::class)->create();
-        $member = factory(\App\User::class)->create();
+        $group = Group::factory()->create();
+        $member = User::factory()->create();
         $group->users()->attach($member->id);
 
-        $event = factory(\App\Event::class)->create([
+        $event = Event::factory()->create([
             'group_id' => $group->id,
             'creator_id' => $member->id
         ]);
 
-        factory(\App\Comment::class, 10)->create([
+        Comment::factory()->count(10)->create([
             'user_id' => $member->id,
             'commentable_id' => $event->id,
-            'commentable_type' => \App\Event::class
+            'commentable_type' => Event::class
         ])->each(function($comment) use ($event,$member){
             $this->assertDatabaseHas('comments', [
                 'id' => $comment->id,
                 'commentable_id' => $event->id,
-                'commentable_type' => \App\Event::class,
+                'commentable_type' => Event::class,
                 'user_id' => $member->id
             ]);
         });
@@ -161,19 +165,18 @@ class EventTest extends TestCase
     */
 
     public function testUpdateEvent(){
-        $filehelper = new FileHelper;
 
-        $group = factory(\App\Group::class)->create();
-        $member = factory(\App\User::class)->create();
-        $updater = factory(\App\User::class)->create();
+        $group = Group::factory()->create();
+        $member = User::factory()->create();
+        $updater = User::factory()->create();
         $group->users()->attach($member->id);
 
-        $event = factory(\App\Event::class)->create([
+        $event = Event::factory()->create([
             'group_id' => $group->id,
             'creator_id' => $member->id
         ]);
 
-        $new_header_url = $filehelper->getRandomImageFromDirectory('default_headers','events');
+        $new_header_url = FileHelper::getRandomImageFromDirectory('default_headers','events');
         $updated_event = [
             'name' => 'New Name',
             'location_name' => 'New Location',

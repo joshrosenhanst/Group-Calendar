@@ -1,17 +1,17 @@
 {
     "/js/app.js": "/js/app.js",
-    "/css/app.css": "/css/app.css",
-    "/css/event_flyer.css": "/css/event_flyer.css",
-    "/css/landing.css": "/css/landing.css",
-    "/css/noscript_styles.css": "/css/noscript_styles.css",
-    "/js/pages/events/edit.js": "/js/pages/events/edit.js",
-    "/js/pages/events/index.js": "/js/pages/events/index.js",
-    "/js/pages/events/new.js": "/js/pages/events/new.js",
-    "/js/pages/events/view.js": "/js/pages/events/view.js",
-    "/js/pages/groups/edit.js": "/js/pages/groups/edit.js",
+    "/js/pages/groups/view.js": "/js/pages/groups/view.js",
     "/js/pages/groups/events.js": "/js/pages/groups/events.js",
     "/js/pages/groups/members.js": "/js/pages/groups/members.js",
+    "/js/pages/groups/edit.js": "/js/pages/groups/edit.js",
     "/js/pages/groups/new.js": "/js/pages/groups/new.js",
-    "/js/pages/groups/view.js": "/js/pages/groups/view.js",
-    "/js/pages/profile/edit.js": "/js/pages/profile/edit.js"
+    "/js/pages/events/index.js": "/js/pages/events/index.js",
+    "/js/pages/events/new.js": "/js/pages/events/new.js",
+    "/js/pages/events/edit.js": "/js/pages/events/edit.js",
+    "/js/pages/events/view.js": "/js/pages/events/view.js",
+    "/js/pages/profile/edit.js": "/js/pages/profile/edit.js",
+    "/css/landing.css": "/css/landing.css",
+    "/css/event_flyer.css": "/css/event_flyer.css",
+    "/css/app.css": "/css/app.css",
+    "/css/noscript_styles.css": "/css/noscript_styles.css"
 }

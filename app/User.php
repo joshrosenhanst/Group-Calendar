@@ -12,10 +12,11 @@ namespace App;
 
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Support\Carbon;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class User extends Authenticatable
 {
-  use Notifiable;
+  use HasFactory, Notifiable;
 
   protected $fillable = [
     'name', 'email', 'password', 'avatar_url', 'notifications_last_read_at', 'account_setup'
@@ -27,6 +28,8 @@ class User extends Authenticatable
 
   /* Cast the `demo` database field (boolean integer) as a boolean true/false value */
   protected $casts = [
+    'email_verified_at' => 'datetime',
+    'password' => 'hashed',
     'demo' => 'boolean',
     'account_setup' => 'boolean',
     'notifications_last_read_at' => 'datetime'

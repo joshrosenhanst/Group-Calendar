@@ -4,19 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Foundation\Auth\ThrottlesLogins;
-use Validator;
+use Illuminate\Support\Facades\Validator;
 
-class LoginController extends Controller{
-  use ThrottlesLogins;
-
-  /*
-    username() - Defines this->username() value to 'email' for the ThrottlesLogins trait
-  */
-  public function username(){
-    return 'email';
-  }
-
+class LoginController extends Controller {
   /*
     authenticate() - Login form submission via POST request.
     Validate the login input fields and check the ThrottlesLogin trait login attempts.

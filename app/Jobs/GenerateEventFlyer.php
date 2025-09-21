@@ -2,7 +2,6 @@
 
 namespace App\Jobs;
 
-use PDF;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Bus\Queueable;
@@ -10,6 +9,7 @@ use Illuminate\Queue\SerializesModels;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
+use misterspelik\LaravelPdf\Facades\Pdf;
 
 class GenerateEventFlyer implements ShouldQueue
 {
@@ -46,7 +46,7 @@ class GenerateEventFlyer implements ShouldQueue
 
   private function generate_flyer_pdf($event){
     if($event){
-      $pdf = PDF::loadView('events.flyer', [
+      $pdf = Pdf::loadView('events.flyer', [
         'event' => $event
       ]);
       if($event->flyer_url){

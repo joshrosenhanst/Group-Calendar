@@ -1,6 +1,8 @@
 <?php
 
+use App\Http\Controllers\EventController;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Route;
 
 /*
 |--------------------------------------------------------------------------
@@ -19,6 +21,6 @@ use Illuminate\Http\Request;
 
 /* EVENTS */
 Route::middleware('auth:api')->prefix('events/')->name('events.')->group(function(){
-	Route::get('/', 'EventController@index')->name('index');
-  Route::get('/{event}','EventController@view')->name('view');
+	Route::get('/', [EventController::class, 'index'])->name('index');
+  Route::get('/{event}', [EventController::class, 'view'])->name('view');
 });

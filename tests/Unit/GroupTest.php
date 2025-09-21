@@ -7,7 +7,11 @@ use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
-use App\FileHelper;
+use App\Facades\FileHelper;
+use App\Group;
+use App\User;
+use App\Event;
+use App\Comment;
 
 class GroupTest extends TestCase
 {
@@ -21,7 +25,7 @@ class GroupTest extends TestCase
         $data = [
             'name' => $this->faker->company
         ];
-        $group = factory(\App\Group::class)->create($data);
+        $group = Group::factory()->create($data);
 
         $this->assertInstanceOf(\App\Group::class, $group);
         $this->assertDatabaseHas('groups', [
@@ -45,14 +49,14 @@ class GroupTest extends TestCase
         The group->users should exist and the group->user_count should be set.
     */
     public function testCreateGroupWithUsers(){
-        $group = factory(\App\Group::class)->create();
+        $group = Group::factory()->create();
 
         $this->assertDatabaseHas('groups', [
             'id' => $group->id
         ]);
 
         // create 10 group members
-        factory(\App\User::class, 10)->create()->each(function ($user) use ($group){
+        User::factory()->count(10)->create()->each(function ($user) use ($group){
             $this->assertDatabaseHas('users', [
                 'id' => $user->id
             ]);
@@ -65,7 +69,7 @@ class GroupTest extends TestCase
         });
 
         // create 3 group admins
-        factory(\App\User::class, 3)->create()->each(function ($admin_user) use ($group){
+        User::factory()->count(3)->create()->each(function ($admin_user) use ($group){
             $this->assertDatabaseHas('users', [
                 'id' => $admin_user->id
             ]);
@@ -93,15 +97,15 @@ class GroupTest extends TestCase
         The group->group_invites should exist and their count should match the number we created.
     */
     public function testCreateGroupWithInvites(){
-        $group = factory(\App\Group::class)->create();
+        $group = Group::factory()->create();
 
-        $admin_user = factory(\App\User::class)->create();
+        $admin_user = User::factory()->create();
 
         $group->users()->attach($admin_user->id, [
             'role' => 'admin'
         ]);
 
-        factory(\App\User::class, 6)->create()->each(function($invited_user) use ($group, $admin_user){
+        User::factory()->count(6)->create()->each(function($invited_user) use ($group, $admin_user){
             $this->assertDatabaseHas('users', [
                 'id' => $invited_user->id
             ]);
@@ -129,12 +133,12 @@ class GroupTest extends TestCase
         Check that the events exist as we create them. The group->events, group->upcoming_events, and group->past_events should exist and their count should match the number of events we create.
     */
     public function testCreateGroupWithEvents(){
-        $group = factory(\App\Group::class)->create();
-        $member = factory(\App\User::class)->create();
+        $group = Group::factory()->create();
+        $member = User::factory()->create();
         $group->users()->attach($member->id);
 
         // upcoming events
-        factory(\App\Event::class, 2)->states('upcoming')->create([
+        Event::factory()->count(2)->states('upcoming')->create([
             'group_id' => $group->id,
             'creator_id' => $member->id
         ])->each(function($event) use ($group,$member){
@@ -146,7 +150,7 @@ class GroupTest extends TestCase
         });
 
         // past events
-        factory(\App\Event::class, 3)->states('past')->create([
+        Event::factory()->count(3)->states('past')->create([
             'group_id' => $group->id,
             'creator_id' => $member->id
         ])->each(function($event) use ($group,$member){
@@ -172,11 +176,11 @@ class GroupTest extends TestCase
         Check that the comments exist as we create them. The group->comments should exist and their count should match the number of comments we create.
     */
     public function testCreateGroupWithComments() {
-        $group = factory(\App\Group::class)->create();
-        $member = factory(\App\User::class)->create();
+        $group = Group::factory()->create();
+        $member = User::factory()->create();
         $group->users()->attach($member->id);
 
-        factory(\App\Comment::class, 10)->create([
+        Comment::factory()->count(10)->create([
             'user_id' => $member->id,
             'commentable_id' => $group->id,
             'commentable_type' => \App\Group::class
@@ -198,11 +202,10 @@ class GroupTest extends TestCase
         Check that the model properties are properly updated.
     */
     public function testUpdateGroup(){
-        $filehelper = new FileHelper;
-        $group = factory(\App\Group::class)->create();
+        $group = Group::factory()->create();
 
-        $new_header_url = $filehelper->getRandomImageFromDirectory('default_headers','groups');
-        $new_avatar_url = $filehelper->getRandomImageFromDirectory('default_avatars','avatars');
+        $new_header_url = FileHelper::getRandomImageFromDirectory('default_headers','groups');
+        $new_avatar_url = FileHelper::getRandomImageFromDirectory('default_avatars','avatars');
         $updated_group = [
             'name' => 'Updated Group Name',
             'header_url' => $new_header_url,

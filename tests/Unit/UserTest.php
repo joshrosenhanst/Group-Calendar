@@ -7,7 +7,10 @@ use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Carbon;
-use App\FileHelper;
+use App\Facades\FileHelper;
+use App\Group;
+use App\User;
+use App\Event;
 
 class UserTest extends TestCase
 {
@@ -17,7 +20,7 @@ class UserTest extends TestCase
         Check that the model properties are set properly and that the model accessor attributes are initialized.
     */
     public function testCreateUser(){
-        $user = factory(\App\User::class)->create();
+        $user = User::factory()->create();
 
         $this->assertInstanceOf(\App\User::class, $user);
         $this->assertDatabaseHas('users', [
@@ -33,10 +36,9 @@ class UserTest extends TestCase
         Check that the model properties are updated properly and that the model accessor attributes are initialized.
     */
     public function testUpdateUser(){
-        $filehelper = new FileHelper;
-        $user = factory(\App\User::class)->create();
+        $user = User::factory()->create();
 
-        $new_avatar_url = $filehelper->getRandomImageFromDirectory('default_avatars','avatars');
+        $new_avatar_url = FileHelper::getRandomImageFromDirectory('default_avatars','avatars');
         $now_value = Carbon::now()->toDateTimeString();
         $updated_user = [
             'name' => 'New Name',
